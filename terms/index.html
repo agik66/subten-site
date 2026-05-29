@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Subten â Terms of Use">
+<meta name="theme-color" content="#0a0a0a">
+<title>Terms of Use â Subten</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #5AB87A;
+  --green-deep: #3F8E5A;
+  --gold: #E8A66B;
+  --bg-dark: #0a0a0a;
+  --bg-deep: #1a1a2e;
+  --bg-card: rgba(255,255,255,0.04);
+  --border-glass: rgba(255,255,255,0.08);
+  --text-primary: #f0f0f0;
+  --text-secondary: rgba(255,255,255,0.6);
+  --text-muted: rgba(255,255,255,0.35);
+  --font: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font);
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  line-height: 1.7;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 80% 90%, rgba(232,166,107,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 80% at 50% 50%, rgba(26,26,46,0.6) 0%, var(--bg-dark) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+a { color: var(--green); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+}
+nav {
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+nav .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+.nav-logo:hover { text-decoration: none; }
+.logo-icon {
+  width: 32px; height: 32px;
+  background: linear-gradient(135deg, var(--green), var(--green-deep));
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: #fff;
+}
+.logo-icon img { width: 100%; height: 100%; border-radius: 8px; object-fit: cover; }
+.nav-back {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  transition: color 0.3s;
+  text-decoration: none;
+}
+.nav-back:hover { color: var(--text-primary); text-decoration: none; }
+.legal-header {
+  padding: 80px 0 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 48px;
+}
+.legal-header h1 {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.legal-header p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.legal-content h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 40px 0 12px;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+.legal-content h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 24px 0 8px;
+  color: rgba(255,255,255,0.85);
+}
+.legal-content p {
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+}
+.legal-content ul {
+  padding-left: 24px;
+  margin-bottom: 12px;
+}
+.legal-content li {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+.legal-content .highlight-box {
+  padding: 20px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: 12px;
+  margin: 20px 0;
+  backdrop-filter: blur(20px);
+}
+.legal-content .highlight-box p { margin-bottom: 0; }
+footer {
+  margin-top: 80px;
+  padding: 32px 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  position: relative;
+  z-index: 1;
+}
+footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-left { font-size: 0.8rem; color: var(--text-muted); }
+.footer-links { display: flex; gap: 20px; list-style: none; }
+.footer-links a { font-size: 0.8rem; color: var(--text-muted); transition: color 0.3s; }
+.footer-links a:hover { color: var(--text-secondary); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="../" class="nav-logo"><div class="logo-icon"><img src="../icon.png" alt="Subten"></div> Subten</a>
+    <a href="../" class="nav-back">&larr; Back to homepage</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="legal-header">
+    <h1>Terms of Use</h1>
+    <p>Last updated: May 29, 2026</p>
+  </div>
+
+  <div class="legal-content">
+    <div class="highlight-box">
+      <p><strong>Summary:</strong> Subten is a nutrition and training tracking app with AI coaching. By using the app, you agree to these terms. Your data belongs to you.</p>
+    </div>
+
+    <h2>1. Introduction and Acceptance</h2>
+    <p>These Terms of Use (hereinafter "Terms") govern your use of the Subten mobile application and related services (hereinafter "Service"). By downloading, installing, or using the app, you agree to these Terms.</p>
+    <p>If you do not agree with these Terms, do not use the app.</p>
+
+    <h2>2. Description of Service</h2>
+    <p>Subten is an app for tracking nutrition, training, and body progress, designed primarily for athletes and fitness enthusiasts. The Service includes:</p>
+    <ul>
+      <li>Daily calorie and macronutrient intake tracking</li>
+      <li>AI food recognition from photos, barcodes, and nutrition labels</li>
+      <li>A database of 717+ foods and access to OpenFoodFacts</li>
+      <li>Training module with customizable workout templates</li>
+      <li>Progress tracking (measurements, photos, milestones)</li>
+      <li>AI coaching powered by Claude (Anthropic)</li>
+    </ul>
+
+    <h2>3. Registration and Account</h2>
+    <p>An account is required to use the app. You agree to provide accurate and current information. You are responsible for maintaining the confidentiality of your login credentials and for all activity under your account.</p>
+
+    <h2>4. Subscriptions and Payments</h2>
+
+    <h3>4.1 Free Plan</h3>
+    <p>Core app features are available for free with no time limit. The Free plan includes food logging, the training module, a basic dashboard, lifestyle tracking, and limited AI features.</p>
+
+    <h3>4.2 Premium Subscription</h3>
+    <p>Premium features are available for a monthly subscription of &euro;3.99/month. Premium includes unlimited AI coaching, AI meal plans, data export &amp; import, iCloud sync, advanced analytics, and AI body assessment.</p>
+
+    <h3>4.3 Free Trial</h3>
+    <p>New users are eligible for a 7-day free trial of the Premium subscription. After the trial expires, the subscription will be charged automatically unless cancelled.</p>
+
+    <h3>4.4 Payments via Apple In-App Purchase</h3>
+    <p>All Premium subscription payments are processed through Apple In-App Purchase (IAP). The following rules apply:</p>
+    <ul>
+      <li>Payment is charged to your Apple ID upon confirmation</li>
+      <li>The subscription auto-renews unless cancelled at least 24 hours before the current period ends</li>
+      <li>Cancellation is available through Apple ID settings or the App Store</li>
+      <li>Refunds can be requested directly from Apple per their terms</li>
+    </ul>
+
+    <h2>5. BYOK (Bring Your Own Key)</h2>
+    <p>Premium users can use their own OpenRouter API key for AI features. In that case:</p>
+    <ul>
+      <li>API calls are billed directly to your OpenRouter account</li>
+      <li>Subten is not responsible for costs associated with your API key</li>
+      <li>You are responsible for the security and management of your own API key</li>
+      <li>Your API key is stored exclusively on your device</li>
+    </ul>
+
+    <h2>6. Acceptable Use</h2>
+    <p>You agree to use the app in accordance with applicable laws and these Terms. The following is prohibited:</p>
+    <ul>
+      <li>Attempting unauthorized access to services, other users' accounts, or systems</li>
+      <li>Using the service to distribute harmful content, spam, or malware</li>
+      <li>Reverse-engineering, decompiling, or otherwise disassembling the app</li>
+      <li>Using automated tools to extract data from the app</li>
+      <li>Misusing AI coaching for purposes unrelated to nutrition and training</li>
+      <li>Sharing or reselling access to Premium features</li>
+    </ul>
+
+    <h2>7. Content Ownership</h2>
+
+    <h3>7.1 Your Content</h3>
+    <p>Content you create in the app (food logs, training data, photos, measurements) remains your property. You grant us a limited, non-exclusive license to use this content solely for providing and improving the Service.</p>
+
+    <h3>7.2 Our Content</h3>
+    <p>The Subten app, its design, code, food databases, training templates, and other content created by us are protected by copyright. You may not copy, modify, or distribute them without our written consent.</p>
+
+    <h3>7.3 AI-Generated Content</h3>
+    <p>Responses and recommendations generated by the AI coach are created based on your inputs and publicly available knowledge. You may freely use these outputs for personal purposes.</p>
+
+    <h2>8. AI Coaching â Limitation of Liability</h2>
+    <div class="highlight-box">
+      <p><strong>Important:</strong> AI coaching in Subten is not a substitute for professional medical, nutritional, or training advice. AI recommendations are informational in nature. Consult your physician before starting any diet or training program.</p>
+    </div>
+
+    <h2>9. Service Availability</h2>
+    <p>We make reasonable efforts to ensure continuous service availability but do not guarantee 100% uptime. The Service may be temporarily unavailable due to maintenance, updates, or circumstances beyond our control.</p>
+
+    <h2>10. Modification and Termination</h2>
+    <p>We reserve the right to modify, suspend, or discontinue the Service or parts of it at any time. We will notify you of significant changes at least 30 days in advance. Termination of the free plan does not remove your right to export your data.</p>
+
+    <h2>11. Account Deletion</h2>
+    <p>You can delete your account at any time in the app settings. Upon deletion:</p>
+    <ul>
+      <li>Your Premium subscription will be cancelled at the end of the current billing period</li>
+      <li>Your data will be erased within 30 days (per our Privacy Policy)</li>
+      <li>You can export all your data before deletion</li>
+    </ul>
+
+    <h2>12. Limitation of Liability</h2>
+    <p>The Service is provided "as is" without warranties of any kind. We are not liable for direct, indirect, incidental, or consequential damages arising from the use or inability to use the Service. Our total liability is limited to the amount you have paid for the Service in the last 12 months.</p>
+
+    <h2>13. Governing Law</h2>
+    <p>These Terms are governed by the laws of the Slovak Republic. Any disputes shall be resolved by the competent courts of the Slovak Republic, unless mandatory EU law provisions stipulate otherwise.</p>
+
+    <h2>14. Changes to Terms</h2>
+    <p>We may update these Terms from time to time. We will notify you of material changes via the app or email at least 14 days before they take effect. Continued use of the app after the changes constitutes acceptance of the updated Terms.</p>
+
+    <h2>15. Contact</h2>
+    <p>If you have questions about these Terms, contact us:</p>
+    <ul>
+      <li>Email: <a href="mailto:legal@subten-app.eu">legal@subten-app.eu</a></li>
+      <li>Web: <a href="https://subten-app.eu">subten-app.eu</a></li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <span class="footer-left">&copy; 2026 Subten</span>
+    <ul class="footer-links">
+      <li><a href="../">Homepage</a></li>
+      <li><a href="../privacy/">Privacy Policy</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
