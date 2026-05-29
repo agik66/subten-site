@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Subten â Privacy Policy">
+<meta name="theme-color" content="#0a0a0a">
+<title>Privacy Policy â Subten</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #5AB87A;
+  --green-deep: #3F8E5A;
+  --gold: #E8A66B;
+  --bg-dark: #0a0a0a;
+  --bg-deep: #1a1a2e;
+  --bg-card: rgba(255,255,255,0.04);
+  --border-glass: rgba(255,255,255,0.08);
+  --text-primary: #f0f0f0;
+  --text-secondary: rgba(255,255,255,0.6);
+  --text-muted: rgba(255,255,255,0.35);
+  --font: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font);
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  line-height: 1.7;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(90,184,122,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 80% at 50% 50%, rgba(26,26,46,0.6) 0%, var(--bg-dark) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+a { color: var(--green); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+}
+nav {
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+nav .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+.nav-logo:hover { text-decoration: none; }
+.logo-icon {
+  width: 32px; height: 32px;
+  background: linear-gradient(135deg, var(--green), var(--green-deep));
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: #fff;
+}
+.logo-icon img { width: 100%; height: 100%; border-radius: 8px; object-fit: cover; }
+.nav-back {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  transition: color 0.3s;
+  text-decoration: none;
+}
+.nav-back:hover { color: var(--text-primary); text-decoration: none; }
+.legal-header {
+  padding: 80px 0 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 48px;
+}
+.legal-header h1 {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.legal-header p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.legal-content h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 40px 0 12px;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+.legal-content h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 24px 0 8px;
+  color: rgba(255,255,255,0.85);
+}
+.legal-content p {
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+}
+.legal-content ul {
+  padding-left: 24px;
+  margin-bottom: 12px;
+}
+.legal-content li {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+.legal-content .highlight-box {
+  padding: 20px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: 12px;
+  margin: 20px 0;
+  backdrop-filter: blur(20px);
+}
+.legal-content .highlight-box p {
+  margin-bottom: 0;
+}
+footer {
+  margin-top: 80px;
+  padding: 32px 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  position: relative;
+  z-index: 1;
+}
+footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-left {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.footer-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+.footer-links a {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--text-secondary); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="../" class="nav-logo"><div class="logo-icon"><img src="../icon.png" alt="Subten"></div> Subten</a>
+    <a href="../" class="nav-back">&larr; Back to homepage</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="legal-header">
+    <h1>Privacy Policy</h1>
+    <p>Last updated: May 29, 2026</p>
+  </div>
+
+  <div class="legal-content">
+    <div class="highlight-box">
+      <p><strong>Summary:</strong> Your data is yours. We do not sell it, share it for marketing purposes, or use it for anything beyond providing the Subten app experience.</p>
+    </div>
+
+    <h2>1. Data Controller</h2>
+    <p>The data controller is Subten (hereinafter "we" or "the app"). You can reach us at: <a href="mailto:privacy@subten-app.eu">privacy@subten-app.eu</a>.</p>
+
+    <h2>2. Data We Collect</h2>
+
+    <h3>2.1 Data Provided by the User</h3>
+    <ul>
+      <li><strong>Registration data:</strong> email address, name (optional), age, sex, weight, height</li>
+      <li><strong>Nutrition data:</strong> food logs, food photos, barcode scans, and nutrition label scans</li>
+      <li><strong>Training data:</strong> workout logs, personal records, cardio activities</li>
+      <li><strong>Progress data:</strong> body measurements (10 metrics), progress photos</li>
+      <li><strong>AI Coach communication:</strong> messages and questions entered in the AI chat interface</li>
+    </ul>
+
+    <h3>2.2 Apple HealthKit Data</h3>
+    <p>With the user's consent, we access data from Apple HealthKit including steps, heart rate, active energy, workouts, and weight. HealthKit data is never sold, shared with third parties for marketing, or used for advertising. This complies with Apple's HealthKit usage requirements.</p>
+
+    <h3>2.3 Automatically Collected Data</h3>
+    <ul>
+      <li>Device type, iOS version</li>
+      <li>Language settings</li>
+      <li>Anonymized app usage analytics</li>
+    </ul>
+
+    <h2>3. How We Use Your Data</h2>
+    <ul>
+      <li>To provide app services (nutrition, training, and progress tracking)</li>
+      <li>To personalize AI coaching and recommendations</li>
+      <li>To calculate nutritional values and training statistics</li>
+      <li>To sync data via iCloud (if enabled)</li>
+      <li>To improve service quality (anonymized analytics only)</li>
+    </ul>
+
+    <h2>4. AI Processing and OpenRouter API</h2>
+    <p>Subten uses artificial intelligence to provide coaching, analyze food from photos, and offer personalized recommendations. AI features are powered by Claude from Anthropic, accessed through the OpenRouter service.</p>
+
+    <div class="highlight-box">
+      <p><strong>BYOK (Bring Your Own Key):</strong> Premium users can use their own OpenRouter API key. In that case, API calls are billed directly to your OpenRouter account. Your API key is stored locally on your device and encrypted using the iOS Keychain. We never send it to our servers.</p>
+    </div>
+
+    <p>Data sent for AI processing:</p>
+    <ul>
+      <li>Text messages in the AI chat interface</li>
+      <li>Food photos (for recognition)</li>
+      <li>Summary of daily nutritional data (for personalized advice)</li>
+    </ul>
+    <p>This data is processed in real time and is not permanently stored on third-party servers. Anthropic does not use data sent through the API to train its models.</p>
+
+    <h2>5. Data Storage â Supabase</h2>
+    <p>Data is stored on Supabase servers (PostgreSQL database) within the EU. Supabase provides:</p>
+    <ul>
+      <li>Encryption at rest (AES-256) and in transit (TLS 1.3)</li>
+      <li>Row-level security â each user can only see their own data</li>
+      <li>Automatic backups</li>
+      <li>SOC 2 Type II certification</li>
+    </ul>
+
+    <h2>6. Photos and Images</h2>
+    <p>Food and progress photos are handled as follows:</p>
+    <ul>
+      <li><strong>Food photos:</strong> sent to the AI server for recognition; not retained on the server after processing</li>
+      <li><strong>Progress photos:</strong> stored in Supabase Storage, accessible only to the account owner</li>
+      <li>All photos can be deleted by the user at any time</li>
+    </ul>
+
+    <h2>7. Sharing Data with Third Parties</h2>
+    <div class="highlight-box">
+      <p><strong>We never sell your data.</strong> We do not share it with advertising networks or data brokers.</p>
+    </div>
+    <p>We share data only with:</p>
+    <ul>
+      <li><strong>Supabase</strong> â data storage (EU servers)</li>
+      <li><strong>OpenRouter / Anthropic</strong> â AI processing (per their privacy policy)</li>
+      <li><strong>Apple</strong> â payment processing via the App Store (for Premium subscriptions)</li>
+      <li><strong>OpenFoodFacts</strong> â food database lookups (anonymous API calls)</li>
+    </ul>
+
+    <h2>8. Your Rights Under GDPR</h2>
+    <p>As an EU citizen, you have the right to:</p>
+    <ul>
+      <li><strong>Access</strong> â obtain a copy of your data</li>
+      <li><strong>Rectification</strong> â request correction of inaccurate data</li>
+      <li><strong>Erasure</strong> â request deletion of your data (right to be forgotten)</li>
+      <li><strong>Portability</strong> â export your data in a structured format</li>
+      <li><strong>Restriction</strong> â restrict the processing of your data</li>
+      <li><strong>Objection</strong> â object to the processing of your data</li>
+    </ul>
+    <p>To exercise these rights, contact us at <a href="mailto:privacy@subten-app.eu">privacy@subten-app.eu</a>.</p>
+
+    <h2>9. Data Retention</h2>
+    <p>We retain your data for as long as your account is active. After account deletion, all personal data is erased within 30 days. Anonymized analytics data may be retained longer.</p>
+
+    <h2>10. Security</h2>
+    <p>We implement appropriate technical and organizational measures to protect your data, including:</p>
+    <ul>
+      <li>Data encryption (AES-256, TLS 1.3)</li>
+      <li>Secure API key storage in the iOS Keychain</li>
+      <li>Row-level security at the database level</li>
+      <li>Regular security audits</li>
+    </ul>
+
+    <h2>11. Children</h2>
+    <p>Subten is not intended for children under 16 years of age. We do not knowingly collect data from children. If we discover that we have collected data from a child, we will delete it promptly.</p>
+
+    <h2>12. Policy Changes</h2>
+    <p>We will notify you of significant changes to this Privacy Policy via the app or email at least 14 days before they take effect.</p>
+
+    <h2>13. Contact</h2>
+    <p>If you have questions about privacy, contact us:</p>
+    <ul>
+      <li>Email: <a href="mailto:privacy@subten-app.eu">privacy@subten-app.eu</a></li>
+      <li>Web: <a href="https://subten-app.eu">subten-app.eu</a></li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <span class="footer-left">&copy; 2026 Subten</span>
+    <ul class="footer-links">
+      <li><a href="../">Homepage</a></li>
+      <li><a href="../terms/">Terms of Use</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
