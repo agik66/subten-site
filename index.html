@@ -292,7 +292,90 @@ nav .container { display: flex; align-items: center; justify-content: space-betw
 .ring-text .cal-sub { font-size: 0.5rem; color: #999; }
 .energy-label { text-align: center; font-size: 0.5rem; color: var(--green); font-weight: 600; margin-bottom: 10px; }
 
-/* Macro bars — light */
+/* Two-column calorie layout */
+.calorie-two-col {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  padding: 0 4px;
+}
+.calorie-two-col .calorie-ring {
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;
+}
+.calorie-two-col .energy-info {
+  flex: 1;
+}
+.energy-info .energy-label-top {
+  font-size: 0.45rem;
+  font-weight: 700;
+  color: #bbb;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.energy-info .energy-remaining {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--green);
+}
+.energy-info .energy-remaining .kcal-unit {
+  font-size: 0.55rem;
+  font-weight: 600;
+}
+.energy-info .energy-sub-label {
+  font-size: 0.42rem;
+  color: #999;
+}
+.energy-info .energy-exercise {
+  font-size: 0.42rem;
+  color: #999;
+  margin-top: 2px;
+}
+
+/* Macro progress bars */
+.macro-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 4px;
+}
+.macro-bar-row .macro-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.macro-bar-row .macro-name {
+  font-size: 0.48rem;
+  color: #888;
+  width: 52px;
+  flex-shrink: 0;
+}
+.macro-bar-track {
+  flex: 1;
+  height: 6px;
+  background: rgba(0,0,0,0.04);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.macro-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  min-width: 2px;
+}
+.macro-bar-row .macro-val {
+  font-size: 0.45rem;
+  font-weight: 600;
+  color: #555;
+  white-space: nowrap;
+  width: 42px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* Macro bars — light (Food screen) */
 .macro-rows { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
 .macro-row-light { display: flex; align-items: center; gap: 6px; padding: 5px 10px; background: rgba(0,0,0,0.02); border-radius: 8px; }
 .macro-row-light .macro-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
@@ -646,24 +729,53 @@ footer .container { display: flex; justify-content: space-between; align-items: 
 
             <!-- ▸ TODAY SCREEN -->
             <div class="app-screen active" data-screen="today" id="heroScreenToday">
-              <div class="ph-header"><span style="font-size:0.75rem;color:#999;">&#9881;</span><span class="ph-title"><span class="lang-en">Today</span><span class="lang-sk">Dnes</span></span><span class="ph-icons">&#8635; &#9829;</span></div>
+              <div class="ph-header">
+                <span style="font-size:0.85rem;color:#999;">&#9881;</span>
+                <span class="ph-title" style="flex:1;text-align:left;margin-left:4px;"><span class="lang-en">Today</span><span class="lang-sk">Dnes</span></span>
+                <span class="ph-icons">&#8635; &#9829;</span>
+              </div>
               <div class="ph-greeting"><span class="lang-en">Good afternoon</span><span class="lang-sk">Dobré popoludnie</span></div>
               <div style="display:flex;align-items:center;gap:6px;margin-bottom:10px;">
                 <div class="ph-goal-badge" style="margin-bottom:0;"><span class="lang-en">Goal -9 kg</span><span class="lang-sk">Cieľ -9 kg</span></div>
                 <div class="streak-badge">&#128293; <span class="lang-en">12 days</span><span class="lang-sk">12 dní</span></div>
               </div>
-              <div class="calorie-ring-container">
+
+              <!-- Two-column: ring LEFT, energy info RIGHT -->
+              <div class="calorie-two-col">
                 <div class="calorie-ring">
                   <svg viewBox="0 0 100 100"><circle class="ring-bg" cx="50" cy="50" r="45"/><circle class="ring-fill" cx="50" cy="50" r="45"/></svg>
-                  <div class="ring-text"><span class="cal-number">0 kcal</span><span class="cal-sub">/ 2,369</span></div>
+                  <div class="ring-text"><span class="cal-number" style="font-size:0.9rem;">0</span><span class="cal-sub">kcal</span></div>
+                </div>
+                <div class="energy-info">
+                  <div class="energy-label-top"><span class="lang-en">ENERGY</span><span class="lang-sk">ENERGIA</span></div>
+                  <div class="energy-sub-label"><span class="lang-en">Remaining</span><span class="lang-sk">Zostáva</span></div>
+                  <div class="energy-remaining">2,369 <span class="kcal-unit">kcal</span></div>
+                  <div class="energy-exercise"><span class="lang-en">Exercise: +0 kcal</span><span class="lang-sk">Cvičenie: +0 kcal</span></div>
                 </div>
               </div>
-              <div class="energy-label"><span class="lang-en">ENERGY &middot; Remaining 2,369 kcal</span><span class="lang-sk">ENERGIA &middot; Zostáva 2,369 kcal</span></div>
-              <div class="macro-rows">
-                <div class="macro-row-light"><div class="macro-dot" style="background:var(--protein);"></div><span class="macro-name"><span class="lang-en">Protein</span><span class="lang-sk">Bielkoviny</span></span><span class="macro-val">0 / 187g</span></div>
-                <div class="macro-row-light"><div class="macro-dot" style="background:var(--carbs);"></div><span class="macro-name"><span class="lang-en">Carbs</span><span class="lang-sk">Sacharidy</span></span><span class="macro-val">0 / 252g</span></div>
-                <div class="macro-row-light"><div class="macro-dot" style="background:var(--fat);"></div><span class="macro-name"><span class="lang-en">Fat</span><span class="lang-sk">Tuky</span></span><span class="macro-val">0 / 68g</span></div>
+
+              <!-- Macro PROGRESS BARS -->
+              <div class="macro-rows" style="gap:2px;">
+                <div class="macro-bar-row">
+                  <div class="macro-dot" style="background:var(--protein);"></div>
+                  <span class="macro-name"><span class="lang-en">Protein</span><span class="lang-sk">Bielkoviny</span></span>
+                  <div class="macro-bar-track"><div class="macro-bar-fill" style="width:0%;background:var(--protein);"></div></div>
+                  <span class="macro-val">0 / 187g</span>
+                </div>
+                <div class="macro-bar-row">
+                  <div class="macro-dot" style="background:var(--carbs);"></div>
+                  <span class="macro-name"><span class="lang-en">Carbs</span><span class="lang-sk">Sacharidy</span></span>
+                  <div class="macro-bar-track"><div class="macro-bar-fill" style="width:0%;background:var(--carbs);"></div></div>
+                  <span class="macro-val">0 / 252g</span>
+                </div>
+                <div class="macro-bar-row">
+                  <div class="macro-dot" style="background:var(--fat);"></div>
+                  <span class="macro-name"><span class="lang-en">Fat</span><span class="lang-sk">Tuky</span></span>
+                  <div class="macro-bar-track"><div class="macro-bar-fill" style="width:0%;background:var(--fat);"></div></div>
+                  <span class="macro-val">0 / 68g</span>
+                </div>
               </div>
+
               <div class="quick-actions">
                 <div class="quick-card"><div class="qc-icon">&#127860;</div><div class="qc-title"><span class="lang-en">Add food</span><span class="lang-sk">Pridať jedlo</span></div><div class="qc-sub"><span class="lang-en">Lunch</span><span class="lang-sk">Obed</span></div></div>
                 <div class="quick-card"><div class="qc-icon" style="color:#7A9AB8;">&#128167;</div><div class="qc-title"><span class="lang-en">Add water</span><span class="lang-sk">Pridať vodu</span></div><div class="qc-sub">+250 ml</div></div>
@@ -884,24 +996,53 @@ footer .container { display: flex; justify-content: space-between; align-items: 
 
                 <!-- Demo: Today -->
                 <div class="app-screen active" data-screen="today">
-                  <div class="ph-header"><span style="font-size:0.75rem;color:#999;">&#9881;</span><span class="ph-title"><span class="lang-en">Today</span><span class="lang-sk">Dnes</span></span><span class="ph-icons">&#8635; &#9829;</span></div>
+                  <div class="ph-header">
+                    <span style="font-size:0.85rem;color:#999;">&#9881;</span>
+                    <span class="ph-title" style="flex:1;text-align:left;margin-left:4px;"><span class="lang-en">Today</span><span class="lang-sk">Dnes</span></span>
+                    <span class="ph-icons">&#8635; &#9829;</span>
+                  </div>
                   <div class="ph-greeting"><span class="lang-en">Good afternoon</span><span class="lang-sk">Dobré popoludnie</span></div>
                   <div style="display:flex;align-items:center;gap:6px;margin-bottom:10px;">
                     <div class="ph-goal-badge" style="margin-bottom:0;"><span class="lang-en">Goal -9 kg</span><span class="lang-sk">Cieľ -9 kg</span></div>
                     <div class="streak-badge">&#128293; <span class="lang-en">12 days</span><span class="lang-sk">12 dní</span></div>
                   </div>
-                  <div class="calorie-ring-container">
+
+                  <!-- Two-column: ring LEFT, energy info RIGHT -->
+                  <div class="calorie-two-col">
                     <div class="calorie-ring">
                       <svg viewBox="0 0 100 100"><circle class="ring-bg" cx="50" cy="50" r="45"/><circle class="ring-fill" cx="50" cy="50" r="45"/></svg>
-                      <div class="ring-text"><span class="cal-number">0 kcal</span><span class="cal-sub">/ 2,369</span></div>
+                      <div class="ring-text"><span class="cal-number" style="font-size:0.9rem;">0</span><span class="cal-sub">kcal</span></div>
+                    </div>
+                    <div class="energy-info">
+                      <div class="energy-label-top"><span class="lang-en">ENERGY</span><span class="lang-sk">ENERGIA</span></div>
+                      <div class="energy-sub-label"><span class="lang-en">Remaining</span><span class="lang-sk">Zostáva</span></div>
+                      <div class="energy-remaining">2,369 <span class="kcal-unit">kcal</span></div>
+                      <div class="energy-exercise"><span class="lang-en">Exercise: +0 kcal</span><span class="lang-sk">Cvičenie: +0 kcal</span></div>
                     </div>
                   </div>
-                  <div class="energy-label"><span class="lang-en">ENERGY &middot; Remaining 2,369 kcal</span><span class="lang-sk">ENERGIA &middot; Zostáva 2,369 kcal</span></div>
-                  <div class="macro-rows">
-                    <div class="macro-row-light"><div class="macro-dot" style="background:var(--protein);"></div><span class="macro-name"><span class="lang-en">Protein</span><span class="lang-sk">Bielkoviny</span></span><span class="macro-val">0 / 187g</span></div>
-                    <div class="macro-row-light"><div class="macro-dot" style="background:var(--carbs);"></div><span class="macro-name"><span class="lang-en">Carbs</span><span class="lang-sk">Sacharidy</span></span><span class="macro-val">0 / 252g</span></div>
-                    <div class="macro-row-light"><div class="macro-dot" style="background:var(--fat);"></div><span class="macro-name"><span class="lang-en">Fat</span><span class="lang-sk">Tuky</span></span><span class="macro-val">0 / 68g</span></div>
+
+                  <!-- Macro PROGRESS BARS -->
+                  <div class="macro-rows" style="gap:2px;">
+                    <div class="macro-bar-row">
+                      <div class="macro-dot" style="background:var(--protein);"></div>
+                      <span class="macro-name"><span class="lang-en">Protein</span><span class="lang-sk">Bielkoviny</span></span>
+                      <div class="macro-bar-track"><div class="macro-bar-fill" style="width:0%;background:var(--protein);"></div></div>
+                      <span class="macro-val">0 / 187g</span>
+                    </div>
+                    <div class="macro-bar-row">
+                      <div class="macro-dot" style="background:var(--carbs);"></div>
+                      <span class="macro-name"><span class="lang-en">Carbs</span><span class="lang-sk">Sacharidy</span></span>
+                      <div class="macro-bar-track"><div class="macro-bar-fill" style="width:0%;background:var(--carbs);"></div></div>
+                      <span class="macro-val">0 / 252g</span>
+                    </div>
+                    <div class="macro-bar-row">
+                      <div class="macro-dot" style="background:var(--fat);"></div>
+                      <span class="macro-name"><span class="lang-en">Fat</span><span class="lang-sk">Tuky</span></span>
+                      <div class="macro-bar-track"><div class="macro-bar-fill" style="width:0%;background:var(--fat);"></div></div>
+                      <span class="macro-val">0 / 68g</span>
+                    </div>
                   </div>
+
                   <div class="quick-actions">
                     <div class="quick-card"><div class="qc-icon">&#127860;</div><div class="qc-title"><span class="lang-en">Add food</span><span class="lang-sk">Pridať jedlo</span></div><div class="qc-sub"><span class="lang-en">Lunch</span><span class="lang-sk">Obed</span></div></div>
                     <div class="quick-card"><div class="qc-icon" style="color:#7A9AB8;">&#128167;</div><div class="qc-title"><span class="lang-en">Add water</span><span class="lang-sk">Pridať vodu</span></div><div class="qc-sub">+250 ml</div></div>
