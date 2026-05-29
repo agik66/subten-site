@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Subten — Your AI body recomposition coach. Smart nutrition, training, and progress tracking powered by AI.">
+<meta name="theme-color" content="#0a0a0a">
+<title>Subten — AI Body Recomposition Coach</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════
+   SUBTEN — DESIGN TOKENS & RESET
+   ═══════════════════════════════════════════════════ */
+:root {
+  --green: #5AB87A;
+  --green-deep: #3F8E5A;
+  --green-glow: rgba(90, 184, 122, 0.3);
+  --gold: #E8A66B;
+  --gold-glow: rgba(232, 166, 107, 0.3);
+  --protein: #C97C7C;
+  --carbs: #D4B26A;
+  --fat: #7AA8B5;
+  --fiber: #8DB580;
+  --bg-dark: #0a0a0a;
+  --bg-deep: #1a1a2e;
+  --bg-card: rgba(255,255,255,0.04);
+  --bg-card-hover: rgba(255,255,255,0.08);
+  --border-glass: rgba(255,255,255,0.08);
+  --border-glass-hover: rgba(255,255,255,0.15);
+  --text-primary: #f0f0f0;
+  --text-secondary: rgba(255,255,255,0.6);
+  --text-muted: rgba(255,255,255,0.35);
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-xl: 40px;
+  --font: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --phone-width: 280px;
+  --phone-height: 580px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body { font-family: var(--font); background: var(--bg-dark); color: var(--text-primary); overflow-x: hidden; line-height: 1.6; }
+
+/* ═══════════════════════════════════════════════════
+   LANGUAGE TOGGLE
+   ═══════════════════════════════════════════════════ */
+html[lang="en"] .lang-sk { display: none !important; }
+html[lang="sk"] .lang-en { display: none !important; }
+
+/* ═══════════════════════════════════════════════════
+   GLOBAL AMBIENT BACKGROUND
+   ═══════════════════════════════════════════════════ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(90,184,122,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(232,166,107,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 80% at 50% 50%, rgba(26,26,46,0.8) 0%, var(--bg-dark) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ═══════════════════════════════════════════════════
+   TYPOGRAPHY
+   ═══════════════════════════════════════════════════ */
+h1, h2, h3, h4, h5 { font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+h1 { font-size: clamp(2.4rem, 5vw, 4.2rem); font-weight: 800; }
+h2 { font-size: clamp(1.8rem, 3.5vw, 3rem); }
+h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); }
+p { color: var(--text-secondary); line-height: 1.7; }
+a { color: inherit; text-decoration: none; }
+
+/* ═══════════════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════════════ */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+section { position: relative; z-index: 1; padding: 100px 0; }
+
+/* ═══════════════════════════════════════════════════
+   GLASS CARD
+   ═══════════════════════════════════════════════════ */
+.glass {
+  background: var(--bg-card);
+  backdrop-filter: blur(40px) saturate(1.3);
+  -webkit-backdrop-filter: blur(40px) saturate(1.3);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.glass:hover { background: var(--bg-card-hover); border-color: var(--border-glass-hover); }
+
+/* ═══════════════════════════════════════════════════
+   BUTTONS
+   ═══════════════════════════════════════════════════ */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 36px; background: linear-gradient(135deg, var(--green), var(--green-deep));
+  color: #fff; font-weight: 600; font-size: 1rem; border: none; border-radius: 50px;
+  cursor: pointer; transition: all 0.3s ease; text-decoration: none; position: relative; overflow: hidden;
+}
+.btn-primary::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent); opacity: 0; transition: opacity 0.3s; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px var(--green-glow); }
+.btn-primary:hover::before { opacity: 1; }
+
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 32px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+  color: #fff; font-weight: 500; font-size: 0.95rem; border-radius: 50px;
+  cursor: pointer; transition: all 0.3s; text-decoration: none;
+}
+.btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); transform: translateY(-1px); }
+
+.btn-gold {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 36px; background: linear-gradient(135deg, var(--gold), #d4944f);
+  color: #1a1a1a; font-weight: 700; font-size: 1rem; border: none; border-radius: 50px;
+  cursor: pointer; transition: all 0.3s ease; text-decoration: none;
+}
+.btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 32px var(--gold-glow); }
+
+/* ═══════════════════════════════════════════════════
+   SECTION LABEL
+   ═══════════════════════════════════════════════════ */
+.section-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 16px; background: rgba(90,184,122,0.1); border: 1px solid rgba(90,184,122,0.2);
+  border-radius: 50px; font-size: 0.8rem; font-weight: 600; color: var(--green);
+  text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 20px;
+}
+
+/* ═══════════════════════════════════════════════════
+   SCROLL ANIMATIONS
+   ═══════════════════════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ═══════════════════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════════════════ */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 0; transition: all 0.4s; }
+nav.scrolled { background: rgba(10,10,10,0.85); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 10px 0; }
+nav .container { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { display: flex; align-items: center; gap: 10px; font-size: 1.4rem; font-weight: 800; letter-spacing: -0.03em; }
+.nav-logo .logo-icon { width: 36px; height: 36px; border-radius: 10px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.nav-logo .logo-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); transition: color 0.3s; }
+.nav-links a:hover { color: var(--text-primary); }
+.nav-cta { padding: 10px 24px; background: rgba(90,184,122,0.15); border: 1px solid rgba(90,184,122,0.3); border-radius: 50px; font-weight: 600; color: var(--green) !important; transition: all 0.3s !important; }
+.nav-cta:hover { background: rgba(90,184,122,0.25) !important; }
+
+.lang-toggle {
+  padding: 6px 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 50px; color: var(--text-secondary); font-size: 0.8rem; font-weight: 600;
+  cursor: pointer; transition: all 0.3s; font-family: var(--font); letter-spacing: 0.05em;
+}
+.lang-toggle:hover { background: rgba(255,255,255,0.1); color: var(--text-primary); }
+
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--text-primary); border-radius: 2px; transition: all 0.3s; }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-links.open {
+    display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0;
+    background: rgba(10,10,10,0.95); backdrop-filter: blur(30px); padding: 20px 24px; gap: 16px;
+    border-bottom: 1px solid var(--border-glass);
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   HERO SECTION
+   ═══════════════════════════════════════════════════ */
+#hero { min-height: 100vh; display: flex; align-items: center; padding-top: 100px; overflow: hidden; }
+#hero .container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.hero-content { position: relative; z-index: 2; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px 6px 6px;
+  background: rgba(232,166,107,0.1); border: 1px solid rgba(232,166,107,0.2);
+  border-radius: 50px; font-size: 0.8rem; font-weight: 500; color: var(--gold); margin-bottom: 24px;
+}
+.hero-badge .badge-dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; animation: pulse-dot 2s infinite; }
+@keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.5); } }
+
+.hero-title { margin-bottom: 20px; background: linear-gradient(135deg, #fff 30%, rgba(255,255,255,0.7)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero-title .highlight { background: linear-gradient(135deg, var(--green), #7dd99a); -webkit-background-clip: text; background-clip: text; }
+.hero-subtitle { font-size: clamp(1rem, 1.5vw, 1.2rem); color: var(--text-secondary); max-width: 500px; margin-bottom: 36px; line-height: 1.7; }
+.hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+.hero-stats { display: flex; gap: 40px; margin-top: 48px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.06); }
+.hero-stat-item h4 { font-size: 1.6rem; font-weight: 800; color: var(--green); }
+.hero-stat-item p { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+
+/* Hero floating orbs */
+.hero-orbs { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.orb { position: absolute; border-radius: 50%; filter: blur(80px); animation: float-orb 8s ease-in-out infinite; }
+.orb-1 { width: 400px; height: 400px; background: rgba(90,184,122,0.08); top: -10%; right: -5%; animation-delay: 0s; }
+.orb-2 { width: 300px; height: 300px; background: rgba(232,166,107,0.06); bottom: 10%; left: -5%; animation-delay: -3s; }
+.orb-3 { width: 200px; height: 200px; background: rgba(122,168,181,0.06); top: 40%; right: 30%; animation-delay: -5s; }
+@keyframes float-orb { 0%, 100% { transform: translate(0,0) scale(1); } 33% { transform: translate(30px,-20px) scale(1.05); } 66% { transform: translate(-20px,15px) scale(0.95); } }
+
+/* ═══════════════════════════════════════════════════
+   PHONE MOCKUP — FRAME
+   ═══════════════════════════════════════════════════ */
+.hero-phone-wrapper { display: flex; justify-content: center; align-items: center; position: relative; }
+.phone-glow { position: absolute; width: 320px; height: 620px; background: radial-gradient(ellipse, var(--green-glow), transparent 70%); filter: blur(60px); animation: phone-glow-pulse 4s ease-in-out infinite; }
+@keyframes phone-glow-pulse { 0%, 100% { opacity: 0.4; transform: scale(1); } 50% { opacity: 0.7; transform: scale(1.05); } }
+
+.phone-frame {
+  position: relative; width: var(--phone-width); height: var(--phone-height);
+  background: #111; border-radius: 44px; border: 3px solid #333;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 20px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1);
+  overflow: hidden;
+}
+.phone-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 28px; background: #111; border-radius: 0 0 20px 20px; z-index: 10; }
+.phone-notch::after { content: ''; position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 50px; height: 5px; background: #222; border-radius: 10px; }
+
+/* ═══════════════════════════════════════════════════
+   PHONE SCREEN — LIGHT CREAM THEME
+   ═══════════════════════════════════════════════════ */
+.phone-screen { position: relative; width: 100%; height: 100%; overflow: hidden; background: #f5f3ee; }
+.phone-status-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 24px 4px; font-size: 0.65rem; font-weight: 600; color: #1a1a1a;
+  position: relative; z-index: 5;
+}
+.phone-status-bar .time { font-weight: 700; }
+.phone-status-bar .icons { display: flex; gap: 4px; font-size: 0.6rem; color: #1a1a1a; }
+
+/* Tab bar — light */
+.phone-tab-bar {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  display: flex; justify-content: space-around; align-items: center;
+  padding: 6px 8px 20px; background: rgba(245,243,238,0.95);
+  backdrop-filter: blur(20px); border-top: 1px solid rgba(0,0,0,0.06); z-index: 10;
+}
+.tab-item {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  font-size: 0.5rem; color: #999; cursor: pointer; transition: all 0.3s;
+  padding: 4px 8px; border-radius: 8px; -webkit-user-select: none; user-select: none;
+  position: relative;
+}
+.tab-item.active { color: var(--green); }
+.tab-item.active::after { content: ''; position: absolute; bottom: -2px; width: 4px; height: 4px; background: var(--green); border-radius: 50%; }
+.tab-item .tab-icon { font-size: 1.1rem; line-height: 1; }
+
+/* Screen content area */
+.screen-content { position: absolute; top: 36px; left: 0; right: 0; bottom: 56px; overflow-y: auto; overflow-x: hidden; scrollbar-width: none; }
+.screen-content::-webkit-scrollbar { display: none; }
+
+/* Screen transitions */
+.app-screen { position: absolute; inset: 0; padding: 12px; opacity: 0; transform: translateX(20px); transition: all 0.4s cubic-bezier(0.25,0.46,0.45,0.94); pointer-events: none; }
+.app-screen.active { opacity: 1; transform: translateX(0); pointer-events: auto; }
+
+/* ═══════════════════════════════════════════════════
+   PHONE SCREEN — SHARED LIGHT COMPONENTS
+   ═══════════════════════════════════════════════════ */
+.ph-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2px; }
+.ph-title { font-size: 1.05rem; font-weight: 800; color: #1a1a1a; letter-spacing: -0.02em; }
+.ph-icons { display: flex; gap: 8px; font-size: 0.85rem; color: #888; }
+.ph-subtitle { font-size: 0.55rem; color: #999; margin-bottom: 10px; }
+.ph-greeting { font-size: 0.6rem; color: #888; margin-bottom: 2px; }
+.ph-goal-badge { display: inline-block; padding: 2px 8px; background: rgba(90,184,122,0.1); border-radius: 10px; font-size: 0.5rem; font-weight: 600; color: var(--green); margin-bottom: 10px; }
+
+.ph-card {
+  background: #fff; border-radius: 14px; padding: 10px 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04); margin-bottom: 8px;
+}
+.ph-section-title { font-size: 0.5rem; font-weight: 700; color: #bbb; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; margin-top: 10px; }
+
+/* Calorie ring — light */
+.calorie-ring-container { display: flex; justify-content: center; margin-bottom: 4px; }
+.calorie-ring { position: relative; width: 110px; height: 110px; }
+.calorie-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.calorie-ring circle { fill: none; stroke-width: 8; stroke-linecap: round; }
+.ring-bg { stroke: rgba(0,0,0,0.04); }
+.ring-fill { stroke: var(--green); stroke-dasharray: 283; stroke-dashoffset: 283; transition: stroke-dashoffset 1.5s cubic-bezier(0.4,0,0.2,1); }
+.ring-fill.animated { stroke-dashoffset: 0; }
+.calorie-ring .ring-text { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.ring-text .cal-number { font-size: 1.1rem; font-weight: 800; color: #1a1a1a; }
+.ring-text .cal-sub { font-size: 0.5rem; color: #999; }
+.energy-label { text-align: center; font-size: 0.5rem; color: var(--green); font-weight: 600; margin-bottom: 10px; }
+
+/* Macro bars — light */
+.macro-rows { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
+.macro-row-light { display: flex; align-items: center; gap: 6px; padding: 5px 10px; background: rgba(0,0,0,0.02); border-radius: 8px; }
+.macro-row-light .macro-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.macro-row-light .macro-name { font-size: 0.5rem; color: #888; flex: 1; }
+.macro-row-light .macro-val { font-size: 0.5rem; font-weight: 600; color: #555; }
+
+/* Quick action cards */
+.quick-actions { display: flex; gap: 6px; margin-bottom: 8px; }
+.quick-card { flex: 1; background: #fff; border-radius: 12px; padding: 8px 6px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.quick-card .qc-icon { font-size: 0.9rem; margin-bottom: 2px; }
+.quick-card .qc-title { font-size: 0.45rem; font-weight: 600; color: #1a1a1a; line-height: 1.3; }
+.quick-card .qc-sub { font-size: 0.4rem; color: #999; }
+
+/* Stat cards row */
+.stat-cards-row { display: flex; gap: 6px; margin-bottom: 8px; }
+.stat-mini { flex: 1; background: #fff; border-radius: 10px; padding: 6px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.stat-mini .sm-icon { font-size: 0.75rem; }
+.stat-mini .sm-val { font-size: 0.55rem; font-weight: 700; color: #1a1a1a; }
+.stat-mini .sm-label { font-size: 0.4rem; color: #999; }
+
+/* Section card */
+.section-card { background: #fff; border-radius: 14px; padding: 10px 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); margin-bottom: 8px; }
+.section-card .sc-title { font-size: 0.5rem; font-weight: 700; color: #bbb; text-transform: uppercase; letter-spacing: 0.05em; }
+.section-card .sc-text { font-size: 0.5rem; color: #999; margin-top: 2px; }
+.section-card .sc-big { font-size: 0.85rem; font-weight: 800; color: #1a1a1a; }
+.section-card .sc-trend { font-size: 0.45rem; color: var(--green); font-weight: 600; }
+.sc-row { display: flex; align-items: center; justify-content: space-between; }
+
+/* ── Food screen specific ── */
+.date-picker { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; font-size: 0.55rem; font-weight: 600; color: #1a1a1a; }
+.date-picker .arrow { color: #ccc; font-size: 0.7rem; cursor: pointer; }
+
+.meal-slot { display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: #fff; border-radius: 12px; margin-bottom: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.meal-slot .ms-icon { font-size: 0.8rem; }
+.meal-slot .ms-info { flex: 1; }
+.meal-slot .ms-name { font-size: 0.55rem; font-weight: 600; color: #1a1a1a; }
+.meal-slot .ms-macros { font-size: 0.42rem; color: #bbb; }
+.meal-slot .ms-add { width: 22px; height: 22px; background: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.7rem; font-weight: 700; }
+
+.chip-row { display: flex; gap: 6px; margin-top: 8px; }
+.chip { padding: 4px 10px; background: rgba(0,0,0,0.04); border-radius: 20px; font-size: 0.45rem; font-weight: 500; color: #888; }
+.chip.active { background: rgba(90,184,122,0.1); color: var(--green); font-weight: 600; }
+
+/* ── Training screen specific ── */
+.week-schedule { display: flex; justify-content: space-between; margin-bottom: 8px; padding: 0 4px; }
+.day-col { text-align: center; }
+.day-col .day-name { font-size: 0.42rem; color: #bbb; font-weight: 600; margin-bottom: 2px; }
+.day-col .day-dot { width: 6px; height: 6px; border-radius: 50%; margin: 0 auto 2px; background: #ddd; }
+.day-col .day-dot.active { background: var(--green); }
+.day-col .day-dot.rest { background: #eee; }
+.day-col .day-label { font-size: 0.35rem; color: #bbb; }
+.day-col.today .day-name { color: var(--green); font-weight: 700; }
+
+.workout-card-light { background: #fff; border-radius: 14px; padding: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); margin-bottom: 8px; }
+.workout-card-light .wc-title { font-size: 0.6rem; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
+.workout-card-light .wc-sub { font-size: 0.45rem; color: #999; font-weight: 500; }
+.exercise-row-light { display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 1px solid rgba(0,0,0,0.04); }
+.exercise-row-light:last-child { border: none; }
+.exercise-row-light .er-name { font-size: 0.5rem; color: #555; }
+.exercise-row-light .er-sets { font-size: 0.45rem; color: #999; }
+
+.green-btn { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px; background: var(--green); border-radius: 12px; color: #fff; font-size: 0.55rem; font-weight: 700; margin-bottom: 8px; }
+
+.watch-card { display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: #fff; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.watch-card .wc-icon { font-size: 0.9rem; }
+.watch-card .wc-info { flex: 1; }
+.watch-card .wc-label { font-size: 0.5rem; font-weight: 600; color: #1a1a1a; }
+.watch-card .wc-detail { font-size: 0.42rem; color: #999; }
+
+/* ── Progress screen specific ── */
+.progress-weight { text-align: center; margin-bottom: 8px; }
+.progress-weight .pw-label { font-size: 0.45rem; font-weight: 700; color: #bbb; text-transform: uppercase; letter-spacing: 0.06em; }
+.progress-weight .pw-big { font-size: 1.4rem; font-weight: 900; color: #1a1a1a; }
+
+.goal-circle-small { display: flex; justify-content: center; margin-bottom: 6px; }
+.goal-circle-small .gc-ring { position: relative; width: 60px; height: 60px; }
+.goal-circle-small .gc-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.goal-circle-small .gc-ring circle { fill: none; stroke-width: 6; stroke-linecap: round; }
+.gc-bg { stroke: rgba(0,0,0,0.04); }
+.gc-fill { stroke: var(--green); stroke-dasharray: 150.8; stroke-dashoffset: 135.7; }
+.goal-circle-small .gc-text { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.gc-text .gc-pct { font-size: 0.5rem; font-weight: 800; color: #1a1a1a; }
+.gc-text .gc-label { font-size: 0.35rem; color: #999; }
+.progress-change { text-align: center; font-size: 0.45rem; color: var(--green); font-weight: 600; margin-bottom: 8px; }
+
+.progress-stats { display: flex; justify-content: space-around; margin-bottom: 10px; }
+.ps-item { text-align: center; }
+.ps-item .ps-label { font-size: 0.4rem; color: #bbb; }
+.ps-item .ps-val { font-size: 0.55rem; font-weight: 700; color: #1a1a1a; }
+.ps-item .ps-val.goal { color: var(--green); }
+
+.chart-placeholder { background: #fff; border-radius: 14px; padding: 10px 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); margin-bottom: 8px; }
+.chart-placeholder .cp-title { font-size: 0.5rem; font-weight: 600; color: #1a1a1a; margin-bottom: 4px; }
+.chart-placeholder .cp-goal { font-size: 0.4rem; color: var(--green); font-weight: 600; margin-bottom: 6px; }
+.chart-area { height: 50px; background: linear-gradient(180deg, rgba(90,184,122,0.08), transparent); border-radius: 8px; position: relative; overflow: hidden; }
+.chart-area::after { content: ''; position: absolute; bottom: 15px; left: 10%; right: 10%; height: 1px; border-bottom: 1px dashed rgba(90,184,122,0.3); }
+
+.period-tabs { display: flex; gap: 6px; justify-content: center; }
+.period-tab { padding: 4px 12px; border-radius: 20px; font-size: 0.42rem; font-weight: 600; color: #999; background: rgba(0,0,0,0.03); }
+.period-tab.active { background: rgba(90,184,122,0.1); color: var(--green); }
+
+/* ── Coach screen specific ── */
+.coach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; }
+.coach-action { background: #fff; border-radius: 12px; padding: 10px 8px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.coach-action .ca-icon { font-size: 1rem; margin-bottom: 2px; }
+.coach-action .ca-title { font-size: 0.5rem; font-weight: 600; color: #1a1a1a; }
+.coach-action .ca-desc { font-size: 0.4rem; color: #999; }
+
+.chat-section { margin-bottom: 8px; }
+.chat-section .cs-label { font-size: 0.5rem; font-weight: 600; color: #1a1a1a; margin-bottom: 6px; }
+.chat-bubble-light { padding: 8px 10px; border-radius: 12px; margin-bottom: 4px; font-size: 0.48rem; line-height: 1.5; max-width: 92%; }
+.chat-ai-light { background: rgba(90,184,122,0.08); color: #444; border-bottom-left-radius: 4px; }
+.chat-ai-label-light { font-size: 0.4rem; color: var(--green); font-weight: 700; margin-bottom: 2px; display: flex; align-items: center; gap: 3px; }
+
+.question-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+.q-chip { padding: 4px 8px; background: #fff; border: 1px solid rgba(0,0,0,0.06); border-radius: 20px; font-size: 0.4rem; color: #666; }
+
+.chat-input { display: flex; align-items: center; gap: 6px; padding: 8px 10px; background: #fff; border-radius: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.chat-input .ci-text { flex: 1; font-size: 0.45rem; color: #bbb; }
+.chat-input .ci-send { width: 20px; height: 20px; background: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.55rem; }
+
+/* Tab SVG icons */
+.tab-svg { width: 20px; height: 20px; display: block; margin: 0 auto 1px; }
+.tab-item .tab-icon { display: flex; align-items: center; justify-content: center; font-size: 1.1rem; line-height: 1; }
+
+/* Streak badge */
+.streak-badge { display: inline-flex; align-items: center; gap: 3px; padding: 2px 8px; background: rgba(232,166,107,0.1); border-radius: 10px; font-size: 0.45rem; font-weight: 600; color: var(--gold); }
+
+/* AI Assessment card */
+.ai-assess-card { display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: linear-gradient(135deg, rgba(90,184,122,0.06), rgba(232,166,107,0.04)); border-radius: 12px; margin-bottom: 8px; }
+.ai-assess-card .ai-icon { font-size: 0.85rem; }
+.ai-assess-card .ai-info { flex: 1; }
+.ai-assess-card .ai-title { font-size: 0.5rem; font-weight: 600; color: #1a1a1a; }
+.ai-assess-card .ai-sub { font-size: 0.4rem; color: #999; }
+.ai-assess-card .ai-arrow { font-size: 0.65rem; color: #ccc; }
+
+/* Body comp row */
+.body-comp-row { display: flex; gap: 6px; margin-bottom: 8px; }
+.body-comp-item { flex: 1; background: #fff; border-radius: 10px; padding: 6px 4px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.body-comp-item .bc-val { font-size: 0.55rem; font-weight: 700; color: #1a1a1a; }
+.body-comp-item .bc-label { font-size: 0.38rem; color: #999; }
+
+/* Weekly stats */
+.weekly-stats-row { display: flex; gap: 6px; margin-bottom: 8px; }
+.ws-item { flex: 1; background: #fff; border-radius: 10px; padding: 6px 4px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.ws-item .ws-val { font-size: 0.55rem; font-weight: 700; color: #1a1a1a; }
+.ws-item .ws-label { font-size: 0.38rem; color: #999; }
+
+/* Chat with avatar */
+.chat-ai-row { display: flex; gap: 6px; align-items: flex-start; }
+.chat-avatar { width: 20px; height: 20px; border-radius: 6px; overflow: hidden; flex-shrink: 0; margin-top: 2px; }
+.chat-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ═══════════════════════════════════════════════════
+   FEATURES GRID
+   ═══════════════════════════════════════════════════ */
+#features { padding: 120px 0; }
+.features-header { text-align: center; max-width: 600px; margin: 0 auto 60px; }
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+.feature-card { padding: 32px 24px; text-align: center; position: relative; overflow: hidden; }
+.feature-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, var(--card-glow, rgba(90,184,122,0.06)), transparent 70%); opacity: 0; transition: opacity 0.4s; }
+.feature-card:hover::before { opacity: 1; }
+.feature-icon { font-size: 2.4rem; margin-bottom: 16px; display: inline-block; animation: icon-float 3s ease-in-out infinite; }
+.feature-card:nth-child(2) .feature-icon { animation-delay: -0.5s; }
+.feature-card:nth-child(3) .feature-icon { animation-delay: -1s; }
+.feature-card:nth-child(4) .feature-icon { animation-delay: -1.5s; }
+.feature-card:nth-child(5) .feature-icon { animation-delay: -2s; }
+@keyframes icon-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+.feature-card h3 { color: var(--text-primary); margin-bottom: 8px; }
+.feature-card p { font-size: 0.9rem; line-height: 1.6; }
+
+/* ═══════════════════════════════════════════════════
+   INTERACTIVE DEMO
+   ═══════════════════════════════════════════════════ */
+#demo { padding: 120px 0; }
+.demo-header { text-align: center; max-width: 600px; margin: 0 auto 60px; }
+.demo-wrapper { display: flex; flex-direction: column; align-items: center; gap: 40px; }
+.demo-phone { --phone-width: 320px; --phone-height: 660px; }
+.demo-tabs-external { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.demo-tab-btn {
+  display: flex; align-items: center; gap: 8px; padding: 12px 20px;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 50px; color: var(--text-secondary); font-size: 0.85rem; font-weight: 500;
+  cursor: pointer; transition: all 0.3s; font-family: var(--font);
+}
+.demo-tab-btn:hover { background: rgba(255,255,255,0.08); color: var(--text-primary); }
+.demo-tab-btn.active { background: rgba(90,184,122,0.12); border-color: rgba(90,184,122,0.3); color: var(--green); }
+.demo-tab-btn .tab-emoji { font-size: 1.1rem; }
+
+/* ═══════════════════════════════════════════════════
+   HOW IT WORKS
+   ═══════════════════════════════════════════════════ */
+#how-it-works { padding: 120px 0; }
+.how-header { text-align: center; max-width: 600px; margin: 0 auto 60px; }
+.steps-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; position: relative; }
+.steps-container::before { content: ''; position: absolute; top: 50px; left: 16%; right: 16%; height: 2px; background: linear-gradient(90deg, var(--green), var(--gold), var(--green)); opacity: 0.2; }
+.step-card { text-align: center; padding: 32px 20px; position: relative; }
+.step-number { width: 56px; height: 56px; margin: 0 auto 20px; background: linear-gradient(135deg, rgba(90,184,122,0.15), rgba(90,184,122,0.05)); border: 2px solid rgba(90,184,122,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 800; color: var(--green); position: relative; z-index: 2; }
+.step-card h3 { color: var(--text-primary); margin-bottom: 8px; font-size: 1.15rem; }
+.step-card p { font-size: 0.9rem; }
+@media (max-width: 768px) { .steps-container { grid-template-columns: 1fr; gap: 24px; } .steps-container::before { display: none; } }
+
+/* ═══════════════════════════════════════════════════
+   STATS
+   ═══════════════════════════════════════════════════ */
+#stats { padding: 100px 0; }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.stat-card { text-align: center; padding: 40px 16px; }
+.stat-number { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; background: linear-gradient(135deg, var(--green), #7dd99a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1; }
+.stat-label { font-size: 0.9rem; color: var(--text-secondary); margin-top: 8px; }
+@media (max-width: 768px) { .stats-grid { grid-template-columns: 1fr 1fr; gap: 16px; } }
+
+/* ═══════════════════════════════════════════════════
+   PRICING
+   ═══════════════════════════════════════════════════ */
+#pricing { padding: 120px 0; }
+.pricing-header { text-align: center; max-width: 600px; margin: 0 auto 60px; }
+.pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 800px; margin: 0 auto; }
+.pricing-card { padding: 40px 32px; position: relative; overflow: hidden; }
+.pricing-card.premium { border-color: rgba(232,166,107,0.3); background: rgba(232,166,107,0.04); }
+.pricing-card.premium::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), #f0c896); }
+.pricing-plan { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+.pricing-price { font-size: 2.8rem; font-weight: 900; color: var(--text-primary); margin-bottom: 4px; }
+.pricing-price .currency { font-size: 1.2rem; vertical-align: super; color: var(--text-secondary); }
+.pricing-price .period { font-size: 0.9rem; font-weight: 400; color: var(--text-muted); }
+.pricing-subtitle { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 24px; }
+.pricing-features { list-style: none; margin-bottom: 32px; }
+.pricing-features li { display: flex; align-items: center; gap: 10px; padding: 8px 0; font-size: 0.9rem; color: var(--text-secondary); border-bottom: 1px solid rgba(255,255,255,0.04); }
+.pricing-features li:last-child { border: none; }
+.pricing-features .check { color: var(--green); font-weight: 700; font-size: 1rem; }
+.pricing-features .cross { color: rgba(255,255,255,0.2); font-size: 1rem; }
+@media (max-width: 768px) { .pricing-grid { grid-template-columns: 1fr; max-width: 400px; } }
+
+/* ═══════════════════════════════════════════════════
+   FINAL CTA
+   ═══════════════════════════════════════════════════ */
+#cta { padding: 120px 0; text-align: center; position: relative; overflow: hidden; }
+.cta-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(90,184,122,0.08), transparent), radial-gradient(ellipse 60% 40% at 30% 70%, rgba(232,166,107,0.05), transparent); pointer-events: none; }
+.cta-content { position: relative; z-index: 2; }
+.cta-content h2 { margin-bottom: 16px; }
+.cta-content p { font-size: 1.1rem; max-width: 500px; margin: 0 auto 32px; }
+.cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.app-store-badge { display: inline-flex; align-items: center; gap: 10px; padding: 12px 24px; background: #fff; color: #000; border-radius: 12px; font-weight: 600; font-size: 0.9rem; transition: all 0.3s; }
+.app-store-badge:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,255,255,0.1); }
+.app-store-badge .badge-icon { font-size: 1.4rem; }
+.app-store-badge .badge-text { text-align: left; }
+.app-store-badge .badge-small { font-size: 0.55rem; font-weight: 400; display: block; }
+.app-store-badge .badge-big { font-size: 1rem; font-weight: 700; display: block; line-height: 1.2; }
+
+/* Floating particles */
+.particles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.particle { position: absolute; width: 4px; height: 4px; background: var(--green); border-radius: 50%; opacity: 0; animation: particle-rise 6s ease-in-out infinite; }
+@keyframes particle-rise { 0% { opacity: 0; transform: translateY(100px) scale(0); } 20% { opacity: 0.6; } 80% { opacity: 0.2; } 100% { opacity: 0; transform: translateY(-200px) scale(1); } }
+
+/* ═══════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════ */
+footer { position: relative; z-index: 1; padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.06); }
+footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+.footer-left { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-muted); }
+.footer-left .logo-icon { width: 28px; height: 28px; border-radius: 8px; overflow: hidden; }
+.footer-left .logo-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
+.footer-links { display: flex; gap: 24px; list-style: none; }
+.footer-links a { font-size: 0.85rem; color: var(--text-muted); transition: color 0.3s; }
+.footer-links a:hover { color: var(--text-secondary); }
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  #hero .container { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+  .hero-subtitle { margin-left: auto; margin-right: auto; }
+  .hero-buttons { justify-content: center; }
+  .hero-stats { justify-content: center; }
+  .hero-phone-wrapper { order: -1; }
+}
+@media (max-width: 600px) {
+  section { padding: 80px 0; }
+  .features-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 24px; flex-wrap: wrap; }
+  .demo-phone { --phone-width: 280px; --phone-height: 580px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════
+     NAVIGATION
+     ════════════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="container">
+    <a href="#" class="nav-logo">
+      <div class="logo-icon"><img src="icon.png" alt="Subten"></div>
+      Subten
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#features"><span class="lang-en">Features</span><span class="lang-sk">Funkcie</span></a></li>
+      <li><a href="#demo">Demo</a></li>
+      <li><a href="#how-it-works"><span class="lang-en">How it works</span><span class="lang-sk">Ako to funguje</span></a></li>
+      <li><a href="#pricing"><span class="lang-en">Pricing</span><span class="lang-sk">Cennik</span></a></li>
+      <li><button class="lang-toggle" onclick="toggleLang()"><span class="lang-en">SK</span><span class="lang-sk">EN</span></button></li>
+      <li><a href="#cta" class="nav-cta"><span class="lang-en">Download</span><span class="lang-sk">Stiahnuť</span></a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════════
+     HERO
+     ════════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span class="lang-en">Version 2.0 is here</span><span class="lang-sk">Nova verzia 2.0 je tu</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="lang-en">Your AI <span class="highlight">Body Recomposition</span> Coach</span>
+        <span class="lang-sk">Tvoj AI trener na <span class="highlight">rekompozíciu tela</span></span>
+      </h1>
+      <p class="hero-subtitle">
+        <span class="lang-en">Smart nutrition, training, and progress tracking for athletes. Powered by AI, designed for your results.</span>
+        <span class="lang-sk">Inteligentne sledovanie výživy, treningov a pokroku pre športovcov. Pohanane umelou inteligenciou, navrhnuté pre tvoje výsledky.</span>
+      </p>
+      <div class="hero-buttons">
+        <a href="#" class="btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+          <span class="lang-en">Download free</span><span class="lang-sk">Stiahnuť zadarmo</span>
+        </a>
+        <a href="#demo" class="btn-secondary"><span class="lang-en">Try the demo</span><span class="lang-sk">Vyskusaj demo</span></a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat-item"><h4>717+</h4><p><span class="lang-en">Foods in database</span><span class="lang-sk">Jedal v databaze</span></p></div>
+        <div class="hero-stat-item"><h4>5</h4><p><span class="lang-en">Scanning types</span><span class="lang-sk">Typov skenovania</span></p></div>
+        <div class="hero-stat-item"><h4>24/7</h4><p><span class="lang-en">AI coaching</span><span class="lang-sk">AI koučing</span></p></div>
+      </div>
+    </div>
+
+    <!-- HERO PHONE MOCKUP -->
+    <div class="hero-phone-wrapper">
+      <div class="phone-glow"></div>
+      <div class="phone-frame" id="heroPhone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="phone-status-bar"><span class="time">9:41</span><span class="icons"><span>&#9679;</span><span>&#9679;</span><span>&#9679;</span></span></div>
+          <div class="screen-content">
+
+            <!-- ▸ TODAY SCREEN -->
+            <div class="app-screen active" data-screen="today" id="heroScreenToday">
+              <div class="ph-header"><span style="font-size:0.75rem;color:#999;">&#9881;</span><span class="ph-title"><span class="lang-en">Today</span><span class="lang-sk">Dnes</span></span><span class="ph-icons">&#8635; &#9829;</span></div>
+              <div class="ph-greeting"><span class="lang-en">Good afternoon</span><span class="lang-sk">Dobré popoludnie</span></div>
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:10px;">
+                <div class="ph-goal-badge" style="margin-bottom:0;"><span class="lang-en">Goal -9 kg</span><span class="lang-sk">Cieľ -9 kg</span></div>
+                <div class="streak-badge">&#128293; <span class="lang-en">12 days</span><span class="lang-sk">12 dní</span></div>
+              </div>
+              <div class="calorie-ring-container">
+                <div class="calorie-ring">
+                  <svg viewBox="0 0 100 100"><circle class="ring-bg" cx="50" cy="50" r="45"/><circle class="ring-fill" cx="50" cy="50" r="45"/></svg>
+                  <div class="ring-text"><span class="cal-number">0 kcal</span><span class="cal-sub">/ 2,369</span></div>
+                </div>
+              </div>
+              <div class="energy-label"><span class="lang-en">ENERGY &middot; Remaining 2,369 kcal</span><span class="lang-sk">ENERGIA &middot; Zostáva 2,369 kcal</span></div>
+              <div class="macro-rows">
+                <div class="macro-row-light"><div class="macro-dot" style="background:var(--protein);"></div><span class="macro-name"><span class="lang-en">Protein</span><span class="lang-sk">Bielkoviny</span></span><span class="macro-val">0 / 187g</span></div>
+                <div class="macro-row-light"><div class="macro-dot" style="background:var(--carbs);"></div><span class="macro-name"><span class="lang-en">Carbs</span><span class="lang-sk">Sacharidy</span></span><span class="macro-val">0 / 252g</span></div>
+                <div class="macro-row-light"><div class="macro-dot" style="background:var(--fat);"></div><span class="macro-name"><span class="lang-en">Fat</span><span class="lang-sk">Tuky</span></span><span class="macro-val">0 / 68g</span></div>
+              </div>
+              <div class="quick-actions">
+                <div class="quick-card"><div class="qc-icon">&#127860;</div><div class="qc-title"><span class="lang-en">Add food</span><span class="lang-sk">Pridať jedlo</span></div><div class="qc-sub"><span class="lang-en">Lunch</span><span class="lang-sk">Obed</span></div></div>
+                <div class="quick-card"><div class="qc-icon" style="color:#7A9AB8;">&#128167;</div><div class="qc-title"><span class="lang-en">Add water</span><span class="lang-sk">Pridať vodu</span></div><div class="qc-sub">+250 ml</div></div>
+                <div class="quick-card"><div class="qc-icon" style="color:var(--gold);">&#127947;</div><div class="qc-title"><span class="lang-en">Training</span><span class="lang-sk">Tréning</span></div><div class="qc-sub"><span class="lang-en">Start</span><span class="lang-sk">Štart</span></div></div>
+              </div>
+              <div class="stat-cards-row">
+                <div class="stat-mini"><div class="sm-icon" style="color:var(--green);">&#128694;</div><div class="sm-val">0</div><div class="sm-label"><span class="lang-en">steps</span><span class="lang-sk">kroky</span></div></div>
+                <div class="stat-mini"><div class="sm-icon" style="color:var(--gold);">&#128293;</div><div class="sm-val">0 min</div><div class="sm-label"><span class="lang-en">exercise</span><span class="lang-sk">cvičenie</span></div></div>
+                <div class="stat-mini"><div class="sm-icon" style="color:#7A9AB8;">&#128167;</div><div class="sm-val">0 ml</div><div class="sm-label"><span class="lang-en">water</span><span class="lang-sk">voda</span></div></div>
+              </div>
+              <div class="section-card"><div class="sc-title"><span class="lang-en">TODAY'S TRAINING</span><span class="lang-sk">DNEŠNÝ TRÉNING</span></div><div class="sc-text" style="color:var(--green);"><span class="lang-en">Full Body C &mdash; Tap to start</span><span class="lang-sk">Full Body C &mdash; Ťukni pre štart</span></div></div>
+              <div class="section-card"><div class="sc-row"><div><div class="sc-big">84.0 kg</div></div><div class="sc-trend">&darr; -1.0 kg / 7d</div></div></div>
+              <div class="section-card"><div class="sc-row"><div class="sc-title"><span class="lang-en">TODAY'S MEALS &middot; 0</span><span class="lang-sk">DNEŠNÉ JEDLÁ &middot; 0</span></div></div><div class="sc-text"><span class="lang-en">No food logged yet</span><span class="lang-sk">Zatiaľ žiadne jedlo</span></div></div>
+            </div>
+
+            <!-- ▸ FOOD SCREEN -->
+            <div class="app-screen" data-screen="food" id="heroScreenFood">
+              <div class="ph-header"><span></span><span class="ph-title"><span class="lang-en">Food</span><span class="lang-sk">Jedálníček</span></span><span class="ph-icons" style="font-size:0.7rem;">&#128218; &#128203; &#128247;</span></div>
+              <div class="date-picker"><span class="arrow">&#9664;</span> <span class="lang-en">29 May 2026 &middot; Friday</span><span class="lang-sk">29. máj 2026 &middot; Piatok</span> <span class="arrow">&#9654;</span></div>
+              <div class="calorie-ring-container">
+                <div class="calorie-ring" style="width:90px;height:90px;">
+                  <svg viewBox="0 0 100 100"><circle class="ring-bg" cx="50" cy="50" r="45"/><circle class="ring-fill" cx="50" cy="50" r="45"/></svg>
+                  <div class="ring-text"><span class="cal-number" style="font-size:0.95rem;">0 kcal</span><span class="cal-sub"><span class="lang-en">intake</span><span class="lang-sk">príjem</span></span></div>
+                </div>
+              </div>
+              <div style="text-align:center;margin-bottom:4px;"><span class="ph-goal-badge" style="font-size:0.4rem;"><span class="lang-en">STRENGTH DAY</span><span class="lang-sk">DEŇ SILY</span></span></div>
+              <div class="energy-label"><span class="lang-en">Target 2,369 kcal &middot; Remaining 2,369</span><span class="lang-sk">Cieľ 2,369 kcal &middot; Zostáva 2,369</span></div>
+              <div class="macro-rows" style="margin-bottom:10px;">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;">
+                  <div class="macro-row-light"><div class="macro-dot" style="background:var(--protein);"></div><span class="macro-name"><span class="lang-en">Protein</span><span class="lang-sk">Bielkoviny</span></span><span class="macro-val">0/187g</span></div>
+                  <div class="macro-row-light"><div class="macro-dot" style="background:var(--carbs);"></div><span class="macro-name"><span class="lang-en">Carbs</span><span class="lang-sk">Sacharidy</span></span><span class="macro-val">0/252g</span></div>
+                  <div class="macro-row-light"><div class="macro-dot" style="background:var(--fat);"></div><span class="macro-name"><span class="lang-en">Fat</span><span class="lang-sk">Tuky</span></span><span class="macro-val">0/68g</span></div>
+                  <div class="macro-row-light"><div class="macro-dot" style="background:var(--fiber);"></div><span class="macro-name"><span class="lang-en">Fiber</span><span class="lang-sk">Vláknina</span></span><span class="macro-val">0/25g</span></div>
+                </div>
+              </div>
+              <div class="meal-slot"><span class="ms-icon">&#127749;</span><div class="ms-info"><div class="ms-name"><span class="lang-en">Breakfast</span><span class="lang-sk">Raňajky</span></div><div class="ms-macros">0 kcal &middot; P 0 &middot; C 0 &middot; F 0</div></div><div class="ms-add">+</div></div>
+              <div class="meal-slot"><span class="ms-icon">&#127822;</span><div class="ms-info"><div class="ms-name"><span class="lang-en">Mid-morning snack</span><span class="lang-sk">Desiata</span></div><div class="ms-macros">0 kcal &middot; P 0 &middot; C 0 &middot; F 0</div></div><div class="ms-add">+</div></div>
+              <div class="meal-slot"><span class="ms-icon">&#127869;</span><div class="ms-info"><div class="ms-name"><span class="lang-en">Lunch</span><span class="lang-sk">Obed</span></div><div class="ms-macros">0 kcal &middot; P 0 &middot; C 0 &middot; F 0</div></div><div class="ms-add">+</div></div>
+              <div class="meal-slot"><span class="ms-icon">&#127848;</span><div class="ms-info"><div class="ms-name"><span class="lang-en">Afternoon snack</span><span class="lang-sk">Olovrant</span></div><div class="ms-macros">0 kcal &middot; P 0 &middot; C 0 &middot; F 0</div></div><div class="ms-add">+</div></div>
+              <div class="meal-slot"><span class="ms-icon">&#127769;</span><div class="ms-info"><div class="ms-name"><span class="lang-en">Dinner</span><span class="lang-sk">Večera</span></div><div class="ms-macros">0 kcal &middot; P 0 &middot; C 0 &middot; F 0</div></div><div class="ms-add">+</div></div>
+              <div class="chip-row"><div class="chip active"><span class="lang-en">Recent</span><span class="lang-sk">Nedávne</span></div><div class="chip"><span class="lang-en">Frequent</span><span class="lang-sk">Časté</span></div></div>
+            </div>
+
+            <!-- ▸ TRAINING SCREEN -->
+            <div class="app-screen" data-screen="training" id="heroScreenTraining">
+              <div class="ph-header"><span style="font-size:0.85rem;color:var(--green);">&#8853;</span><span class="ph-title"><span class="lang-en">Training</span><span class="lang-sk">Tréning</span></span><span class="ph-icons" style="font-size:0.75rem;">&#128214;</span></div>
+              <div class="week-schedule">
+                <div class="day-col"><div class="day-name"><span class="lang-en">Mon</span><span class="lang-sk">Pon</span></div><div class="day-dot active"></div><div class="day-label">FBA</div></div>
+                <div class="day-col"><div class="day-name"><span class="lang-en">Tue</span><span class="lang-sk">Uto</span></div><div class="day-dot active"></div><div class="day-label">Arn</div></div>
+                <div class="day-col"><div class="day-name"><span class="lang-en">Wed</span><span class="lang-sk">Str</span></div><div class="day-dot active"></div><div class="day-label">FBB</div></div>
+                <div class="day-col"><div class="day-name"><span class="lang-en">Thu</span><span class="lang-sk">Štv</span></div><div class="day-dot rest"></div><div class="day-label"><span class="lang-en">Rest</span><span class="lang-sk">Voľno</span></div></div>
+                <div class="day-col today"><div class="day-name"><span class="lang-en">Fri</span><span class="lang-sk">Pia</span></div><div class="day-dot active"></div><div class="day-label">FBC</div></div>
+                <div class="day-col"><div class="day-name"><span class="lang-en">Sat</span><span class="lang-sk">Sob</span></div><div class="day-dot active"></div><div class="day-label">Skt</div></div>
+                <div class="day-col"><div class="day-name"><span class="lang-en">Sun</span><span class="lang-sk">Neď</span></div><div class="day-dot rest"></div><div class="day-label"><span class="lang-en">Rest</span><span class="lang-sk">Voľno</span></div></div>
+              </div>
+              <div class="ph-subtitle" style="text-align:center;"><span class="lang-en">Today &mdash; Friday</span><span class="lang-sk">Dnes &mdash; Piatok</span></div>
+              <div class="workout-card-light">
+                <div class="wc-title"><span class="lang-en">Full Body C &mdash; 5 exercises</span><span class="lang-sk">Full Body C &mdash; 5 cvikov</span></div>
+                <div class="exercise-row-light"><span class="er-name">Leg press</span><span class="er-sets">3 &times; 10-12</span></div>
+                <div class="exercise-row-light"><span class="er-name">DB Shoulder Press</span><span class="er-sets">3 &times; 8-12</span></div>
+                <div class="exercise-row-light"><span class="er-name">Seated Row</span><span class="er-sets">3 &times; 8-12</span></div>
+                <div class="exercise-row-light"><span class="er-name">DB Flyes</span><span class="er-sets">3 &times; 10-15</span></div>
+                <div class="exercise-row-light"><span class="er-name">Standing Calf Raises</span><span class="er-sets">3 &times; 12-15</span></div>
+              </div>
+              <div class="green-btn">&#9654; <span class="lang-en">Start workout</span><span class="lang-sk">Začať tréning</span></div>
+              <div class="weekly-stats-row">
+                <div class="ws-item"><div class="ws-val">12,540</div><div class="ws-label"><span class="lang-en">Volume (kg)</span><span class="lang-sk">Objem (kg)</span></div></div>
+                <div class="ws-item"><div class="ws-val">4</div><div class="ws-label"><span class="lang-en">Workouts</span><span class="lang-sk">Tréningy</span></div></div>
+                <div class="ws-item"><div class="ws-val">2</div><div class="ws-label"><span class="lang-en">PRs</span><span class="lang-sk">Rekordy</span></div></div>
+              </div>
+              <div class="ph-section-title">Apple Watch</div>
+              <div class="watch-card"><span class="wc-icon">&#9201;</span><div class="wc-info"><div class="wc-label"><span class="lang-en">Strength Training</span><span class="lang-sk">Silový tréning</span></div><div class="wc-detail">42 min &middot; 320 kcal</div></div></div>
+            </div>
+
+            <!-- ▸ PROGRESS SCREEN -->
+            <div class="app-screen" data-screen="progress" id="heroScreenProgress">
+              <div class="ph-header"><span></span><span class="ph-title"><span class="lang-en">Progress</span><span class="lang-sk">Progres</span></span><span class="ph-icons" style="font-size:0.75rem;">&#9829;</span></div>
+              <div class="progress-weight"><div class="pw-label"><span class="lang-en">CURRENT WEIGHT</span><span class="lang-sk">AKTUÁLNA HMOTNOSŤ</span></div><div class="pw-big">84.0 <span style="font-size:0.7rem;font-weight:600;">kg</span></div></div>
+              <div style="text-align:center;margin-bottom:4px;"><span style="display:inline-block;padding:2px 8px;background:rgba(90,184,122,0.1);border-radius:10px;font-size:0.45rem;font-weight:600;color:var(--green);">&#8600; <span class="lang-en">-1.0 kg from start</span><span class="lang-sk">-1.0 kg od začiatku</span></span></div>
+              <div class="goal-circle-small">
+                <div class="gc-ring">
+                  <svg viewBox="0 0 54 54"><circle class="gc-bg" cx="27" cy="27" r="24"/><circle class="gc-fill" cx="27" cy="27" r="24"/></svg>
+                  <div class="gc-text"><span class="gc-pct">10%</span><span class="gc-label"><span class="lang-en">to goal</span><span class="lang-sk">do cieľa</span></span></div>
+                </div>
+              </div>
+              <div class="progress-stats">
+                <div class="ps-item"><div class="ps-label"><span class="lang-en">Start</span><span class="lang-sk">Štart</span></div><div class="ps-val">85.0 kg</div></div>
+                <div class="ps-item"><div class="ps-label"><span class="lang-en">Goal</span><span class="lang-sk">Cieľ</span></div><div class="ps-val goal">75.0 kg</div></div>
+                <div class="ps-item"><div class="ps-label"><span class="lang-en">Remaining</span><span class="lang-sk">Zostáva</span></div><div class="ps-val">9.0 kg</div></div>
+              </div>
+              <div class="green-btn">&#128274; <span class="lang-en">Add weigh-in</span><span class="lang-sk">Pridať váženie</span></div>
+              <div class="chart-placeholder">
+                <div class="cp-title"><span class="lang-en">Weight trend</span><span class="lang-sk">Trend hmotnosti</span></div>
+                <div class="cp-goal">&#9679; <span class="lang-en">Goal 75.0 kg</span><span class="lang-sk">Cieľ 75.0 kg</span></div>
+                <div class="chart-area"></div>
+              </div>
+              <div class="period-tabs"><div class="period-tab active"><span class="lang-en">30 days</span><span class="lang-sk">30 dní</span></div><div class="period-tab"><span class="lang-en">60 days</span><span class="lang-sk">60 dní</span></div><div class="period-tab"><span class="lang-en">90 days</span><span class="lang-sk">90 dní</span></div></div>
+              <div class="ai-assess-card">
+                <div class="ai-icon">&#10024;</div>
+                <div class="ai-info"><div class="ai-title"><span class="lang-en">AI Body Assessment</span><span class="lang-sk">AI Hodnotenie tela</span></div><div class="ai-sub"><span class="lang-en">Get personalized analysis</span><span class="lang-sk">Získaj personalizovanú analýzu</span></div></div>
+                <div class="ai-arrow">&#8250;</div>
+              </div>
+              <div class="body-comp-row">
+                <div class="body-comp-item"><div class="bc-val">18.5%</div><div class="bc-label"><span class="lang-en">Body fat</span><span class="lang-sk">Telesný tuk</span></div></div>
+                <div class="body-comp-item"><div class="bc-val">68.4 kg</div><div class="bc-label"><span class="lang-en">Lean mass</span><span class="lang-sk">Čistá hmota</span></div></div>
+                <div class="body-comp-item"><div class="bc-val">25.1</div><div class="bc-label">BMI</div></div>
+              </div>
+            </div>
+
+            <!-- ▸ COACH SCREEN -->
+            <div class="app-screen" data-screen="coach" id="heroScreenCoach">
+              <div class="ph-header"><span></span><span class="ph-title"><span class="lang-en">Coach</span><span class="lang-sk">Kouč</span></span><span class="ph-icons">&#10024;</span></div>
+              <div class="coach-grid">
+                <div class="coach-action"><div class="ca-icon" style="color:var(--gold);">&#9728;</div><div class="ca-title"><span class="lang-en">Daily review</span><span class="lang-sk">Denný prehľad</span></div><div class="ca-desc"><span class="lang-en">Day evaluation</span><span class="lang-sk">Hodnotenie dňa</span></div></div>
+                <div class="coach-action"><div class="ca-icon" style="color:#7A9AB8;">&#128197;</div><div class="ca-title"><span class="lang-en">Weekly review</span><span class="lang-sk">Týždenný prehľad</span></div><div class="ca-desc"><span class="lang-en">7-day overview</span><span class="lang-sk">Prehľad za 7 dní</span></div></div>
+                <div class="coach-action"><div class="ca-icon" style="color:var(--green);">&#127860;</div><div class="ca-title"><span class="lang-en">Meal plan</span><span class="lang-sk">Jedálny plán</span></div><div class="ca-desc"><span class="lang-en">Plan your meals</span><span class="lang-sk">Naplánuj si jedlá</span></div></div>
+                <div class="coach-action"><div class="ca-icon" style="color:#9C8BB0;">&#128722;</div><div class="ca-title"><span class="lang-en">Shopping list</span><span class="lang-sk">Nákupný list</span></div><div class="ca-desc"><span class="lang-en">What to buy</span><span class="lang-sk">Čo nakúpiť</span></div></div>
+              </div>
+              <div class="chat-section">
+                <div class="cs-label">&#128172; Chat</div>
+                <div class="chat-ai-row">
+                  <div class="chat-avatar"><img src="icon.png" alt="AI"></div>
+                  <div class="chat-bubble-light chat-ai-light" style="flex:1;">
+                    <div class="chat-ai-label-light"><span>&#10024;</span> <span class="lang-en">AI Coach</span><span class="lang-sk">AI Kouč</span></div>
+                    <span class="lang-en">I'm your personal coach. Ask me anything &mdash; nutrition, training, sleep, or motivation.</span><span class="lang-sk">Som tvoj osobný kouč. Opýtaj sa ma čokoľvek &mdash; výživa, tréning, spánok alebo motivácia.</span>
+                  </div>
+                </div>
+              </div>
+              <div class="question-chips">
+                <div class="q-chip"><span class="lang-en">How much protein per day?</span><span class="lang-sk">Koľko bielkovín denne?</span></div>
+                <div class="q-chip"><span class="lang-en">How to stay motivated?</span><span class="lang-sk">Ako zostať motivovaný?</span></div>
+                <div class="q-chip"><span class="lang-en">What to eat after a workout?</span><span class="lang-sk">Čo jesť po tréningu?</span></div>
+                <div class="q-chip"><span class="lang-en">Afternoon fatigue &mdash; what helps?</span><span class="lang-sk">Popoludňajšia únava &mdash; čo pomáha?</span></div>
+              </div>
+              <div class="chat-input"><span class="ci-text"><span class="lang-en">Write to coach...</span><span class="lang-sk">Napíš koučovi...</span></span><div class="ci-send">&#10148;</div></div>
+            </div>
+          </div>
+          <!-- Hero phone tab bar -->
+          <div class="phone-tab-bar" id="heroTabBar">
+            <div class="tab-item active" data-target="today"><span class="tab-icon"><svg class="tab-svg" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="4.5"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"><path d="M12 2v3m0 14v3m-7.07-3.93l2.12-2.12m9.9-9.9l2.12-2.12M2 12h3m14 0h3m-3.93 7.07l-2.12-2.12M6.34 6.34L4.22 4.22"/></g></svg></span><span class="lang-en">Today</span><span class="lang-sk">Dnes</span></div>
+            <div class="tab-item" data-target="food"><span class="tab-icon"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v7c0 1.1.9 2 2 2h2c1.1 0 2-.9 2-2V3"/><path d="M6 12v10"/><path d="M16 3c2.2 0 4 1.8 4 4s-1.8 4-4 4"/><path d="M16 11v11"/></svg></span><span class="lang-en">Food</span><span class="lang-sk">Jedlo</span></div>
+            <div class="tab-item" data-target="training"><span class="tab-icon"><svg class="tab-svg" viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="10" width="3" height="4" rx="1"/><rect x="20" y="10" width="3" height="4" rx="1"/><rect x="4" y="8" width="3" height="8" rx="1"/><rect x="17" y="8" width="3" height="8" rx="1"/><rect x="7" y="11" width="10" height="2" rx=".5"/></svg></span><span class="lang-en">Training</span><span class="lang-sk">Tréning</span></div>
+            <div class="tab-item" data-target="progress"><span class="tab-icon"><svg class="tab-svg" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="4" r="2.5"/><path d="M3.5 11a.5.5 0 01.5-.5h16a.5.5 0 010 1H4a.5.5 0 01-.5-.5z"/><path d="M9.5 11v4L7 22h2.5l2.5-5.5L14.5 22H17l-2.5-7v-4h-5z"/></svg></span><span class="lang-en">Progress</span><span class="lang-sk">Progres</span></div>
+            <div class="tab-item" data-target="coach"><span class="tab-icon"><svg class="tab-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.5 2l1.3 4.2L15 7.5l-4.2 1.3L9.5 13l-1.3-4.2L4 7.5l4.2-1.3z"/><path d="M18 11l.8 2.5 2.5.8-2.5.8-.8 2.5-.8-2.5-2.5-.8 2.5-.8z"/><path d="M7 16l.6 1.8 1.8.6-1.8.6L7 20.8l-.6-1.8-1.8-.6 1.8-.6z"/></svg></span><span class="lang-en">Coach</span><span class="lang-sk">Kouč</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     FEATURES GRID
+     ════════════════════════════════════════════════ -->
+<section id="features">
+  <div class="container">
+    <div class="features-header reveal">
+      <div class="section-label"><span class="lang-en">Features</span><span class="lang-sk">Funkcie</span></div>
+      <h2><span class="lang-en">Everything you need<br>in one place</span><span class="lang-sk">Všetko čo potrebuješ<br>na jednom mieste</span></h2>
+      <p style="margin-top:12px;"><span class="lang-en">From food tracking to training to AI coaching &mdash; Subten is your complete partner for body recomposition.</span><span class="lang-sk">Od sledovania jedla cez treningy až po AI koučing &mdash; Subten je tvoj kompletny partner pre rekompozíciu tela.</span></p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card glass reveal reveal-delay-1" style="--card-glow:rgba(90,184,122,0.08);">
+        <span class="feature-icon">&#128202;</span>
+        <h3><span class="lang-en">Daily overview</span><span class="lang-sk">Denny prehľad</span></h3>
+        <p><span class="lang-en">Animated calorie ring, macro tracking, 5 meals daily, hydration, steps and streak tracker &mdash; all on one screen.</span><span class="lang-sk">Animovany kalorický kruh, makro bary, 5 jedal denne, hydratacie, kroky a streak tracker &mdash; všetko na jednej obrazovke.</span></p>
+      </div>
+      <div class="feature-card glass reveal reveal-delay-2" style="--card-glow:rgba(232,166,107,0.08);">
+        <span class="feature-icon">&#128247;</span>
+        <h3><span class="lang-en">AI food recognition</span><span class="lang-sk">AI rozpoznanie jedla</span></h3>
+        <p><span class="lang-en">Snap a photo and AI identifies what's on your plate. Barcode scanning, OCR labels, and 717+ foods in database.</span><span class="lang-sk">Vyfoť jedlo a AI rozpozna čo je na tanieri. Čiarovy kod, OCR etikiet a databaza 717+ jedal.</span></p>
+      </div>
+      <div class="feature-card glass reveal reveal-delay-3" style="--card-glow:rgba(201,124,124,0.08);">
+        <span class="feature-icon">&#128170;</span>
+        <h3><span class="lang-en">Training module</span><span class="lang-sk">Treningovy modul</span></h3>
+        <p><span class="lang-en">Custom A/B/C split templates, cardio tracking, PR tracker, Apple Watch integration and Live Activity on lock screen.</span><span class="lang-sk">Šablony A/B/C splitov, sledovanie kardio, PR tracker, Apple Watch integracie a Live Activity na lock screen.</span></p>
+      </div>
+      <div class="feature-card glass reveal reveal-delay-4" style="--card-glow:rgba(122,168,181,0.08);">
+        <span class="feature-icon">&#128200;</span>
+        <h3><span class="lang-en">Progress tracking</span><span class="lang-sk">Sledovanie pokroku</span></h3>
+        <p><span class="lang-en">Weight trends, goal tracking, 10 body metrics, and motivational milestones to keep you moving forward.</span><span class="lang-sk">Vahovye trendy, sledovanie cieľov, 10 telesnych metrik a motivačné míľniky.</span></p>
+      </div>
+      <div class="feature-card glass reveal reveal-delay-5" style="--card-glow:rgba(141,181,128,0.08);">
+        <span class="feature-icon">&#129302;</span>
+        <h3><span class="lang-en">AI Coach</span><span class="lang-sk">AI Kouč</span></h3>
+        <p><span class="lang-en">Personal mentor powered by Claude AI. Weekly meal plans, shopping lists, daily reviews and plateau breaker advice.</span><span class="lang-sk">Osobny mentor pohanany Claude AI. Tyždenne jedalnicky, nakupne listy, denne review a plateau breaker.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     INTERACTIVE DEMO
+     ════════════════════════════════════════════════ -->
+<section id="demo">
+  <div class="container">
+    <div class="demo-header reveal">
+      <div class="section-label"><span class="lang-en">Interactive demo</span><span class="lang-sk">Interaktívne demo</span></div>
+      <h2><span class="lang-en">Try it yourself</span><span class="lang-sk">Vyskusaj si to sam</span></h2>
+      <p style="margin-top:12px;"><span class="lang-en">Click the tabs to explore each part of the app. This is what your daily companion looks like.</span><span class="lang-sk">Klikaj na záložky a preskumaj jednotlivé časti aplikacie.</span></p>
+    </div>
+    <div class="demo-wrapper">
+      <div class="demo-tabs-external reveal" id="demoExternalTabs">
+        <button class="demo-tab-btn active" data-demo-target="today"><span class="tab-emoji">&#9728;</span> <span class="lang-en">Today</span><span class="lang-sk">Dnes</span></button>
+        <button class="demo-tab-btn" data-demo-target="food"><span class="tab-emoji">&#127860;</span> <span class="lang-en">Food</span><span class="lang-sk">Jedlo</span></button>
+        <button class="demo-tab-btn" data-demo-target="training"><span class="tab-emoji">&#128170;</span> <span class="lang-en">Training</span><span class="lang-sk">Tréning</span></button>
+        <button class="demo-tab-btn" data-demo-target="progress"><span class="tab-emoji">&#127939;</span> <span class="lang-en">Progress</span><span class="lang-sk">Progres</span></button>
+        <button class="demo-tab-btn" data-demo-target="coach"><span class="tab-emoji">&#10024;</span> <span class="lang-en">Coach</span><span class="lang-sk">Kouč</span></button>
+      </div>
+      <div class="reveal">
+        <div class="hero-phone-wrapper">
+          <div class="phone-glow" style="opacity:0.3;"></div>
+          <div class="phone-frame demo-phone" id="demoPhone">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="phone-status-bar"><span class="time">9:41</span><span class="icons"><span>&#9679;</span><span>&#9679;</span><span>&#9679;</span></span></div>
+              <div class="screen-content">
+
+                <!-- Demo: Today -->
+                <div class="app-screen active" data-screen="today">
+                  <div class="ph-header"><span style="font-size:0.75rem;color:#999;">&#9881;</span><span class="ph-title"><span class="lang-en">Today</span><span class="lang-sk">Dnes</span></span><span class="ph-icons">&#8635; &#9829;</span></div>
+                  <div class="ph-greeting"><span class="lang-en">Good afternoon</span><span class="lang-sk">Dobré popoludnie</span></div>
+                  <div style="display:flex;align-items:center;gap:6px;margin-bottom:10px;">
+                    <div class="ph-goal-badge" style="margin-bottom:0;"><span class="lang-en">Goal -9 kg</span><span class="lang-sk">Cieľ -9 kg</span></div>
+                    <div class="streak-badge">&#128293; <span class="lang-en">12 days</span><span class="lang-sk">12 dní</span></div>
+                  </div>
+                  <div class="calorie-ring-container">
+                    <div class="calorie-ring">
+                      <svg viewBox="0 0 100 100"><circle class="ring-bg" cx="50" cy="50" r="45"/><circle class="ring-fill" cx="50" cy="50" r="45"/></svg>
+                      <div class="ring-text"><span class="cal-number">0 kcal</span><span class="cal-sub">/ 2,369</span></div>
+                    </div>
+                  </div>
+                  <div class="energy-label"><span class="lang-en">ENERGY &middot; Remaining 2,369 kcal</span><span class="lang-sk">ENERGIA &middot; Zostáva 2,369 kcal</span></div>
+                  <div class="macro-rows">
+                    <div class="macro-row-light"><div class="macro-dot" style="background:var(--protein);"></div><span class="macro-name"><span class="lang-en">Protein</span><span class="lang-sk">Bielkoviny</span></span><span class="macro-val">0 / 187g</span></div>
+                    <div class="macro-row-light"><div class="macro-dot" style="background:var(--carbs);"></div><span class="macro-name"><span class="lang-en">Carbs</span><span class="lang-sk">Sacharidy</span></span><span class="macro-val">0 / 252g</span></div>
+                    <div class="macro-row-light"><div class="macro-dot" style="background:var(--fat);"></div><span class="macro-name"><span class="lang-en">Fat</span><span class="lang-sk">Tuky</span></span><span class="macro-val">0 / 68g</span></div>
+                  </div>
+                  <div class="quick-actions">
+                    <div class="quick-card"><div class="qc-icon">&#127860;</div><div class="qc-title"><span class="lang-en">Add food</span><span class="lang-sk">Pridať jedlo</span></div><div class="qc-sub"><span class="lang-en">Lunch</span><span class="lang-sk">Obed</span></div></div>
+                    <div class="quick-card"><div class="qc-icon" style="color:#7A9AB8;">&#128167;</div><div class="qc-title"><span class="lang-en">Add water</span><span class="lang-sk">Pridať vodu</span></div><div class="qc-sub">+250 ml</div></div>
+                    <div class="quick-card"><div class="qc-icon" style="color:var(--gold);">&#127947;</div><div class="qc-title"><span class="lang-en">Training</span><span class="lang-sk">Tréning</span></div><div class="qc-sub"><span class="lang-en">Start</span><span class="lang-sk">Štart</span></div></div>
+                  </div>
+                  <div class="stat-cards-row">
+                    <div class="stat-mini"><div class="sm-icon" style="color:var(--green);">&#128694;</div><div class="sm-val">0</div><div class="sm-label"><span class="lang-en">steps</span><span class="lang-sk">kroky</span></div></div>
+                    <div class="stat-mini"><div class="sm-icon" style="color:var(--gold);">&#128293;</div><div class="sm-val">0 min</div><div class="sm-label"><span class="lang-en">exercise</span><span class="lang-sk">cvičenie</span></div></div>
+                    <div class="stat-mini"><div class="sm-icon" style="color:#7A9AB8;">&#128167;</div><div class="sm-val">0 ml</div><div class="sm-label"><span class="lang-en">water</span><span class="lang-sk">voda</span></div></div>
+                  </div>
+                  <div class="section-card"><div class="sc-title"><span class="lang-en">TODAY'S TRAINING</span><span class="lang-sk">DNEŠNÝ TRÉNING</span></div><div class="sc-text" style="color:var(--green);"><span class="lang-en">Full Body C &mdash; Tap to start</span><span class="lang-sk">Full Body C &mdash; Ťukni pre štart</span></div></div>
+                  <div class="section-card"><div class="sc-row"><div><div class="sc-big">84.0 kg</div></div><div class="sc-trend">&darr; -1.0 kg / 7d</div></div></div>
+                  <div class="section-card"><div class="sc-row"><div class="sc-title"><span class="lang-en">TODAY'S MEALS &middot; 0</span><span class="lang-sk">DNEŠNÉ JEDLÁ &middot; 0</span></div></div><div class="sc-text"><span class="lang-en">No food logged yet</span><span class="lang-sk">Zatiaľ žiadne jedlo</span></div></div>
+                </div>
+
+                <!-- Demo: Food -->
+                <div class="app-screen" data-screen="food">
+                  <div class="ph-header"><span></span><span class="ph-title"><span class="lang-en">Food</span><span class="lang-sk">Jedálníček</span></span><span class="ph-icons" style="font-size:0.7rem;">&#128218; &#128203; &#128247;</span></div>
+                  <div class="date-picker"><span class="arrow">&#9664;</span> <span class="lang-en">29 May 2026 &middot; Friday</span><span class="lang-sk">29. máj 2026 &middot; Piatok</span> <span class="arrow">&#9654;</span></div>
+                  <div class="calorie-ring-container">
+                    <div class="calorie-ring" style="width:90px;height:90px;">
+                      <svg viewBox="0 0 100 100"><circle class="ring-bg" cx="50" cy="50" r="45"/><circle class="ring-fill" cx="50" cy="50" r="45"/></svg>
+                      <div class="ring-text"><span class="cal-number" style="font-size:0.95rem;">0 kcal</span><span class="cal-sub"><span class="lang-en">intake</span><span class="lang-sk">príjem</span></span></div>
+                    </div>
+                  </div>
+                  <div style="text-align:center;margin-bottom:4px;"><span class="ph-goal-badge" style="font-size:0.4rem;"><span class="lang-en">STRENGTH DAY</span><span class="lang-sk">DEŇ SILY</span></span></div>
+                  <div class="energy-label"><span class="lang-en">Target 2,369 kcal &middot; Remaining 2,369</span><span class="lang-sk">Cieľ 2,369 kcal &middot; Zostáva 2,369</span></div>
+                  <div class="macro-rows" style="margin-bottom:10px;">
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;">
+                      <div class="macro-row-light"><div class="macro-dot" style="background:var(--protein);"></div><span class="macro-name"><span class="lang-en">Protein</span><span class="lang-sk">Bielkoviny</span></span><span class="macro-val">0/187g</span></div>
+                      <div class="macro-row-light"><div class="macro-dot" style="background:var(--carbs);"></div><span class="macro-name"><span class="lang-en">Carbs</span><span class="lang-sk">Sacharidy</span></span><span class="macro-val">0/252g</span></div>
+                      <div class="macro-row-light"><div class="macro-dot" style="background:var(--fat);"></div><span class="macro-name"><span class="lang-en">Fat</span><span class="lang-sk">Tuky</span></span><span class="macro-val">0/68g</span></div>
+                      <div class="macro-row-light"><div class="macro-dot" style="background:var(--fiber);"></div><span class="macro-name"><span class="lang-en">Fiber</span><span class="lang-sk">Vláknina</span></span><span class="macro-val">0/25g</span></div>
+                    </div>
+                  </div>
+                  <div class="meal-slot"><span class="ms-icon">&#127749;</span><div class="ms-info"><div class="ms-name"><span class="lang-en">Breakfast</span><span class="lang-sk">Raňajky</span></div><div class="ms-macros">0 kcal &middot; P 0 &middot; C 0 &middot; F 0</div></div><div class="ms-add">+</div></div>
+                  <div class="meal-slot"><span class="ms-icon">&#127822;</span><div class="ms-info"><div class="ms-name"><span class="lang-en">Mid-morning snack</span><span class="lang-sk">Desiata</span></div><div class="ms-macros">0 kcal &middot; P 0 &middot; C 0 &middot; F 0</div></div><div class="ms-add">+</div></div>
+                  <div class="meal-slot"><span class="ms-icon">&#127869;</span><div class="ms-info"><div class="ms-name"><span class="lang-en">Lunch</span><span class="lang-sk">Obed</span></div><div class="ms-macros">0 kcal &middot; P 0 &middot; C 0 &middot; F 0</div></div><div class="ms-add">+</div></div>
+                  <div class="meal-slot"><span class="ms-icon">&#127848;</span><div class="ms-info"><div class="ms-name"><span class="lang-en">Afternoon snack</span><span class="lang-sk">Olovrant</span></div><div class="ms-macros">0 kcal &middot; P 0 &middot; C 0 &middot; F 0</div></div><div class="ms-add">+</div></div>
+                  <div class="meal-slot"><span class="ms-icon">&#127769;</span><div class="ms-info"><div class="ms-name"><span class="lang-en">Dinner</span><span class="lang-sk">Večera</span></div><div class="ms-macros">0 kcal &middot; P 0 &middot; C 0 &middot; F 0</div></div><div class="ms-add">+</div></div>
+                  <div class="chip-row"><div class="chip active"><span class="lang-en">Recent</span><span class="lang-sk">Nedávne</span></div><div class="chip"><span class="lang-en">Frequent</span><span class="lang-sk">Časté</span></div></div>
+                </div>
+
+                <!-- Demo: Training -->
+                <div class="app-screen" data-screen="training">
+                  <div class="ph-header"><span style="font-size:0.85rem;color:var(--green);">&#8853;</span><span class="ph-title"><span class="lang-en">Training</span><span class="lang-sk">Tréning</span></span><span class="ph-icons" style="font-size:0.75rem;">&#128214;</span></div>
+                  <div class="week-schedule">
+                    <div class="day-col"><div class="day-name"><span class="lang-en">Mon</span><span class="lang-sk">Pon</span></div><div class="day-dot active"></div><div class="day-label">FBA</div></div>
+                    <div class="day-col"><div class="day-name"><span class="lang-en">Tue</span><span class="lang-sk">Uto</span></div><div class="day-dot active"></div><div class="day-label">Arn</div></div>
+                    <div class="day-col"><div class="day-name"><span class="lang-en">Wed</span><span class="lang-sk">Str</span></div><div class="day-dot active"></div><div class="day-label">FBB</div></div>
+                    <div class="day-col"><div class="day-name"><span class="lang-en">Thu</span><span class="lang-sk">Štv</span></div><div class="day-dot rest"></div><div class="day-label"><span class="lang-en">Rest</span><span class="lang-sk">Voľno</span></div></div>
+                    <div class="day-col today"><div class="day-name"><span class="lang-en">Fri</span><span class="lang-sk">Pia</span></div><div class="day-dot active"></div><div class="day-label">FBC</div></div>
+                    <div class="day-col"><div class="day-name"><span class="lang-en">Sat</span><span class="lang-sk">Sob</span></div><div class="day-dot active"></div><div class="day-label">Skt</div></div>
+                    <div class="day-col"><div class="day-name"><span class="lang-en">Sun</span><span class="lang-sk">Neď</span></div><div class="day-dot rest"></div><div class="day-label"><span class="lang-en">Rest</span><span class="lang-sk">Voľno</span></div></div>
+                  </div>
+                  <div class="ph-subtitle" style="text-align:center;"><span class="lang-en">Today &mdash; Friday</span><span class="lang-sk">Dnes &mdash; Piatok</span></div>
+                  <div class="workout-card-light">
+                    <div class="wc-title"><span class="lang-en">Full Body C &mdash; 5 exercises</span><span class="lang-sk">Full Body C &mdash; 5 cvikov</span></div>
+                    <div class="exercise-row-light"><span class="er-name">Leg press</span><span class="er-sets">3 &times; 10-12</span></div>
+                    <div class="exercise-row-light"><span class="er-name">DB Shoulder Press</span><span class="er-sets">3 &times; 8-12</span></div>
+                    <div class="exercise-row-light"><span class="er-name">Seated Row</span><span class="er-sets">3 &times; 8-12</span></div>
+                    <div class="exercise-row-light"><span class="er-name">DB Flyes</span><span class="er-sets">3 &times; 10-15</span></div>
+                    <div class="exercise-row-light"><span class="er-name">Standing Calf Raises</span><span class="er-sets">3 &times; 12-15</span></div>
+                  </div>
+                  <div class="green-btn">&#9654; <span class="lang-en">Start workout</span><span class="lang-sk">Začať tréning</span></div>
+                  <div class="weekly-stats-row">
+                    <div class="ws-item"><div class="ws-val">12,540</div><div class="ws-label"><span class="lang-en">Volume (kg)</span><span class="lang-sk">Objem (kg)</span></div></div>
+                    <div class="ws-item"><div class="ws-val">4</div><div class="ws-label"><span class="lang-en">Workouts</span><span class="lang-sk">Tréningy</span></div></div>
+                    <div class="ws-item"><div class="ws-val">2</div><div class="ws-label"><span class="lang-en">PRs</span><span class="lang-sk">Rekordy</span></div></div>
+                  </div>
+                  <div class="ph-section-title">Apple Watch</div>
+                  <div class="watch-card"><span class="wc-icon">&#9201;</span><div class="wc-info"><div class="wc-label"><span class="lang-en">Strength Training</span><span class="lang-sk">Silový tréning</span></div><div class="wc-detail">42 min &middot; 320 kcal</div></div></div>
+                </div>
+
+                <!-- Demo: Progress -->
+                <div class="app-screen" data-screen="progress">
+                  <div class="ph-header"><span></span><span class="ph-title"><span class="lang-en">Progress</span><span class="lang-sk">Progres</span></span><span class="ph-icons" style="font-size:0.75rem;">&#9829;</span></div>
+                  <div class="progress-weight"><div class="pw-label"><span class="lang-en">CURRENT WEIGHT</span><span class="lang-sk">AKTUÁLNA HMOTNOSŤ</span></div><div class="pw-big">84.0 <span style="font-size:0.7rem;font-weight:600;">kg</span></div></div>
+                  <div style="text-align:center;margin-bottom:4px;"><span style="display:inline-block;padding:2px 8px;background:rgba(90,184,122,0.1);border-radius:10px;font-size:0.45rem;font-weight:600;color:var(--green);">&#8600; <span class="lang-en">-1.0 kg from start</span><span class="lang-sk">-1.0 kg od začiatku</span></span></div>
+                  <div class="goal-circle-small">
+                    <div class="gc-ring">
+                      <svg viewBox="0 0 54 54"><circle class="gc-bg" cx="27" cy="27" r="24"/><circle class="gc-fill" cx="27" cy="27" r="24"/></svg>
+                      <div class="gc-text"><span class="gc-pct">10%</span><span class="gc-label"><span class="lang-en">to goal</span><span class="lang-sk">do cieľa</span></span></div>
+                    </div>
+                  </div>
+                  <div class="progress-stats">
+                    <div class="ps-item"><div class="ps-label"><span class="lang-en">Start</span><span class="lang-sk">Štart</span></div><div class="ps-val">85.0 kg</div></div>
+                    <div class="ps-item"><div class="ps-label"><span class="lang-en">Goal</span><span class="lang-sk">Cieľ</span></div><div class="ps-val goal">75.0 kg</div></div>
+                    <div class="ps-item"><div class="ps-label"><span class="lang-en">Remaining</span><span class="lang-sk">Zostáva</span></div><div class="ps-val">9.0 kg</div></div>
+                  </div>
+                  <div class="green-btn">&#128274; <span class="lang-en">Add weigh-in</span><span class="lang-sk">Pridať váženie</span></div>
+                  <div class="chart-placeholder">
+                    <div class="cp-title"><span class="lang-en">Weight trend</span><span class="lang-sk">Trend hmotnosti</span></div>
+                    <div class="cp-goal">&#9679; <span class="lang-en">Goal 75.0 kg</span><span class="lang-sk">Cieľ 75.0 kg</span></div>
+                    <div class="chart-area"></div>
+                  </div>
+                  <div class="period-tabs"><div class="period-tab active"><span class="lang-en">30 days</span><span class="lang-sk">30 dní</span></div><div class="period-tab"><span class="lang-en">60 days</span><span class="lang-sk">60 dní</span></div><div class="period-tab"><span class="lang-en">90 days</span><span class="lang-sk">90 dní</span></div></div>
+                  <div class="ai-assess-card">
+                    <div class="ai-icon">&#10024;</div>
+                    <div class="ai-info"><div class="ai-title"><span class="lang-en">AI Body Assessment</span><span class="lang-sk">AI Hodnotenie tela</span></div><div class="ai-sub"><span class="lang-en">Get personalized analysis</span><span class="lang-sk">Získaj personalizovanú analýzu</span></div></div>
+                    <div class="ai-arrow">&#8250;</div>
+                  </div>
+                  <div class="body-comp-row">
+                    <div class="body-comp-item"><div class="bc-val">18.5%</div><div class="bc-label"><span class="lang-en">Body fat</span><span class="lang-sk">Telesný tuk</span></div></div>
+                    <div class="body-comp-item"><div class="bc-val">68.4 kg</div><div class="bc-label"><span class="lang-en">Lean mass</span><span class="lang-sk">Čistá hmota</span></div></div>
+                    <div class="body-comp-item"><div class="bc-val">25.1</div><div class="bc-label">BMI</div></div>
+                  </div>
+                </div>
+
+                <!-- Demo: Coach -->
+                <div class="app-screen" data-screen="coach">
+                  <div class="ph-header"><span></span><span class="ph-title"><span class="lang-en">Coach</span><span class="lang-sk">Kouč</span></span><span class="ph-icons">&#10024;</span></div>
+                  <div class="coach-grid">
+                    <div class="coach-action"><div class="ca-icon" style="color:var(--gold);">&#9728;</div><div class="ca-title"><span class="lang-en">Daily review</span><span class="lang-sk">Denný prehľad</span></div><div class="ca-desc"><span class="lang-en">Day evaluation</span><span class="lang-sk">Hodnotenie dňa</span></div></div>
+                    <div class="coach-action"><div class="ca-icon" style="color:#7A9AB8;">&#128197;</div><div class="ca-title"><span class="lang-en">Weekly review</span><span class="lang-sk">Týždenný prehľad</span></div><div class="ca-desc"><span class="lang-en">7-day overview</span><span class="lang-sk">Prehľad za 7 dní</span></div></div>
+                    <div class="coach-action"><div class="ca-icon" style="color:var(--green);">&#127860;</div><div class="ca-title"><span class="lang-en">Meal plan</span><span class="lang-sk">Jedálny plán</span></div><div class="ca-desc"><span class="lang-en">Plan your meals</span><span class="lang-sk">Naplánuj si jedlá</span></div></div>
+                    <div class="coach-action"><div class="ca-icon" style="color:#9C8BB0;">&#128722;</div><div class="ca-title"><span class="lang-en">Shopping list</span><span class="lang-sk">Nákupný list</span></div><div class="ca-desc"><span class="lang-en">What to buy</span><span class="lang-sk">Čo nakúpiť</span></div></div>
+                  </div>
+                  <div class="chat-section">
+                    <div class="cs-label">&#128172; Chat</div>
+                    <div class="chat-ai-row">
+                      <div class="chat-avatar"><img src="icon.png" alt="AI"></div>
+                      <div class="chat-bubble-light chat-ai-light" style="flex:1;">
+                        <div class="chat-ai-label-light"><span>&#10024;</span> <span class="lang-en">AI Coach</span><span class="lang-sk">AI Kouč</span></div>
+                        <span class="lang-en">I'm your personal coach. Ask me anything &mdash; nutrition, training, sleep, or motivation.</span><span class="lang-sk">Som tvoj osobný kouč. Opýtaj sa ma čokoľvek &mdash; výživa, tréning, spánok alebo motivácia.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="question-chips">
+                    <div class="q-chip"><span class="lang-en">How much protein per day?</span><span class="lang-sk">Koľko bielkovín denne?</span></div>
+                    <div class="q-chip"><span class="lang-en">How to stay motivated?</span><span class="lang-sk">Ako zostať motivovaný?</span></div>
+                    <div class="q-chip"><span class="lang-en">What to eat after a workout?</span><span class="lang-sk">Čo jesť po tréningu?</span></div>
+                    <div class="q-chip"><span class="lang-en">Afternoon fatigue &mdash; what helps?</span><span class="lang-sk">Popoludňajšia únava &mdash; čo pomáha?</span></div>
+                  </div>
+                  <div class="chat-input"><span class="ci-text"><span class="lang-en">Write to coach...</span><span class="lang-sk">Napíš koučovi...</span></span><div class="ci-send">&#10148;</div></div>
+                </div>
+              </div>
+              <div class="phone-tab-bar" id="demoTabBar">
+                <div class="tab-item active" data-target="today"><span class="tab-icon"><svg class="tab-svg" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="4.5"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"><path d="M12 2v3m0 14v3m-7.07-3.93l2.12-2.12m9.9-9.9l2.12-2.12M2 12h3m14 0h3m-3.93 7.07l-2.12-2.12M6.34 6.34L4.22 4.22"/></g></svg></span><span class="lang-en">Today</span><span class="lang-sk">Dnes</span></div>
+                <div class="tab-item" data-target="food"><span class="tab-icon"><svg class="tab-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v7c0 1.1.9 2 2 2h2c1.1 0 2-.9 2-2V3"/><path d="M6 12v10"/><path d="M16 3c2.2 0 4 1.8 4 4s-1.8 4-4 4"/><path d="M16 11v11"/></svg></span><span class="lang-en">Food</span><span class="lang-sk">Jedlo</span></div>
+                <div class="tab-item" data-target="training"><span class="tab-icon"><svg class="tab-svg" viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="10" width="3" height="4" rx="1"/><rect x="20" y="10" width="3" height="4" rx="1"/><rect x="4" y="8" width="3" height="8" rx="1"/><rect x="17" y="8" width="3" height="8" rx="1"/><rect x="7" y="11" width="10" height="2" rx=".5"/></svg></span><span class="lang-en">Training</span><span class="lang-sk">Tréning</span></div>
+                <div class="tab-item" data-target="progress"><span class="tab-icon"><svg class="tab-svg" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="4" r="2.5"/><path d="M3.5 11a.5.5 0 01.5-.5h16a.5.5 0 010 1H4a.5.5 0 01-.5-.5z"/><path d="M9.5 11v4L7 22h2.5l2.5-5.5L14.5 22H17l-2.5-7v-4h-5z"/></svg></span><span class="lang-en">Progress</span><span class="lang-sk">Progres</span></div>
+                <div class="tab-item" data-target="coach"><span class="tab-icon"><svg class="tab-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.5 2l1.3 4.2L15 7.5l-4.2 1.3L9.5 13l-1.3-4.2L4 7.5l4.2-1.3z"/><path d="M18 11l.8 2.5 2.5.8-2.5.8-.8 2.5-.8-2.5-2.5-.8 2.5-.8z"/><path d="M7 16l.6 1.8 1.8.6-1.8.6L7 20.8l-.6-1.8-1.8-.6 1.8-.6z"/></svg></span><span class="lang-en">Coach</span><span class="lang-sk">Kouč</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     HOW IT WORKS
+     ════════════════════════════════════════════════ -->
+<section id="how-it-works">
+  <div class="container">
+    <div class="how-header reveal">
+      <div class="section-label"><span class="lang-en">How it works</span><span class="lang-sk">Ako to funguje</span></div>
+      <h2><span class="lang-en">Three simple steps</span><span class="lang-sk">Tri jednoduche kroky</span></h2>
+      <p style="margin-top:12px;"><span class="lang-en">From download to results &mdash; Subten guides you through the whole process.</span><span class="lang-sk">Od stiahnutia po vysledky &mdash; Subten ťa prevedie celym procesom.</span></p>
+    </div>
+    <div class="steps-container">
+      <div class="step-card reveal reveal-delay-1">
+        <div class="step-number">1</div>
+        <h3><span class="lang-en">Download &amp; set goals</span><span class="lang-sk">Stiahni a nastav ciele</span></h3>
+        <p><span class="lang-en">Enter your weight, goal, and training plan. AI calculates your optimal calories and macros.</span><span class="lang-sk">Zadaj svoju hmotnosť, cieľ a treningovy plan. AI ti vypočíta optimalne kalorie a makra.</span></p>
+      </div>
+      <div class="step-card reveal reveal-delay-2">
+        <div class="step-number">2</div>
+        <h3><span class="lang-en">Track food &amp; training</span><span class="lang-sk">Sleduj jedlo a trening</span></h3>
+        <p><span class="lang-en">Log food with a photo, barcode, or from the database. Record workouts with a single tap.</span><span class="lang-sk">Skenuj jedlo fotkou, čiarovym kodom alebo z databazy. Zaznamenanej treningy jednym ťuknutím.</span></p>
+      </div>
+      <div class="step-card reveal reveal-delay-3">
+        <div class="step-number">3</div>
+        <h3><span class="lang-en">AI drives your results</span><span class="lang-sk">AI ťa dovedie k vysledkom</span></h3>
+        <p><span class="lang-en">Your personal AI mentor analyzes progress, adjusts your plan, and helps you break through plateaus.</span><span class="lang-sk">Osobny AI mentor analyzuje tvoj pokrok, upravuje plan a pomaha ti prekonaťplatou.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     STATS / SOCIAL PROOF
+     ════════════════════════════════════════════════ -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card glass reveal reveal-delay-1">
+        <div class="stat-number" data-target="717" data-suffix="+">0</div>
+        <div class="stat-label"><span class="lang-en">Foods in database</span><span class="lang-sk">Jedal v databaze</span></div>
+      </div>
+      <div class="stat-card glass reveal reveal-delay-2">
+        <div class="stat-number" data-target="5" data-suffix="">0</div>
+        <div class="stat-label"><span class="lang-en">Scanning types</span><span class="lang-sk">Typov skenovania</span></div>
+      </div>
+      <div class="stat-card glass reveal reveal-delay-3">
+        <div class="stat-number" data-target="24" data-suffix="/7">0</div>
+        <div class="stat-label"><span class="lang-en">AI analysis 24/7</span><span class="lang-sk">AI analyza non-stop</span></div>
+      </div>
+      <div class="stat-card glass reveal reveal-delay-4">
+        <div class="stat-number" data-target="10" data-suffix="">0</div>
+        <div class="stat-label"><span class="lang-en">Body metrics</span><span class="lang-sk">Telesnych metrik</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     PRICING
+     ════════════════════════════════════════════════ -->
+<section id="pricing">
+  <div class="container">
+    <div class="pricing-header reveal">
+      <div class="section-label"><span class="lang-en">Pricing</span><span class="lang-sk">Cenník</span></div>
+      <h2><span class="lang-en">Choose your plan</span><span class="lang-sk">Vyber si svoj plan</span></h2>
+      <p style="margin-top:12px;"><span class="lang-en">Start for free and upgrade when you're ready for the next level.</span><span class="lang-sk">Začni zadarmo a upgrade keď budeš pripraveny na ďalsi level.</span></p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card glass reveal reveal-delay-1">
+        <div class="pricing-plan"><span class="lang-en">Free</span><span class="lang-sk">Zadarmo</span></div>
+        <div class="pricing-price">0 <span class="currency">&euro;</span></div>
+        <div class="pricing-subtitle"><span class="lang-en">Free forever</span><span class="lang-sk">Navždy zadarmo</span></div>
+        <ul class="pricing-features">
+          <li><span class="check">&#10003;</span> <span class="lang-en">Food logging</span><span class="lang-sk">Logovanie jedla</span></li>
+          <li><span class="check">&#10003;</span> <span class="lang-en">Training module</span><span class="lang-sk">Treningovy modul</span></li>
+          <li><span class="check">&#10003;</span> <span class="lang-en">Basic dashboard</span><span class="lang-sk">Zakladny dashboard</span></li>
+          <li><span class="check">&#10003;</span> <span class="lang-en">Lifestyle tracking</span><span class="lang-sk">Sledovanie životneho štylu</span></li>
+          <li><span class="check">&#10003;</span> <span class="lang-en">Limited AI</span><span class="lang-sk">Limitovany AI</span></li>
+          <li><span class="cross">&#10005;</span> <span class="lang-en">AI meal plans</span><span class="lang-sk">AI jedalnicky</span></li>
+          <li><span class="cross">&#10005;</span> <span class="lang-en">Data export &amp; import</span><span class="lang-sk">Export &amp; import dat</span></li>
+          <li><span class="cross">&#10005;</span> <span class="lang-en">iCloud sync</span><span class="lang-sk">iCloud synchronizacia</span></li>
+        </ul>
+        <a href="#" class="btn-secondary" style="width:100%;justify-content:center;"><span class="lang-en">Download free</span><span class="lang-sk">Stiahnuť zadarmo</span></a>
+      </div>
+      <div class="pricing-card glass premium reveal reveal-delay-2">
+        <div class="pricing-plan" style="color:var(--gold);">Premium</div>
+        <div class="pricing-price"><span class="currency">&euro;</span>3.99 <span class="period"><span class="lang-en">/mo</span><span class="lang-sk">/mes</span></span></div>
+        <div class="pricing-subtitle"><span class="lang-en">7-day free trial</span><span class="lang-sk">7 dní zadarmo na vyskušanie</span></div>
+        <ul class="pricing-features">
+          <li><span class="check">&#10003;</span> <span class="lang-en">Everything in Free</span><span class="lang-sk">Všetko z Free planu</span></li>
+          <li><span class="check">&#10003;</span> <span class="lang-en">Unlimited AI coach</span><span class="lang-sk">Neobmedzeny AI kouč</span></li>
+          <li><span class="check">&#10003;</span> <span class="lang-en">AI meal plans &amp; shopping lists</span><span class="lang-sk">AI jedalnicky &amp; nakupne listy</span></li>
+          <li><span class="check">&#10003;</span> <span class="lang-en">Data export &amp; import</span><span class="lang-sk">Export &amp; import dat</span></li>
+          <li><span class="check">&#10003;</span> <span class="lang-en">iCloud sync</span><span class="lang-sk">iCloud synchronizacia</span></li>
+          <li><span class="check">&#10003;</span> <span class="lang-en">Advanced analytics</span><span class="lang-sk">Pokročila analytika</span></li>
+          <li><span class="check">&#10003;</span> <span class="lang-en">AI body assessment</span><span class="lang-sk">AI hodnotenie tela</span></li>
+          <li><span class="check">&#10003;</span> <span class="lang-en">Priority support</span><span class="lang-sk">Prioritna podpora</span></li>
+        </ul>
+        <a href="#" class="btn-gold" style="width:100%;justify-content:center;"><span class="lang-en">Try 7 days free</span><span class="lang-sk">Vyskusaj 7 dní zadarmo</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     FINAL CTA
+     ════════════════════════════════════════════════ -->
+<section id="cta">
+  <div class="cta-bg"></div>
+  <div class="particles" id="particles"></div>
+  <div class="container">
+    <div class="cta-content reveal">
+      <div class="section-label" style="margin:0 auto 20px;"><span class="lang-en">Start today</span><span class="lang-sk">Začni dnes</span></div>
+      <h2><span class="lang-en">Start your<br>transformation today</span><span class="lang-sk">Začni svoju<br>transformaciu dnes</span></h2>
+      <p><span class="lang-en">Your AI body recomposition coach is one download away. Join athletes who take nutrition seriously.</span><span class="lang-sk">Tvoj AI trener na rekompozíciu tela je na jedno stiahnutie od teba.</span></p>
+      <div class="cta-buttons">
+        <a href="#" class="app-store-badge">
+          <span class="badge-icon"></span>
+          <span class="badge-text">
+            <span class="badge-small"><span class="lang-en">Download on the</span><span class="lang-sk">Stiahnuť z</span></span>
+            <span class="badge-big">App Store</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     FOOTER
+     ════════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-left">
+      <div class="logo-icon"><img src="icon.png" alt="Subten"></div>
+      <span>&copy; 2026 Subten. <span class="lang-en">All rights reserved.</span><span class="lang-sk">Všetky prava vyhradene.</span></span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="privacy/"><span class="lang-en">Privacy Policy</span><span class="lang-sk">Ochrana sukromia</span></a></li>
+      <li><a href="terms/"><span class="lang-en">Terms of Use</span><span class="lang-sk">Podmienky použitia</span></a></li>
+    </ul>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════
+     JAVASCRIPT
+     ════════════════════════════════════════════════ -->
+<script>
+(function() {
+  'use strict';
+
+  /* ── Language toggle ── */
+  window.toggleLang = function() {
+    const html = document.documentElement;
+    html.lang = html.lang === 'en' ? 'sk' : 'en';
+  };
+
+  /* ── Navigation scroll effect ── */
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+
+  /* ── Close mobile nav on link click ── */
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+
+  /* ── Intersection Observer for scroll reveals ── */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        entry.target.querySelectorAll('.ring-fill').forEach(ring => ring.classList.add('animated'));
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  /* ── Phone tab switching (generic) ── */
+  function setupPhoneTabs(phoneEl, tabBarId, externalTabsId) {
+    const tabBar = document.getElementById(tabBarId);
+    const externalTabs = externalTabsId ? document.getElementById(externalTabsId) : null;
+    const screens = phoneEl.querySelectorAll('.app-screen');
+    const tabs = tabBar ? tabBar.querySelectorAll('.tab-item') : [];
+
+    function switchScreen(target) {
+      screens.forEach(s => s.classList.remove('active'));
+      tabs.forEach(t => t.classList.remove('active'));
+      const targetScreen = phoneEl.querySelector('.app-screen[data-screen="' + target + '"]');
+      const targetTab = tabBar ? tabBar.querySelector('.tab-item[data-target="' + target + '"]') : null;
+      if (targetScreen) targetScreen.classList.add('active');
+      if (targetTab) targetTab.classList.add('active');
+      if (externalTabs) {
+        externalTabs.querySelectorAll('.demo-tab-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.demoTarget === target);
+        });
+      }
+      if (targetScreen) {
+        targetScreen.querySelectorAll('.ring-fill').forEach(ring => {
+          ring.classList.remove('animated');
+          requestAnimationFrame(() => ring.classList.add('animated'));
+        });
+      }
+    }
+
+    tabs.forEach(tab => { tab.addEventListener('click', () => switchScreen(tab.dataset.target)); });
+    if (externalTabs) {
+      externalTabs.querySelectorAll('.demo-tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => switchScreen(btn.dataset.demoTarget));
+      });
+    }
+    return switchScreen;
+  }
+
+  const heroSwitch = setupPhoneTabs(document.getElementById('heroPhone'), 'heroTabBar', null);
+  const demoSwitch = setupPhoneTabs(document.getElementById('demoPhone'), 'demoTabBar', 'demoExternalTabs');
+
+  /* ── Auto-cycle hero phone ── */
+  const screenOrder = ['today', 'food', 'training', 'progress', 'coach'];
+  let heroIndex = 0;
+  setInterval(() => {
+    heroIndex = (heroIndex + 1) % screenOrder.length;
+    heroSwitch(screenOrder[heroIndex]);
+  }, 4000);
+
+  /* ── Counter animation ── */
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.dataset.target);
+        const suffix = el.dataset.suffix || '';
+        const duration = 2000;
+        const startTime = performance.now();
+        function animate(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(target * eased) + suffix;
+          if (progress < 1) requestAnimationFrame(animate);
+        }
+        requestAnimationFrame(animate);
+        counterObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.stat-number').forEach(el => counterObserver.observe(el));
+
+  /* ── Particles ── */
+  const particlesEl = document.getElementById('particles');
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.top = 60 + Math.random() * 40 + '%';
+    p.style.animationDelay = Math.random() * 6 + 's';
+    p.style.animationDuration = 4 + Math.random() * 4 + 's';
+    p.style.width = p.style.height = (2 + Math.random() * 4) + 'px';
+    if (Math.random() > 0.5) p.style.background = 'var(--gold)';
+    particlesEl.appendChild(p);
+  }
+
+  /* ── Initial animation triggers ── */
+  setTimeout(() => {
+    document.querySelectorAll('#heroScreenToday .ring-fill').forEach(ring => ring.classList.add('animated'));
+  }, 600);
+
+})();
+</script>
+</body>
+</html>
