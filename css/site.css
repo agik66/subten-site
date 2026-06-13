@@ -213,11 +213,60 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 800; letter-spacing:
 }
 
 .nav-cta { display: inline-flex; }
-.menu-btn { display: none; }
 
+/* Hamburger button */
+.menu-btn {
+  display: none; width: 44px; height: 44px; flex: none;
+  align-items: center; justify-content: center;
+  background: none; border: none; cursor: pointer;
+  position: relative; z-index: 120; padding: 0;
+}
+.menu-btn .bar,
+.menu-btn .bar::before,
+.menu-btn .bar::after {
+  display: block; width: 20px; height: 2px; background: var(--ink);
+  border-radius: 2px; transition: transform .3s var(--ease), opacity .2s;
+  position: relative;
+}
+.menu-btn .bar::before,
+.menu-btn .bar::after {
+  content: ''; position: absolute; left: 0; width: 20px;
+}
+.menu-btn .bar::before { transform: translateY(-6px); }
+.menu-btn .bar::after { transform: translateY(6px); }
+.menu-btn.active .bar { background: transparent; }
+.menu-btn.active .bar::before { transform: rotate(45deg); }
+.menu-btn.active .bar::after { transform: rotate(-45deg); }
+
+/* Mobile nav overlay */
 @media (max-width: 880px) {
-  .nav-links { display: none; }
+  .menu-btn { display: flex; }
+  .nav-links {
+    display: none; position: fixed; inset: 0; z-index: 110;
+    background: color-mix(in srgb, var(--bg) 96%, transparent);
+    backdrop-filter: saturate(160%) blur(24px);
+    -webkit-backdrop-filter: saturate(160%) blur(24px);
+    flex-direction: column; align-items: center; justify-content: center;
+    gap: 36px; margin: 0; padding: 0;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a {
+    font-size: 24px; font-weight: 700; letter-spacing: -0.02em;
+    color: var(--ink); opacity: 0; transform: translateY(12px);
+    animation: none;
+  }
+  .nav-links.open a {
+    animation: mobileNavIn .4s var(--ease) forwards;
+  }
+  .nav-links.open a:nth-child(1) { animation-delay: .05s; }
+  .nav-links.open a:nth-child(2) { animation-delay: .1s; }
+  .nav-links.open a:nth-child(3) { animation-delay: .15s; }
+  .nav-links.open a:nth-child(4) { animation-delay: .2s; }
+  .nav-links.open a:nth-child(5) { animation-delay: .25s; }
   .nav-cta .btn { padding: 11px 18px; font-size: 14px; }
+}
+@keyframes mobileNavIn {
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ============================================================
