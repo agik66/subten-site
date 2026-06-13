@@ -465,7 +465,8 @@ document.addEventListener("keydown",e=>{
   if(e.key==="Escape") closeModal();
 });
 
-/* i18n re-render on lang change */
+/* i18n re-render on lang change — use MutationObserver on <html lang>
+   so it works regardless of how the language toggle calls apply() */
 const origApply=window.SubtenSetLang;
 if(origApply){
   window.SubtenSetLang=function(l){
@@ -475,6 +476,12 @@ if(origApply){
     renderRecipes();
   };
 }
+new MutationObserver(function(){
+  const l=document.documentElement.lang||"sk";
+  searchInput.placeholder=l==="cz"?"Hledej recept...":l==="sk"?"Hľadaj recept...":"Search recipe...";
+  renderFilters();
+  renderRecipes();
+}).observe(document.documentElement,{attributes:true,attributeFilter:["lang"]});
 
 renderFilters();
 renderRecipes();
