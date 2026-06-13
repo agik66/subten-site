@@ -23,19 +23,20 @@
    Prvý jazyk je predvolený. */
 window.SUBTEN_LANGUAGES = [
   { code: "sk", label: "SK" },
-  { code: "en", label: "EN" }
+  { code: "en", label: "EN" },
+  { code: "cz", label: "CZ" }
 ];
 
 window.SUBTEN_I18N = {
   /* nav */
-  "nav.features": { sk: "Funkcie", en: "Features" },
-  "nav.how":      { sk: "Ako to funguje", en: "How it works" },
-  "nav.coach":    { sk: "AI Coach", en: "AI Coach" },
-  "nav.pricing":  { sk: "Cenník", en: "Pricing" },
-  "nav.faq":      { sk: "FAQ", en: "FAQ" },
-  "nav.generator":{ sk: "Generátor", en: "Generator" },
-  "nav.recipes":  { sk: "Recepty", en: "Recipes" },
-  "nav.cta":      { sk: "Stiahnuť", en: "Get the app" },
+  "nav.features": { sk: "Funkcie", en: "Features", cz: "Funkce" },
+  "nav.how":      { sk: "Ako to funguje", en: "How it works", cz: "Jak to funguje" },
+  "nav.coach":    { sk: "AI Coach", en: "AI Coach", cz: "AI Coach" },
+  "nav.pricing":  { sk: "Cenník", en: "Pricing", cz: "Ceník" },
+  "nav.faq":      { sk: "FAQ", en: "FAQ", cz: "FAQ" },
+  "nav.generator":{ sk: "Generátor", en: "Generator", cz: "Generátor" },
+  "nav.recipes":  { sk: "Recepty", en: "Recipes", cz: "Recepty" },
+  "nav.cta":      { sk: "Stiahnuť", en: "Get the app", cz: "Stáhnout" },
 
   /* hero */
   "hero.badge":   { sk: "Nové · AI tréner v reálnom čase", en: "New · Real-time AI coach" },
@@ -63,7 +64,7 @@ window.SUBTEN_I18N = {
   "strip.3": { sk: "AI sken jedla", en: "AI food scan" },
   "strip.4": { sk: "Periodizované plány", en: "Periodized plans" },
   "strip.5": { sk: "Makrá & kalórie", en: "Macros & calories" },
-  "strip.6": { sk: "Slovensky & anglicky", en: "Slovak & English" },
+  "strip.6": { sk: "Slovensky & anglicky", en: "Slovak & English", cz: "Slovensky, anglicky & česky" },
 
   /* features */
   "feat.kicker": { sk: "Čo Subten dokáže", en: "What Subten does" },
