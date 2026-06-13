@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="sk" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Subten — Jedlo, tréning a regenerácia v jednej appke</title>
+<meta name="description" content="Subten spojí kalórie, makrá, tréningový plán a dáta z hodiniek — a tvoj AI tréner ti každý deň povie, čo robiť ďalej." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;450;500;550;600;700;800&family=Schibsted+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/site.css" />
+<link rel="icon" type="image/png" href="assets/brand/favicon.png" />
+<link rel="apple-touch-icon" href="assets/brand/subten-icon.png" />
+<style>
+  [id] { scroll-margin-top: 88px; }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="container nav-inner">
+    <div class="brand">
+      <image-slot id="brand-logo" class="logo-slot" src="assets/brand/subten-logo.png" fit="contain" shape="rounded" radius="8" placeholder="Logo"></image-slot>
+      <a href="#top" class="brand-name" aria-label="Subten">Subten</a>
+    </div>
+    <nav class="nav-links">
+      <a href="#features" data-i18n="nav.features">Funkcie</a>
+      <a href="generator.html" data-i18n="nav.generator">Generátor</a>
+      <a href="recipes.html" data-i18n="nav.recipes">Recepty</a>
+      <a href="#pricing" data-i18n="nav.pricing">Cenník</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang-toggle" role="group" aria-label="Language"></div>
+      <a href="#download" class="btn btn-primary nav-cta" data-i18n="nav.cta">Stiahnuť</a>
+    </div>
+  </div>
+</header>
+
+<!-- zdieľaná definícia zeleného gradientu pre malé logá (footer, AI Coach) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5FE39A"/><stop offset="1" stop-color="#2FBE6E"/></linearGradient></defs></svg>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero" data-variant="B">
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <div class="hero-wash" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <span class="hero-eyebrow" data-reveal><span class="dot"></span><span data-i18n="hero.badge">Nové · AI tréner v reálnom čase</span></span>
+        <h1 class="display" data-reveal data-reveal-delay="1" data-i18n="hero.title">Jedlo, tréning a <span class="text-grad">regenerácia</span> v jednej appke.</h1>
+        <p class="lede" data-reveal data-reveal-delay="2" data-i18n="hero.lede">Subten spojí kalórie, makrá, tréningový plán a dáta z hodiniek — a tvoj AI tréner ti každý deň povie, čo robiť ďalej.</p>
+        <div class="hero-cta" data-reveal data-reveal-delay="3">
+          <a href="#download" class="btn btn-primary" data-i18n="hero.cta1">Stiahnuť zadarmo</a>
+          <a href="#features" class="btn btn-ghost" data-i18n="hero.cta2">Pozrieť funkcie</a>
+        </div>
+        <div class="hero-meta" data-reveal data-reveal-delay="4">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="hero.meta1">Zadarmo na stiahnutie</span></span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="hero.meta2">Synchronizácia s Apple Health</span></span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="hero.meta3">Bez reklám</span></span>
+        </div>
+      </div>
+      <div class="hero-phones" data-reveal data-reveal-delay="2">
+        <div class="phone phone-back" style="--pw: clamp(190px, 24vw, 250px);">
+          <div class="phone-screen"><image-slot id="screen-coach" class="screen-slot" src="assets/img/coach-dark.png" shape="rect" fit="cover" placeholder="Pretiahni screenshot"></image-slot></div>
+        </div>
+        <div class="phone phone-front" style="--pw: clamp(230px, 29vw, 310px);">
+          <div class="phone-screen"><image-slot id="screen-today" class="screen-slot" src="assets/img/today-dark.png" shape="rect" fit="cover" placeholder="Pretiahni screenshot"></image-slot></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST STRIP ============ -->
+<div class="strip" aria-hidden="true">
+  <div class="strip-row">
+    <span class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/></svg><span data-i18n="strip.1">Apple Health & Watch</span></span>
+    <span class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2 5 4-12 2 7h6"/></svg><span data-i18n="strip.2">HRV & spánok</span></span>
+    <span class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="3"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg><span data-i18n="strip.3">AI sken jedla</span></span>
+    <span class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9m5 10V5m5 14v-7m5 7V8"/></svg><span data-i18n="strip.4">Periodizované plány</span></span>
+    <span class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-i18n="strip.5">Makrá & kalórie</span></span>
+    <span class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><span data-i18n="strip.6">Slovensky & anglicky</span></span>
+    <span class="strip-item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/></svg><span data-i18n="strip.1">Apple Health & Watch</span></span>
+    <span class="strip-item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2 5 4-12 2 7h6"/></svg><span data-i18n="strip.2">HRV & spánok</span></span>
+    <span class="strip-item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="3"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg><span data-i18n="strip.3">AI sken jedla</span></span>
+    <span class="strip-item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9m5 10V5m5 14v-7m5 7V8"/></svg><span data-i18n="strip.4">Periodizované plány</span></span>
+    <span class="strip-item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-i18n="strip.5">Makrá & kalórie</span></span>
+    <span class="strip-item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><span data-i18n="strip.6">Slovensky & anglicky</span></span>
+  </div>
+</div>
+
+<!-- ============ FEATURES (bento) ============ -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="kicker" data-i18n="feat.kicker">Čo Subten dokáže</span>
+      <h2 class="h2" data-i18n="feat.title">Všetko pre tvoj progres — bez piatich appiek.</h2>
+      <p class="lede" data-i18n="feat.lede">Sleduj jedlo, trénuj podľa plánu, meraj regeneráciu a nechaj sa viesť AI trénerom. V jednom čistom rozhraní.</p>
+    </div>
+    <div class="bento">
+      <article class="card card-food" data-reveal>
+        <span class="card-glow" aria-hidden="true"></span>
+        <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v8a3 3 0 0 0 3 3v7M7 3v6M10 3v6M18 3c-1.5 0-2.5 2-2.5 5s1 4 2.5 4v9"/></svg></span>
+        <h3 data-i18n="food.title">Jedlo a makrá</h3>
+        <p data-i18n="food.desc">Naskenuj čiarový kód alebo odfoť tanier. Subten dopočíta kalórie, bielkoviny, sacharidy, tuky aj vlákninu.</p>
+      </article>
+      <article class="card card-training" data-reveal data-reveal-delay="1">
+        <span class="card-glow" aria-hidden="true"></span>
+        <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5l11 11M4 9l-1 1 4 4M15 4l-1 1 4 4M20 15l1-1-4-4M9 20l1-1-4-4"/></svg></span>
+        <h3 data-i18n="training.title">Tréning a šport</h3>
+        <p data-i18n="training.desc">Plány do posilňovne aj periodizované športové cykly — futbal, hokej, beh, cyklistika a ďalšie.</p>
+      </article>
+      <article class="card card-recovery" data-reveal>
+        <span class="card-glow" aria-hidden="true"></span>
+        <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2 5 4-12 2 7h6"/></svg></span>
+        <h3 data-i18n="recovery.title">Regenerácia</h3>
+        <p data-i18n="recovery.desc">HRV, pokojový tep, spánok a SpO₂ z hodiniek v jednom skóre pripravenosti.</p>
+      </article>
+      <article class="card card-coach" data-reveal data-reveal-delay="1">
+        <span class="card-glow" aria-hidden="true"></span>
+        <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9l-4.7 1.8L12 15l-1.8-4.2L5.5 9l4.7-1.3z"/><path d="M19 14l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></span>
+        <h3 data-i18n="coachf.title">AI Coach</h3>
+        <p data-i18n="coachf.desc">Tvoj osobný tréner v telefóne — pýtaj sa na výživu, tréning aj motiváciu.</p>
+      </article>
+      <article class="card card-progress" data-reveal data-reveal-delay="2">
+        <span class="card-glow" aria-hidden="true"></span>
+        <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5M4 19h16M8 16l3-4 3 2 5-7"/></svg></span>
+        <h3 data-i18n="progress.title">Progres a prehľad</h3>
+        <p data-i18n="progress.desc">Týždenné hodnotenia, trend váhy a výkonnostný profil, ktorý ukáže, kam smeruješ.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SHOWCASE ============ -->
+<section class="section section--tint" id="how">
+  <div class="container">
+    <div class="showcase">
+
+      <!-- Food -->
+      <div class="split" data-reveal>
+        <div class="split-media"><span class="phone-glow" style="--fc: var(--c-food);" aria-hidden="true"></span>
+          <div class="phone" style="--pw: clamp(230px, 27vw, 290px); position:relative;">
+            <div class="phone-screen"><image-slot id="screen-food" class="screen-slot" src="assets/img/food-dark.png" shape="rect" fit="cover" placeholder="Pretiahni screenshot"></image-slot></div>
+          </div>
+        </div>
+        <div class="split-copy" style="--fc: var(--c-food);">
+          <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v8a3 3 0 0 0 3 3v7M7 3v6M10 3v6M18 3c-1.5 0-2.5 2-2.5 5s1 4 2.5 4v9"/></svg></span>
+          <h3 data-i18n="sc.food.title">Zaznamenaj jedlo za pár sekúnd</h3>
+          <p data-i18n="sc.food.desc">Sken, fotka alebo vyhľadávanie z databázy. Obľúbené a časté jedlá máš po ruke a Subten ti ukáže, čo ti ešte do cieľa chýba.</p>
+          <ul class="split-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="sc.food.li1">Sken čiarového kódu a rozpoznávanie z fotky</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="sc.food.li2">Bielkoviny, sacharidy, tuky aj vláknina</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="sc.food.li3">Raňajky, obedy, snacky aj vlastné jedlá</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Training -->
+      <div class="split reverse" data-reveal>
+        <div class="split-media"><span class="phone-glow" style="--fc: var(--c-training);" aria-hidden="true"></span>
+          <div class="phone" style="--pw: clamp(230px, 27vw, 290px); position:relative;">
+            <div class="phone-screen"><image-slot id="screen-training" class="screen-slot" src="assets/img/training-plan-dark.png" shape="rect" fit="cover" placeholder="Pretiahni screenshot"></image-slot></div>
+          </div>
+        </div>
+        <div class="split-copy" style="--fc: var(--c-training);">
+          <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5l11 11M4 9l-1 1 4 4M15 4l-1 1 4 4M20 15l1-1-4-4M9 20l1-1-4-4"/></svg></span>
+          <h3 data-i18n="sc.train.title">Trénuj podľa plánu, nie od oka</h3>
+          <p data-i18n="sc.train.desc">Vyber si rozpis do posilňovne alebo periodizovaný plán pre svoj šport. Subten ti pripraví týždeň a vedie ťa cvik po cviku.</p>
+          <ul class="split-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="sc.train.li1">Celé telo, PPL, Upper/Lower, Wendler a ďalšie</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="sc.train.li2">Periodizované cykly pre 8+ športov</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="sc.train.li3">Knižnica cvikov s návodmi a zásahmi svalov</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Recovery -->
+      <div class="split" data-reveal>
+        <div class="split-media"><span class="phone-glow" style="--fc: var(--c-recovery);" aria-hidden="true"></span>
+          <div class="phone" style="--pw: clamp(230px, 27vw, 290px); position:relative;">
+            <div class="phone-screen"><image-slot id="screen-weekly" class="screen-slot" src="assets/img/weekly-dark.png" shape="rect" fit="cover" placeholder="Pretiahni screenshot"></image-slot></div>
+          </div>
+        </div>
+        <div class="split-copy" style="--fc: var(--c-recovery);">
+          <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2 5 4-12 2 7h6"/></svg></span>
+          <h3 data-i18n="sc.rec.title">Vieš, kedy zatlačiť a kedy si oddýchnuť</h3>
+          <p data-i18n="sc.rec.desc">Subten číta HRV, pokojový tep, spánok aj dýchanie z hodiniek a každé ráno ti dá jasné skóre pripravenosti — aj s vysvetlením.</p>
+          <ul class="split-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="sc.rec.li1">Skóre regenerácie 0–100 každé ráno</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="sc.rec.li2">HRV, pokojový tep, SpO₂ a dýchanie</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="sc.rec.li3">Týždenné trendy, váha a kalórie</span></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ STEPS ============ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center" data-reveal>
+      <span class="kicker" style="justify-content:center;" data-i18n="steps.kicker">Ako to funguje</span>
+      <h2 class="h2" data-i18n="steps.title">Začni za tri minúty</h2>
+    </div>
+    <div class="steps">
+      <div class="step" data-reveal>
+        <span class="step-line" aria-hidden="true"></span>
+        <span class="step-num">1</span>
+        <h3 data-i18n="step1.title">Prepoj hodinky</h3>
+        <p data-i18n="step1.desc">Spoj Subten s Apple Health alebo svojím nositeľom — spánok, tep a pohyb sa načítajú samé.</p>
+      </div>
+      <div class="step" data-reveal data-reveal-delay="1">
+        <span class="step-line" aria-hidden="true"></span>
+        <span class="step-num">2</span>
+        <h3 data-i18n="step2.title">Nastav cieľ</h3>
+        <p data-i18n="step2.desc">Chudnutie, naberanie alebo výkon? Subten dopočíta kalórie a makrá presne na mieru.</p>
+      </div>
+      <div class="step" data-reveal data-reveal-delay="2">
+        <span class="step-num">3</span>
+        <h3 data-i18n="step3.title">Nechaj sa viesť</h3>
+        <p data-i18n="step3.desc">Každý deň dostaneš jasný plán jedla, tréningu a regenerácie — a AI trénera, keď sa potrebuješ poradiť.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COACH ============ -->
+<section class="section section--tint" id="coach">
+  <div class="container">
+    <div class="coach-wrap">
+      <div class="split-copy" data-reveal>
+        <span class="kicker" data-i18n="coach.kicker">AI Coach</span>
+        <h3 style="margin-top:16px;" data-i18n="coach.title">Osobný tréner, ktorý ťa pozná</h3>
+        <p data-i18n="coach.lede">Coach vidí tvoje dáta — jedlo, tréning, spánok aj regeneráciu — a odpovedá konkrétne na tvoju situáciu. Po slovensky aj anglicky.</p>
+        <p class="muted" style="font-size:13.5px; margin-top:22px; display:flex; gap:9px; align-items:flex-start;">
+          <svg viewBox="0 0 24 24" width="17" height="17" style="flex:none;margin-top:1px;" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+          <span data-i18n="coach.note">Subten Coach nie je lekár ani výživový poradca. Pri zdravotných otázkach vyhľadaj odborníka.</span>
+        </p>
+      </div>
+      <div class="chat" data-reveal>
+        <div class="bubble user" data-i18n="coach.q1">Mám dnes trénovať? Spal som len 5 hodín.</div>
+        <div class="bubble bot">
+          <span class="b-head"><img class="logo" src="assets/brand/subten-logo.png" alt="" width="17" height="17" style="border-radius:5px;" /> Subten Coach</span>
+          <span data-i18n="coach.a1">Regenerácia je 68/100 — dobrá. Choď trénovať, ale drž nižšiu intenzitu a vynechaj zlyhanie. A doplň bielkoviny — chýba ti 41 g do cieľa.</span>
+        </div>
+        <div class="bubble user" data-i18n="coach.q2">Oplatí sa kazeín pred spaním?</div>
+        <div class="bubble bot">
+          <span class="b-head"><img class="logo" src="assets/brand/subten-logo.png" alt="" width="17" height="17" style="border-radius:5px;" /> Subten Coach</span>
+          <span data-i18n="coach.a2">Ak ti to sedí do makier, kľudne. Pomalé bielkoviny cez noc neuškodia, ale celkový denný príjem bielkovín rozhoduje viac.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="section-head center" data-reveal>
+      <span class="kicker" style="justify-content:center;" data-i18n="price.kicker">Cenník</span>
+      <h2 class="h2" data-i18n="price.title">Začni zadarmo. Odomkni viac, keď budeš chcieť.</h2>
+      <p class="lede" data-i18n="price.lede">Žiadne reklamy. Zruš kedykoľvek.</p>
+    </div>
+    <div class="pricing-grid">
+      <article class="price-card" data-reveal>
+        <div class="price-tag-row"><span class="price-name" data-i18n="free.name">Free</span></div>
+        <div class="price-amount"><span class="num">0&nbsp;€</span><span class="per" data-i18n="free.per">navždy</span></div>
+        <p class="price-sub" data-i18n="free.sub">Všetko základné, čo potrebuješ na štart.</p>
+        <a href="#download" class="btn btn-ghost" data-i18n="free.cta">Stiahnuť zadarmo</a>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="free.f1">Sledovanie jedla a makier</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="free.f2">Databáza cvikov a vlastný tréning</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="free.f3">Denné skóre regenerácie</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="free.f4">Synchronizácia s Apple Health</span></li>
+          <li class="off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg><span data-i18n="free.f5">AI funkcie a AI Coach</span></li>
+          <li class="off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg><span data-i18n="free.f6">Hotové a periodizované plány</span></li>
+        </ul>
+      </article>
+      <article class="price-card featured" data-reveal data-reveal-delay="1">
+        <div class="price-tag-row"><span class="price-name" data-i18n="pro.name">Premium</span><span class="price-badge" data-i18n="pro.badge">Najobľúbenejšie</span></div>
+        <div class="price-amount"><span class="num">3,99&nbsp;€</span><span class="per" data-i18n="pro.per">/ mesiac</span></div>
+        <p class="price-sub" data-i18n="pro.sub">Plný výkon Subten vrátane AI trénera.</p>
+        <a href="#download" class="btn btn-primary" data-i18n="pro.cta">Vyskúšať Premium</a>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="pro.f1">Všetko z Free</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="pro.f2">Neobmedzený AI Coach</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="pro.f3">Periodizované športové plány</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="pro.f4">Sken jedla z fotky</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="pro.f5">Týždenné hodnotenia a trendy</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="pro.f6">Plán jedál a nákupný zoznam</span></li>
+        </ul>
+      </article>
+    </div>
+    <p class="muted" style="text-align:center; font-size:13px; margin-top:26px;" data-reveal data-i18n="price.note">Ceny sú orientačné. Predplatné spravuješ cez App Store.</p>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section section--tint" id="faq">
+  <div class="container">
+    <div class="section-head center" data-reveal>
+      <span class="kicker" style="justify-content:center;" data-i18n="faq.kicker">FAQ</span>
+      <h2 class="h2" data-i18n="faq.title">Časté otázky</h2>
+    </div>
+    <div class="faq" data-reveal>
+      <details class="faq-item" open>
+        <summary><span data-i18n="faq.q1">Funguje Subten s Apple Watch?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-answer"><p data-i18n="faq.a1">Áno. Subten sa prepojí cez Apple Health a načíta HRV, pokojový tep, spánok, SpO₂ aj kroky. Cez Health podporujeme aj ďalšie nositeľné zariadenia.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="faq.q2">Je appka v slovenčine?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-answer"><p data-i18n="faq.a2">Áno, Subten je plne v slovenčine aj angličtine — vrátane AI trénera.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="faq.q3">Potrebujem Premium, aby to malo zmysel?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-answer"><p data-i18n="faq.a3">Nie. Sledovanie jedla, makier, základné plány a denné skóre regenerácie sú zadarmo. Premium pridáva AI trénera, sken z fotky a periodizované športové plány.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="faq.q4">Ako je to s mojimi dátami?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-answer"><p data-i18n="faq.a4">Tvoje zdravotné dáta zostávajú tvoje. Nepredávame ich a používame ich len na to, aby appka fungovala. Účet aj dáta môžeš kedykoľvek vymazať.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="faq.q5">Nahrádza Coach lekára alebo trénera?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-answer"><p data-i18n="faq.a5">Nie. AI Coach je pomocník pri rozhodovaní, nie zdravotná služba. Pri zdravotných ťažkostiach sa obráť na odborníka.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA — waitlist ============ -->
+<section class="section cta-final" id="download">
+  <div class="container">
+    <div class="cta-card" data-reveal>
+      <div class="cta-icon" data-reveal><img src="assets/brand/subten-icon.png" alt="Subten" /></div>
+      <div class="soon-pill" data-reveal><span class="soon-dot" aria-hidden="true"></span><span data-i18n="cta.soon">Spúšťame čoskoro pre iPhone a Android</span></div>
+      <h2 class="h2" data-reveal data-i18n="cta.title">Buď medzi prvými, kto vyskúša Subten</h2>
+      <p class="lede" data-reveal data-i18n="cta.lede">Nechaj nám e-mail a dáme ti vedieť hneď, ako spustíme. Žiadny spam — len jedna správa pri štarte.</p>
+
+      <form class="waitlist" id="waitlist" data-reveal novalidate>
+        <label class="field">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3 7 9 6 9-6"/></svg>
+          <input type="email" id="wl-email" required autocomplete="email" data-i18n-attr="placeholder:cta.email_ph" placeholder="tvoj@email.sk" />
+        </label>
+        <button type="submit" class="btn btn-primary" data-i18n="cta.notify">Daj mi vedieť</button>
+      </form>
+      <div class="wl-success" id="wl-success">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><polyline points="22 5 12 15 9 12"/></svg>
+        <span data-i18n="cta.success">Hotovo! Ozveme sa ti pri spustení 🎉</span>
+      </div>
+      <p class="wl-note" data-reveal data-i18n="cta.privacy">Tvoj e-mail použijeme len na oznámenie spustenia.</p>
+
+      <div class="cta-divider" data-reveal><span data-i18n="cta.alsoon">Čoskoro v obchodoch</span></div>
+      <div class="store-badges" data-reveal>
+        <span class="store-badge is-soon" role="img" aria-label="App Store — čoskoro">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.54c-.02-2.2 1.8-3.26 1.88-3.31-1.02-1.5-2.61-1.71-3.18-1.73-1.35-.14-2.64.8-3.32.8-.69 0-1.74-.78-2.86-.76-1.47.02-2.83.86-3.58 2.17-1.53 2.65-.39 6.57 1.09 8.72.73 1.05 1.59 2.23 2.72 2.19 1.1-.05 1.51-.71 2.84-.71 1.32 0 1.69.71 2.85.69 1.18-.02 1.92-1.07 2.64-2.13.83-1.22 1.18-2.4 1.2-2.46-.03-.01-2.3-.88-2.32-3.49zM14.88 5.96c.6-.73 1.01-1.74.9-2.76-.87.04-1.93.58-2.55 1.31-.56.64-1.05 1.68-.92 2.66.97.08 1.96-.49 2.57-1.21z"/></svg>
+          <span><span class="sb-top" data-i18n="badge.ios.top">Čoskoro na</span><span class="sb-main">App Store</span></span>
+        </span>
+        <span class="store-badge is-soon" role="img" aria-label="Google Play — čoskoro">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.2 13.4 12 3.6 21.8a1 1 0 0 1-.6-.92V3.12a1 1 0 0 1 .6-.92zM14.8 13.2l2.5 2.5-9 5.2zM14.8 10.8 8.3 3.1l9 5.2zM18.6 10.5l2 1.15a1 1 0 0 1 0 1.7l-2 1.15L16 12z"/></svg>
+          <span><span class="sb-top" data-i18n="badge.and.top">Čoskoro na</span><span class="sb-main">Google Play</span></span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="brand" href="#top">
+          <span class="logo" aria-hidden="true">
+            <img src="assets/brand/subten-logo.png" alt="Subten" width="30" height="30" style="border-radius:7px;display:block;" />
+          </span>
+          Subten
+        </a>
+        <p data-i18n="footer.tagline">Tréning, výživa a regenerácia v jednej appke. Tvoj AI tréner vždy po ruke.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4 data-i18n="footer.product">Produkt</h4>
+          <a href="#features" data-i18n="nav.features">Funkcie</a>
+          <a href="generator.html" data-i18n="nav.generator">Generátor</a>
+          <a href="recipes.html" data-i18n="nav.recipes">Recepty</a>
+          <a href="#pricing" data-i18n="nav.pricing">Cenník</a>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.legal">Právne</h4>
+          <a href="legal/privacy.html" data-i18n="footer.privacy">Ochrana súkromia</a>
+          <a href="legal/terms.html" data-i18n="footer.terms">Podmienky používania</a>
+          <a href="legal/account-deletion.html" data-i18n="footer.delete">Vymazanie účtu</a>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.contact">Kontakt</h4>
+          <a href="mailto:support@subten-app.eu">support@subten-app.eu</a>
+          <a href="https://subten-app.eu">subten-app.eu</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footer.rights">© 2026 Subten. Všetky práva vyhradené.</span>
+      <span data-i18n="footer.made">Vytvorené na Slovensku 🇸🇰</span>
+    </div>
+  </div>
+</footer>
+
+<div id="tweaks-root"></div>
+
+<!-- React + Babel (pinned) -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script src="image-slot.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="js/tweaks.jsx"></script>
+</body>
+</html>

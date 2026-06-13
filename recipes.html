@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="sk" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Subten — Knižnica receptov</title>
+<meta name="description" content="Zdravé recepty s presnými makrami a kalóriami. Filtruj podľa kategórie, cieľa alebo kalorického rozpočtu." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;450;500;550;600;700;800&family=Schibsted+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/site.css" />
+<link rel="icon" type="image/png" href="assets/brand/favicon.png" />
+<style>
+[id]{scroll-margin-top:88px;}
+
+/* Recipe page */
+.rec-hero{padding:clamp(120px,14vw,180px) 0 clamp(36px,5vw,56px);text-align:center;}
+.rec-hero .kicker{justify-content:center;}
+.rec-hero h1{margin-top:18px;}
+.rec-hero .lede{max-width:600px;margin:18px auto 0;color:var(--ink-2);}
+
+/* Filters */
+.filters{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:40px;}
+.filter-btn{background:var(--surface);border:1.5px solid var(--border);border-radius:100px;padding:8px 20px;font-size:13.5px;font-weight:600;cursor:pointer;transition:all .2s;color:var(--ink);}
+.filter-btn:hover{border-color:var(--border-2);background:var(--surface-2);}
+.filter-btn.active{border-color:var(--accent);background:rgba(79,211,137,.08);color:var(--accent);}
+
+/* Recipe grid */
+.recipe-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:20px;max-width:1000px;margin:0 auto;padding-bottom:40px;}
+
+.recipe-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;transition:border-color .25s,transform .25s;cursor:default;}
+.recipe-card:hover{border-color:var(--border-2);transform:translateY(-2px);}
+
+.recipe-img{height:180px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.recipe-img .emoji-icon{font-size:64px;}
+.recipe-badge{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:100px;padding:4px 12px;font-size:11.5px;font-weight:700;color:#fff;}
+.recipe-badge.high-protein{background:rgba(79,211,137,.85);}
+.recipe-badge.low-cal{background:rgba(93,208,232,.85);}
+.recipe-badge.quick{background:rgba(237,154,87,.85);}
+
+.recipe-body{padding:20px;}
+.recipe-body h3{font-size:17px;font-weight:700;margin-bottom:6px;line-height:1.3;}
+.recipe-body .recipe-desc{font-size:13.5px;color:var(--ink-2);line-height:1.5;margin-bottom:14px;}
+
+.macro-row{display:flex;gap:12px;flex-wrap:wrap;}
+.macro-pill{font-size:12px;font-weight:650;padding:4px 10px;border-radius:100px;background:var(--bg);border:1px solid var(--border);}
+.macro-pill .val{color:var(--accent);}
+.macro-pill.kcal .val{color:var(--c-recovery);}
+.macro-pill.protein .val{color:var(--c-food);}
+.macro-pill.carbs .val{color:var(--c-training);}
+.macro-pill.fat .val{color:var(--c-coach);}
+
+.recipe-meta{display:flex;gap:16px;margin-top:12px;font-size:12.5px;color:var(--ink-3);font-weight:500;}
+
+.no-results{text-align:center;padding:60px 20px;color:var(--ink-2);}
+.no-results h3{font-size:20px;font-weight:700;margin-bottom:8px;color:var(--ink);}
+
+/* CTA */
+.rec-cta{text-align:center;margin:40px auto 0;padding:44px 24px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);max-width:700px;}
+.rec-cta h3{font-family:var(--font-display);font-size:22px;font-weight:700;margin-bottom:8px;}
+.rec-cta p{color:var(--ink-2);font-size:14.5px;margin-bottom:22px;max-width:480px;margin-inline:auto;}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <div class="brand">
+      <a href="index.html" style="display:flex;align-items:center;gap:10px;">
+        <img src="assets/brand/subten-logo.png" alt="" width="30" height="30" style="border-radius:7px;" />
+        <span class="brand-name">Subten</span>
+      </a>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html#features" data-i18n="nav.features">Funkcie</a>
+      <a href="generator.html" data-i18n="nav.generator">Generátor</a>
+      <a href="recipes.html" style="color:var(--accent);" data-i18n="nav.recipes">Recepty</a>
+      <a href="index.html#pricing" data-i18n="nav.pricing">Cenník</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang-toggle" role="group" aria-label="Language"></div>
+      <a href="index.html#download" class="btn btn-primary nav-cta" data-i18n="nav.cta">Stiahnuť</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="rec-hero">
+  <div class="container">
+    <span class="kicker" data-i18n="rec.kicker">Knižnica receptov</span>
+    <h1 class="h2" data-i18n="rec.title">Jedlá s presnými makrami</h1>
+    <p class="lede" data-i18n="rec.lede">Každý recept má vypočítané kalórie a makrá. Filtruj podľa kategórie, cieľa alebo kalorického rozpočtu a nájdi ideálne jedlo pre tvoj plán.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="filters" id="filters"></div>
+    <div class="recipe-grid" id="recipe-grid"></div>
+    <div class="no-results" id="no-results" style="display:none;">
+      <h3 data-i18n="rec.no.title">Žiadne výsledky</h3>
+      <p data-i18n="rec.no.desc">Skús inú kombináciu filtrov.</p>
+    </div>
+
+    <div class="rec-cta">
+      <h3 data-i18n="rec.cta.title">Recepty priamo v appke</h3>
+      <p data-i18n="rec.cta.desc">V Subten automaticky zaloguješ jedlo jedným tapom, sleduj makrá v reálnom čase a nechaj si odporučiť jedlo podľa toho, čo ti ešte chýba.</p>
+      <a href="index.html#download" class="btn btn-primary" data-i18n="rec.cta.btn">Stiahnuť Subten</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <span class="logo" aria-hidden="true"><img src="assets/brand/subten-logo.png" alt="Subten" width="30" height="30" style="border-radius:7px;display:block;" /></span>
+          Subten
+        </a>
+        <p data-i18n="footer.tagline">Tréning, výživa a regenerácia v jednej appke.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4 data-i18n="footer.product">Produkt</h4>
+          <a href="index.html#features" data-i18n="nav.features">Funkcie</a>
+          <a href="generator.html" data-i18n="nav.generator">Generátor</a>
+          <a href="recipes.html" data-i18n="nav.recipes">Recepty</a>
+          <a href="index.html#pricing" data-i18n="nav.pricing">Cenník</a>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.legal">Právne</h4>
+          <a href="legal/privacy.html" data-i18n="footer.privacy">Ochrana súkromia</a>
+          <a href="legal/terms.html" data-i18n="footer.terms">Podmienky používania</a>
+          <a href="legal/account-deletion.html" data-i18n="footer.delete">Vymazanie účtu</a>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.contact">Kontakt</h4>
+          <a href="mailto:support@subten-app.eu">support@subten-app.eu</a>
+          <a href="https://subten-app.eu">subten-app.eu</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footer.rights">&copy; 2026 Subten. Všetky práva vyhradené.</span>
+      <span data-i18n="footer.made">Vytvorené na Slovensku</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/i18n.js"></script>
+<script>
+(function(){
+"use strict";
+
+/* Sticky nav */
+const nav=document.querySelector(".nav");
+if(nav){const s=()=>nav.classList.toggle("scrolled",window.scrollY>16);s();window.addEventListener("scroll",s,{passive:true});}
+
+const lang=()=>window.__subtenLang||"sk";
+const t=o=>o[lang()]||o.en||o.sk||"";
+
+/* ---- RECIPE DATABASE ---- */
+const RECIPES=[
+  {
+    id:1,emoji:"🥣",
+    name:{sk:"Proteínová ovsená kaša",en:"Protein Oatmeal"},
+    desc:{sk:"Vločky, smotanový proteín, banán a orechy. Rýchle raňajky s vyváženými makrami.",en:"Oats, whey protein, banana and nuts. Quick balanced breakfast."},
+    kcal:420,protein:32,carbs:52,fat:10,
+    time:10,servings:1,
+    cat:["breakfast","high_protein","quick"],
+    badge:"high-protein",badgeLabel:{sk:"High Protein",en:"High Protein"}
+  },
+  {
+    id:2,emoji:"🍗",
+    name:{sk:"Grilovaný kurací steak s ryžou",en:"Grilled Chicken with Rice"},
+    desc:{sk:"Klasika — kuracie prsia, jazmínová ryža a grilovaná zelenina. Jednoduché a účinné.",en:"Classic — chicken breast, jasmine rice and grilled veggies. Simple and effective."},
+    kcal:510,protein:42,carbs:55,fat:10,
+    time:25,servings:1,
+    cat:["lunch","high_protein"],
+    badge:"high-protein",badgeLabel:{sk:"High Protein",en:"High Protein"}
+  },
+  {
+    id:3,emoji:"🥗",
+    name:{sk:"Šalát s tuniakom a quinoou",en:"Tuna Quinoa Salad"},
+    desc:{sk:"Tuniak, quinoa, cherry paradajky, uhorka, olivový olej a citrónom. Ľahký a sýty.",en:"Tuna, quinoa, cherry tomatoes, cucumber, olive oil and lemon. Light yet filling."},
+    kcal:380,protein:35,carbs:30,fat:12,
+    time:15,servings:1,
+    cat:["lunch","low_cal","quick"],
+    badge:"low-cal",badgeLabel:{sk:"Low Cal",en:"Low Cal"}
+  },
+  {
+    id:4,emoji:"🍳",
+    name:{sk:"Vaječná omeleta so špenátom",en:"Spinach Omelette"},
+    desc:{sk:"3 vajcia, čerstvý špenát, feta a cherry paradajky. Ideálne na ľahké raňajky alebo večeru.",en:"3 eggs, fresh spinach, feta and cherry tomatoes. Ideal for a light breakfast or dinner."},
+    kcal:310,protein:24,carbs:4,fat:22,
+    time:8,servings:1,
+    cat:["breakfast","low_cal","quick"],
+    badge:"quick",badgeLabel:{sk:"Do 10 min",en:"Under 10 min"}
+  },
+  {
+    id:5,emoji:"🍝",
+    name:{sk:"Celozrnné špagety s boloňskou omáčkou",en:"Whole Wheat Bolognese"},
+    desc:{sk:"Hovädzie mleté 5% tuku, celozrnné cestoviny, pasírované paradajky a bylinky.",en:"5% fat ground beef, whole wheat pasta, passata and herbs."},
+    kcal:560,protein:38,carbs:62,fat:14,
+    time:30,servings:2,
+    cat:["lunch","dinner","high_protein"],
+    badge:null
+  },
+  {
+    id:6,emoji:"🥑",
+    name:{sk:"Avokádový toast s vajcom",en:"Avocado Egg Toast"},
+    desc:{sk:"Celozrnný toast, pol avokáda, pochútkové vajce, chilli vločky a semienka.",en:"Whole grain toast, half avocado, poached egg, chilli flakes and seeds."},
+    kcal:350,protein:16,carbs:28,fat:20,
+    time:10,servings:1,
+    cat:["breakfast","quick"],
+    badge:"quick",badgeLabel:{sk:"Do 10 min",en:"Under 10 min"}
+  },
+  {
+    id:7,emoji:"🍲",
+    name:{sk:"Kuracia polievka s rezancami",en:"Chicken Noodle Soup"},
+    desc:{sk:"Domáci vývar, kuracie mäso, zelenina a vaječné rezance. Ideálne na regeneráciu.",en:"Homemade broth, chicken, vegetables and egg noodles. Great for recovery."},
+    kcal:290,protein:26,carbs:28,fat:8,
+    time:35,servings:3,
+    cat:["lunch","dinner","low_cal"],
+    badge:"low-cal",badgeLabel:{sk:"Low Cal",en:"Low Cal"}
+  },
+  {
+    id:8,emoji:"🥩",
+    name:{sk:"Steak s batatmi",en:"Steak with Sweet Potatoes"},
+    desc:{sk:"Hovädzí steak, pečené batáty a brokolica. Vysokoproteinová večera na budovanie svalov.",en:"Beef steak, roasted sweet potatoes and broccoli. High-protein dinner for muscle building."},
+    kcal:580,protein:45,carbs:42,fat:22,
+    time:30,servings:1,
+    cat:["dinner","high_protein"],
+    badge:"high-protein",badgeLabel:{sk:"High Protein",en:"High Protein"}
+  },
+  {
+    id:9,emoji:"🧁",
+    name:{sk:"Proteínový mugcake",en:"Protein Mug Cake"},
+    desc:{sk:"Proteín, vajce, banán a kakao — za 3 minúty v mikrovlnke. Zdravý dezert kedykoľvek.",en:"Protein powder, egg, banana and cocoa — 3 minutes in the microwave. Healthy dessert anytime."},
+    kcal:220,protein:28,carbs:18,fat:4,
+    time:5,servings:1,
+    cat:["snack","high_protein","quick"],
+    badge:"quick",badgeLabel:{sk:"Do 10 min",en:"Under 10 min"}
+  },
+  {
+    id:10,emoji:"🐟",
+    name:{sk:"Losos s quinoou a špenátom",en:"Salmon with Quinoa & Spinach"},
+    desc:{sk:"Pečený losos, quinoa a sautovaný špenát s cesnakom. Omega-3 a kompletné bielkoviny.",en:"Baked salmon, quinoa and sautéed garlic spinach. Omega-3 and complete protein."},
+    kcal:520,protein:38,carbs:35,fat:24,
+    time:25,servings:1,
+    cat:["dinner","high_protein"],
+    badge:"high-protein",badgeLabel:{sk:"High Protein",en:"High Protein"}
+  },
+  {
+    id:11,emoji:"🥤",
+    name:{sk:"Zelené smoothie",en:"Green Smoothie"},
+    desc:{sk:"Špenát, banán, jablko, zázvor a ľanové semienka. Rýchly vitamínový boost.",en:"Spinach, banana, apple, ginger and flax seeds. Quick vitamin boost."},
+    kcal:180,protein:5,carbs:34,fat:5,
+    time:5,servings:1,
+    cat:["snack","low_cal","quick"],
+    badge:"low-cal",badgeLabel:{sk:"Low Cal",en:"Low Cal"}
+  },
+  {
+    id:12,emoji:"🌯",
+    name:{sk:"Proteínový wrap s kuracím",en:"Chicken Protein Wrap"},
+    desc:{sk:"Celozrnná tortilla, grilované kuracie prsia, zelený šalát, rajčiny a jogurtový dresing.",en:"Whole wheat tortilla, grilled chicken, greens, tomato and yogurt dressing."},
+    kcal:410,protein:36,carbs:38,fat:12,
+    time:12,servings:1,
+    cat:["lunch","high_protein","quick"],
+    badge:"high-protein",badgeLabel:{sk:"High Protein",en:"High Protein"}
+  },
+  {
+    id:13,emoji:"🥞",
+    name:{sk:"Proteínové palacinky",en:"Protein Pancakes"},
+    desc:{sk:"Ovsené vločky, cottage cheese, vajcia a proteínový prášok. Sladké raňajky bez výčitiek.",en:"Oats, cottage cheese, eggs and protein powder. Sweet guilt-free breakfast."},
+    kcal:380,protein:34,carbs:40,fat:8,
+    time:15,servings:1,
+    cat:["breakfast","high_protein"],
+    badge:"high-protein",badgeLabel:{sk:"High Protein",en:"High Protein"}
+  },
+  {
+    id:14,emoji:"🥜",
+    name:{sk:"Grécky jogurt s orechmi a medom",en:"Greek Yogurt with Nuts & Honey"},
+    desc:{sk:"Grécky jogurt, vlašské orechy, mandle a lyžička medu. Dokonalý snack po tréningu.",en:"Greek yogurt, walnuts, almonds and a teaspoon of honey. Perfect post-workout snack."},
+    kcal:260,protein:20,carbs:18,fat:13,
+    time:3,servings:1,
+    cat:["snack","high_protein","quick"],
+    badge:"quick",badgeLabel:{sk:"Do 10 min",en:"Under 10 min"}
+  },
+  {
+    id:15,emoji:"🍛",
+    name:{sk:"Cícerové curry",en:"Chickpea Curry"},
+    desc:{sk:"Cícer, kokosové mlieko, paradajky, špenát a korenie. Rastlinná bomba plná vlákniny.",en:"Chickpeas, coconut milk, tomatoes, spinach and spices. Plant-based fiber bomb."},
+    kcal:440,protein:18,carbs:52,fat:18,
+    time:25,servings:2,
+    cat:["lunch","dinner"],
+    badge:null
+  },
+  {
+    id:16,emoji:"🐔",
+    name:{sk:"Kuracie prsia v jogurtovej marinádě",en:"Yogurt-Marinated Chicken Breast"},
+    desc:{sk:"Marinované v gréckom jogurte s cesnakom a bylinkami, grilované. Šťavnaté a vysoko-proteínové.",en:"Marinated in Greek yogurt with garlic and herbs, grilled. Juicy and high-protein."},
+    kcal:280,protein:42,carbs:3,fat:11,
+    time:20,servings:1,
+    cat:["dinner","high_protein","low_cal"],
+    badge:"high-protein",badgeLabel:{sk:"High Protein",en:"High Protein"}
+  }
+];
+
+/* ---- FILTER SETUP ---- */
+const FILTERS=[
+  {key:"all",label:{sk:"Všetko",en:"All"}},
+  {key:"breakfast",label:{sk:"Raňajky",en:"Breakfast"}},
+  {key:"lunch",label:{sk:"Obed",en:"Lunch"}},
+  {key:"dinner",label:{sk:"Večera",en:"Dinner"}},
+  {key:"snack",label:{sk:"Snack",en:"Snack"}},
+  {key:"high_protein",label:{sk:"High Protein",en:"High Protein"}},
+  {key:"low_cal",label:{sk:"Low Cal",en:"Low Cal"}},
+  {key:"quick",label:{sk:"Do 10 min",en:"Under 10 min"}},
+];
+
+let activeFilter="all";
+const filtersEl=document.getElementById("filters");
+const gridEl=document.getElementById("recipe-grid");
+const noRes=document.getElementById("no-results");
+
+function renderFilters(){
+  filtersEl.innerHTML="";
+  FILTERS.forEach(f=>{
+    const btn=document.createElement("button");
+    btn.className="filter-btn"+(f.key===activeFilter?" active":"");
+    btn.textContent=t(f.label);
+    btn.addEventListener("click",()=>{activeFilter=f.key;renderFilters();renderRecipes();});
+    filtersEl.appendChild(btn);
+  });
+}
+
+function renderRecipes(){
+  const filtered=activeFilter==="all"?RECIPES:RECIPES.filter(r=>r.cat.includes(activeFilter));
+  if(!filtered.length){
+    gridEl.innerHTML="";
+    noRes.style.display="block";
+    return;
+  }
+  noRes.style.display="none";
+  gridEl.innerHTML=filtered.map(r=>{
+    const badgeHtml=r.badge?`<span class="recipe-badge ${r.badge}">${t(r.badgeLabel)}</span>`:"";
+    const timeLabel=t({sk:"min",en:"min"});
+    const servLabel=t({sk:"porcie",en:"servings"});
+    return `
+    <div class="recipe-card">
+      <div class="recipe-img">
+        <span class="emoji-icon">${r.emoji}</span>
+        ${badgeHtml}
+      </div>
+      <div class="recipe-body">
+        <h3>${t(r.name)}</h3>
+        <p class="recipe-desc">${t(r.desc)}</p>
+        <div class="macro-row">
+          <span class="macro-pill kcal"><span class="val">${r.kcal}</span> kcal</span>
+          <span class="macro-pill protein"><span class="val">${r.protein}g</span> P</span>
+          <span class="macro-pill carbs"><span class="val">${r.carbs}g</span> C</span>
+          <span class="macro-pill fat"><span class="val">${r.fat}g</span> F</span>
+        </div>
+        <div class="recipe-meta">
+          <span>⏱ ${r.time} ${timeLabel}</span>
+          <span>🍽 ${r.servings} ${servLabel}</span>
+        </div>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+/* i18n re-render on lang change */
+const origApply=window.SubtenSetLang;
+if(origApply){
+  window.SubtenSetLang=function(l){
+    origApply(l);
+    renderFilters();
+    renderRecipes();
+  };
+}
+
+renderFilters();
+renderRecipes();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="sk" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Subten — Generátor tréningového plánu</title>
+<meta name="description" content="Vygeneruj si tréningový plán na mieru zadarmo. Vyber cieľ, úroveň a počet dní — Subten ti pripraví kompletný týždenný rozpis." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;450;500;550;600;700;800&family=Schibsted+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/site.css" />
+<link rel="icon" type="image/png" href="assets/brand/favicon.png" />
+<style>
+[id]{scroll-margin-top:88px;}
+
+/* Generator-specific */
+.gen-hero{padding:clamp(120px,14vw,180px) 0 clamp(48px,6vw,72px);text-align:center;}
+.gen-hero .kicker{justify-content:center;}
+.gen-hero h1{margin-top:18px;}
+.gen-hero .lede{max-width:600px;margin:18px auto 0;color:var(--ink-2);}
+
+/* Wizard */
+.wizard{max-width:720px;margin:0 auto;padding-bottom:80px;}
+.wiz-step{display:none;animation:fadeUp .4s var(--ease);}
+.wiz-step.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+
+.wiz-label{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;gap:8px;}
+.wiz-label::before{content:"";width:18px;height:1.5px;background:currentColor;opacity:.55;}
+.wiz-q{font-family:var(--font-display);font-size:clamp(22px,3.2vw,30px);font-weight:700;letter-spacing:-.02em;line-height:1.25;margin-bottom:28px;}
+
+.opt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;}
+.opt-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r-md);padding:22px 20px;cursor:pointer;transition:border-color .25s,background .25s,box-shadow .25s;text-align:left;}
+.opt-card:hover{border-color:var(--border-2);background:var(--surface-2);}
+.opt-card.selected{border-color:var(--accent);background:rgba(79,211,137,.06);box-shadow:0 0 0 1px var(--accent);}
+.opt-card h4{font-size:16px;font-weight:650;margin-bottom:4px;}
+.opt-card p{font-size:13.5px;color:var(--ink-2);line-height:1.45;}
+.opt-card .opt-icon{font-size:26px;margin-bottom:10px;display:block;}
+
+.days-row{display:flex;gap:12px;flex-wrap:wrap;}
+.day-btn{width:56px;height:56px;border-radius:var(--r-sm);background:var(--surface);border:1.5px solid var(--border);font-size:20px;font-weight:700;cursor:pointer;transition:all .2s;}
+.day-btn:hover{border-color:var(--border-2);}
+.day-btn.selected{border-color:var(--accent);background:rgba(79,211,137,.08);color:var(--accent);box-shadow:0 0 0 1px var(--accent);}
+
+.wiz-nav{display:flex;gap:12px;margin-top:36px;justify-content:flex-end;}
+.wiz-nav .btn{min-width:130px;}
+
+.wiz-progress{display:flex;gap:6px;justify-content:center;margin-bottom:40px;}
+.wiz-dot{width:8px;height:8px;border-radius:50%;background:var(--border-2);transition:background .3s;}
+.wiz-dot.done{background:var(--accent);}
+.wiz-dot.current{background:var(--accent);box-shadow:0 0 6px var(--accent-glow);}
+
+/* Plan output */
+.plan-out{max-width:780px;margin:0 auto;padding-bottom:40px;}
+.plan-header{text-align:center;margin-bottom:40px;}
+.plan-header h2{font-family:var(--font-display);font-size:clamp(24px,3.5vw,34px);font-weight:700;}
+.plan-header .plan-meta{display:flex;justify-content:center;gap:20px;margin-top:12px;flex-wrap:wrap;}
+.plan-header .plan-tag{font-size:13px;font-weight:600;color:var(--ink-2);background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:6px 16px;display:inline-flex;align-items:center;gap:6px;}
+
+.day-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);margin-bottom:16px;overflow:hidden;}
+.day-head{padding:18px 22px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none;}
+.day-head h3{font-size:16px;font-weight:700;}
+.day-head .day-type{font-size:13px;color:var(--accent);font-weight:600;}
+.day-head .chevron{width:20px;height:20px;color:var(--ink-3);transition:transform .25s;}
+.day-card.open .chevron{transform:rotate(180deg);}
+.day-body{display:none;border-top:1px solid var(--border);padding:4px 0;}
+.day-card.open .day-body{display:block;}
+
+.ex-row{display:grid;grid-template-columns:1fr auto auto auto;gap:8px;padding:12px 22px;align-items:center;font-size:14px;border-bottom:1px solid var(--border);}
+.ex-row:last-child{border-bottom:none;}
+.ex-name{font-weight:550;}
+.ex-detail{color:var(--ink-2);font-size:13px;text-align:center;min-width:60px;}
+.ex-muscle{color:var(--ink-3);font-size:12px;font-weight:500;text-align:right;}
+@media(max-width:600px){
+  .ex-row{grid-template-columns:1fr;gap:4px;}
+  .ex-detail,.ex-muscle{text-align:left;}
+}
+
+.plan-cta{text-align:center;margin-top:48px;padding:40px 24px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);}
+.plan-cta h3{font-family:var(--font-display);font-size:22px;font-weight:700;margin-bottom:8px;}
+.plan-cta p{color:var(--ink-2);font-size:14.5px;margin-bottom:22px;max-width:420px;margin-inline:auto;}
+.plan-cta .btn{margin:0 6px;}
+
+.restart-btn{display:inline-flex;align-items:center;gap:6px;color:var(--ink-2);font-size:13px;font-weight:600;cursor:pointer;margin-top:20px;transition:color .2s;}
+.restart-btn:hover{color:var(--accent);}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <div class="brand">
+      <a href="index.html" style="display:flex;align-items:center;gap:10px;">
+        <img src="assets/brand/subten-logo.png" alt="" width="30" height="30" style="border-radius:7px;" />
+        <span class="brand-name">Subten</span>
+      </a>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html#features" data-i18n="nav.features">Funkcie</a>
+      <a href="generator.html" style="color:var(--accent);" data-i18n="nav.generator">Generátor</a>
+      <a href="recipes.html" data-i18n="nav.recipes">Recepty</a>
+      <a href="index.html#pricing" data-i18n="nav.pricing">Cenník</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang-toggle" role="group" aria-label="Language"></div>
+      <a href="index.html#download" class="btn btn-primary nav-cta" data-i18n="nav.cta">Stiahnuť</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="gen-hero">
+  <div class="container">
+    <span class="kicker" data-i18n="gen.kicker">Tréningový generátor</span>
+    <h1 class="h2" data-i18n="gen.title">Tvoj plán na mieru za 30 sekúnd</h1>
+    <p class="lede" data-i18n="gen.lede">Vyber cieľ, skúsenostnú úroveň a počet tréningových dní. Subten ti vygeneruje kompletný týždenný rozpis — zadarmo.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+
+    <!-- Progress dots -->
+    <div class="wiz-progress" id="wiz-progress"></div>
+
+    <!-- WIZARD -->
+    <div class="wizard" id="wizard">
+
+      <!-- Step 1: Goal -->
+      <div class="wiz-step active" data-step="0">
+        <span class="wiz-label" data-i18n="gen.s1.label">Krok 1 zo 4</span>
+        <h2 class="wiz-q" data-i18n="gen.s1.q">Aký je tvoj hlavný cieľ?</h2>
+        <div class="opt-grid" data-field="goal">
+          <div class="opt-card" data-value="fat_loss">
+            <span class="opt-icon">🔥</span>
+            <h4 data-i18n="gen.goal.fat">Chudnutie</h4>
+            <p data-i18n="gen.goal.fat.d">Znížiť tuk a udržať svaly.</p>
+          </div>
+          <div class="opt-card" data-value="muscle">
+            <span class="opt-icon">💪</span>
+            <h4 data-i18n="gen.goal.muscle">Naberanie svalov</h4>
+            <p data-i18n="gen.goal.muscle.d">Hypertrofia a silový rast.</p>
+          </div>
+          <div class="opt-card" data-value="maintain">
+            <span class="opt-icon">⚖️</span>
+            <h4 data-i18n="gen.goal.maintain">Údržba</h4>
+            <p data-i18n="gen.goal.maintain.d">Udržať kondíciu a zdravie.</p>
+          </div>
+          <div class="opt-card" data-value="sport">
+            <span class="opt-icon">⚽</span>
+            <h4 data-i18n="gen.goal.sport">Športový výkon</h4>
+            <p data-i18n="gen.goal.sport.d">Sila, rýchlosť a výbušnosť pre šport.</p>
+          </div>
+        </div>
+        <div class="wiz-nav">
+          <button class="btn btn-primary" id="next-0" disabled data-i18n="gen.next">Ďalej</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Level -->
+      <div class="wiz-step" data-step="1">
+        <span class="wiz-label" data-i18n="gen.s2.label">Krok 2 zo 4</span>
+        <h2 class="wiz-q" data-i18n="gen.s2.q">Aká je tvoja skúsenostná úroveň?</h2>
+        <div class="opt-grid" data-field="level">
+          <div class="opt-card" data-value="beginner">
+            <span class="opt-icon">🌱</span>
+            <h4 data-i18n="gen.lvl.beg">Začiatočník</h4>
+            <p data-i18n="gen.lvl.beg.d">Menej ako 6 mesiacov tréningu.</p>
+          </div>
+          <div class="opt-card" data-value="intermediate">
+            <span class="opt-icon">🏋️</span>
+            <h4 data-i18n="gen.lvl.int">Pokročilý</h4>
+            <p data-i18n="gen.lvl.int.d">6 mesiacov až 3 roky skúseností.</p>
+          </div>
+          <div class="opt-card" data-value="advanced">
+            <span class="opt-icon">🏆</span>
+            <h4 data-i18n="gen.lvl.adv">Expert</h4>
+            <p data-i18n="gen.lvl.adv.d">Viac ako 3 roky pravidelného tréningu.</p>
+          </div>
+        </div>
+        <div class="wiz-nav">
+          <button class="btn btn-ghost" id="back-1" data-i18n="gen.back">Späť</button>
+          <button class="btn btn-primary" id="next-1" disabled data-i18n="gen.next">Ďalej</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Days -->
+      <div class="wiz-step" data-step="2">
+        <span class="wiz-label" data-i18n="gen.s3.label">Krok 3 zo 4</span>
+        <h2 class="wiz-q" data-i18n="gen.s3.q">Koľko dní týždenne chceš trénovať?</h2>
+        <div class="days-row" data-field="days">
+          <button class="day-btn" data-value="3">3</button>
+          <button class="day-btn" data-value="4">4</button>
+          <button class="day-btn" data-value="5">5</button>
+          <button class="day-btn" data-value="6">6</button>
+        </div>
+        <div class="wiz-nav">
+          <button class="btn btn-ghost" id="back-2" data-i18n="gen.back">Späť</button>
+          <button class="btn btn-primary" id="next-2" disabled data-i18n="gen.next">Ďalej</button>
+        </div>
+      </div>
+
+      <!-- Step 4: Split -->
+      <div class="wiz-step" data-step="3">
+        <span class="wiz-label" data-i18n="gen.s4.label">Krok 4 zo 4</span>
+        <h2 class="wiz-q" data-i18n="gen.s4.q">Aký typ rozpisu preferuješ?</h2>
+        <div class="opt-grid" data-field="split" id="split-grid">
+          <!-- populated by JS based on days selection -->
+        </div>
+        <div class="wiz-nav">
+          <button class="btn btn-ghost" id="back-3" data-i18n="gen.back">Späť</button>
+          <button class="btn btn-primary" id="generate" data-i18n="gen.generate">Vygenerovať plán</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLAN OUTPUT -->
+    <div class="plan-out" id="plan-out" style="display:none;">
+      <div class="plan-header">
+        <h2 id="plan-title" data-i18n="gen.plan.title">Tvoj tréningový plán</h2>
+        <div class="plan-meta" id="plan-meta"></div>
+      </div>
+      <div id="plan-days"></div>
+
+      <div class="plan-cta">
+        <h3 data-i18n="gen.cta.title">Chceš plný zážitok?</h3>
+        <p data-i18n="gen.cta.desc">V appke Subten dostaneš presné vedenie cvik po cviku, GIF animácie, časovač a automatické prispôsobenie podľa tvojej regenerácie.</p>
+        <a href="index.html#download" class="btn btn-primary" data-i18n="gen.cta.btn">Stiahnuť Subten</a>
+      </div>
+
+      <div style="text-align:center;">
+        <button class="restart-btn" id="restart">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+          <span data-i18n="gen.restart">Vygenerovať nový plán</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <span class="logo" aria-hidden="true"><img src="assets/brand/subten-logo.png" alt="Subten" width="30" height="30" style="border-radius:7px;display:block;" /></span>
+          Subten
+        </a>
+        <p data-i18n="footer.tagline">Tréning, výživa a regenerácia v jednej appke.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4 data-i18n="footer.product">Produkt</h4>
+          <a href="index.html#features" data-i18n="nav.features">Funkcie</a>
+          <a href="generator.html" data-i18n="nav.generator">Generátor</a>
+          <a href="recipes.html" data-i18n="nav.recipes">Recepty</a>
+          <a href="index.html#pricing" data-i18n="nav.pricing">Cenník</a>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.legal">Právne</h4>
+          <a href="legal/privacy.html" data-i18n="footer.privacy">Ochrana súkromia</a>
+          <a href="legal/terms.html" data-i18n="footer.terms">Podmienky používania</a>
+          <a href="legal/account-deletion.html" data-i18n="footer.delete">Vymazanie účtu</a>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.contact">Kontakt</h4>
+          <a href="mailto:support@subten-app.eu">support@subten-app.eu</a>
+          <a href="https://subten-app.eu">subten-app.eu</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footer.rights">&copy; 2026 Subten. Všetky práva vyhradené.</span>
+      <span data-i18n="footer.made">Vytvorené na Slovensku</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/i18n.js"></script>
+<script>
+(function(){
+"use strict";
+
+/* ---- Sticky nav ---- */
+const nav=document.querySelector(".nav");
+if(nav){const s=()=>nav.classList.toggle("scrolled",window.scrollY>16);s();window.addEventListener("scroll",s,{passive:true});}
+
+/* ---- EXERCISE DATABASE ---- */
+const DB={
+  chest:[
+    {n:{sk:"Bench press",en:"Bench Press"},sets:"4×8-10",muscle:{sk:"Hrudník",en:"Chest"}},
+    {n:{sk:"Šikmý bench press",en:"Incline Bench Press"},sets:"3×10-12",muscle:{sk:"Horný hrudník",en:"Upper chest"}},
+    {n:{sk:"Rozpažovanie jednoručkami",en:"Dumbbell Flyes"},sets:"3×12-15",muscle:{sk:"Hrudník",en:"Chest"}},
+    {n:{sk:"Kliky",en:"Push-ups"},sets:"3×max",muscle:{sk:"Hrudník, triceps",en:"Chest, triceps"}},
+  ],
+  back:[
+    {n:{sk:"Zhyby",en:"Pull-ups"},sets:"4×6-10",muscle:{sk:"Chrbtové svaly",en:"Lats"}},
+    {n:{sk:"Príťahy k telu",en:"Barbell Row"},sets:"4×8-10",muscle:{sk:"Stredný chrbát",en:"Mid back"}},
+    {n:{sk:"Jednoručkový príťah",en:"Dumbbell Row"},sets:"3×10-12",muscle:{sk:"Chrbtové svaly",en:"Lats"}},
+    {n:{sk:"Sťahovanie na kladke",en:"Lat Pulldown"},sets:"3×10-12",muscle:{sk:"Chrbtové svaly",en:"Lats"}},
+  ],
+  shoulders:[
+    {n:{sk:"Tlaky nad hlavu",en:"Overhead Press"},sets:"4×8-10",muscle:{sk:"Ramená",en:"Shoulders"}},
+    {n:{sk:"Laterálne zdvihy",en:"Lateral Raises"},sets:"3×12-15",muscle:{sk:"Bočné delty",en:"Side delts"}},
+    {n:{sk:"Predkopávanie",en:"Front Raises"},sets:"3×12",muscle:{sk:"Predné delty",en:"Front delts"}},
+    {n:{sk:"Face pulls",en:"Face Pulls"},sets:"3×15",muscle:{sk:"Zadné delty",en:"Rear delts"}},
+  ],
+  legs:[
+    {n:{sk:"Drepy",en:"Squats"},sets:"4×6-8",muscle:{sk:"Quadriceps, zadok",en:"Quads, glutes"}},
+    {n:{sk:"Rumunský mŕtvy ťah",en:"Romanian Deadlift"},sets:"3×10-12",muscle:{sk:"Hamstringy",en:"Hamstrings"}},
+    {n:{sk:"Leg press",en:"Leg Press"},sets:"3×10-12",muscle:{sk:"Quadriceps",en:"Quads"}},
+    {n:{sk:"Výpady",en:"Lunges"},sets:"3×10 každá",muscle:{sk:"Quadriceps, zadok",en:"Quads, glutes"}},
+    {n:{sk:"Lýtkové zdvihy",en:"Calf Raises"},sets:"4×15",muscle:{sk:"Lýtka",en:"Calves"}},
+  ],
+  arms:[
+    {n:{sk:"Bicepsový zdvih",en:"Barbell Curl"},sets:"3×10-12",muscle:{sk:"Biceps",en:"Biceps"}},
+    {n:{sk:"Kladivové zdvihy",en:"Hammer Curls"},sets:"3×12",muscle:{sk:"Biceps, predlaktie",en:"Biceps, forearms"}},
+    {n:{sk:"Francúzsky tlak",en:"Skull Crushers"},sets:"3×10-12",muscle:{sk:"Triceps",en:"Triceps"}},
+    {n:{sk:"Tricepsové sťahovanie",en:"Tricep Pushdown"},sets:"3×12-15",muscle:{sk:"Triceps",en:"Triceps"}},
+  ],
+  core:[
+    {n:{sk:"Plank",en:"Plank"},sets:"3×45s",muscle:{sk:"Jadro",en:"Core"}},
+    {n:{sk:"Zdvihy nôh v vise",en:"Hanging Leg Raises"},sets:"3×12",muscle:{sk:"Dolné brucho",en:"Lower abs"}},
+    {n:{sk:"Cable crunches",en:"Cable Crunches"},sets:"3×15",muscle:{sk:"Brušné svaly",en:"Abs"}},
+  ],
+  compound:[
+    {n:{sk:"Mŕtvy ťah",en:"Deadlift"},sets:"4×5",muscle:{sk:"Celé telo",en:"Full body"}},
+    {n:{sk:"Bench press",en:"Bench Press"},sets:"4×5",muscle:{sk:"Hrudník",en:"Chest"}},
+    {n:{sk:"Drepy",en:"Squats"},sets:"4×5",muscle:{sk:"Nohy",en:"Legs"}},
+    {n:{sk:"Tlaky nad hlavu",en:"Overhead Press"},sets:"4×5",muscle:{sk:"Ramená",en:"Shoulders"}},
+    {n:{sk:"Príťahy k telu",en:"Barbell Row"},sets:"4×5",muscle:{sk:"Chrbát",en:"Back"}},
+  ],
+  sport_power:[
+    {n:{sk:"Power cleans",en:"Power Cleans"},sets:"4×3",muscle:{sk:"Výbušná sila",en:"Explosive power"}},
+    {n:{sk:"Box jumpy",en:"Box Jumps"},sets:"4×5",muscle:{sk:"Výbušnosť",en:"Explosiveness"}},
+    {n:{sk:"Šprint 30m",en:"30m Sprints"},sets:"6×30m",muscle:{sk:"Rýchlosť",en:"Speed"}},
+    {n:{sk:"Medicínbal hody",en:"Med Ball Throws"},sets:"3×8",muscle:{sk:"Sila jadra",en:"Core power"}},
+    {n:{sk:"Bočné výpady",en:"Lateral Lunges"},sets:"3×8 každá",muscle:{sk:"Agilita",en:"Agility"}},
+  ]
+};
+
+/* ---- PLAN TEMPLATES ---- */
+const SPLITS={
+  full_body_3:{
+    name:{sk:"Celé telo 3×",en:"Full Body 3×"},
+    days:[
+      {label:{sk:"Deň A — Celé telo",en:"Day A — Full Body"},type:{sk:"Sila",en:"Strength"},ex:["compound.0","compound.2","back.0","shoulders.1","core.0"]},
+      {label:{sk:"Deň B — Celé telo",en:"Day B — Full Body"},type:{sk:"Hypertrofia",en:"Hypertrophy"},ex:["chest.0","legs.3","back.2","shoulders.0","arms.0"]},
+      {label:{sk:"Deň C — Celé telo",en:"Day C — Full Body"},type:{sk:"Kondícia",en:"Conditioning"},ex:["compound.4","legs.1","chest.2","core.1","core.2"]},
+    ]
+  },
+  upper_lower_4:{
+    name:{sk:"Upper/Lower 4×",en:"Upper/Lower 4×"},
+    days:[
+      {label:{sk:"Pondelok — Upper",en:"Monday — Upper"},type:{sk:"Hrudník & Chrbát",en:"Chest & Back"},ex:["chest.0","back.0","shoulders.0","arms.0","arms.2"]},
+      {label:{sk:"Utorok — Lower",en:"Tuesday — Lower"},type:{sk:"Nohy",en:"Legs"},ex:["legs.0","legs.1","legs.2","legs.4","core.0"]},
+      {label:{sk:"Štvrtok — Upper",en:"Thursday — Upper"},type:{sk:"Ramená & Ruky",en:"Shoulders & Arms"},ex:["chest.1","back.1","shoulders.1","arms.1","arms.3"]},
+      {label:{sk:"Piatok — Lower",en:"Friday — Lower"},type:{sk:"Nohy",en:"Legs"},ex:["legs.3","legs.1","legs.0","core.1","core.2"]},
+    ]
+  },
+  ppl_5:{
+    name:{sk:"Push/Pull/Legs 5×",en:"Push/Pull/Legs 5×"},
+    days:[
+      {label:{sk:"Push — Hrudník & Ramená",en:"Push — Chest & Shoulders"},type:{sk:"Tlaky",en:"Push"},ex:["chest.0","chest.1","shoulders.0","shoulders.1","arms.2"]},
+      {label:{sk:"Pull — Chrbát & Biceps",en:"Pull — Back & Biceps"},type:{sk:"Ťahy",en:"Pull"},ex:["back.0","back.1","back.2","arms.0","arms.1"]},
+      {label:{sk:"Legs — Nohy",en:"Legs — Legs"},type:{sk:"Nohy",en:"Legs"},ex:["legs.0","legs.1","legs.2","legs.3","legs.4"]},
+      {label:{sk:"Push 2 — Hypertrofia",en:"Push 2 — Hypertrophy"},type:{sk:"Tlaky",en:"Push"},ex:["chest.2","chest.3","shoulders.2","shoulders.3","arms.3"]},
+      {label:{sk:"Pull 2 — Objem",en:"Pull 2 — Volume"},type:{sk:"Ťahy",en:"Pull"},ex:["back.3","back.0","back.2","arms.0","core.1"]},
+    ]
+  },
+  ppl_6:{
+    name:{sk:"Push/Pull/Legs 6×",en:"Push/Pull/Legs 6×"},
+    days:[
+      {label:{sk:"Push A",en:"Push A"},type:{sk:"Sila",en:"Strength"},ex:["chest.0","shoulders.0","chest.1","arms.2","arms.3"]},
+      {label:{sk:"Pull A",en:"Pull A"},type:{sk:"Sila",en:"Strength"},ex:["back.0","back.1","back.3","arms.0","core.0"]},
+      {label:{sk:"Legs A",en:"Legs A"},type:{sk:"Sila",en:"Strength"},ex:["legs.0","legs.1","legs.2","legs.4","core.1"]},
+      {label:{sk:"Push B",en:"Push B"},type:{sk:"Objem",en:"Volume"},ex:["chest.2","chest.3","shoulders.1","shoulders.3","arms.3"]},
+      {label:{sk:"Pull B",en:"Pull B"},type:{sk:"Objem",en:"Volume"},ex:["back.2","back.0","back.1","arms.1","core.2"]},
+      {label:{sk:"Legs B",en:"Legs B"},type:{sk:"Objem",en:"Volume"},ex:["legs.3","legs.1","legs.0","legs.4","core.0"]},
+    ]
+  },
+  sport_3:{
+    name:{sk:"Športová príprava 3×",en:"Sport Performance 3×"},
+    days:[
+      {label:{sk:"Deň 1 — Výbušná sila",en:"Day 1 — Explosive Strength"},type:{sk:"Sila",en:"Power"},ex:["sport_power.0","compound.2","sport_power.1","core.0","sport_power.3"]},
+      {label:{sk:"Deň 2 — Rýchlosť & Agilita",en:"Day 2 — Speed & Agility"},type:{sk:"Kondícia",en:"Conditioning"},ex:["sport_power.2","sport_power.4","sport_power.1","legs.3","core.1"]},
+      {label:{sk:"Deň 3 — Sila",en:"Day 3 — Strength"},type:{sk:"Sila",en:"Strength"},ex:["compound.0","compound.2","compound.4","shoulders.0","core.2"]},
+    ]
+  },
+  sport_4:{
+    name:{sk:"Športová príprava 4×",en:"Sport Performance 4×"},
+    days:[
+      {label:{sk:"Deň 1 — Sila horné",en:"Day 1 — Upper Strength"},type:{sk:"Sila",en:"Strength"},ex:["chest.0","back.0","shoulders.0","arms.0","core.0"]},
+      {label:{sk:"Deň 2 — Sila dolné",en:"Day 2 — Lower Strength"},type:{sk:"Sila",en:"Strength"},ex:["legs.0","legs.1","sport_power.0","legs.4","core.1"]},
+      {label:{sk:"Deň 3 — Výbušnosť",en:"Day 3 — Explosiveness"},type:{sk:"Výbušnosť",en:"Power"},ex:["sport_power.1","sport_power.2","sport_power.3","sport_power.4","core.2"]},
+      {label:{sk:"Deň 4 — Objem",en:"Day 4 — Volume"},type:{sk:"Hypertrofia",en:"Hypertrophy"},ex:["chest.1","back.2","shoulders.1","arms.1","legs.3"]},
+    ]
+  }
+};
+
+/* ---- Split options per days+goal ---- */
+const SPLIT_MAP={
+  "3_fat_loss":["full_body_3"],
+  "3_muscle":["full_body_3"],
+  "3_maintain":["full_body_3"],
+  "3_sport":["sport_3"],
+  "4_fat_loss":["upper_lower_4"],
+  "4_muscle":["upper_lower_4"],
+  "4_maintain":["upper_lower_4"],
+  "4_sport":["sport_4"],
+  "5_fat_loss":["ppl_5"],
+  "5_muscle":["ppl_5"],
+  "5_maintain":["ppl_5"],
+  "5_sport":["sport_4"],
+  "6_fat_loss":["ppl_6"],
+  "6_muscle":["ppl_6"],
+  "6_maintain":["ppl_6"],
+  "6_sport":["ppl_6"],
+};
+
+const SPLIT_LABELS={
+  full_body_3:{sk:"Celé telo (3 dni)",en:"Full Body (3 days)"},
+  upper_lower_4:{sk:"Upper / Lower (4 dni)",en:"Upper / Lower (4 days)"},
+  ppl_5:{sk:"Push / Pull / Legs (5 dní)",en:"Push / Pull / Legs (5 days)"},
+  ppl_6:{sk:"Push / Pull / Legs (6 dní)",en:"Push / Pull / Legs (6 days)"},
+  sport_3:{sk:"Športová príprava (3 dni)",en:"Sport Performance (3 days)"},
+  sport_4:{sk:"Športová príprava (4 dni)",en:"Sport Performance (4 days)"},
+};
+
+/* ---- State ---- */
+const state={goal:null,level:null,days:null,split:null};
+let currentStep=0;
+const STEPS=4;
+const lang=()=>window.__subtenLang||"sk";
+const t=(obj)=>obj[lang()]||obj.en||obj.sk||"";
+
+/* ---- DOM ---- */
+const wizard=document.getElementById("wizard");
+const planOut=document.getElementById("plan-out");
+const progress=document.getElementById("wiz-progress");
+
+function renderDots(){
+  let h="";
+  for(let i=0;i<STEPS;i++){
+    const cls=i<currentStep?"done":i===currentStep?"current":"";
+    h+=`<span class="wiz-dot ${cls}"></span>`;
+  }
+  progress.innerHTML=h;
+}
+
+function showStep(n){
+  currentStep=n;
+  wizard.querySelectorAll(".wiz-step").forEach((s,i)=>s.classList.toggle("active",i===n));
+  renderDots();
+}
+
+/* Card/button selection */
+wizard.addEventListener("click",e=>{
+  const card=e.target.closest(".opt-card");
+  const dayBtn=e.target.closest(".day-btn");
+
+  if(card){
+    const grid=card.parentElement;
+    const field=grid.dataset.field;
+    grid.querySelectorAll(".opt-card").forEach(c=>c.classList.remove("selected"));
+    card.classList.add("selected");
+    state[field]=card.dataset.value;
+    const nextBtn=card.closest(".wiz-step").querySelector(".btn-primary");
+    if(nextBtn)nextBtn.disabled=false;
+  }
+
+  if(dayBtn){
+    const row=dayBtn.parentElement;
+    row.querySelectorAll(".day-btn").forEach(b=>b.classList.remove("selected"));
+    dayBtn.classList.add("selected");
+    state.days=dayBtn.dataset.value;
+    const nextBtn=dayBtn.closest(".wiz-step").querySelector(".btn-primary");
+    if(nextBtn)nextBtn.disabled=false;
+  }
+});
+
+/* Navigation */
+document.getElementById("next-0").addEventListener("click",()=>{showStep(1);});
+document.getElementById("next-1").addEventListener("click",()=>{showStep(2);});
+document.getElementById("next-2").addEventListener("click",()=>{populateSplits();showStep(3);});
+document.getElementById("back-1").addEventListener("click",()=>showStep(0));
+document.getElementById("back-2").addEventListener("click",()=>showStep(1));
+document.getElementById("back-3").addEventListener("click",()=>showStep(2));
+document.getElementById("generate").addEventListener("click",generatePlan);
+document.getElementById("restart").addEventListener("click",()=>{
+  planOut.style.display="none";
+  wizard.style.display="block";
+  progress.style.display="flex";
+  state.goal=state.level=state.days=state.split=null;
+  wizard.querySelectorAll(".opt-card,.day-btn").forEach(c=>c.classList.remove("selected"));
+  wizard.querySelectorAll(".btn-primary").forEach(b=>b.disabled=true);
+  showStep(0);
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+
+function populateSplits(){
+  const key=state.days+"_"+state.goal;
+  const options=SPLIT_MAP[key]||["full_body_3"];
+  const grid=document.getElementById("split-grid");
+  grid.innerHTML="";
+  options.forEach((id,i)=>{
+    const lab=SPLIT_LABELS[id]||{sk:id,en:id};
+    const card=document.createElement("div");
+    card.className="opt-card"+(options.length===1?" selected":"");
+    card.dataset.value=id;
+    card.innerHTML=`<h4>${t(lab)}</h4><p>${t({sk:"Odporúčaný rozpis pre tvoju kombináciu",en:"Recommended split for your setup"})}</p>`;
+    grid.appendChild(card);
+    if(options.length===1){state.split=id;document.getElementById("generate").disabled=false;}
+  });
+}
+
+function getEx(ref){
+  const[cat,idx]=ref.split(".");
+  return DB[cat]&&DB[cat][parseInt(idx)];
+}
+
+function generatePlan(){
+  if(!state.split){
+    const sel=document.querySelector('#split-grid .opt-card.selected');
+    if(sel)state.split=sel.dataset.value;
+  }
+  if(!state.split)return;
+
+  const plan=SPLITS[state.split];
+  if(!plan)return;
+
+  wizard.style.display="none";
+  progress.style.display="none";
+  planOut.style.display="block";
+  window.scrollTo({top:0,behavior:"smooth"});
+
+  /* Meta tags */
+  const goalLabels={fat_loss:{sk:"Chudnutie",en:"Fat loss"},muscle:{sk:"Naberanie",en:"Muscle gain"},maintain:{sk:"Údržba",en:"Maintenance"},sport:{sk:"Šport",en:"Sport"}};
+  const levelLabels={beginner:{sk:"Začiatočník",en:"Beginner"},intermediate:{sk:"Pokročilý",en:"Intermediate"},advanced:{sk:"Expert",en:"Advanced"}};
+  document.getElementById("plan-meta").innerHTML=
+    `<span class="plan-tag">🎯 ${t(goalLabels[state.goal]||{})}</span>`+
+    `<span class="plan-tag">📊 ${t(levelLabels[state.level]||{})}</span>`+
+    `<span class="plan-tag">📅 ${state.days} ${t({sk:"dní/týždeň",en:"days/week"})}</span>`+
+    `<span class="plan-tag">🏋️ ${t(plan.name)}</span>`;
+
+  /* Day cards */
+  const daysEl=document.getElementById("plan-days");
+  daysEl.innerHTML="";
+  plan.days.forEach((day,di)=>{
+    const open=di===0?"open":"";
+    let exRows="";
+    day.ex.forEach(ref=>{
+      const ex=getEx(ref);
+      if(!ex)return;
+      exRows+=`<div class="ex-row"><span class="ex-name">${t(ex.n)}</span><span class="ex-detail">${ex.sets}</span><span class="ex-muscle">${t(ex.muscle)}</span></div>`;
+    });
+    daysEl.innerHTML+=
+      `<div class="day-card ${open}">
+        <div class="day-head" onclick="this.parentElement.classList.toggle('open')">
+          <h3>${t(day.label)}</h3>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span class="day-type">${t(day.type)}</span>
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+        <div class="day-body">${exRows}</div>
+      </div>`;
+  });
+}
+
+renderDots();
+})();
+</script>
+</body>
+</html>

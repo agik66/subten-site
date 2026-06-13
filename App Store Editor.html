@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Subten — Editor App Store screenshotov</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Schibsted+Grotesk:wght@600;700;800&display=swap" rel="stylesheet" />
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --accent:#4FD389;--bg:#070908;--bg2:#0C0F0D;--surface:#121613;--surface2:#1A1F1B;
+    --ink:#F4F7F4;--ink2:#AFB7B0;--ink3:#6E776F;--border:rgba(255,255,255,.09);--border2:rgba(255,255,255,.15);
+    --fd:"Schibsted Grotesk",system-ui,sans-serif;--fb:"Manrope",system-ui,sans-serif;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  body{background:radial-gradient(120% 60% at 50% -10%,rgba(79,211,137,.10),transparent 60%),var(--bg);color:var(--ink);font-family:var(--fb);-webkit-font-smoothing:antialiased;letter-spacing:-.01em;min-height:100vh;}
+  .bar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:16px clamp(18px,4vw,40px);background:rgba(7,9,8,.78);backdrop-filter:saturate(160%) blur(16px);border-bottom:1px solid var(--border);}
+  .brand{font-family:var(--fd);font-weight:800;font-size:19px;letter-spacing:-.04em;}
+  .brand span{color:var(--accent);}
+  .spacer{flex:1;}
+  .seg{display:inline-flex;padding:4px;border:1px solid var(--border2);border-radius:100px;position:relative;font-weight:700;font-size:13.5px;}
+  .seg button{padding:7px 16px;border:none;background:none;color:var(--ink3);border-radius:100px;cursor:pointer;z-index:1;transition:color .3s;}
+  .seg button.on{color:#0A1A10;}
+  .seg .pill{position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);background:var(--accent);border-radius:100px;transition:transform .4s var(--ease);}
+  .seg[data-l="en"] .pill{transform:translateX(100%);}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:100px;font-weight:700;font-size:14.5px;cursor:pointer;border:none;text-decoration:none;transition:transform .3s,box-shadow .3s,border-color .3s,color .3s;white-space:nowrap;}
+  .btn-p{background:var(--accent);color:#0A1A10;box-shadow:0 10px 28px -10px rgba(79,211,137,.5);}
+  .btn-p:hover{transform:translateY(-2px);}
+  .btn-g{border:1.5px solid var(--border2);color:var(--ink);background:none;}
+  .btn-g:hover{border-color:var(--accent);color:var(--accent);}
+  .wrap{max-width:1180px;margin-inline:auto;padding:34px clamp(18px,4vw,40px) 120px;}
+  .intro h1{font-family:var(--fd);font-weight:800;font-size:clamp(26px,4vw,40px);letter-spacing:-.04em;line-height:1.04;}
+  .intro p{color:var(--ink2);font-size:16px;margin-top:12px;max-width:680px;line-height:1.55;}
+  .intro code{background:rgba(255,255,255,.08);padding:2px 7px;border-radius:6px;font-size:13px;color:var(--ink);}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:30px;}
+  @media(max-width:820px){.grid{grid-template-columns:1fr;}}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:18px;display:grid;grid-template-columns:auto 1fr;gap:20px;}
+  @media(max-width:540px){.card{grid-template-columns:1fr;}}
+  .stage{position:relative;width:208px;border-radius:16px;overflow:hidden;cursor:pointer;background:#000;align-self:start;outline:2px solid transparent;transition:outline-color .25s;}
+  @media(max-width:540px){.stage{width:100%;max-width:280px;justify-self:center;}}
+  .stage canvas{display:block;width:100%;height:auto;}
+  .stage .drop{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;font-size:13px;font-weight:700;color:#fff;background:rgba(8,12,10,.66);opacity:0;transition:opacity .25s;padding:18px;backdrop-filter:blur(2px);}
+  .stage:hover .drop{opacity:1;}
+  .stage.drag{outline-color:var(--accent);}
+  .stage.drag .drop{opacity:1;background:rgba(47,190,110,.32);}
+  .ctrls{display:flex;flex-direction:column;gap:13px;min-width:0;}
+  .ctrls .idx{font-family:var(--fd);font-weight:800;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);}
+  .ctrls textarea{width:100%;resize:vertical;min-height:74px;background:var(--surface2);border:1px solid var(--border);border-radius:12px;color:var(--ink);font-family:var(--fd);font-weight:800;font-size:16px;line-height:1.2;letter-spacing:-.02em;padding:12px 13px;outline:none;transition:border-color .25s;}
+  .ctrls textarea:focus{border-color:var(--accent);}
+  .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .miniseg{display:inline-flex;padding:3px;border:1px solid var(--border2);border-radius:100px;font-size:12.5px;font-weight:700;}
+  .miniseg button{padding:5px 13px;border:none;background:none;color:var(--ink3);border-radius:100px;cursor:pointer;transition:color .25s,background .25s;}
+  .miniseg button.on{background:var(--accent);color:#0A1A10;}
+  .swatches{display:flex;gap:7px;}
+  .sw{width:26px;height:26px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:transform .2s,border-color .2s;}
+  .sw:hover{transform:scale(1.12);}
+  .sw.on{border-color:var(--ink);}
+  .ctrls .acts{display:flex;gap:8px;margin-top:auto;flex-wrap:wrap;}
+  .lbl{font-size:11.5px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;margin-right:2px;}
+  .file{display:none;}
+  .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--accent);color:#0A1A10;font-weight:700;font-size:14px;padding:12px 22px;border-radius:100px;box-shadow:0 16px 40px -12px rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;z-index:40;}
+  .toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+<div class="bar">
+  <span class="brand">Subten<span>.</span> Editor</span>
+  <div class="seg" id="lang" data-l="sk">
+    <span class="pill"></span>
+    <button data-l="sk" class="on">SK</button>
+    <button data-l="en">EN</button>
+  </div>
+  <div class="spacer"></div>
+  <button class="btn btn-g" id="reset">Obnoviť pôvodné</button>
+  <button class="btn btn-p" id="dlall">Stiahnuť všetkých 6 ↓</button>
+</div>
+
+<div class="wrap">
+  <div class="intro">
+    <h1>Editor App Store screenshotov</h1>
+    <p>Klikni alebo <b>pretiahni nový obrázok</b> na telefón a vymeníš screenshot. Texty uprav priamo v poli — slovo medzi <code>*hviezdičkami*</code> sa zvýrazní farbou. Zmena jazyka (SK/EN) prepína nadpisy. Všetko sa ukladá automaticky. Hotové stiahni ako PNG 1290×2796.</p>
+  </div>
+  <div class="grid" id="grid"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<input type="file" id="picker" class="file" accept="image/*" />
+
+<script src="js/ase-draw.js"></script>
+<script>
+(function(){
+  const SHOTS = [
+    {id:'today',    accent:'#4FD389', src:'assets/appstore-src/today.png',    theme:'dark',
+      sk:'Celá tvoja *kondícia* na jednom mieste', en:'Your whole *fitness* life in one place', cap:'Today'},
+    {id:'food',     accent:'#4FD389', src:'assets/appstore-src/food.png',     theme:'dark',
+      sk:'Naskenuj jedlo — *makrá* dopočíta za teba', en:'Scan a meal — *macros* done for you', cap:'Food'},
+    {id:'training', accent:'#9B87E5', src:'assets/appstore-src/training.png', theme:'dark',
+      sk:'Trénuj podľa *plánu*, nie od oka', en:'Train to a *plan*, not by guesswork', cap:'Training'},
+    {id:'recovery', accent:'#ED9A57', src:'assets/appstore-src/recovery.png', theme:'dark',
+      sk:'Vedz, kedy *zatlačiť* a kedy *oddýchnuť*', en:'Know when to *push* and when to *rest*', cap:'Recovery'},
+    {id:'coach',    accent:'#5FD0E8', src:'assets/appstore-src/coach.png',    theme:'dark',
+      sk:'*AI tréner*, ktorý ťa naozaj pozná', en:'An *AI coach* that actually knows you', cap:'AI Coach'},
+    {id:'progress', accent:'#4FD389', src:'assets/appstore-src/progress.png', theme:'dark',
+      sk:'Sleduj svoj *progres* týždeň po týždni', en:'Watch your *progress*, week by week', cap:'Progress'},
+  ];
+  const ACCENTS = ['#4FD389','#9B87E5','#ED9A57','#5FD0E8','#FF6B5E'];
+  const LS = 'subten-ase-v1';
+  let lang = 'sk';
+
+  // state: per id {sk,en,theme,accent,img(dataURL|null)}
+  let state = {};
+  try { state = JSON.parse(localStorage.getItem(LS)) || {}; } catch(e){ state = {}; }
+  function shotState(s){
+    if(!state[s.id]) state[s.id] = { sk:s.sk, en:s.en, theme:s.theme, accent:s.accent, img:null };
+    return state[s.id];
+  }
+  function save(){ try{ localStorage.setItem(LS, JSON.stringify(state)); }catch(e){ /* quota: keep in memory */ } }
+
+  const imgCache = {}; // id -> Image
+  function loadImg(src){ return new Promise(res=>{ const im=new Image(); im.onload=()=>res(im); im.onerror=()=>res(null); im.src=src; }); }
+
+  const grid = document.getElementById('grid');
+  const picker = document.getElementById('picker');
+  const toastEl = document.getElementById('toast');
+  let pickTarget = null;
+
+  function toast(t){ toastEl.textContent=t; toastEl.classList.add('on'); clearTimeout(toastEl._t); toastEl._t=setTimeout(()=>toastEl.classList.remove('on'),1700); }
+
+  function renderShot(s){
+    const st = shotState(s);
+    const canvas = document.getElementById('cv-'+s.id);
+    if(!canvas) return;
+    canvas.width = ASE.W; canvas.height = ASE.H;
+    ASE.draw(canvas, { img: imgCache[s.id], accent: st.accent, head: st[lang], theme: st.theme });
+  }
+  function renderAll(){ SHOTS.forEach(renderShot); }
+
+  async function setImage(s, src, persist){
+    const im = await loadImg(src);
+    imgCache[s.id] = im;
+    if(persist){ shotState(s).img = src; save(); }
+    renderShot(s);
+  }
+
+  // build cards
+  grid.innerHTML = SHOTS.map((s,i)=>{
+    const st = shotState(s);
+    return `<div class="card" data-id="${s.id}">
+      <div class="stage" id="stage-${s.id}">
+        <canvas id="cv-${s.id}"></canvas>
+        <div class="drop">Klikni alebo pretiahni<br>nový screenshot</div>
+      </div>
+      <div class="ctrls">
+        <div class="idx">${String(i+1).padStart(2,'0')} · ${s.cap}</div>
+        <textarea id="ta-${s.id}" spellcheck="false">${st[lang]}</textarea>
+        <div class="row">
+          <span class="lbl">Téma</span>
+          <div class="miniseg" id="th-${s.id}">
+            <button data-t="dark" class="${st.theme==='dark'?'on':''}">Tmavá</button>
+            <button data-t="light" class="${st.theme==='light'?'on':''}">Svetlá</button>
+          </div>
+        </div>
+        <div class="row">
+          <span class="lbl">Akcent</span>
+          <div class="swatches" id="sw-${s.id}">
+            ${ACCENTS.map(c=>`<span class="sw ${st.accent===c?'on':''}" data-c="${c}" style="background:${c}"></span>`).join('')}
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn btn-g" data-up="${s.id}">Nahraď screenshot</button>
+          <button class="btn btn-p" data-dl="${s.id}">Stiahnuť PNG</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // wire textareas
+  SHOTS.forEach(s=>{
+    const ta = document.getElementById('ta-'+s.id);
+    ta.addEventListener('input', ()=>{ shotState(s)[lang] = ta.value; save(); renderShot(s); });
+    // theme
+    document.getElementById('th-'+s.id).addEventListener('click', e=>{
+      const b=e.target.closest('button'); if(!b)return;
+      shotState(s).theme=b.dataset.t; save();
+      document.querySelectorAll('#th-'+s.id+' button').forEach(x=>x.classList.toggle('on',x===b));
+      renderShot(s);
+    });
+    // accent
+    document.getElementById('sw-'+s.id).addEventListener('click', e=>{
+      const sw=e.target.closest('.sw'); if(!sw)return;
+      shotState(s).accent=sw.dataset.c; save();
+      document.querySelectorAll('#sw-'+s.id+' .sw').forEach(x=>x.classList.toggle('on',x===sw));
+      renderShot(s);
+    });
+    // stage click + drag/drop
+    const stage = document.getElementById('stage-'+s.id);
+    stage.addEventListener('click', ()=>{ pickTarget=s; picker.value=''; picker.click(); });
+    ['dragenter','dragover'].forEach(ev=>stage.addEventListener(ev,e=>{e.preventDefault();stage.classList.add('drag');}));
+    ['dragleave','dragend'].forEach(ev=>stage.addEventListener(ev,e=>{e.preventDefault();stage.classList.remove('drag');}));
+    stage.addEventListener('drop', e=>{
+      e.preventDefault(); stage.classList.remove('drag');
+      const f=[...(e.dataTransfer.files||[])].find(f=>f.type.startsWith('image/'));
+      if(f) handleFile(s,f);
+    });
+    document.querySelector('[data-up="'+s.id+'"]').addEventListener('click', ()=>{ pickTarget=s; picker.value=''; picker.click(); });
+    document.querySelector('[data-dl="'+s.id+'"]').addEventListener('click', ()=>download(s));
+  });
+
+  picker.addEventListener('change', ()=>{ const f=picker.files&&picker.files[0]; if(f&&pickTarget) handleFile(pickTarget,f); });
+
+  // read file, downscale for storage, set
+  function handleFile(s, file){
+    const reader=new FileReader();
+    reader.onload=()=>{
+      const im=new Image();
+      im.onload=()=>{
+        // downscale to max 1400px for localStorage friendliness
+        const max=1400; let w=im.width,h=im.height;
+        if(Math.max(w,h)>max){ const k=max/Math.max(w,h); w=Math.round(w*k); h=Math.round(h*k); }
+        const c=document.createElement('canvas'); c.width=w; c.height=h;
+        c.getContext('2d').drawImage(im,0,0,w,h);
+        const data=c.toDataURL('image/jpeg',0.92);
+        setImage(s, data, true);
+        toast('Screenshot vymenený');
+      };
+      im.src=reader.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function download(s){
+    const canvas=document.getElementById('cv-'+s.id);
+    canvas.toBlob(b=>{
+      const a=document.createElement('a');
+      a.href=URL.createObjectURL(b);
+      a.download=`subten-${s.cap.toLowerCase().replace(/\s+/g,'')}-${lang}.png`;
+      a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+    },'image/png');
+  }
+  async function downloadAll(){
+    for(const s of SHOTS){ download(s); await new Promise(r=>setTimeout(r,450)); }
+    toast('Sťahujem 6 obrázkov…');
+  }
+  document.getElementById('dlall').addEventListener('click', downloadAll);
+
+  // language toggle
+  const langSeg=document.getElementById('lang');
+  langSeg.addEventListener('click', e=>{
+    const b=e.target.closest('button'); if(!b)return;
+    lang=b.dataset.l; langSeg.dataset.l=lang;
+    langSeg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x.dataset.l===lang));
+    SHOTS.forEach(s=>{ document.getElementById('ta-'+s.id).value = shotState(s)[lang]; });
+    renderAll();
+  });
+
+  document.getElementById('reset').addEventListener('click', ()=>{
+    if(!confirm('Obnoviť všetky texty, témy a screenshoty do pôvodného stavu?')) return;
+    state={}; save();
+    SHOTS.forEach(s=>{ delete imgCache[s.id]; });
+    location.reload();
+  });
+
+  // boot: wait for fonts, load images (stored or default), render
+  (async function(){
+    try{ await document.fonts.ready; await document.fonts.load('800 94px "Schibsted Grotesk"'); }catch(e){}
+    for(const s of SHOTS){
+      const st=shotState(s);
+      const src = st.img || s.src;
+      imgCache[s.id] = await loadImg(src);
+    }
+    renderAll();
+  })();
+})();
+</script>
+</body>
+</html>

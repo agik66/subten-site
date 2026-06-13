@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="sk" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Subten — App Store screenshoty</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Schibsted+Grotesk:wght@600;700;800&display=swap" rel="stylesheet" />
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --accent:#4FD389;--bg:#060807;--bg2:#0C0F0D;--surface:#121613;
+    --ink:#F4F7F4;--ink2:#AFB7B0;--ink3:#6E776F;--border:rgba(255,255,255,.09);--border2:rgba(255,255,255,.14);
+    --font-d:"Schibsted Grotesk",system-ui,sans-serif;--font-b:"Manrope",system-ui,sans-serif;
+  }
+  body{background:
+    radial-gradient(120% 70% at 50% -10%, rgba(79,211,137,.12), transparent 60%),
+    var(--bg);
+    color:var(--ink);font-family:var(--font-b);-webkit-font-smoothing:antialiased;min-height:100vh;letter-spacing:-.01em;}
+  .wrap{max-width:1240px;margin-inline:auto;padding:48px clamp(20px,5vw,56px) 100px;}
+  .top{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:14px;}
+  .brand{display:inline-flex;align-items:center;gap:11px;font-family:var(--font-d);font-weight:800;font-size:20px;letter-spacing:-.04em;}
+  .logo{width:30px;height:30px;border-radius:8px;background:linear-gradient(150deg,#5FE39A,#2FBE6E);display:grid;place-items:center;color:#fff;font-family:var(--font-d);font-weight:800;font-size:18px;}
+  h1{font-family:var(--font-d);font-weight:800;letter-spacing:-.04em;font-size:clamp(30px,5vw,46px);line-height:1.02;margin-top:26px;}
+  .lede{color:var(--ink2);font-size:17px;max-width:640px;margin-top:16px;line-height:1.55;}
+  .controls{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:30px 0 8px;}
+  .seg{display:inline-flex;padding:4px;border:1px solid var(--border2);border-radius:100px;position:relative;font-weight:700;font-size:14px;}
+  .seg button{padding:8px 20px;border:none;background:none;color:var(--ink3);border-radius:100px;cursor:pointer;z-index:1;transition:color .3s;}
+  .seg button.on{color:#0A1A10;}
+  .seg .pill{position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);background:var(--accent);border-radius:100px;transition:transform .4s cubic-bezier(.22,.61,.36,1);}
+  .seg[data-l="en"] .pill{transform:translateX(100%);}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:12px 22px;border-radius:100px;font-weight:700;font-size:15px;cursor:pointer;border:none;text-decoration:none;transition:transform .3s,box-shadow .3s;}
+  .btn-p{background:var(--accent);color:#0A1A10;box-shadow:0 10px 30px -10px rgba(79,211,137,.5);}
+  .btn-p:hover{transform:translateY(-2px);}
+  .btn-g{border:1.5px solid var(--border2);color:var(--ink);}
+  .btn-g:hover{border-color:var(--accent);color:var(--accent);}
+  .meta{color:var(--ink3);font-size:13.5px;font-weight:600;margin-left:auto;}
+  .rail{display:grid;grid-template-columns:repeat(6,1fr);gap:20px;margin-top:34px;}
+  @media(max-width:1100px){.rail{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:680px){.rail{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:460px){.rail{grid-template-columns:1fr;}}
+  figure{margin:0;}
+  .shot{display:block;width:100%;border-radius:18px;overflow:hidden;border:1px solid var(--border);background:var(--bg2);box-shadow:0 24px 50px -28px rgba(0,0,0,.8);transition:transform .4s cubic-bezier(.22,.61,.36,1),border-color .3s;cursor:zoom-in;}
+  .shot:hover{transform:translateY(-5px);border-color:var(--border2);}
+  .shot img{display:block;width:100%;height:auto;}
+  figcaption{color:var(--ink3);font-size:12.5px;font-weight:600;margin-top:10px;text-align:center;letter-spacing:.01em;}
+  .note{margin-top:54px;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:26px 28px;color:var(--ink2);font-size:14.5px;line-height:1.6;max-width:760px;}
+  .note h3{font-family:var(--font-d);font-weight:800;color:var(--ink);font-size:17px;margin-bottom:10px;letter-spacing:-.02em;}
+  .note b{color:var(--ink);}
+  .note code{background:rgba(255,255,255,.07);padding:2px 7px;border-radius:6px;font-size:13px;}
+  /* lightbox */
+  .lb{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:50;padding:30px;cursor:zoom-out;backdrop-filter:blur(6px);}
+  .lb.on{display:flex;}
+  .lb img{max-width:min(440px,90vw);max-height:92vh;width:auto;height:auto;border-radius:22px;box-shadow:0 40px 90px -30px rgba(0,0,0,.9);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <span class="brand">Subten</span>
+    <span class="meta">24 obrázkov · 1290 × 2796 px · PNG</span>
+  </div>
+  <h1>App Store screenshoty</h1>
+  <p class="lede">Hotová sada pre App Store Connect — 6 záberov v slovenčine aj angličtine. Prvé tri sú navrhnuté ako „hook" vo vyhľadávaní. Klikni na obrázok pre zväčšenie.</p>
+
+  <div class="controls">
+    <div class="seg" id="segStyle" data-l="dark">
+      <span class="pill"></span>
+      <button data-s="dark" class="on">Tmavé</button>
+      <button data-s="mix">Mix (tmavé + svetlé)</button>
+    </div>
+    <div class="seg" id="seg" data-l="sk">
+      <span class="pill"></span>
+      <button data-l="sk" class="on">Slovensky</button>
+      <button data-l="en">English</button>
+    </div>
+    <a class="btn btn-g" id="openTab" href="#" target="_blank" rel="noopener">Otvoriť priečinok ↗</a>
+    <a class="btn btn-p" href="App Store Editor.html">Upraviť v editore ✎</a>
+  </div>
+
+  <div class="rail" id="rail"></div>
+
+  <div class="note">
+    <h3>Ako ich nahrať do App Store</h3>
+    <p>V <b>App Store Connect → tvoja appka → App Store → Screenshots</b> vyber veľkosť displeja <b>6.7" / 6.9"</b> a nahraj súbory z priečinka pre tvoj výber — <b>Tmavé</b>: <code>sk</code> / <code>en</code>, <b>Mix</b>: <code>mix-sk</code> / <code>mix-en</code>. Poradie 01–06 je optimalizované na konverziu — Today, Food, Training, Recovery, AI Coach, Progress.</p>
+    <p style="margin-top:12px;">Tip: rovnaké obrázky vyhovujú aj pre 6.5" displej. Pre menšie veľkosti ich App Store automaticky prispôsobí.</p>
+  </div>
+</div>
+
+<div class="lb" id="lb"><img id="lbimg" alt="" /></div>
+
+<script>
+  const NAMES = ['01-today','02-food','03-training','04-recovery','05-coach','06-progress'];
+  const CAP = {sk:['Today','Jedlo','Tréning','Regenerácia','AI Coach','Progres'],
+               en:['Today','Food','Training','Recovery','AI Coach','Progress']};
+  const rail = document.getElementById('rail');
+  const seg = document.getElementById('seg');
+  const segStyle = document.getElementById('segStyle');
+  const openTab = document.getElementById('openTab');
+  let lang = 'sk', style = 'dark';
+  function folder(){ return style==='mix' ? 'mix-'+lang : lang; }
+  function render(){
+    seg.dataset.l = lang;
+    segStyle.dataset.l = style;
+    seg.querySelectorAll('button').forEach(b=>b.classList.toggle('on', b.dataset.l===lang));
+    segStyle.querySelectorAll('button').forEach(b=>b.classList.toggle('on', b.dataset.s===style));
+    const f = folder();
+    openTab.href = 'export/appstore/'+f+'/01-today.png';
+    rail.innerHTML = NAMES.map((n,i)=>`
+      <figure>
+        <span class="shot" data-src="export/appstore/${f}/${n}.png">
+          <img src="export/appstore/${f}/${n}.png" alt="Subten ${CAP[lang][i]}" loading="lazy" />
+        </span>
+        <figcaption>${String(i+1).padStart(2,'0')} · ${CAP[lang][i]}</figcaption>
+      </figure>`).join('');
+  }
+  seg.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{lang=b.dataset.l;render();}));
+  segStyle.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{style=b.dataset.s;render();}));
+  const lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg');
+  rail.addEventListener('click',e=>{const s=e.target.closest('.shot');if(!s)return;lbimg.src=s.dataset.src;lb.classList.add('on');});
+  lb.addEventListener('click',()=>lb.classList.remove('on'));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('on');});
+  render();
+</script>
+</body>
+</html>
