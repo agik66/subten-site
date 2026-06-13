@@ -250,7 +250,7 @@ window.SUBTEN_I18N = {
       t.style.setProperty("--lang-n", LANGS.length);
       t.innerHTML = '<span class="pill" aria-hidden="true"></span>' +
         LANGS.map(l => `<button type="button" data-lang="${l.code}">${l.label}</button>`).join("");
-      t.querySelectorAll("button").forEach(b => b.addEventListener("click", () => apply(b.dataset.lang)));
+      t.querySelectorAll("button").forEach(b => b.addEventListener("click", () => (window.SubtenSetLang || apply)(b.dataset.lang)));
     });
   }
 
