@@ -43,6 +43,24 @@
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
+  /* ---- mobile menu toggle ---- */
+  const menuBtn = document.querySelector(".menu-btn");
+  const navLinks = document.querySelector(".nav-links");
+  if (menuBtn && navLinks) {
+    menuBtn.addEventListener("click", () => {
+      const open = navLinks.classList.toggle("open");
+      menuBtn.classList.toggle("active", open);
+      document.body.style.overflow = open ? "hidden" : "";
+    });
+    navLinks.querySelectorAll("a").forEach((a) => {
+      a.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuBtn.classList.remove("active");
+        document.body.style.overflow = "";
+      });
+    });
+  }
+
   /* ---- chat bubble stagger ---- */
   const chat = document.querySelector(".chat");
   if (chat) {
