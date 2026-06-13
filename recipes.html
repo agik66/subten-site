@@ -435,25 +435,18 @@ window.openRecipe=function(id){
     </div>
   `;
 
-  // Generate QR code
-  const qrData=JSON.stringify({
-    type:"subten_recipe",
-    id:r.id,
-    name:t(r.name),
-    kcal:r.kcal,
-    protein:r.protein,
-    carbs:r.carbs,
-    fat:r.fat
-  });
-
-  const qrTarget=document.getElementById("modal-qr-target");
-  qrTarget.innerHTML="";
-  if(typeof QRCode!=="undefined"){
-    new QRCode(qrTarget,{text:qrData,width:140,height:140,colorDark:"#0E1116",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.M});
-  }
-
   overlay.classList.add("active");
   document.body.style.overflow="hidden";
+
+  // Generate QR code (after modal is shown)
+  try{
+    const qrData=JSON.stringify({t:"r",i:r.id,k:r.kcal,p:r.protein,c:r.carbs,f:r.fat});
+    const qrTarget=document.getElementById("modal-qr-target");
+    qrTarget.innerHTML="";
+    if(typeof QRCode!=="undefined"){
+      new QRCode(qrTarget,{text:qrData,width:140,height:140,colorDark:"#0E1116",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.L});
+    }
+  }catch(e){console.warn("QR generation skipped:",e.message);}
 };
 
 function closeModal(){
