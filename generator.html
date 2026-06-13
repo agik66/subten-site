@@ -360,13 +360,12 @@
 </footer>
 
 <script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
 <script>
 (function(){
 "use strict";
 
-/* ── Sticky nav ── */
-const nav=document.querySelector(".nav");
-if(nav){const s=()=>nav.classList.toggle("scrolled",window.scrollY>16);s();window.addEventListener("scroll",s,{passive:true});}
+/* ── Generator wizard ── */
 
 /* ══════════════════════════════════════════════════════════
    EXERCISE DATABASE — with GIF URLs from public sources
