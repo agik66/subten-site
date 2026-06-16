@@ -47,17 +47,18 @@
   const menuBtn = document.querySelector(".menu-btn");
   const navLinks = document.querySelector(".nav-links");
   if (menuBtn && navLinks) {
-    menuBtn.addEventListener("click", () => {
-      const open = navLinks.classList.toggle("open");
+    // .nav gets backdrop-filter when scrolled, which makes it the containing
+    // block for the fixed-position overlay (collapsing it to the header strip).
+    // Flag the nav while the menu is open so CSS can drop the filter.
+    const setMenu = (open) => {
+      navLinks.classList.toggle("open", open);
       menuBtn.classList.toggle("active", open);
+      if (nav) nav.classList.toggle("menu-open", open);
       document.body.style.overflow = open ? "hidden" : "";
-    });
+    };
+    menuBtn.addEventListener("click", () => setMenu(!navLinks.classList.contains("open")));
     navLinks.querySelectorAll("a").forEach((a) => {
-      a.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-        menuBtn.classList.remove("active");
-        document.body.style.overflow = "";
-      });
+      a.addEventListener("click", () => setMenu(false));
     });
   }
 

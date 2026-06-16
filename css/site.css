@@ -238,6 +238,18 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 800; letter-spacing:
 .menu-btn.active .bar::before { transform: rotate(45deg); }
 .menu-btn.active .bar::after { transform: rotate(-45deg); }
 
+/* While the mobile menu is open, drop the nav's backdrop-filter: a non-none
+   filter turns .nav into the containing block for the fixed overlay, which
+   would collapse the overlay to the header strip. Kept out of the media query
+   (and !important) so it always wins over .nav.scrolled. */
+.nav.menu-open {
+  background: transparent;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom-color: transparent;
+  transition: none;
+}
+
 /* Mobile nav overlay */
 @media (max-width: 880px) {
   .menu-btn { display: flex; }
@@ -245,7 +257,9 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 800; letter-spacing:
     display: none; position: fixed; inset: 0; z-index: 110;
     background: var(--bg);
     flex-direction: column; align-items: center; justify-content: center;
-    gap: 36px; margin: 0; padding: 0;
+    gap: 36px; margin: 0;
+    padding: max(24px, env(safe-area-inset-top)) 20px max(24px, env(safe-area-inset-bottom));
+    overflow-y: auto;
   }
   .nav-links.open { display: flex; }
   .nav-links a {
