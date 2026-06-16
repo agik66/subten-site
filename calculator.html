@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Subten — Nutrition & recovery calculator</title>
+<meta name="description" content="Free calculator using the exact Subten formulas: BMR, TDEE, daily calorie target, macros with carb cycling, hydration, plus recovery, sleep and strain scores. Live results in your browser." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;450;500;550;600;700;800&family=Schibsted+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/site.css" />
+<link rel="icon" type="image/png" href="assets/brand/favicon.png" />
+<style>
+[id]{scroll-margin-top:88px;}
+
+/* ── Hero ── */
+.calc-hero{padding:clamp(120px,14vw,170px) 0 clamp(28px,4vw,44px);text-align:center;position:relative;overflow:hidden;}
+.calc-hero::before{content:"";position:absolute;inset:0;background:var(--hero-wash);pointer-events:none;}
+.calc-hero .container{position:relative;z-index:1;}
+.calc-hero .kicker{justify-content:center;}
+.calc-hero h1{margin-top:18px;}
+.calc-hero .lede{max-width:640px;margin:18px auto 0;color:var(--ink-2);}
+
+/* ── Layout ── */
+.calc-wrap{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:clamp(24px,3vw,44px);align-items:start;padding-bottom:90px;}
+@media(max-width:900px){.calc-wrap{grid-template-columns:1fr;}}
+
+.calc-panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:clamp(22px,2.6vw,32px);}
+.calc-form{position:sticky;top:84px;}
+@media(max-width:900px){.calc-form{position:static;}}
+
+.calc-section-label{font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 16px;display:flex;align-items:center;gap:8px;}
+.calc-section-label::before{content:"";width:16px;height:1.5px;background:currentColor;opacity:.55;}
+.calc-section-label.mt{margin-top:30px;}
+
+.field{margin-bottom:16px;}
+.field > label{display:block;font-size:13px;font-weight:600;color:var(--ink-2);margin-bottom:7px;}
+.field .hint{font-size:11.5px;color:var(--ink-3);margin-top:5px;line-height:1.45;}
+
+.inp,select.inp{width:100%;background:var(--bg-2);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:11px 13px;color:var(--ink);font-family:inherit;font-size:15px;font-weight:550;transition:border-color .2s var(--ease),background .2s var(--ease);}
+.inp:focus,select.inp:focus{outline:none;border-color:var(--accent);background:var(--surface-2);}
+.inp::placeholder{color:var(--ink-3);}
+select.inp{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236E776F' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:34px;}
+
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+
+/* segmented control */
+.seg{display:flex;gap:6px;background:var(--bg-2);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:4px;}
+.seg button{flex:1;padding:9px 6px;border-radius:10px;font-size:13.5px;font-weight:600;color:var(--ink-2);transition:all .18s var(--ease);}
+.seg button.on{background:var(--accent);color:var(--accent-ink);box-shadow:0 4px 14px -6px var(--accent-glow);}
+
+/* week builder */
+.week-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;}
+.week-day{text-align:center;}
+.week-day > span{display:block;font-size:11px;font-weight:700;color:var(--ink-3);margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em;}
+.week-day select{width:100%;padding:8px 4px;font-size:12px;text-align:center;background:var(--bg-2);border:1.5px solid var(--border);border-radius:10px;color:var(--ink);font-family:inherit;font-weight:600;appearance:none;-webkit-appearance:none;cursor:pointer;}
+.week-day select:focus{outline:none;border-color:var(--accent);}
+.week-legend{font-size:11.5px;color:var(--ink-3);margin-top:9px;line-height:1.5;}
+
+/* disclosure */
+.disc{border-top:1px solid var(--border);margin-top:26px;padding-top:22px;}
+.disc-toggle{display:flex;align-items:center;gap:10px;width:100%;text-align:left;font-size:14px;font-weight:650;color:var(--ink);}
+.disc-toggle .chev{margin-left:auto;transition:transform .25s var(--ease);color:var(--ink-3);}
+.disc.open .disc-toggle .chev{transform:rotate(180deg);}
+.disc-body{display:none;margin-top:18px;}
+.disc.open .disc-body{display:block;}
+.disc-note{font-size:12px;color:var(--ink-3);margin:2px 0 16px;line-height:1.5;}
+
+/* results */
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;}
+.stat{background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r-md);padding:18px 18px 16px;position:relative;overflow:hidden;}
+.stat .k{font-size:12px;font-weight:650;color:var(--ink-2);letter-spacing:.01em;}
+.stat .v{font-family:var(--font-display);font-size:clamp(26px,3.4vw,34px);font-weight:800;letter-spacing:-.03em;margin-top:6px;line-height:1;}
+.stat .v small{font-size:14px;font-weight:600;color:var(--ink-3);letter-spacing:0;margin-left:3px;}
+.stat .sub{font-size:11.5px;color:var(--ink-3);margin-top:8px;line-height:1.45;}
+.stat.accent .v{color:var(--accent);}
+.pill-tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;margin-top:9px;letter-spacing:.02em;}
+.pill-tag.green{background:rgba(79,211,137,.14);color:var(--accent);}
+.pill-tag.amber{background:rgba(237,154,87,.16);color:var(--c-recovery);}
+.pill-tag.red{background:rgba(224,116,106,.16);color:var(--c-protein);}
+.pill-tag.blue{background:rgba(95,208,232,.14);color:var(--c-coach);}
+
+.res-block{margin-top:26px;}
+.res-block > h3{font-family:var(--font-display);font-size:19px;font-weight:750;letter-spacing:-.02em;margin-bottom:4px;}
+.res-block > .res-sub{font-size:12.5px;color:var(--ink-3);margin-bottom:18px;line-height:1.5;}
+
+/* macro bars */
+.macro-row{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+.macro-row .mlab{width:78px;flex:none;font-size:13px;font-weight:650;}
+.macro-bar{flex:1;height:30px;border-radius:9px;background:var(--bg-2);display:flex;overflow:hidden;border:1px solid var(--border);}
+.macro-seg{height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#0A1A10;min-width:0;transition:width .4s var(--ease);white-space:nowrap;}
+.macro-seg.p{background:var(--c-protein);}
+.macro-seg.c{background:var(--c-carbs);}
+.macro-seg.f{background:var(--c-fat);}
+.macro-legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:var(--ink-2);margin-top:4px;}
+.macro-legend span{display:flex;align-items:center;gap:6px;}
+.macro-legend i{width:11px;height:11px;border-radius:3px;display:inline-block;}
+
+.macro-num-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px;}
+@media(max-width:520px){.macro-num-grid{grid-template-columns:repeat(2,1fr);}}
+.mnum{background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r-sm);padding:13px 12px;text-align:center;}
+.mnum .mk{font-size:11px;font-weight:650;color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em;}
+.mnum .mv{font-family:var(--font-display);font-size:22px;font-weight:800;margin-top:5px;letter-spacing:-.02em;}
+.mnum .mv small{font-size:12px;font-weight:600;color:var(--ink-3);}
+
+/* carb cycling table */
+.cyc-table{width:100%;border-collapse:collapse;margin-top:6px;font-size:13.5px;}
+.cyc-table th,.cyc-table td{padding:10px 8px;text-align:right;border-bottom:1px solid var(--border);}
+.cyc-table th:first-child,.cyc-table td:first-child{text-align:left;}
+.cyc-table th{font-size:11px;font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em;}
+.cyc-table td .tt{font-size:11px;color:var(--ink-3);}
+.cyc-table tr.is-high td{color:var(--accent);}
+.cyc-table tfoot td{font-weight:700;border-bottom:none;color:var(--ink-2);}
+
+.note-card{background:rgba(95,208,232,.07);border:1px solid rgba(95,208,232,.22);border-radius:var(--r-md);padding:14px 16px;font-size:12.5px;color:var(--ink-2);line-height:1.55;}
+.note-card b{color:var(--c-coach);}
+.disclaimer{font-size:11.5px;color:var(--ink-3);line-height:1.6;margin-top:30px;max-width:760px;}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <div class="brand">
+      <a href="index.html" style="display:flex;align-items:center;gap:10px;">
+        <img src="assets/brand/subten-logo.png" alt="" width="30" height="30" style="border-radius:7px;" />
+        <span class="brand-name">Subten</span>
+      </a>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html#features" data-i18n="nav.features">Funkcie</a>
+      <a href="generator.html" data-i18n="nav.generator">Generátor</a>
+      <a href="calculator.html" style="color:var(--accent);" data-i18n="nav.calculator">Kalkulačka</a>
+      <a href="recipes.html" data-i18n="nav.recipes">Recepty</a>
+      <a href="index.html#pricing" data-i18n="nav.pricing">Cenník</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang-toggle" role="group" aria-label="Language"></div>
+      <a href="index.html#download" class="btn btn-primary nav-cta" data-i18n="nav.cta">Stiahnuť</a>
+      <button class="menu-btn" aria-label="Menu"><span class="bar"></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="calc-hero">
+  <div class="container">
+    <span class="kicker" data-i18n="calc.kicker">Kalkulačka zadarmo</span>
+    <h1 data-i18n="calc.h1">Tvoje čísla — presne ako v appke.</h1>
+    <p class="lede" data-i18n="calc.lede">Rovnaké vzorce, aké poháňajú Subten: BMR, TDEE, denný kalorický cieľ, makrá s carb cyclingom, hydratácia a skóre regenerácie. Všetko počíta tvoj prehliadač naživo — nič sa nikam neposiela.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="calc-wrap">
+
+      <!-- ===== INPUT FORM ===== -->
+      <div class="calc-panel calc-form">
+        <p class="calc-section-label" data-i18n="calc.inputs.title">Tvoje údaje</p>
+
+        <div class="field">
+          <label data-i18n="calc.sex">Pohlavie</label>
+          <div class="seg" id="seg-sex">
+            <button type="button" data-v="male" class="on" data-i18n="calc.sex.male">Muž</button>
+            <button type="button" data-v="female" data-i18n="calc.sex.female">Žena</button>
+            <button type="button" data-v="other" data-i18n="calc.sex.other">Iné</button>
+          </div>
+        </div>
+
+        <div class="row3">
+          <div class="field">
+            <label data-i18n="calc.age">Vek</label>
+            <input class="inp" id="in-age" type="number" inputmode="numeric" min="14" max="100" value="30" />
+          </div>
+          <div class="field">
+            <label data-i18n="calc.height">Výška (cm)</label>
+            <input class="inp" id="in-height" type="number" inputmode="numeric" min="120" max="230" value="178" />
+          </div>
+          <div class="field">
+            <label data-i18n="calc.weight">Váha (kg)</label>
+            <input class="inp" id="in-weight" type="number" inputmode="decimal" min="35" max="250" value="80" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label data-i18n="calc.activity">Úroveň aktivity</label>
+          <select class="inp" id="in-activity">
+            <option value="1.2" data-i18n="calc.act.sedentary">Sedavá (málo pohybu)</option>
+            <option value="1.375" data-i18n="calc.act.light">Ľahká (1–3× týždenne)</option>
+            <option value="1.55" selected data-i18n="calc.act.moderate">Stredná (3–5× týždenne)</option>
+            <option value="1.725" data-i18n="calc.act.active">Aktívna (6–7× týždenne)</option>
+            <option value="1.9" data-i18n="calc.act.veryactive">Veľmi aktívna (2× denne / fyzická práca)</option>
+          </select>
+          <p class="hint" data-i18n="calc.act.hint">Subten je pri štarte konzervatívny a strop násobiča drží na 1,5× — týždenná adaptácia ho potom doladí podľa reálnych dát.</p>
+        </div>
+
+        <div class="field">
+          <label data-i18n="calc.goal">Cieľ</label>
+          <select class="inp" id="in-goal">
+            <option value="fatLoss" data-i18n="calc.goal.fatloss">Chudnutie (−500 kcal)</option>
+            <option value="maintain" selected data-i18n="calc.goal.maintain">Udržanie</option>
+            <option value="muscleGain" data-i18n="calc.goal.gain">Naberanie (+300 kcal)</option>
+            <option value="recomp" data-i18n="calc.goal.recomp">Rekompozícia (0 kcal)</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label data-i18n="calc.bodyfat">% telesného tuku — voliteľné</label>
+          <input class="inp" id="in-bf" type="number" inputmode="decimal" min="3" max="60" placeholder="—" />
+          <p class="hint" data-i18n="calc.bodyfat.hint">Pre výpočet čistej hmoty (lean mass).</p>
+        </div>
+
+        <p class="calc-section-label mt" data-i18n="calc.week.title">Tréningový týždeň</p>
+        <p class="hint" style="margin:-6px 0 14px" data-i18n="calc.week.hint">Nastav typ záťaže pre každý deň — sacharidy sa rozložia podľa neho (carb cycling). Týždenný priemer ostáva rovný cieľu.</p>
+        <div class="week-grid" id="week-grid"></div>
+        <p class="week-legend" data-i18n="calc.week.legend">Oddych ×1,0 · Sila ×1,6 · Kardio ×2,4 · Šport/dlhý ×3,5</p>
+
+        <!-- wearable disclosure -->
+        <div class="disc" id="disc-wear">
+          <button type="button" class="disc-toggle" id="disc-toggle">
+            <span data-i18n="calc.wear.title">Dáta z hodiniek — voliteľné</span>
+            <svg class="chev" width="14" height="9" viewBox="0 0 14 9" fill="none"><path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+          <div class="disc-body">
+            <p class="disc-note" data-i18n="calc.wear.note">Tieto skóre v appke počítajú dáta z Apple Watch / Apple Health. Tu si ich môžeš odsimulovať ručným zadaním.</p>
+
+            <div class="row2">
+              <div class="field">
+                <label data-i18n="calc.wear.hrv">HRV (ms, SDNN)</label>
+                <input class="inp" id="in-hrv" type="number" inputmode="numeric" min="10" max="200" placeholder="—" />
+              </div>
+              <div class="field">
+                <label data-i18n="calc.wear.rhr">Kľudový tep (bpm)</label>
+                <input class="inp" id="in-rhr" type="number" inputmode="numeric" min="30" max="120" placeholder="—" />
+              </div>
+            </div>
+            <div class="row2">
+              <div class="field">
+                <label data-i18n="calc.wear.sleep">Spánok (hodiny)</label>
+                <input class="inp" id="in-sleep" type="number" inputmode="decimal" min="0" max="14" step="0.1" placeholder="—" />
+              </div>
+              <div class="field">
+                <label data-i18n="calc.wear.heavy">Včera ťažký tréning?</label>
+                <select class="inp" id="in-heavy">
+                  <option value="0" data-i18n="calc.no">Nie</option>
+                  <option value="1" data-i18n="calc.yes">Áno</option>
+                </select>
+              </div>
+            </div>
+
+            <p class="calc-section-label" style="margin-top:8px" data-i18n="calc.wear.strain">Pre strain skóre</p>
+            <div class="row3">
+              <div class="field">
+                <label data-i18n="calc.wear.active">Aktívne kcal</label>
+                <input class="inp" id="in-active" type="number" inputmode="numeric" min="0" max="3000" placeholder="—" />
+              </div>
+              <div class="field">
+                <label data-i18n="calc.wear.workout">Tréning (min)</label>
+                <input class="inp" id="in-wkmin" type="number" inputmode="numeric" min="0" max="600" placeholder="—" />
+              </div>
+              <div class="field">
+                <label data-i18n="calc.wear.steps">Kroky</label>
+                <input class="inp" id="in-steps" type="number" inputmode="numeric" min="0" max="60000" placeholder="—" />
+              </div>
+            </div>
+
+            <p class="calc-section-label" style="margin-top:8px" data-i18n="calc.wear.sleepq">Pre sleep skóre</p>
+            <div class="row3">
+              <div class="field">
+                <label data-i18n="calc.wear.deep">Hlboký spánok %</label>
+                <input class="inp" id="in-deep" type="number" inputmode="numeric" min="0" max="60" placeholder="—" />
+              </div>
+              <div class="field">
+                <label data-i18n="calc.wear.rem">REM %</label>
+                <input class="inp" id="in-rem" type="number" inputmode="numeric" min="0" max="60" placeholder="—" />
+              </div>
+              <div class="field">
+                <label data-i18n="calc.wear.eff">Efektivita %</label>
+                <input class="inp" id="in-eff" type="number" inputmode="numeric" min="0" max="100" placeholder="—" />
+              </div>
+            </div>
+            <div class="field">
+              <label data-i18n="calc.wear.spo2">SpO₂ %</label>
+              <input class="inp" id="in-spo2" type="number" inputmode="numeric" min="80" max="100" placeholder="—" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== RESULTS ===== -->
+      <div>
+        <div class="calc-panel">
+          <p class="calc-section-label" data-i18n="calc.out.title">Tvoje výsledky</p>
+
+          <div class="res-grid">
+            <div class="stat">
+              <div class="k" data-i18n="calc.bmr">BMR</div>
+              <div class="v" id="r-bmr">—<small> kcal</small></div>
+              <div class="sub" data-i18n="calc.bmr.sub">Bazálny metabolizmus (Mifflin-St Jeor)</div>
+            </div>
+            <div class="stat">
+              <div class="k" data-i18n="calc.tdee">TDEE</div>
+              <div class="v" id="r-tdee">—<small> kcal</small></div>
+              <div class="sub" id="r-tdee-sub" data-i18n="calc.tdee.sub">Celkový denný výdaj (konzervatívny štart)</div>
+            </div>
+            <div class="stat accent">
+              <div class="k" data-i18n="calc.target">Denný cieľ</div>
+              <div class="v" id="r-target">—<small> kcal</small></div>
+              <div class="sub" id="r-target-sub" data-i18n="calc.target.sub">Kalorický cieľ pre tvoj cieľ</div>
+            </div>
+            <div class="stat">
+              <div class="k" data-i18n="calc.bmi">BMI</div>
+              <div class="v" id="r-bmi">—</div>
+              <span class="pill-tag" id="r-bmi-tag"></span>
+            </div>
+            <div class="stat">
+              <div class="k" data-i18n="calc.hydration">Hydratácia</div>
+              <div class="v" id="r-water">—<small> L</small></div>
+              <div class="sub" data-i18n="calc.hydration.sub">35 ml na kg hmotnosti</div>
+            </div>
+            <div class="stat" id="r-lean-card" style="display:none">
+              <div class="k" data-i18n="calc.leanmass">Čistá hmota</div>
+              <div class="v" id="r-lean">—<small> kg</small></div>
+              <div class="sub" data-i18n="calc.leanmass.sub">Hmotnosť bez tuku</div>
+            </div>
+          </div>
+
+          <!-- macros -->
+          <div class="res-block">
+            <h3 data-i18n="calc.macros.title">Makrá</h3>
+            <p class="res-sub" data-i18n="calc.macros.sub">Bielkoviny a tuky držíme stabilné; sacharidy sa menia podľa záťaže dňa (carb cycling). Hodnoty nižšie sú denný základ.</p>
+
+            <div class="macro-row">
+              <div class="mlab" data-i18n="calc.macros.base">Základ</div>
+              <div class="macro-bar" id="macro-bar"></div>
+            </div>
+            <div class="macro-legend">
+              <span><i style="background:var(--c-protein)"></i> <span data-i18n="calc.protein">Bielkoviny</span></span>
+              <span><i style="background:var(--c-carbs)"></i> <span data-i18n="calc.carbs">Sacharidy</span></span>
+              <span><i style="background:var(--c-fat)"></i> <span data-i18n="calc.fat">Tuky</span></span>
+            </div>
+
+            <div class="macro-num-grid">
+              <div class="mnum"><div class="mk" data-i18n="calc.protein">Bielkoviny</div><div class="mv" id="r-protein">—<small>g</small></div></div>
+              <div class="mnum"><div class="mk" data-i18n="calc.carbs">Sacharidy</div><div class="mv" id="r-carbs">—<small>g</small></div></div>
+              <div class="mnum"><div class="mk" data-i18n="calc.fat">Tuky</div><div class="mv" id="r-fat">—<small>g</small></div></div>
+              <div class="mnum"><div class="mk" data-i18n="calc.fiber">Vláknina</div><div class="mv" id="r-fiber">—<small>g</small></div></div>
+            </div>
+          </div>
+
+          <!-- carb cycling -->
+          <div class="res-block">
+            <h3 data-i18n="calc.cycle.title">Carb cycling — týždeň</h3>
+            <p class="res-sub" data-i18n="calc.cycle.sub">Sacharidy sa prerozdelia podľa typu dňa. Týždenný priemer sa rovná cieľu — nič sa nepridáva navyše.</p>
+            <table class="cyc-table">
+              <thead><tr>
+                <th data-i18n="calc.cycle.day">Deň</th>
+                <th data-i18n="calc.cycle.type">Typ</th>
+                <th data-i18n="calc.carbs">Sacharidy</th>
+                <th data-i18n="calc.cycle.kcal">Kalórie dňa</th>
+              </tr></thead>
+              <tbody id="cyc-body"></tbody>
+              <tfoot><tr>
+                <td colspan="2" data-i18n="calc.cycle.avg">Týždenný priemer sacharidov</td>
+                <td id="cyc-avg">—</td>
+                <td></td>
+              </tr></tfoot>
+            </table>
+          </div>
+
+          <!-- secondary scores -->
+          <div class="res-block" id="scores-block" style="display:none">
+            <h3 data-i18n="calc.scores.title">Skóre regenerácie</h3>
+            <p class="res-sub" data-i18n="calc.scores.sub">WHOOP-style heuristiky z dát hodiniek. V appke sa počítajú automaticky z Apple Health.</p>
+            <div class="res-grid">
+              <div class="stat" id="card-recovery" style="display:none">
+                <div class="k" data-i18n="calc.recovery">Recovery</div>
+                <div class="v" id="r-recovery">—</div>
+                <span class="pill-tag" id="r-recovery-tag"></span>
+              </div>
+              <div class="stat" id="card-sleep" style="display:none">
+                <div class="k" data-i18n="calc.sleep">Sleep score</div>
+                <div class="v" id="r-sleep">—</div>
+                <span class="pill-tag" id="r-sleep-tag"></span>
+              </div>
+              <div class="stat" id="card-strain" style="display:none">
+                <div class="k" data-i18n="calc.strain">Strain</div>
+                <div class="v" id="r-strain"><small>0–21</small></div>
+                <span class="pill-tag" id="r-strain-tag"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="res-block" id="scores-hint">
+            <div class="note-card" data-i18n="calc.scores.hint"><b>Tip:</b> Vyplň <b>Dáta z hodiniek</b> vľavo a doplníme aj Recovery, Sleep a Strain skóre — presne ako ich appka ukazuje z Apple Watch.</div>
+          </div>
+        </div>
+
+        <p class="disclaimer" data-i18n="calc.disclaimer">Orientačný prepočet podľa verejne dokumentovaných vzorcov Subtenu. Nenahrádza lekársku ani odbornú výživovú radu. Appka cieľ priebežne adaptuje podľa reálnych dát (hmotnosť + príjem za 21 dní), čo táto jednorazová kalkulačka nerobí.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <span class="logo" aria-hidden="true"><img src="assets/brand/subten-logo.png" alt="Subten" width="30" height="30" style="border-radius:7px;display:block;" /></span>
+          Subten
+        </a>
+        <p data-i18n="footer.tagline">Tréning, výživa a regenerácia v jednej appke.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4 data-i18n="footer.product">Produkt</h4>
+          <a href="index.html#features" data-i18n="nav.features">Funkcie</a>
+          <a href="generator.html" data-i18n="nav.generator">Generátor</a>
+          <a href="calculator.html" data-i18n="nav.calculator">Kalkulačka</a>
+          <a href="recipes.html" data-i18n="nav.recipes">Recepty</a>
+          <a href="index.html#pricing" data-i18n="nav.pricing">Cenník</a>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.legal">Právne</h4>
+          <a href="legal/privacy.html" data-i18n="footer.privacy">Ochrana súkromia</a>
+          <a href="legal/terms.html" data-i18n="footer.terms">Podmienky používania</a>
+          <a href="legal/account-deletion.html" data-i18n="footer.delete">Vymazanie účtu</a>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.contact">Kontakt</h4>
+          <a href="https://subten-app.eu">subten-app.eu</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footer.rights">© 2026 Subten. Všetky práva vyhradené.</span>
+      <span data-i18n="footer.made">Vytvorené na Slovensku 🇸🇰</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  /* ---- tiny i18n helper (reads the shared dictionary) ---- */
+  function lang() { return window.__subtenLang || "en"; }
+  function t(key) {
+    const e = window.SUBTEN_I18N[key];
+    if (!e) return key;
+    const l = lang();
+    return e[l] != null ? e[l] : (e.en != null ? e.en : key);
+  }
+
+  /* ---- constants (Subten Formula Reference) ---- */
+  const SEX_CONST = { male: 5, female: -161, other: -78 };
+  const CAL_FLOOR = { male: 1500, female: 1200, other: 1350 };
+  const GOAL_ADJ  = { fatLoss: -500, muscleGain: 300, recomp: 0, maintain: 0 };
+  const CONSERVATIVE_CAP = 1.5;
+  const DAY_WEIGHT = { rest: 1.0, strength: 1.6, cardio: 2.4, sport: 3.5 };
+  const DAY_TYPES  = ["rest", "strength", "cardio", "sport"];
+  const DAY_KEYS   = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+  const DEFAULT_WEEK = ["strength", "cardio", "strength", "rest", "strength", "sport", "rest"];
+
+  /* ---- state ---- */
+  let sex = "male";
+  let week = DEFAULT_WEEK.slice();
+
+  const $ = (id) => document.getElementById(id);
+  const num = (id) => { const v = parseFloat($(id).value); return isFinite(v) ? v : NaN; };
+  const round = Math.round;
+
+  /* ---- build week selectors ---- */
+  function buildWeek() {
+    const grid = $("week-grid");
+    grid.innerHTML = "";
+    DAY_KEYS.forEach((dk, i) => {
+      const cell = document.createElement("div");
+      cell.className = "week-day";
+      const opts = DAY_TYPES.map(ty =>
+        `<option value="${ty}" ${week[i] === ty ? "selected" : ""}>${t("calc.type." + ty)}</option>`).join("");
+      cell.innerHTML = `<span>${t("calc.dayshort." + dk)}</span><select data-i="${i}">${opts}</select>`;
+      grid.appendChild(cell);
+    });
+    grid.querySelectorAll("select").forEach(s => {
+      s.addEventListener("change", () => { week[+s.dataset.i] = s.value; recalc(); });
+    });
+  }
+
+  /* ---- core formulas ---- */
+  function computeMacros(targetKcal, w, goal) {
+    const proteinPerKg = goal === "fatLoss" ? 2.2 : 2.0;
+    let protein = proteinPerKg * w;
+    const fat = Math.max(0.6 * w, 0.20 * targetKcal / 9);   // Barakat floor
+    let carbs = (targetKcal - protein * 4 - fat * 9) / 4;
+    let finalTarget = targetKcal;
+
+    if (carbs < 130) {                                       // carb floor (IOM DRI)
+      const minProtein = 1.6 * w;                            // never trim below 1.6 g/kg
+      const proteinKcalAvail = targetKcal - fat * 9 - 130 * 4;
+      const trimmedProtein = proteinKcalAvail / 4;
+      if (trimmedProtein >= minProtein) {
+        protein = trimmedProtein;
+        carbs = 130;
+      } else {
+        protein = minProtein;
+        carbs = (targetKcal - protein * 4 - fat * 9) / 4;
+        if (carbs < 130) {                                   // raise calories to fit minimums
+          finalTarget = protein * 4 + fat * 9 + 130 * 4;
+          carbs = 130;
+        }
+      }
+    }
+    const fiber = 14 * finalTarget / 1000;                   // IOM AI, calorie-scaled
+    return { protein, fat, carbs, fiber, finalTarget };
+  }
+
+  function bucket(map, value) {
+    for (const b of map) if (value >= b.min) return b;
+    return map[map.length - 1];
+  }
+
+  function recovery(hrv, rhr, sleepMin, heavy) {
+    let s = 70;
+    if (isFinite(sleepMin)) {
+      s += sleepMin >= 420 ? Math.min(20, (sleepMin - 420) / 6) : -Math.min(25, (420 - sleepMin) / 6);
+    }
+    if (isFinite(hrv)) s += clamp(-15, 15, (hrv - 40) / 2);  // current-only baseline (ref 40 ms)
+    if (isFinite(rhr)) {
+      if (rhr > 65) s -= Math.min(20, (rhr - 65) * 0.6);
+      else if (rhr < 50) s += Math.min(10, (50 - rhr) * 0.5);
+    }
+    if (heavy) s -= 10;
+    return clamp(0, 100, s);
+  }
+
+  function strain(activeCal, wkMin, steps, rhr) {
+    let s = Math.min(10, (activeCal || 0) / 100)
+          + Math.min(7, (wkMin || 0) / 17)
+          + Math.min(4, (steps || 0) / 5000);
+    if (isFinite(rhr) && rhr < 55) s *= 0.95;
+    return clamp(0, 21, s);
+  }
+
+  function sleepScore(sleepMin, deepPct, remPct, eff, spo2, rhr) {
+    let s = 50;
+    const m = sleepMin;
+    if (m >= 480) s += 30;
+    else if (m >= 420) s += 20 + (m - 420) / 6;
+    else if (m >= 360) s += 10 + (m - 360) / 6;
+    else if (m >= 240) s += 10 - (360 - m) * (40 / 120);
+    else s -= 30;
+    if (isFinite(deepPct)) s += (deepPct >= 15 && deepPct <= 25) ? 10 : (deepPct >= 10 ? 5 : -5);
+    if (isFinite(remPct))  s += (remPct >= 20 && remPct <= 30) ? 10 : (remPct >= 15 ? 5 : -5);
+    if (isFinite(eff))     s += eff >= 90 ? 5 : (eff < 75 ? -5 : 0);
+    if (isFinite(spo2))    s += spo2 >= 96 ? 5 : (spo2 < 92 ? -5 : 0);
+    if (isFinite(rhr))     s += rhr < 55 ? 5 : (rhr > 70 ? -5 : 0);
+    return clamp(0, 100, s);
+  }
+
+  function clamp(lo, hi, v) { return Math.max(lo, Math.min(hi, v)); }
+
+  /* ---- bucket maps (min thresholds, descending) ---- */
+  const REC_BUCKETS = [
+    { min: 90, key: "ready",     tone: "green" },
+    { min: 80, key: "excellent", tone: "green" },
+    { min: 65, key: "good",      tone: "amber" },
+    { min: 50, key: "moderate",  tone: "amber" },
+    { min: 40, key: "fair",      tone: "red"   },
+    { min: 0,  key: "rest",      tone: "red"   }
+  ];
+  const SLEEP_BUCKETS = [
+    { min: 85, key: "excellent", tone: "green" },
+    { min: 70, key: "good",      tone: "green" },
+    { min: 50, key: "fair",      tone: "amber" },
+    { min: 0,  key: "poor",      tone: "red"   }
+  ];
+  const STRAIN_BUCKETS = [
+    { min: 18, key: "peak",   tone: "red"   },
+    { min: 14, key: "high",   tone: "amber" },
+    { min: 8,  key: "medium", tone: "blue"  },
+    { min: 3,  key: "low",    tone: "green" },
+    { min: 0,  key: "rest",   tone: "green" }
+  ];
+  const BMI_BANDS = [
+    { min: 30,   key: "obese",  tone: "red"   },
+    { min: 25,   key: "over",   tone: "amber" },
+    { min: 18.5, key: "normal", tone: "green" },
+    { min: 0,    key: "under",  tone: "amber" }
+  ];
+
+  /* ---- main recompute ---- */
+  function recalc() {
+    const age = num("in-age"), h = num("in-height"), w = num("in-weight");
+    const selMult = parseFloat($("in-activity").value);
+    let goal = $("in-goal").value;
+    const bf = num("in-bf");
+
+    if (!isFinite(age) || !isFinite(h) || !isFinite(w) || w <= 0 || h <= 0) return;
+
+    // BMI + underweight guard
+    const bmi = w / Math.pow(h / 100, 2);
+    if (bmi < 18.5 && goal === "fatLoss") goal = "maintain";
+
+    // BMR / TDEE (conservative cap 1.5)
+    const bmr = 10 * w + 6.25 * h - 5 * age + SEX_CONST[sex];
+    const usedMult = Math.min(selMult, CONSERVATIVE_CAP);
+    const tdee = bmr * usedMult;
+
+    // calorie target
+    const floor = CAL_FLOOR[sex];
+    const rawTarget = Math.max(floor, tdee + GOAL_ADJ[goal]);
+    const m = computeMacros(rawTarget, w, goal);
+    const target = m.finalTarget;
+
+    // ---- write basics ----
+    $("r-bmr").innerHTML = round(bmr) + "<small> kcal</small>";
+    $("r-tdee").innerHTML = round(tdee) + "<small> kcal</small>";
+    $("r-tdee-sub").textContent = selMult > CONSERVATIVE_CAP
+      ? t("calc.tdee.capped")
+      : t("calc.tdee.sub");
+    $("r-target").innerHTML = round(target) + "<small> kcal</small>";
+    $("r-target-sub").textContent =
+      (goal !== $("in-goal").value) ? t("calc.target.guard") : t("calc.target.sub");
+
+    $("r-bmi").textContent = bmi.toFixed(1);
+    const bb = bucket(BMI_BANDS, bmi);
+    const bmiTag = $("r-bmi-tag");
+    bmiTag.textContent = t("calc.bmi." + bb.key);
+    bmiTag.className = "pill-tag " + bb.tone;
+
+    $("r-water").innerHTML = (round(w * 35) / 1000).toFixed(2) + "<small> L</small>";
+
+    // lean mass
+    if (isFinite(bf) && bf > 0) {
+      $("r-lean-card").style.display = "";
+      $("r-lean").innerHTML = (w * (1 - bf / 100)).toFixed(1) + "<small> kg</small>";
+    } else {
+      $("r-lean-card").style.display = "none";
+    }
+
+    // ---- macros ----
+    const P = m.protein, C = m.carbs, F = m.fat;
+    $("r-protein").innerHTML = round(P) + "<small>g</small>";
+    $("r-carbs").innerHTML   = round(C) + "<small>g</small>";
+    $("r-fat").innerHTML     = round(F) + "<small>g</small>";
+    $("r-fiber").innerHTML   = round(m.fiber) + "<small>g</small>";
+
+    const pK = P * 4, cK = C * 4, fK = F * 9, totK = pK + cK + fK;
+    const bar = $("macro-bar");
+    bar.innerHTML =
+      seg("p", pK / totK, round(P) + "g") +
+      seg("c", cK / totK, round(C) + "g") +
+      seg("f", fK / totK, round(F) + "g");
+
+    // ---- carb cycling ----
+    const sumW = week.reduce((a, ty) => a + DAY_WEIGHT[ty], 0);
+    const targetCarbs = C;
+    const tbody = $("cyc-body");
+    tbody.innerHTML = "";
+    let maxCarb = 0;
+    const dayCarbs = week.map(ty => (targetCarbs * 7) * DAY_WEIGHT[ty] / sumW);
+    maxCarb = Math.max.apply(null, dayCarbs);
+    week.forEach((ty, i) => {
+      const cDay = dayCarbs[i];
+      const calDay = P * 4 + F * 9 + cDay * 4;
+      const isHigh = Math.abs(cDay - maxCarb) < 0.5;
+      tbody.innerHTML += `<tr class="${isHigh ? "is-high" : ""}">
+        <td>${t("calc.day." + DAY_KEYS[i])}</td>
+        <td>${t("calc.type." + ty)} <span class="tt">×${DAY_WEIGHT[ty].toString().replace(".", t("calc.decimal"))}</span></td>
+        <td>${round(cDay)} g</td>
+        <td>${round(calDay)} kcal</td>
+      </tr>`;
+    });
+    const avg = dayCarbs.reduce((a, b) => a + b, 0) / 7;
+    $("cyc-avg").textContent = round(avg) + " g";
+
+    // ---- secondary scores ----
+    const hrv = num("in-hrv"), rhr = num("in-rhr");
+    const sleepH = num("in-sleep"), sleepMin = isFinite(sleepH) ? sleepH * 60 : NaN;
+    const heavy = $("in-heavy").value === "1";
+    const active = num("in-active"), wkMin = num("in-wkmin"), steps = num("in-steps");
+    const deep = num("in-deep"), rem = num("in-rem"), eff = num("in-eff"), spo2 = num("in-spo2");
+
+    const hasRecovery = isFinite(hrv) || isFinite(rhr) || isFinite(sleepMin);
+    const hasStrain   = isFinite(active) || isFinite(wkMin) || isFinite(steps);
+    const hasSleep    = isFinite(sleepMin);
+    const anyScore = hasRecovery || hasStrain || hasSleep;
+
+    $("scores-block").style.display = anyScore ? "" : "none";
+    $("scores-hint").style.display = anyScore ? "none" : "";
+
+    if (hasRecovery) {
+      const v = round(recovery(hrv, rhr, sleepMin, heavy));
+      const b = bucket(REC_BUCKETS, v);
+      $("card-recovery").style.display = "";
+      $("r-recovery").textContent = v;
+      tag("r-recovery-tag", "calc.rec." + b.key, b.tone);
+    } else $("card-recovery").style.display = "none";
+
+    if (hasSleep) {
+      const v = round(sleepScore(sleepMin, deep, rem, eff, spo2, rhr));
+      const b = bucket(SLEEP_BUCKETS, v);
+      $("card-sleep").style.display = "";
+      $("r-sleep").textContent = v;
+      tag("r-sleep-tag", "calc.slp." + b.key, b.tone);
+    } else $("card-sleep").style.display = "none";
+
+    if (hasStrain) {
+      const v = strain(active, wkMin, steps, rhr);
+      const b = bucket(STRAIN_BUCKETS, v);
+      $("card-strain").style.display = "";
+      $("r-strain").innerHTML = v.toFixed(1) + '<small> /21</small>';
+      tag("r-strain-tag", "calc.str." + b.key, b.tone);
+    } else $("card-strain").style.display = "none";
+  }
+
+  function seg(cls, frac, label) {
+    const pct = Math.max(0, frac * 100);
+    return `<div class="macro-seg ${cls}" style="width:${pct}%">${pct > 9 ? label : ""}</div>`;
+  }
+  function tag(id, key, tone) {
+    const el = $(id);
+    el.textContent = t(key);
+    el.className = "pill-tag " + tone;
+  }
+
+  /* ---- wiring ---- */
+  function wire() {
+    $("seg-sex").querySelectorAll("button").forEach(b => {
+      b.addEventListener("click", () => {
+        sex = b.dataset.v;
+        $("seg-sex").querySelectorAll("button").forEach(x => x.classList.toggle("on", x === b));
+        recalc();
+      });
+    });
+    ["in-age", "in-height", "in-weight", "in-activity", "in-goal", "in-bf",
+     "in-hrv", "in-rhr", "in-sleep", "in-heavy", "in-active", "in-wkmin",
+     "in-steps", "in-deep", "in-rem", "in-eff", "in-spo2"].forEach(id => {
+      const el = $(id);
+      el.addEventListener("input", recalc);
+      el.addEventListener("change", recalc);
+    });
+    $("disc-toggle").addEventListener("click", () => $("disc-wear").classList.toggle("open"));
+
+    // re-render localized labels + recalc when language changes
+    const orig = window.SubtenSetLang;
+    window.SubtenSetLang = function (l) { orig(l); buildWeek(); recalc(); };
+  }
+
+  function init() {
+    buildWeek();
+    wire();
+    recalc();
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+</script>
+
+</body>
+</html>

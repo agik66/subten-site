@@ -35,6 +35,7 @@ window.SUBTEN_I18N = {
   "nav.pricing":  { sk: "Cenník", en: "Pricing", cz: "Ceník" },
   "nav.faq":      { sk: "FAQ", en: "FAQ", cz: "FAQ" },
   "nav.generator":{ sk: "Generátor", en: "Generator", cz: "Generátor" },
+  "nav.calculator":{ sk: "Kalkulačka", en: "Calculator", cz: "Kalkulačka" },
   "nav.recipes":  { sk: "Recepty", en: "Recipes", cz: "Recepty" },
   "nav.cta":      { sk: "Stiahnuť", en: "Get the app", cz: "Stáhnout" },
 
@@ -224,7 +225,171 @@ window.SUBTEN_I18N = {
   "footer.delete":  { sk: "Vymazanie účtu", en: "Delete account" },
   "footer.support": { sk: "Podpora", en: "Support" },
   "footer.rights":  { sk: "© 2026 Subten. Všetky práva vyhradené.", en: "© 2026 Subten. All rights reserved." },
-  "footer.made":    { sk: "Vytvorené na Slovensku 🇸🇰", en: "Made in Slovakia 🇸🇰" }
+  "footer.made":    { sk: "Vytvorené na Slovensku 🇸🇰", en: "Made in Slovakia 🇸🇰" },
+
+  /* ── calculator ── */
+  "calc.kicker":  { sk: "Kalkulačka zadarmo", en: "Free calculator" },
+  "calc.h1":      { sk: "Tvoje čísla — presne ako v appke.", en: "Your numbers — exactly how the app does it." },
+  "calc.lede":    {
+    sk: "Rovnaké vzorce, aké poháňajú Subten: BMR, TDEE, denný kalorický cieľ, makrá s carb cyclingom, hydratácia a skóre regenerácie. Všetko počíta tvoj prehliadač naživo — nič sa nikam neposiela.",
+    en: "The same formulas that power Subten: BMR, TDEE, daily calorie target, macros with carb cycling, hydration and recovery scores. Everything is computed live in your browser — nothing is sent anywhere."
+  },
+  "calc.inputs.title": { sk: "Tvoje údaje", en: "Your details" },
+  "calc.out.title":    { sk: "Tvoje výsledky", en: "Your results" },
+
+  "calc.sex":        { sk: "Pohlavie", en: "Sex" },
+  "calc.sex.male":   { sk: "Muž", en: "Male" },
+  "calc.sex.female": { sk: "Žena", en: "Female" },
+  "calc.sex.other":  { sk: "Iné", en: "Other" },
+  "calc.age":        { sk: "Vek", en: "Age" },
+  "calc.height":     { sk: "Výška (cm)", en: "Height (cm)" },
+  "calc.weight":     { sk: "Váha (kg)", en: "Weight (kg)" },
+
+  "calc.activity":         { sk: "Úroveň aktivity", en: "Activity level" },
+  "calc.act.sedentary":    { sk: "Sedavá (málo pohybu)", en: "Sedentary (little exercise)" },
+  "calc.act.light":        { sk: "Ľahká (1–3× týždenne)", en: "Light (1–3×/week)" },
+  "calc.act.moderate":     { sk: "Stredná (3–5× týždenne)", en: "Moderate (3–5×/week)" },
+  "calc.act.active":       { sk: "Aktívna (6–7× týždenne)", en: "Active (6–7×/week)" },
+  "calc.act.veryactive":   { sk: "Veľmi aktívna (2× denne / fyzická práca)", en: "Very active (2×/day or physical job)" },
+  "calc.act.hint":         {
+    sk: "Subten je pri štarte konzervatívny a strop násobiča drží na 1,5× — týždenná adaptácia ho potom doladí podľa reálnych dát.",
+    en: "Subten starts conservatively and caps the multiplier at 1.5× — weekly adaptation then fine-tunes it from your real data."
+  },
+
+  "calc.goal":          { sk: "Cieľ", en: "Goal" },
+  "calc.goal.fatloss":  { sk: "Chudnutie (−500 kcal)", en: "Fat loss (−500 kcal)" },
+  "calc.goal.maintain": { sk: "Udržanie", en: "Maintain" },
+  "calc.goal.gain":     { sk: "Naberanie (+300 kcal)", en: "Muscle gain (+300 kcal)" },
+  "calc.goal.recomp":   { sk: "Rekompozícia (0 kcal)", en: "Recomp (0 kcal)" },
+
+  "calc.bodyfat":      { sk: "% telesného tuku — voliteľné", en: "Body fat % — optional" },
+  "calc.bodyfat.hint": { sk: "Pre výpočet čistej hmoty (lean mass).", en: "Used to estimate lean body mass." },
+
+  "calc.week.title":  { sk: "Tréningový týždeň", en: "Training week" },
+  "calc.week.hint":   {
+    sk: "Nastav typ záťaže pre každý deň — sacharidy sa rozložia podľa neho (carb cycling). Týždenný priemer ostáva rovný cieľu.",
+    en: "Set the load type for each day — carbs are distributed accordingly (carb cycling). The weekly average stays equal to the target."
+  },
+  "calc.week.legend": { sk: "Oddych ×1,0 · Sila ×1,6 · Kardio ×2,4 · Šport/dlhý ×3,5", en: "Rest ×1.0 · Strength ×1.6 · Cardio ×2.4 · Sport/long ×3.5" },
+
+  "calc.type.rest":     { sk: "Oddych", en: "Rest" },
+  "calc.type.strength": { sk: "Sila", en: "Strength" },
+  "calc.type.cardio":   { sk: "Kardio", en: "Cardio" },
+  "calc.type.sport":    { sk: "Šport", en: "Sport" },
+
+  "calc.dayshort.mon": { sk: "Po", en: "Mon" },
+  "calc.dayshort.tue": { sk: "Ut", en: "Tue" },
+  "calc.dayshort.wed": { sk: "St", en: "Wed" },
+  "calc.dayshort.thu": { sk: "Št", en: "Thu" },
+  "calc.dayshort.fri": { sk: "Pi", en: "Fri" },
+  "calc.dayshort.sat": { sk: "So", en: "Sat" },
+  "calc.dayshort.sun": { sk: "Ne", en: "Sun" },
+  "calc.day.mon": { sk: "Pondelok", en: "Monday" },
+  "calc.day.tue": { sk: "Utorok", en: "Tuesday" },
+  "calc.day.wed": { sk: "Streda", en: "Wednesday" },
+  "calc.day.thu": { sk: "Štvrtok", en: "Thursday" },
+  "calc.day.fri": { sk: "Piatok", en: "Friday" },
+  "calc.day.sat": { sk: "Sobota", en: "Saturday" },
+  "calc.day.sun": { sk: "Nedeľa", en: "Sunday" },
+
+  "calc.wear.title":   { sk: "Dáta z hodiniek — voliteľné", en: "Watch data — optional" },
+  "calc.wear.note":    {
+    sk: "Tieto skóre v appke počítajú dáta z Apple Watch / Apple Health. Tu si ich môžeš odsimulovať ručným zadaním.",
+    en: "In the app these scores come from Apple Watch / Apple Health. Here you can simulate them by entering values manually."
+  },
+  "calc.wear.hrv":     { sk: "HRV (ms, SDNN)", en: "HRV (ms, SDNN)" },
+  "calc.wear.rhr":     { sk: "Kľudový tep (bpm)", en: "Resting HR (bpm)" },
+  "calc.wear.sleep":   { sk: "Spánok (hodiny)", en: "Sleep (hours)" },
+  "calc.wear.heavy":   { sk: "Včera ťažký tréning?", en: "Heavy workout yesterday?" },
+  "calc.wear.strain":  { sk: "Pre strain skóre", en: "For strain score" },
+  "calc.wear.active":  { sk: "Aktívne kcal", en: "Active kcal" },
+  "calc.wear.workout": { sk: "Tréning (min)", en: "Workout (min)" },
+  "calc.wear.steps":   { sk: "Kroky", en: "Steps" },
+  "calc.wear.sleepq":  { sk: "Pre sleep skóre", en: "For sleep score" },
+  "calc.wear.deep":    { sk: "Hlboký spánok %", en: "Deep sleep %" },
+  "calc.wear.rem":     { sk: "REM %", en: "REM %" },
+  "calc.wear.eff":     { sk: "Efektivita %", en: "Efficiency %" },
+  "calc.wear.spo2":    { sk: "SpO₂ %", en: "SpO₂ %" },
+  "calc.no":           { sk: "Nie", en: "No" },
+  "calc.yes":          { sk: "Áno", en: "Yes" },
+
+  "calc.bmr":     { sk: "BMR", en: "BMR" },
+  "calc.bmr.sub": { sk: "Bazálny metabolizmus (Mifflin-St Jeor)", en: "Basal metabolic rate (Mifflin-St Jeor)" },
+  "calc.tdee":    { sk: "TDEE", en: "TDEE" },
+  "calc.tdee.sub":    { sk: "Celkový denný výdaj (konzervatívny štart)", en: "Total daily energy (conservative start)" },
+  "calc.tdee.capped": { sk: "Násobič obmedzený na 1,5× (konzervatívny štart)", en: "Multiplier capped at 1.5× (conservative start)" },
+  "calc.target":     { sk: "Denný cieľ", en: "Daily target" },
+  "calc.target.sub": { sk: "Kalorický cieľ pre tvoj cieľ", en: "Calorie target for your goal" },
+  "calc.target.guard": { sk: "BMI < 18,5 — pri podváhe rušíme deficit (udržanie)", en: "BMI < 18.5 — deficit disabled for underweight (maintain)" },
+
+  "calc.bmi":        { sk: "BMI", en: "BMI" },
+  "calc.bmi.under":  { sk: "Podváha", en: "Underweight" },
+  "calc.bmi.normal": { sk: "Norma", en: "Normal" },
+  "calc.bmi.over":   { sk: "Nadváha", en: "Overweight" },
+  "calc.bmi.obese":  { sk: "Obezita", en: "Obese" },
+
+  "calc.hydration":     { sk: "Hydratácia", en: "Hydration" },
+  "calc.hydration.sub": { sk: "35 ml na kg hmotnosti", en: "35 ml per kg of body weight" },
+  "calc.leanmass":      { sk: "Čistá hmota", en: "Lean mass" },
+  "calc.leanmass.sub":  { sk: "Hmotnosť bez tuku", en: "Fat-free mass" },
+
+  "calc.macros.title": { sk: "Makrá", en: "Macros" },
+  "calc.macros.sub":   {
+    sk: "Bielkoviny a tuky držíme stabilné; sacharidy sa menia podľa záťaže dňa (carb cycling). Hodnoty nižšie sú denný základ.",
+    en: "Protein and fat stay steady; carbs shift with each day's load (carb cycling). The numbers below are the daily baseline."
+  },
+  "calc.macros.base": { sk: "Základ", en: "Baseline" },
+  "calc.protein": { sk: "Bielkoviny", en: "Protein" },
+  "calc.carbs":   { sk: "Sacharidy", en: "Carbs" },
+  "calc.fat":     { sk: "Tuky", en: "Fat" },
+  "calc.fiber":   { sk: "Vláknina", en: "Fiber" },
+
+  "calc.cycle.title": { sk: "Carb cycling — týždeň", en: "Carb cycling — the week" },
+  "calc.cycle.sub":   {
+    sk: "Sacharidy sa prerozdelia podľa typu dňa. Týždenný priemer sa rovná cieľu — nič sa nepridáva navyše.",
+    en: "Carbs are redistributed by day type. The weekly average equals the target — nothing is added on top."
+  },
+  "calc.cycle.day":  { sk: "Deň", en: "Day" },
+  "calc.cycle.type": { sk: "Typ", en: "Type" },
+  "calc.cycle.kcal": { sk: "Kalórie dňa", en: "Day calories" },
+  "calc.cycle.avg":  { sk: "Týždenný priemer sacharidov", en: "Weekly average carbs" },
+  "calc.decimal":    { sk: ",", en: "." },
+
+  "calc.scores.title": { sk: "Skóre regenerácie", en: "Recovery scores" },
+  "calc.scores.sub":   {
+    sk: "WHOOP-style heuristiky z dát hodiniek. V appke sa počítajú automaticky z Apple Health.",
+    en: "WHOOP-style heuristics from watch data. In the app they are computed automatically from Apple Health."
+  },
+  "calc.scores.hint":  {
+    sk: "<b>Tip:</b> Vyplň <b>Dáta z hodiniek</b> vľavo a doplníme aj Recovery, Sleep a Strain skóre — presne ako ich appka ukazuje z Apple Watch.",
+    en: "<b>Tip:</b> Fill in <b>Watch data</b> on the left and we'll add Recovery, Sleep and Strain scores too — exactly how the app shows them from Apple Watch."
+  },
+  "calc.recovery": { sk: "Recovery", en: "Recovery" },
+  "calc.sleep":    { sk: "Sleep score", en: "Sleep score" },
+  "calc.strain":   { sk: "Strain", en: "Strain" },
+
+  "calc.rec.ready":     { sk: "Pripravený", en: "Ready" },
+  "calc.rec.excellent": { sk: "Výborný", en: "Excellent" },
+  "calc.rec.good":      { sk: "Dobrý", en: "Good" },
+  "calc.rec.moderate":  { sk: "Stredný", en: "Moderate" },
+  "calc.rec.fair":      { sk: "Slabší", en: "Fair" },
+  "calc.rec.rest":      { sk: "Potrebuje oddych", en: "Needs rest" },
+
+  "calc.slp.excellent": { sk: "Výborný", en: "Excellent" },
+  "calc.slp.good":      { sk: "Dobrý", en: "Good" },
+  "calc.slp.fair":      { sk: "Priemerný", en: "Fair" },
+  "calc.slp.poor":      { sk: "Slabý", en: "Poor" },
+
+  "calc.str.peak":   { sk: "Vrchol", en: "Peak" },
+  "calc.str.high":   { sk: "Vysoký", en: "High" },
+  "calc.str.medium": { sk: "Stredný", en: "Medium" },
+  "calc.str.low":    { sk: "Nízky", en: "Low" },
+  "calc.str.rest":   { sk: "Oddych", en: "Rest" },
+
+  "calc.disclaimer": {
+    sk: "Orientačný prepočet podľa verejne dokumentovaných vzorcov Subtenu. Nenahrádza lekársku ani odbornú výživovú radu. Appka cieľ priebežne adaptuje podľa reálnych dát (hmotnosť + príjem za 21 dní), čo táto jednorazová kalkulačka nerobí.",
+    en: "An indicative calculation based on Subten's documented formulas. It does not replace medical or professional nutrition advice. The app continuously adapts your target from real data (weight + intake over 21 days), which this one-shot calculator does not do."
+  }
 };
 
 /* ---------- runtime (netreba upravovať) ---------- */
