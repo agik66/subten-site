@@ -238,8 +238,8 @@ window.SUBTEN_I18N = {
   function initialLang() {
     const stored = localStorage.getItem(KEY);
     if (CODES.includes(stored)) return stored;
-    const nav = (navigator.language || "").slice(0, 2).toLowerCase();
-    return CODES.includes(nav) ? nav : CODES[0];
+    // First visit defaults to English; users can still switch to SK/CZ.
+    return CODES.includes("en") ? "en" : CODES[0];
   }
 
   // Build / refresh every .lang-toggle from the LANGUAGES config

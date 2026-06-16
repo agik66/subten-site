@@ -125,7 +125,7 @@
       if (!valid(v)) {
         field.style.borderColor = "var(--c-protein)";
         input.focus();
-        const lang = window.__subtenLang || "sk";
+        const lang = window.__subtenLang || "en";
         const dict = window.SUBTEN_I18N && window.SUBTEN_I18N["cta.invalid"];
         input.setAttribute("placeholder", (dict && dict[lang]) || "Enter a valid email");
         setTimeout(() => { field.style.borderColor = ""; }, 1600);
