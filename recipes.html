@@ -1,8 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<script>
+  /* Theme: default light, follow the OS color scheme (prefers-color-scheme). */
+  (function () {
+    try {
+      var mq = window.matchMedia("(prefers-color-scheme: dark)");
+      var set = function (dark) {
+        document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+      };
+      set(mq.matches);
+      var onChange = function (e) { set(e.matches); };
+      if (mq.addEventListener) mq.addEventListener("change", onChange);
+      else if (mq.addListener) mq.addListener(onChange);
+    } catch (e) {}
+  })();
+</script>
 <title>Subten — Knižnica receptov</title>
 <meta name="description" content="200+ zdravých receptov s presnými makrami, ingredienciami a postupom. Filtruj podľa kategórie, cieľa alebo kalorického rozpočtu." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />

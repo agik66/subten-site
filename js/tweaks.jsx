@@ -21,13 +21,21 @@ function SubtenTweaks() {
 
   React.useEffect(() => {
     const r = document.documentElement;
-    r.setAttribute("data-theme", t.theme);
     const hero = document.querySelector(".hero");
     if (hero) hero.setAttribute("data-variant", VARIANT_MAP[t.heroVariant] || "B");
     r.style.setProperty("--accent", t.accent);
     r.style.setProperty("--accent-strong", STRONG[t.accent] || t.accent);
     r.style.setProperty("--accent-glow", hexA(t.accent, 0.55));
-  }, [t.theme, t.heroVariant, t.accent]);
+  }, [t.heroVariant, t.accent]);
+
+  // The live site follows the OS color scheme (set in the <head> theme script),
+  // so don't clobber data-theme on first mount — only when a designer actually
+  // changes the Theme control inside the editor.
+  const themeTouched = React.useRef(false);
+  React.useEffect(() => {
+    if (!themeTouched.current) { themeTouched.current = true; return; }
+    document.documentElement.setAttribute("data-theme", t.theme);
+  }, [t.theme]);
 
   return (
     <TweaksPanel title="Tweaks">
