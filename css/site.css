@@ -375,6 +375,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 800; letter-spacing:
 .card {
   background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg);
   padding: 30px; position: relative; overflow: hidden;
+  background-clip: padding-box; isolation: isolate;
   transition: transform .5s var(--ease), border-color .4s, box-shadow .5s;
 }
 .card:hover { transform: translateY(-4px); border-color: var(--border-2); box-shadow: var(--card-shadow); }
@@ -393,8 +394,8 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 800; letter-spacing:
 .bento .card-coach    { grid-column: span 2; --fc: var(--c-coach); }
 .bento .card-progress { grid-column: span 2; --fc: var(--accent); }
 
-.card-glow { position: absolute; width: 220px; height: 220px; border-radius: 50%; filter: blur(60px); opacity: .22;
-  background: var(--fc, var(--accent)); right: -60px; top: -60px; pointer-events: none; }
+.card-glow { position: absolute; width: 240px; height: 240px; border-radius: 50%; filter: blur(78px); opacity: .16;
+  background: var(--fc, var(--accent)); right: -44px; top: -52px; pointer-events: none; }
 
 @media (max-width: 860px) {
   .bento { grid-template-columns: repeat(2, 1fr); }
