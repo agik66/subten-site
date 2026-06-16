@@ -1,15 +1,96 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Subten — Nutrition & recovery calculator</title>
-<meta name="description" content="Free calculator using the exact Subten formulas: BMR, TDEE, daily calorie target, macros with carb cycling, hydration, plus recovery, sleep and strain scores. Live results in your browser." />
+<script>
+  /* Theme: default light, follow the OS color scheme (prefers-color-scheme). */
+  (function () {
+    try {
+      var mq = window.matchMedia("(prefers-color-scheme: dark)");
+      var set = function (dark) {
+        document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+      };
+      set(mq.matches);
+      var onChange = function (e) { set(e.matches); };
+      if (mq.addEventListener) mq.addEventListener("change", onChange);
+      else if (mq.addListener) mq.addListener(onChange);
+    } catch (e) {}
+  })();
+</script>
+
+<!-- Primary SEO (localized at runtime via data-i18n / data-i18n-attr; EN here is the crawl default) -->
+<title data-i18n="calc.meta.title">Nutrition Calculator — BMR, TDEE, Calories &amp; Macros | Subten</title>
+<meta name="description" data-i18n-attr="content: calc.meta.desc" content="Free nutrition calculator: work out your BMR, TDEE, daily calorie target and macros (protein, carbs, fat, fiber) with carb cycling and hydration. Exact formulas, instant results, no signup." />
+<meta name="keywords" content="nutrition calculator, BMR calculator, TDEE calculator, calorie calculator, macro calculator, carb cycling, nutričná kalkulačka, kalorická kalkulačka, makro kalkulačka, nutriční kalkulačka" />
+<link rel="canonical" href="https://subten-app.eu/calculator.html" />
+<link rel="alternate" hreflang="en" href="https://subten-app.eu/calculator.html" />
+<link rel="alternate" hreflang="sk" href="https://subten-app.eu/calculator.html?lang=sk" />
+<link rel="alternate" hreflang="cs" href="https://subten-app.eu/calculator.html?lang=cz" />
+<link rel="alternate" hreflang="x-default" href="https://subten-app.eu/calculator.html" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Subten" />
+<meta property="og:url" content="https://subten-app.eu/calculator.html" />
+<meta property="og:title" data-i18n-attr="content: calc.meta.title" content="Nutrition Calculator — BMR, TDEE, Calories &amp; Macros | Subten" />
+<meta property="og:description" data-i18n-attr="content: calc.meta.desc" content="Free nutrition calculator: BMR, TDEE, daily calorie target and macros with carb cycling and hydration. Instant results, no signup." />
+<meta property="og:image" content="https://subten-app.eu/assets/brand/subten-icon.png" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="sk_SK" />
+<meta property="og:locale:alternate" content="cs_CZ" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" data-i18n-attr="content: calc.meta.title" content="Nutrition Calculator — BMR, TDEE, Calories &amp; Macros | Subten" />
+<meta name="twitter:description" data-i18n-attr="content: calc.meta.desc" content="Free nutrition calculator: BMR, TDEE, calorie target and macros with carb cycling. Instant results, no signup." />
+<meta name="twitter:image" content="https://subten-app.eu/assets/brand/subten-icon.png" />
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Subten Nutrition Calculator",
+      "url": "https://subten-app.eu/calculator.html",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Web",
+      "browserRequirements": "Requires JavaScript",
+      "description": "Free nutrition calculator for BMR, TDEE, daily calorie target and macros (protein, carbs, fat, fiber) with carb cycling and hydration, plus recovery, sleep and strain scores.",
+      "inLanguage": ["en", "sk", "cs"],
+      "isAccessibleForFree": true,
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+      "publisher": { "@type": "Organization", "name": "Subten", "url": "https://subten-app.eu/" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Subten", "item": "https://subten-app.eu/" },
+        { "@type": "ListItem", "position": 2, "name": "Nutrition Calculator", "item": "https://subten-app.eu/calculator.html" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "What is BMR (basal metabolic rate)?", "acceptedAnswer": { "@type": "Answer", "text": "BMR is the energy your body burns at complete rest to keep basic functions running. Subten uses the Mifflin-St Jeor equation: 10×weight(kg) + 6.25×height(cm) − 5×age + a sex constant." } },
+        { "@type": "Question", "name": "What's the difference between BMR and TDEE?", "acceptedAnswer": { "@type": "Answer", "text": "TDEE (total daily energy expenditure) is your BMR multiplied by an activity factor — the calories you actually burn in a day. Your calorie target is then built on top of TDEE depending on whether you want to lose, maintain or gain." } },
+        { "@type": "Question", "name": "How do I calculate my macros?", "acceptedAnswer": { "@type": "Answer", "text": "Start with protein (1.6–2.2 g per kg of body weight), set fat to at least 0.6 g/kg or 20% of calories, and fill the rest with carbs. Subten also adds fiber at 14 g per 1000 kcal." } },
+        { "@type": "Question", "name": "What is carb cycling?", "acceptedAnswer": { "@type": "Answer", "text": "Carb cycling shifts your carbs across the week by training load — more on hard days, fewer on rest days — while keeping the weekly average equal to your target. Protein and fat stay steady." } },
+        { "@type": "Question", "name": "Is this calorie calculator free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — the calculator is completely free and runs entirely in your browser; no signup and no data leaves your device. For daily tracking and an AI coach, try the Subten app." } }
+      ]
+    }
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;450;500;550;600;700;800&family=Schibsted+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="css/site.css" />
 <link rel="icon" type="image/png" href="assets/brand/favicon.png" />
+<link rel="apple-touch-icon" href="assets/brand/subten-icon.png" />
 <style>
 [id]{scroll-margin-top:88px;}
 
@@ -116,6 +197,12 @@ select.inp{appearance:none;-webkit-appearance:none;background-image:url("data:im
 .note-card{background:rgba(95,208,232,.07);border:1px solid rgba(95,208,232,.22);border-radius:var(--r-md);padding:14px 16px;font-size:12.5px;color:var(--ink-2);line-height:1.55;}
 .note-card b{color:var(--c-coach);}
 .disclaimer{font-size:11.5px;color:var(--ink-3);line-height:1.6;margin-top:30px;max-width:760px;}
+
+/* ── SEO content + FAQ ── */
+.calc-seo{max-width:760px;}
+.calc-seo h2{font-family:var(--font-display);font-size:clamp(24px,3.4vw,34px);font-weight:800;letter-spacing:-.03em;margin-top:16px;}
+.calc-seo-intro{color:var(--ink-2);font-size:16px;line-height:1.6;margin-top:16px;}
+.calc-faq-title{font-family:var(--font-display);font-size:clamp(19px,2.4vw,23px);font-weight:750;letter-spacing:-.02em;margin:40px 0 18px;}
 </style>
 </head>
 <body>
@@ -402,6 +489,39 @@ select.inp{appearance:none;-webkit-appearance:none;background-image:url("data:im
         <p class="disclaimer" data-i18n="calc.disclaimer">Orientačný prepočet podľa verejne dokumentovaných vzorcov Subtenu. Nenahrádza lekársku ani odbornú výživovú radu. Appka cieľ priebežne adaptuje podľa reálnych dát (hmotnosť + príjem za 21 dní), čo táto jednorazová kalkulačka nerobí.</p>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- ===== SEO content + FAQ ===== -->
+<section class="section section--tint" id="about">
+  <div class="container calc-seo">
+    <span class="kicker" data-i18n="calc.seo.kicker">Ako to počítame</span>
+    <h2 data-i18n="calc.seo.h2">BMR, TDEE a makro kalkulačka — ako funguje</h2>
+    <p class="calc-seo-intro" data-i18n="calc.seo.intro">Táto bezplatná nutričná kalkulačka premení tvoj vek, výšku, váhu, úroveň aktivity a cieľ na kompletný denný plán — BMR, TDEE, kalorický cieľ a makrá — pomocou rovnakých overených vzorcov ako appka Subten.</p>
+
+    <h3 class="calc-faq-title" data-i18n="calc.faq.title">Časté otázky o kalkulačke</h3>
+    <div class="faq">
+      <details class="faq-item" open>
+        <summary><span data-i18n="calc.faq.q1">Čo je BMR (bazálny metabolizmus)?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-answer"><p data-i18n="calc.faq.a1">BMR je energia, ktorú telo spáli v úplnom pokoji na základné životné funkcie.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="calc.faq.q2">Aký je rozdiel medzi BMR a TDEE?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-answer"><p data-i18n="calc.faq.a2">TDEE je BMR vynásobené koeficientom aktivity — kalórie, ktoré reálne spáliš za deň.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="calc.faq.q3">Ako si vypočítam makrá?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-answer"><p data-i18n="calc.faq.a3">Začni bielkovinami (1,6–2,2 g/kg), tuky aspoň 0,6 g/kg a zvyšok doplň sacharidmi.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="calc.faq.q4">Čo je carb cycling?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-answer"><p data-i18n="calc.faq.a4">Carb cycling presúva sacharidy počas týždňa podľa záťaže, pričom týždenný priemer ostáva rovný cieľu.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="calc.faq.q5">Je táto kalorická kalkulačka zadarmo?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-answer"><p data-i18n="calc.faq.a5">Áno — kalkulačka je úplne zadarmo a beží celá v tvojom prehliadači, bez registrácie.</p></div>
+      </details>
     </div>
   </div>
 </section>
