@@ -35,6 +35,7 @@ window.SUBTEN_I18N = {
   "nav.pricing":  { sk: "Cenník", en: "Pricing", cz: "Ceník" },
   "nav.faq":      { sk: "FAQ", en: "FAQ", cz: "FAQ" },
   "nav.generator":{ sk: "Generátor", en: "Generator", cz: "Generátor" },
+  "nav.soon":     { sk: "čoskoro", en: "soon", cz: "brzy" },
   "nav.calculator":{ sk: "Kalkulačka", en: "Calculator", cz: "Kalkulačka" },
   "nav.recipes":  { sk: "Recepty", en: "Recipes", cz: "Recepty" },
   "nav.cta":      { sk: "Stiahnuť", en: "Get the app", cz: "Stáhnout" },
@@ -189,6 +190,16 @@ window.SUBTEN_I18N = {
   "gen.cta.desc":   { sk: "V appke Subten dostaneš presné vedenie cvik po cviku, GIF animácie, časovač odpočinku a automatické prispôsobenie podľa regenerácie.", en: "In the Subten app you get step-by-step guidance, GIF animations, rest timer and automatic adjustments based on your recovery.", cz: "V appce Subten dostaneš přesné vedení cvik po cviku, GIF animace, časovač odpočinku a automatické přizpůsobení podle regenerace." },
   "gen.cta.btn":    { sk: "Stiahnuť Subten", en: "Download Subten", cz: "Stáhnout Subten" },
   "gen.restart":    { sk: "Vygenerovať nový plán", en: "Generate new plan", cz: "Vygenerovat nový plán" },
+
+  /* generator — coming soon */
+  "gen.cs.badge": { sk: "Čoskoro", en: "Coming soon", cz: "Již brzy" },
+  "gen.cs.title": { sk: "Generátor čoskoro spustíme", en: "The generator is coming soon", cz: "Generátor brzy spustíme" },
+  "gen.cs.text":  {
+    sk: "Pracujeme na generátore tréningových plánov na mieru — vyberieš si cieľ, úroveň a počet dní a dostaneš kompletný rozpis s ukážkami cvikov. Medzitým vyskúšaj našu kalkulačku alebo si stiahni appku.",
+    en: "We're building a custom training-plan generator — pick your goal, level and training days and get a full plan with exercise demos. In the meantime, try our calculator or get the app.",
+    cz: "Pracujeme na generátoru tréninkových plánů na míru — vybereš si cíl, úroveň a počet dní a dostaneš kompletní rozpis s ukázkami cviků. Mezitím vyzkoušej naši kalkulačku nebo si stáhni appku."
+  },
+  "gen.cs.cta":   { sk: "Vyskúšať kalkulačku", en: "Try the calculator", cz: "Vyzkoušet kalkulačku" },
 
   /* faq */
   "faq.kicker": { sk: "FAQ", en: "FAQ", cz: "FAQ" },
