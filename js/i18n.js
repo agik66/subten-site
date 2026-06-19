@@ -22,9 +22,18 @@
 /* Zoznam jazykov — poradie tu = poradie tlačidiel v prepínači.
    Prvý jazyk je predvolený. */
 window.SUBTEN_LANGUAGES = [
-  { code: "sk", label: "SK" },
-  { code: "en", label: "EN" },
-  { code: "cz", label: "CZ" }
+  { code: "sk", label: "SK", name: "Slovenčina" },
+  { code: "en", label: "EN", name: "English" },
+  { code: "cz", label: "CZ", name: "Čeština" }
+  /* To add a language, add ONE line here, e.g.:
+     { code: "it", label: "IT", name: "Italiano" },
+     { code: "de", label: "DE", name: "Deutsch" },
+     { code: "pl", label: "PL", name: "Polski" },
+     { code: "fr", label: "FR", name: "Français" },
+     { code: "es", label: "ES", name: "Español" },
+     { code: "hu", label: "HU", name: "Magyar" }
+     and add its translations to the keys below. The header switcher
+     (a config-driven dropdown) updates automatically. */
 ];
 
 window.SUBTEN_I18N = {
@@ -481,16 +490,59 @@ window.SUBTEN_I18N = {
     return CODES.includes("en") ? "en" : CODES[0];
   }
 
+  // ---- dropdown switcher ----
+  const GLOBE = '<svg class="lang-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18z"/></svg>';
+  const CHEV = '<svg class="lang-chev" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1l5 5 5-5"/></svg>';
+  const CHECK = '<svg class="lang-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+
+  function closeMenu(t) { t.classList.remove("open"); const b = t.querySelector(".lang-btn"); if (b) b.setAttribute("aria-expanded", "false"); }
+  function closeAllMenus() { document.querySelectorAll(".lang-toggle.open").forEach(closeMenu); }
+  function openMenu(t) {
+    closeAllMenus();
+    t.classList.add("open");
+    const b = t.querySelector(".lang-btn"); if (b) b.setAttribute("aria-expanded", "true");
+    const sel = t.querySelector(".lang-menu button.active") || t.querySelector(".lang-menu button");
+    if (sel) sel.focus();
+  }
+  function toggleMenu(t) { t.classList.contains("open") ? closeMenu(t) : openMenu(t); }
+
+  let globalBound = false;
+  function bindGlobalClose() {
+    if (globalBound) return; globalBound = true;
+    document.addEventListener("click", e => { if (!e.target.closest(".lang-toggle")) closeAllMenus(); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeAllMenus(); });
+  }
+
   // Build / refresh every .lang-toggle from the LANGUAGES config
   function buildToggles() {
     document.querySelectorAll(".lang-toggle").forEach(t => {
       if (t.dataset.built) return;
       t.dataset.built = "1";
-      t.style.setProperty("--lang-n", LANGS.length);
-      t.innerHTML = '<span class="pill" aria-hidden="true"></span>' +
-        LANGS.map(l => `<button type="button" data-lang="${l.code}">${l.label}</button>`).join("");
-      t.querySelectorAll("button").forEach(b => b.addEventListener("click", () => (window.SubtenSetLang || apply)(b.dataset.lang)));
+      const opts = LANGS.map(l =>
+        `<li role="none"><button type="button" role="option" data-lang="${l.code}" aria-selected="false">` +
+        `<span class="lang-name">${l.name || l.label}</span>${CHECK}</button></li>`).join("");
+      t.innerHTML =
+        `<button type="button" class="lang-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Language">` +
+        `${GLOBE}<span class="lang-cur">${LANGS[0].label}</span>${CHEV}</button>` +
+        `<ul class="lang-menu" role="listbox" tabindex="-1">${opts}</ul>`;
+
+      const btn = t.querySelector(".lang-btn");
+      const menu = t.querySelector(".lang-menu");
+      btn.addEventListener("click", e => { e.stopPropagation(); toggleMenu(t); });
+      menu.querySelectorAll("button").forEach(b => {
+        b.addEventListener("click", () => { (window.SubtenSetLang || apply)(b.dataset.lang); closeMenu(t); btn.focus(); });
+      });
+      menu.addEventListener("keydown", e => {
+        const items = [...menu.querySelectorAll("button")];
+        const i = items.indexOf(document.activeElement);
+        if (e.key === "ArrowDown") { e.preventDefault(); items[(i + 1) % items.length].focus(); }
+        else if (e.key === "ArrowUp") { e.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); }
+        else if (e.key === "Home") { e.preventDefault(); items[0].focus(); }
+        else if (e.key === "End") { e.preventDefault(); items[items.length - 1].focus(); }
+        else if (e.key === "Escape") { e.preventDefault(); closeMenu(t); btn.focus(); }
+      });
     });
+    bindGlobalClose();
   }
 
   function apply(lang) {
@@ -516,10 +568,18 @@ window.SUBTEN_I18N = {
       const showCode = present.has(lang) ? lang : (present.has(FALLBACK) ? FALLBACK : [...present][0]);
       blocks.forEach(el => { el.style.display = el.getAttribute("data-lang-block") === showCode ? "" : "none"; });
     }
-    // toggle UI state
+    // dropdown UI state: current label on the button + active/checked option
+    const meta = LANGS[idx] || LANGS[0];
     document.querySelectorAll(".lang-toggle").forEach(t => {
-      t.style.setProperty("--lang-i", idx);
-      t.querySelectorAll("button").forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
+      const cur = t.querySelector(".lang-cur");
+      if (cur && meta) cur.textContent = meta.label;
+      const btn = t.querySelector(".lang-btn");
+      if (btn && meta) btn.setAttribute("aria-label", "Language: " + (meta.name || meta.label));
+      t.querySelectorAll(".lang-menu button").forEach(b => {
+        const on = b.dataset.lang === lang;
+        b.classList.toggle("active", on);
+        b.setAttribute("aria-selected", on ? "true" : "false");
+      });
     });
     localStorage.setItem(KEY, lang);
     window.__subtenLang = lang;
