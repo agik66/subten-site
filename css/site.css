@@ -534,6 +534,31 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 800; letter-spacing:
 .price-amount .num { font-size: 52px; line-height: 1; }
 .price-amount .per { color: var(--ink-3); font-size: 16px; font-weight: 600; }
 .price-sub { color: var(--ink-2); font-size: 14.5px; margin-bottom: 24px; }
+
+/* Monthly / Yearly billing toggle (Premium card) */
+.price-toggle { display: inline-flex; gap: 4px; margin-top: 18px; padding: 4px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 100px; }
+.price-toggle-btn {
+  display: inline-flex; align-items: center; gap: 7px; cursor: pointer;
+  font: inherit; font-size: 13.5px; font-weight: 700; color: var(--ink-2);
+  background: transparent; border: 0; border-radius: 100px; padding: 7px 15px;
+  transition: background .18s ease, color .18s ease;
+}
+.price-toggle-btn:hover { color: var(--ink); }
+.price-card[data-active-plan="month"] .price-toggle-btn[data-plan="month"],
+.price-card[data-active-plan="year"]  .price-toggle-btn[data-plan="year"] {
+  background: var(--accent); color: var(--accent-ink);
+}
+.price-save { font-size: 11px; font-weight: 800; letter-spacing: .03em; padding: 2px 7px; border-radius: 100px; background: color-mix(in srgb, var(--accent) 22%, transparent); color: var(--accent-strong); }
+[data-theme="dark"] .price-save { color: var(--accent); }
+.price-card[data-active-plan="year"] .price-toggle-btn[data-plan="year"] .price-save { background: rgba(0,0,0,.16); color: inherit; }
+.price-trial { display: flex; align-items: center; gap: 7px; color: var(--ink-3); font-size: 13px; font-weight: 600; margin: 2px 0 20px; }
+.price-trial::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex: none; }
+/* show only the active plan's price + trial line */
+.price-amount[data-plan], .price-trial[data-plan] { display: none; }
+.price-card[data-active-plan="month"] .price-amount[data-plan="month"],
+.price-card[data-active-plan="year"]  .price-amount[data-plan="year"]  { display: flex; }
+.price-card[data-active-plan="month"] .price-trial[data-plan="month"],
+.price-card[data-active-plan="year"]  .price-trial[data-plan="year"]   { display: flex; }
 .price-card .btn { width: 100%; }
 .price-feats { list-style: none; margin-top: 26px; display: flex; flex-direction: column; gap: 13px; position: relative; z-index: 1; }
 .price-feats li { display: flex; gap: 11px; align-items: flex-start; font-size: 15px; color: var(--ink-2); }

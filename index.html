@@ -300,9 +300,16 @@
           <li class="off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg><span data-i18n="free.f6">Hotové a periodizované plány</span></li>
         </ul>
       </article>
-      <article class="price-card featured" data-reveal data-reveal-delay="1">
+      <article class="price-card featured" data-reveal data-reveal-delay="1" data-active-plan="year">
         <div class="price-tag-row"><span class="price-name" data-i18n="pro.name">Premium</span><span class="price-badge" data-i18n="pro.badge">Najobľúbenejšie</span></div>
-        <div class="price-amount"><span class="num">3,99&nbsp;€</span><span class="per" data-i18n="pro.per">/ mesiac</span></div>
+        <div class="price-toggle" role="group" aria-label="Billing period">
+          <button type="button" class="price-toggle-btn" data-plan="month" aria-pressed="false" data-i18n="pro.toggle.month">Mesačne</button>
+          <button type="button" class="price-toggle-btn" data-plan="year" aria-pressed="true"><span data-i18n="pro.toggle.year">Ročne</span><span class="price-save" data-i18n="pro.save">−37 %</span></button>
+        </div>
+        <div class="price-amount" data-plan="month"><span class="num">3,99&nbsp;€</span><span class="per" data-i18n="pro.per">/ mesiac</span></div>
+        <div class="price-amount" data-plan="year"><span class="num">29,99&nbsp;€</span><span class="per" data-i18n="pro.per.year">/ rok</span></div>
+        <p class="price-trial" data-plan="month" data-i18n="pro.trial.month">1 týždeň zadarmo</p>
+        <p class="price-trial" data-plan="year" data-i18n="pro.trial.year">2 týždne zadarmo</p>
         <p class="price-sub" data-i18n="pro.sub">Plný výkon Subten vrátane AI trénera.</p>
         <a href="#download" class="btn btn-primary" data-i18n="pro.cta">Vyskúšať Premium</a>
         <ul class="price-feats">

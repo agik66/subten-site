@@ -143,4 +143,14 @@
       success.classList.add("show");
     });
   }
+
+  /* ---- pricing billing toggle (Monthly / Yearly) ---- */
+  document.querySelectorAll(".price-card[data-active-plan]").forEach((card) => {
+    const btns = card.querySelectorAll(".price-toggle-btn[data-plan]");
+    function setPlan(plan) {
+      card.dataset.activePlan = plan;
+      btns.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.plan === plan)));
+    }
+    btns.forEach((b) => b.addEventListener("click", () => setPlan(b.dataset.plan)));
+  });
 })();
