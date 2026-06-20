@@ -411,6 +411,9 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 800; letter-spacing:
   background: #000;
   border-radius: 999px;
 }
+/* The hero back phone (coach-dark.png) still has an island baked into the
+   screenshot — skip the overlay there so it isn't doubled. */
+.phone-back .dynamic-island { display: none; }
 
 /* ============================================================
    MARQUEE / trust strip
