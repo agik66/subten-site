@@ -156,7 +156,7 @@ window.SUBTEN_I18N = {
   "pro.toggle.year":  { sk: "Ročne", en: "Yearly", cz: "Ročně" },
   "pro.save":     { sk: "−37 %", en: "−37%", cz: "−37 %" },
   "pro.trial.month": { sk: "1 týždeň zadarmo na vyskúšanie", en: "1-week free trial", cz: "1 týden zdarma na vyzkoušení" },
-  "pro.trial.year":  { sk: "2 týždne zadarmo na vyskúšanie", en: "2-week free trial", cz: "2 týdny zdarma na vyzkoušení" },
+  "pro.trial.year":  { sk: "1 týždeň zadarmo na vyskúšanie", en: "1-week free trial", cz: "1 týden zdarma na vyzkoušení" },
   "pro.sub":      { sk: "Plný výkon Subten vrátane AI trénera.", en: "The full power of Subten, including the AI coach.", cz: "Plný výkon Subtenu včetně AI trenéra." },
   "pro.f1":       { sk: "Všetko z Free", en: "Everything in Free", cz: "Vše z Free" },
   "pro.f2":       { sk: "AI Coach", en: "AI Coach", cz: "AI Coach" },
