@@ -58,47 +58,43 @@
       <div data-lang-block="sk">
         <div class="legal-head">
           <h1>Zásady ochrany súkromia</h1>
-          <p class="updated">Naposledy aktualizované: 13. júna 2026</p>
+          <p class="updated">Naposledy aktualizované: 8. júla 2026</p>
         </div>
         <div class="legal-body">
           <div class="legal-callout">
-            <p><strong>Stručne</strong> Všetky tvoje dáta (výživa, tréning, zdravie, profil) zostávajú na tvojom iPhone a v tvojom iCloud účte. Na naše servery neodosielame ani neukladáme tvoje osobné dáta. Spracúvame len e-mail pri prihlásení a informácie o predplatnom.</p>
+            <p><strong>Stručne</strong> Tvoje záznamy (výživa, tréning, zdravie, profil, fotky) zostávajú na tvojom iPhone a v tvojom iCloud. Na našich serveroch držíme len údaje o účte a metadáta o používaní — nie tvoje zdravotné záznamy ani obsah konverzácií s AI. AI Coach beží na novších iPhonoch priamo v zariadení; keď beží v cloude, a pri funkciách s fotkou, sa potrebný kontext odosiela — vždy len s tvojím výslovným súhlasom — nášmu AI poskytovateľovi a po odpovedi sa neukladá.</p>
           </div>
 
           <h2 id="sk-1">1. Kto sme</h2>
-          <p>Subten („aplikácia”, „my”) je mobilná aplikácia na sledovanie výživy, tréningu a regenerácie. Tieto zásady vysvetľujú, aké údaje spracúvame, prečo a aké máš práva.</p>
+          <p>Subten („aplikácia”, „my”) je mobilná aplikácia na sledovanie výživy, tréningu a regenerácie, ktorú prevádzkuje Erik Michalec (Slovensko) ako prevádzkovateľ. Otázky alebo žiadosti k súkromiu: <a href="mailto:support@subten-app.eu">support@subten-app.eu</a>. Tieto zásady vysvetľujú, aké údaje spracúvame, prečo a aké máš práva.</p>
 
           <h2 id="sk-2">2. Kde sú tvoje dáta</h2>
-          <p>Subten je navrhnutý tak, aby tvoje dáta zostali u teba:</p>
+          <p>Subten je navrhnutý tak, aby väčšina tvojich dát zostala u teba:</p>
           <ul>
             <li><strong>Na tvojom zariadení</strong> — všetky údaje o profile (vek, výška, váha, cieľ), výžive (jedlá, makrá, kalórie), tréningu (plány, aktivity) a regenerácii (HRV, tep, spánok) sa ukladajú lokálne na tvojom iPhone.</li>
             <li><strong>V tvojom iCloud</strong> — ak máš zapnutý iCloud, dáta sa synchronizujú medzi tvojimi zariadeniami cez tvoj osobný iCloud účet. K týmto dátam nemáme prístup.</li>
           </ul>
 
           <h2 id="sk-3">3. Čo spracúvame na našich serveroch</h2>
-          <p>Na našich serveroch spracúvame len:</p>
-          <ul>
-            <li><strong>E-mail</strong> — pri prihlásení cez Apple Sign-In alebo e-mail, na overenie identity a správu účtu.</li>
-            <li><strong>Informácie o predplatnom</strong> — stav predplatného spracúva Apple cez App Store. My dostávame len informáciu, či máš aktívne predplatné.</li>
-          </ul>
+          <p>Na našom backende (hostovanom v EÚ) spracúvame: tvoj <strong>e-mail a prihlasovaciu identitu</strong>; tvoje <strong>zobrazované meno</strong>; <strong>stav predplatného</strong> (od Apple — vieme len, či máš aktívny plán); tvoj <strong>model zariadenia, verziu OS a jazyk</strong>; anonymné <strong>počítadlá používania</strong> a <strong>metadáta o AI</strong> (ktorú funkciu a model si použil a počty tokenov — <em>nie</em> obsah tvojich promptov ani zdravotných záznamov); a <strong>spätnú väzbu</strong>, ktorú nám pošleš. Nepoužívame žiadne reklamné ani sledovacie SDK tretích strán.</p>
 
           <h2 id="sk-4">4. Apple Health</h2>
-          <p>Ak povolíš prepojenie, Subten číta vybrané údaje z Apple Health (HRV, pokojový tep, spánok, SpO₂, kroky) výhradne na zobrazenie skóre regenerácie. Tieto údaje zostávajú na tvojom zariadení — <strong>neodosielame ich na žiadny server</strong>. Prístup môžeš kedykoľvek odvolať v nastaveniach systému.</p>
+          <p>Ak povolíš prepojenie, Subten číta vybrané údaje z Apple Health (HRV, pokojový tep, spánok, SpO₂, kroky) na zobrazenie skóre regenerácie. Zostávajú na tvojom zariadení a nikdy sa nepoužívajú na reklamu. Ak použiješ AI Coach v cloude (viď §5), krátke zdravotné zhrnutie môže byť súčasťou tejto požiadavky; inak sa tvoje Health dáta neodosielajú na žiadny server. Prístup môžeš kedykoľvek odvolať v nastaveniach systému.</p>
 
-          <h2 id="sk-5">5. AI Coach</h2>
-          <p>Keď použiješ AI Coach, relevantný kontext (napr. tvoje ciele a posledné dáta) sa odošle na spracovanie poskytovateľovi AI modelu, aby ti dal zmysluplnú odpoveď. Tieto dáta sa neuchovávajú — použijú sa len na vygenerovanie odpovede. Coach je informačný pomocník — <strong>nie je zdravotná služba</strong> a nenahrádza lekára ani odborníka.</p>
+          <h2 id="sk-5">5. AI Coach a funkcie s fotkou</h2>
+          <p>Na novších iPhonoch beží AI Coach aj tvoje denné a týždenné vyhodnotenia <strong>priamo v zariadení</strong> — ten obsah zostáva v telefóne. Na starších zariadeniach, v nepodporovaných jazykoch, alebo ak generovanie v zariadení nie je možné, sa požiadavka spracuje v <strong>cloude</strong>: relevantný kontext (tvoje ciele, posledné dáta a — pri koučovaní — zdravotné zhrnutie) sa odošle cez našu AI proxy nášmu poskytovateľovi modelu (OpenRouter a model, na ktorý smeruje, napr. Google), <strong>spracované v USA</strong>. Funkcie s fotkou (sken jedla, sken etikety, posúdenie postavy) vždy používajú cloud. Tieto dáta odosielame <strong>pseudonymne</strong> (bez mena, e-mailu či ID účtu — vek len ako číslo), <strong>vždy len s tvojím výslovným, samostatným súhlasom</strong>, a po odpovedi sa neuchovávajú ani nepoužívajú na trénovanie modelov. V aplikácii môžeš zapnúť <strong>Súkromný režim</strong>, ktorý coach obsah udrží len v zariadení. Prenosy do USA sa opierajú o vhodné záruky (napr. štandardné zmluvné doložky EÚ). Coach je informačný pomocník — <strong>nie je zdravotná služba</strong> a nenahrádza lekára ani odborníka.</p>
 
           <h2 id="sk-6">6. Zdieľanie údajov</h2>
-          <p>Tvoje osobné dáta nepredávame ani nezdieľame na marketingové účely. E-mail a stav predplatného zdieľame len s poskytovateľmi nevyhnutnými na prevádzku (autentifikácia, spracovanie platieb cez Apple). Údaje môžeme poskytnúť, ak to vyžaduje zákon.</p>
+          <p>Tvoje dáta nikdy nepredávame ani nezdieľame na marketing. Zdieľame len nevyhnutné minimum na prevádzku s: Apple (prihlásenie, platby), náš backend hosting (Supabase, EÚ) a — len pri cloudových AI požiadavkách — OpenRouter a poskytovateľ modelu, na ktorý smeruje. Údaje môžeme poskytnúť, ak to vyžaduje zákon.</p>
 
           <h2 id="sk-7">7. Uchovávanie a vymazanie</h2>
-          <p>Keďže tvoje dáta sú na tvojom zariadení, máš nad nimi plnú kontrolu. E-mail a informácie o účte na našich serveroch uchovávame, kým máš účet. Účet aj dáta môžeš vymazať priamo v aplikácii (Nastavenia → Účet) alebo na <a href="account-deletion.html">stránke o vymazaní účtu</a>.</p>
+          <p>Dáta v zariadení a v iCloud zostávajú pod tvojou kontrolou. Údaje o účte na našich serveroch uchovávame, kým máš účet, a vymažeme ich do 30 dní od zmazania účtu (záznamy, ktoré musíme držať zo zákona, napr. platobné, môžu byť uchované po nevyhnutnú dobu). Metadáta o AI sa pravidelne mažú. Účet aj dáta môžeš vymazať priamo v aplikácii (Nastavenia → Účet) alebo na <a href="account-deletion.html">stránke o vymazaní účtu</a>.</p>
 
           <h2 id="sk-8">8. Tvoje práva</h2>
-          <p>Podľa GDPR máš právo na prístup, opravu, vymazanie a prenos svojich údajov. Keďže väčšina dát je na tvojom zariadení, máš k nim priamy prístup. Sťažnosť môžeš podať na Úrade na ochranu osobných údajov SR.</p>
+          <p>Podľa GDPR máš právo na prístup, opravu, vymazanie a prenos svojich údajov a kedykoľvek odvolať súhlas. Keďže väčšina dát je na tvojom zariadení, máš k nim priamy prístup. Sťažnosť môžeš podať na Úrade na ochranu osobných údajov SR.</p>
 
-          <h2 id="sk-9">9. Deti</h2>
-          <p>Subten nie je určený deťom mladším ako 16 rokov. Vedome nezbierame údaje detí.</p>
+          <h2 id="sk-9">9. Vek</h2>
+          <p>Subten je určený dospelým (18+). Nie je určený deťom a vedome nezbierame údaje detí.</p>
 
           <h2 id="sk-10">10. Zmeny</h2>
           <p>Tieto zásady môžeme aktualizovať. O podstatných zmenách ťa budeme informovať v aplikácii.</p>
@@ -109,47 +105,43 @@
       <div data-lang-block="en">
         <div class="legal-head">
           <h1>Privacy Policy</h1>
-          <p class="updated">Last updated: June 13, 2026</p>
+          <p class="updated">Last updated: July 8, 2026</p>
         </div>
         <div class="legal-body">
           <div class="legal-callout">
-            <p><strong>In short</strong> All your data (nutrition, training, health, profile) stays on your iPhone and in your iCloud account. We do not send or store your personal data on our servers. We only process your email for sign-in and subscription information.</p>
+            <p><strong>In short</strong> Your logs (nutrition, training, health, profile, photos) live on your iPhone and in your iCloud. On our servers we keep only your account details and app-usage metadata — not your health logs or the content of your AI conversations. The AI Coach runs on your device on newer iPhones; when it runs in the cloud, and for any photo feature, the needed context is sent — only with your explicit consent — to our AI provider and is not stored afterwards.</p>
           </div>
 
           <h2>1. Who we are</h2>
-          <p>Subten (the "app", "we") is a mobile app for tracking nutrition, training and recovery. This policy explains what data we process, why, and what rights you have.</p>
+          <p>Subten (the "app", "we") is a mobile app for tracking nutrition, training and recovery, operated by Erik Michalec (Slovakia), the data controller. Questions or privacy requests: <a href="mailto:support@subten-app.eu">support@subten-app.eu</a>. This policy explains what data we process, why, and what rights you have.</p>
 
           <h2>2. Where your data lives</h2>
-          <p>Subten is designed so your data stays with you:</p>
+          <p>Subten is designed so most of your data stays with you:</p>
           <ul>
             <li><strong>On your device</strong> — all profile data (age, height, weight, goal), nutrition (meals, macros, calories), training (plans, activities) and recovery (HRV, heart rate, sleep) are stored locally on your iPhone.</li>
             <li><strong>In your iCloud</strong> — if iCloud is enabled, data syncs between your devices via your personal iCloud account. We do not have access to this data.</li>
           </ul>
 
           <h2>3. What we process on our servers</h2>
-          <p>On our servers we only process:</p>
-          <ul>
-            <li><strong>Email</strong> — when you sign in via Apple Sign-In or email, for identity verification and account management.</li>
-            <li><strong>Subscription information</strong> — subscription status is handled by Apple through the App Store. We only receive whether you have an active subscription.</li>
-          </ul>
+          <p>On our backend (hosted in the EU) we process: your <strong>email and sign-in identity</strong>; your <strong>display name</strong>; <strong>subscription status</strong> (from Apple — we only learn whether you have an active plan); your <strong>device model, OS version and language</strong>; anonymous <strong>app-usage counters</strong> and <strong>AI-usage metadata</strong> (which feature and model you used and token counts — <em>not</em> the content of your prompts or your health logs); and any <strong>feedback</strong> you send us. We use no third-party advertising or tracking SDKs.</p>
 
           <h2>4. Apple Health</h2>
-          <p>If you enable the connection, Subten reads selected Apple Health data (HRV, resting heart rate, sleep, SpO₂, steps) solely to display your recovery score. This data stays on your device — <strong>we do not send it to any server</strong>. You can revoke access anytime in system settings.</p>
+          <p>If you enable the connection, Subten reads selected Apple Health data (HRV, resting heart rate, sleep, SpO₂, steps) to show your recovery score. It stays on your device and is never used for advertising. If you use the AI Coach in the cloud (see §5), a short health summary may be included in that request; otherwise your Health data is not sent to any server. You can revoke access anytime in system settings.</p>
 
-          <h2>5. AI Coach</h2>
-          <p>When you use the AI Coach, relevant context (e.g. your goals and recent data) is sent to an AI model provider to generate a response. This data is not retained — it is used only to produce the reply. The Coach is an informational assistant — it is <strong>not a medical service</strong> and does not replace a doctor or professional.</p>
+          <h2>5. AI Coach &amp; photo features</h2>
+          <p>On newer iPhones the AI Coach and your daily and weekly reviews run <strong>on your device</strong> — that content stays on your phone. On older devices, in unsupported languages, or if on-device generation isn't available, the request is processed in the <strong>cloud</strong>: relevant context (your goals, recent data and, for coaching, a health summary) is sent through our AI proxy to our model provider (OpenRouter and the model it routes to, e.g. Google), <strong>processed in the United States</strong>. Photo features (food scan, nutrition-label scan, body assessment) always use the cloud. We send this data <strong>pseudonymously</strong> (no name, email or account ID — your age only as a number), <strong>only with your explicit, separate consent</strong>, and it is not retained after the reply or used to train models. You can turn on <strong>Private mode</strong> in the app to keep coach content on-device only. Transfers to the US rely on appropriate safeguards (e.g. EU Standard Contractual Clauses). The Coach is an informational assistant — <strong>not a medical service</strong> — and does not replace a doctor or professional.</p>
 
           <h2>6. Sharing</h2>
-          <p>We do not sell or share your personal data for marketing purposes. Email and subscription status are shared only with providers necessary for operation (authentication, payment processing via Apple). We may disclose data where required by law.</p>
+          <p>We never sell your data or share it for marketing. We share the minimum needed to run the service with: Apple (sign-in, payments), our backend host (Supabase, EU), and — only for cloud AI requests — OpenRouter and the model provider it routes to. We may disclose data where required by law.</p>
 
-          <h2>7. Retention & deletion</h2>
-          <p>Since your data is on your device, you have full control over it. Email and account information on our servers is kept while you have an account. You can delete your account and data in the app (Settings → Account) or via the <a href="account-deletion.html">account deletion page</a>.</p>
+          <h2>7. Retention &amp; deletion</h2>
+          <p>On-device and iCloud data stays under your control. Account data on our servers is kept while your account exists and is deleted within 30 days of account deletion (records we are legally required to keep, e.g. payment records, may be retained for the necessary period). AI-usage metadata is purged periodically. You can delete your account and data in the app (Settings → Account) or via the <a href="account-deletion.html">account deletion page</a>.</p>
 
           <h2>8. Your rights</h2>
-          <p>Under the GDPR you have the right to access, correct, delete and port your data. Since most data is on your device, you have direct access to it. You may lodge a complaint with your local data protection authority.</p>
+          <p>Under the GDPR you have the right to access, correct, delete and port your data, and to withdraw consent at any time. Since most data is on your device, you have direct access to it. You may lodge a complaint with your local data protection authority.</p>
 
-          <h2>9. Children</h2>
-          <p>Subten is not intended for children under 16. We do not knowingly collect children's data.</p>
+          <h2>9. Age</h2>
+          <p>Subten is intended for adults (18+). It is not directed to children, and we do not knowingly collect children's data.</p>
 
           <h2>10. Changes</h2>
           <p>We may update this policy. We'll notify you of material changes in the app.</p>
@@ -160,47 +152,43 @@
       <div data-lang-block="cz">
         <div class="legal-head">
           <h1>Zásady ochrany soukromí</h1>
-          <p class="updated">Naposledy aktualizováno: 13. června 2026</p>
+          <p class="updated">Naposledy aktualizováno: 8. července 2026</p>
         </div>
         <div class="legal-body">
           <div class="legal-callout">
-            <p><strong>Stručně</strong> Všechna tvá data (výživa, trénink, zdraví, profil) zůstávají na tvém iPhonu a v tvém iCloud účtu. Na naše servery neodesíláme ani neukládáme tvá osobní data. Zpracováváme jen e-mail při přihlášení a informace o předplatném.</p>
+            <p><strong>Stručně</strong> Tvé záznamy (výživa, trénink, zdraví, profil, fotky) zůstávají na tvém iPhonu a v tvém iCloud. Na našich serverech držíme jen údaje o účtu a metadata o používání — ne tvé zdravotní záznamy ani obsah konverzací s AI. AI Coach běží na novějších iPhonech přímo v zařízení; když běží v cloudu, a u funkcí s fotkou, se potřebný kontext odesílá — vždy jen s tvým výslovným souhlasem — našemu AI poskytovateli a po odpovědi se neukládá.</p>
           </div>
 
           <h2 id="cz-1">1. Kdo jsme</h2>
-          <p>Subten („aplikace“, „my“) je mobilní aplikace pro sledování výživy, tréninku a regenerace. Tyto zásady vysvětlují, jaké údaje zpracováváme, proč a jaká máš práva.</p>
+          <p>Subten („aplikace“, „my“) je mobilní aplikace pro sledování výživy, tréninku a regenerace, kterou provozuje Erik Michalec (Slovensko) jako správce údajů. Dotazy nebo žádosti k soukromí: <a href="mailto:support@subten-app.eu">support@subten-app.eu</a>. Tyto zásady vysvětlují, jaké údaje zpracováváme, proč a jaká máš práva.</p>
 
           <h2 id="cz-2">2. Kde jsou tvá data</h2>
-          <p>Subten je navržen tak, aby tvá data zůstala u tebe:</p>
+          <p>Subten je navržen tak, aby většina tvých dat zůstala u tebe:</p>
           <ul>
             <li><strong>Na tvém zařízení</strong> — všechny údaje o profilu (věk, výška, váha, cíl), výživě (jídla, makra, kalorie), tréninku (plány, aktivity) a regeneraci (HRV, tep, spánek) se ukládají lokálně na tvém iPhonu.</li>
             <li><strong>V tvém iCloud</strong> — pokud máš zapnutý iCloud, data se synchronizují mezi tvými zařízeními přes tvůj osobní iCloud účet. K těmto datům nemáme přístup.</li>
           </ul>
 
           <h2 id="cz-3">3. Co zpracováváme na našich serverech</h2>
-          <p>Na našich serverech zpracováváme jen:</p>
-          <ul>
-            <li><strong>E-mail</strong> — při přihlášení přes Apple Sign-In nebo e-mail, pro ověření identity a správu účtu.</li>
-            <li><strong>Informace o předplatném</strong> — stav předplatného zpracovává Apple přes App Store. My dostáváme jen informaci, zda máš aktivní předplatné.</li>
-          </ul>
+          <p>Na našem backendu (hostovaném v EU) zpracováváme: tvůj <strong>e-mail a přihlašovací identitu</strong>; tvé <strong>zobrazované jméno</strong>; <strong>stav předplatného</strong> (od Apple — víme jen, zda máš aktivní plán); tvůj <strong>model zařízení, verzi OS a jazyk</strong>; anonymní <strong>počítadla používání</strong> a <strong>metadata o AI</strong> (kterou funkci a model jsi použil a počty tokenů — <em>ne</em> obsah tvých promptů ani zdravotních záznamů); a <strong>zpětnou vazbu</strong>, kterou nám pošleš. Nepoužíváme žádné reklamní ani sledovací SDK třetích stran.</p>
 
           <h2 id="cz-4">4. Apple Health</h2>
-          <p>Pokud povolíš propojení, Subten čte vybrané údaje z Apple Health (HRV, klidový tep, spánek, SpO₂, kroky) výhradně pro zobrazení skóre regenerace. Tyto údaje zůstávají na tvém zařízení — <strong>neodesíláme je na žádný server</strong>. Přístup můžeš kdykoli odvolat v nastavení systému.</p>
+          <p>Pokud povolíš propojení, Subten čte vybrané údaje z Apple Health (HRV, klidový tep, spánek, SpO₂, kroky) pro zobrazení skóre regenerace. Zůstávají na tvém zařízení a nikdy se nepoužívají pro reklamu. Pokud použiješ AI Coach v cloudu (viz §5), krátké zdravotní shrnutí může být součástí této žádosti; jinak se tvá Health data neodesílají na žádný server. Přístup můžeš kdykoli odvolat v nastavení systému.</p>
 
-          <h2 id="cz-5">5. AI Coach</h2>
-          <p>Když použiješ AI Coach, relevantní kontext (např. tvé cíle a poslední data) se odešle ke zpracování poskytovateli AI modelu, aby ti dal smysluplnou odpověď. Tato data se neuchovávají — použijí se jen k vygenerování odpovědi. Coach je informační pomocník — <strong>není to zdravotní služba</strong> a nenahrazuje lékaře ani odborníka.</p>
+          <h2 id="cz-5">5. AI Coach a funkce s fotkou</h2>
+          <p>Na novějších iPhonech běží AI Coach i tvá denní a týdenní vyhodnocení <strong>přímo v zařízení</strong> — tento obsah zůstává v telefonu. Na starších zařízeních, v nepodporovaných jazycích, nebo pokud generování v zařízení není možné, se žádost zpracuje v <strong>cloudu</strong>: relevantní kontext (tvé cíle, poslední data a — u koučování — zdravotní shrnutí) se odešle přes naši AI proxy našemu poskytovateli modelu (OpenRouter a model, na který směruje, např. Google), <strong>zpracováno v USA</strong>. Funkce s fotkou (sken jídla, sken etikety, posouzení postavy) vždy používají cloud. Tato data odesíláme <strong>pseudonymně</strong> (bez jména, e-mailu či ID účtu — věk jen jako číslo), <strong>vždy jen s tvým výslovným, samostatným souhlasem</strong>, a po odpovědi se neuchovávají ani nepoužívají k trénování modelů. V aplikaci můžeš zapnout <strong>Soukromý režim</strong>, který coach obsah udrží jen v zařízení. Přenosy do USA se opírají o vhodné záruky (např. standardní smluvní doložky EU). Coach je informační pomocník — <strong>není to zdravotní služba</strong> a nenahrazuje lékaře ani odborníka.</p>
 
           <h2 id="cz-6">6. Sdílení údajů</h2>
-          <p>Tvá osobní data neprodáváme ani nesdílíme pro marketingové účely. E-mail a stav předplatného sdílíme jen s poskytovateli nezbytnými pro provoz (autentizace, zpracování plateb přes Apple). Údaje můžeme poskytnout, pokud to vyžaduje zákon.</p>
+          <p>Tvá data nikdy neprodáváme ani nesdílíme pro marketing. Sdílíme jen nezbytné minimum pro provoz s: Apple (přihlášení, platby), náš backend hosting (Supabase, EU) a — jen u cloudových AI žádostí — OpenRouter a poskytovatel modelu, na který směruje. Údaje můžeme poskytnout, pokud to vyžaduje zákon.</p>
 
           <h2 id="cz-7">7. Uchovávání a smazání</h2>
-          <p>Protože tvá data jsou na tvém zařízení, máš nad nimi plnou kontrolu. E-mail a informace o účtu na našich serverech uchováváme, dokud máš účet. Účet i data můžeš smazat přímo v aplikaci (Nastavení → Účet) nebo na <a href="account-deletion.html">stránce o smazání účtu</a>.</p>
+          <p>Data v zařízení a v iCloud zůstávají pod tvou kontrolou. Údaje o účtu na našich serverech uchováváme, dokud máš účet, a smažeme je do 30 dnů od smazání účtu (záznamy, které musíme držet ze zákona, např. platební, mohou být uchovány po nezbytnou dobu). Metadata o AI se pravidelně mažou. Účet i data můžeš smazat přímo v aplikaci (Nastavení → Účet) nebo na <a href="account-deletion.html">stránce o smazání účtu</a>.</p>
 
           <h2 id="cz-8">8. Tvá práva</h2>
-          <p>Podle GDPR máš právo na přístup, opravu, smazání a přenos svých údajů. Protože většina dat je na tvém zařízení, máš k nim přímý přístup. Stížnost můžeš podat u Úřadu pro ochranu osobních údajů ČR.</p>
+          <p>Podle GDPR máš právo na přístup, opravu, smazání a přenos svých údajů a kdykoli odvolat souhlas. Protože většina dat je na tvém zařízení, máš k nim přímý přístup. Stížnost můžeš podat u Úřadu pro ochranu osobních údajů ČR.</p>
 
-          <h2 id="cz-9">9. Děti</h2>
-          <p>Subten není určen dětem mladším 16 let. Vědomě nesbíráme údaje dětí.</p>
+          <h2 id="cz-9">9. Věk</h2>
+          <p>Subten není určen dětem — je určen dospělým (18+). Vědomě nesbíráme údaje dětí.</p>
 
           <h2 id="cz-10">10. Změny</h2>
           <p>Tyto zásady můžeme aktualizovat. O podstatných změnách tě budeme informovat v aplikaci.</p>
