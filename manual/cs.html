@@ -1,0 +1,1693 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="cs" xml:lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Subten — Uživatelská příručka</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style>
+    :root{ --fg:#1c1c1e; --muted:#6b6b70; --brand:#2e9e5b; --line:#e6e6ea; --bg:#ffffff; --tip:#f4faf6; }
+    @media (prefers-color-scheme: dark){
+      :root{ --fg:#e9e9ec; --muted:#a0a0a8; --brand:#4fb87c; --line:#2c2c32; --bg:#151517; --tip:#16241b; }
+    }
+    html{ -webkit-text-size-adjust:100%; }
+    body{ max-width:760px; margin:0 auto; padding:28px 20px 96px;
+          font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+          color:var(--fg); background:var(--bg); }
+    h1.title{ font-size:1.9rem; line-height:1.2; margin:.2em 0 .1em; }
+    p.subtitle{ color:var(--muted); margin:0 0 1.5em; }
+    h1{ font-size:1.5rem; margin:2.2em 0 .5em; padding-top:.7em; border-top:2px solid var(--line); }
+    h2{ font-size:1.2rem; margin:1.8em 0 .4em; }
+    h3{ font-size:1.03rem; margin:1.4em 0 .3em; }
+    a{ color:var(--brand); text-decoration:none; } a:hover{ text-decoration:underline; }
+    figure{ margin:1.6em auto; text-align:center; }
+    figure img{ width:250px; max-width:70%; height:auto; border:1px solid var(--line);
+                border-radius:14px; box-shadow:0 2px 14px rgba(0,0,0,.10); }
+    figcaption{ color:var(--muted); font-style:italic; font-size:.86rem; margin-top:.55em; }
+    table{ width:100%; border-collapse:collapse; margin:1.2em 0; font-size:.95rem; }
+    th,td{ border:1px solid var(--line); padding:.5em .65em; text-align:left; vertical-align:top; }
+    th{ background:rgba(127,127,127,.08); }
+    blockquote{ margin:1.2em 0; padding:.7em 1em; border-left:3px solid var(--brand);
+                background:var(--tip); border-radius:0 8px 8px 0; }
+    blockquote p{ margin:.3em 0; }
+    code{ background:rgba(127,127,127,.12); padding:.1em .35em; border-radius:5px; font-size:.9em; }
+    hr{ border:0; border-top:1px solid var(--line); margin:2em 0; }
+    #TOC{ background:rgba(127,127,127,.05); border:1px solid var(--line); border-radius:12px;
+          padding:.8em 1.2em; margin:1.5em 0 2.5em; font-size:.95rem; }
+    #TOC>ul{ margin:.3em 0; } #TOC ul{ list-style:none; padding-left:1.1em; }
+    #TOC>ul{ padding-left:0; } #TOC li{ margin:.16em 0; }
+    #TOC a{ color:var(--fg); } #TOC a:hover{ color:var(--brand); }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Subten — Uživatelská příručka</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Obsah</h2>
+<ul>
+<li><a href="#subten-uživatelská-příručka"
+id="toc-subten-uživatelská-příručka">Subten — Uživatelská
+příručka</a></li>
+<li><a href="#úvodní-slovo" id="toc-úvodní-slovo">1 Úvodní slovo</a>
+<ul>
+<li><a href="#co-v-této-příručce-najdete"
+id="toc-co-v-této-příručce-najdete">1.1 Co v této příručce
+najdete</a></li>
+<li><a href="#jak-je-příručka-členěna"
+id="toc-jak-je-příručka-členěna">1.2 Jak je příručka členěna</a></li>
+<li><a href="#typografické-konvence" id="toc-typografické-konvence">1.3
+Typografické konvence</a></li>
+</ul></li>
+<li><a href="#část-i-seznámení-se-subtenem"
+id="toc-část-i-seznámení-se-subtenem">2 Část I — Seznámení se
+Subtenem</a>
+<ul>
+<li><a href="#co-je-subten" id="toc-co-je-subten">2.1 Co je
+Subten</a></li>
+<li><a href="#klíčové-koncepty" id="toc-klíčové-koncepty">2.2 Klíčové
+koncepty</a></li>
+<li><a href="#mapa-aplikace" id="toc-mapa-aplikace">2.3 Mapa
+aplikace</a></li>
+</ul></li>
+<li><a href="#část-ii-začínáme" id="toc-část-ii-začínáme">3 Část II —
+Začínáme</a>
+<ul>
+<li><a href="#rychlý-start" id="toc-rychlý-start">3.1 Rychlý
+start</a></li>
+<li><a href="#vytvoření-účtu-a-přihlášení"
+id="toc-vytvoření-účtu-a-přihlášení">3.2 Vytvoření účtu a
+přihlášení</a></li>
+<li><a href="#úvodní-dotazník-krok-za-krokem"
+id="toc-úvodní-dotazník-krok-za-krokem">3.3 Úvodní dotazník krok za
+krokem</a></li>
+<li><a href="#první-nastavení-která-stojí-za-kontrolu"
+id="toc-první-nastavení-která-stojí-za-kontrolu">3.4 První nastavení,
+která stojí za kontrolu</a></li>
+</ul></li>
+<li><a href="#dnes-přehled" id="toc-dnes-přehled">4 Dnes (přehled)</a>
+<ul>
+<li><a href="#k-čemu-slouží" id="toc-k-čemu-slouží">4.1 K čemu
+slouží</a></li>
+<li><a href="#co-uvidíte" id="toc-co-uvidíte">4.2 Co uvidíte</a></li>
+<li><a href="#panel-nástrojů" id="toc-panel-nástrojů">4.3 Panel
+nástrojů</a></li>
+<li><a href="#časté-chyby" id="toc-časté-chyby">4.4 Časté chyby</a></li>
+</ul></li>
+<li><a href="#jídlo" id="toc-jídlo">5 Jídlo</a>
+<ul>
+<li><a href="#k-čemu-slouží-1" id="toc-k-čemu-slouží-1">5.1 K čemu
+slouží</a></li>
+<li><a href="#obrazovka" id="toc-obrazovka">5.2 Obrazovka</a></li>
+<li><a href="#způsoby-zápisu-jídla" id="toc-způsoby-zápisu-jídla">5.3
+Způsoby zápisu jídla</a></li>
+<li><a href="#úpravy-záznamů" id="toc-úpravy-záznamů">5.4 Úpravy
+záznamů</a></li>
+<li><a href="#ai-jídelníček-a-nákupní-seznam-premium"
+id="toc-ai-jídelníček-a-nákupní-seznam-premium">5.5 AI jídelníček a
+nákupní seznam (Premium)</a></li>
+<li><a href="#časté-chyby-1" id="toc-časté-chyby-1">5.6 Časté
+chyby</a></li>
+<li><a href="#omezení" id="toc-omezení">5.7 Omezení</a></li>
+</ul></li>
+<li><a href="#trénink" id="toc-trénink">6 Trénink</a>
+<ul>
+<li><a href="#k-čemu-slouží-2" id="toc-k-čemu-slouží-2">6.1 K čemu
+slouží</a></li>
+<li><a href="#můj-plán-zdarma" id="toc-můj-plán-zdarma">6.2 Můj plán
+(zdarma)</a></li>
+<li><a href="#aktivní-trénink" id="toc-aktivní-trénink">6.3 Aktivní
+trénink</a></li>
+<li><a href="#posilovna-a-sport-premium"
+id="toc-posilovna-a-sport-premium">6.4 Posilovna a Sport
+(Premium)</a></li>
+<li><a href="#knihovna" id="toc-knihovna">6.5 Knihovna</a></li>
+<li><a href="#návaznosti" id="toc-návaznosti">6.6 Návaznosti</a></li>
+</ul></li>
+<li><a href="#pokrok" id="toc-pokrok">7 Pokrok</a>
+<ul>
+<li><a href="#k-čemu-slouží-3" id="toc-k-čemu-slouží-3">7.1 K čemu
+slouží</a></li>
+<li><a href="#obrazovka-1" id="toc-obrazovka-1">7.2 Obrazovka</a></li>
+<li><a href="#ai-hodnocení-postavy" id="toc-ai-hodnocení-postavy">7.3 AI
+hodnocení postavy</a></li>
+<li><a href="#časté-chyby-2" id="toc-časté-chyby-2">7.4 Časté
+chyby</a></li>
+</ul></li>
+<li><a href="#mentor-ai-mentor" id="toc-mentor-ai-mentor">8 Mentor (AI
+mentor)</a>
+<ul>
+<li><a href="#k-čemu-slouží-4" id="toc-k-čemu-slouží-4">8.1 K čemu
+slouží</a></li>
+<li><a href="#obrazovka-2" id="toc-obrazovka-2">8.2 Obrazovka</a></li>
+<li><a href="#ai-v-zařízení-soukromý-režim"
+id="toc-ai-v-zařízení-soukromý-režim">8.3 AI v zařízení (Soukromý
+režim)</a></li>
+<li><a href="#dostupnost" id="toc-dostupnost">8.4 Dostupnost</a></li>
+</ul></li>
+<li><a href="#část-iv-adaptivní-engine"
+id="toc-část-iv-adaptivní-engine">9 Část IV — Adaptivní engine</a>
+<ul>
+<li><a href="#kalibrace-první-2-týdny"
+id="toc-kalibrace-první-2-týdny">9.1 Kalibrace (první ~2 týdny)</a></li>
+<li><a href="#týdenní-adaptace" id="toc-týdenní-adaptace">9.2 Týdenní
+adaptace</a></li>
+<li><a href="#čas-do-cíle-eta" id="toc-čas-do-cíle-eta">9.3 Čas do cíle
+(ETA)</a></li>
+<li><a href="#strategie" id="toc-strategie">9.4 Strategie</a></li>
+</ul></li>
+<li><a href="#část-v-apple-watch-a-zkratky"
+id="toc-část-v-apple-watch-a-zkratky">10 Část V — Apple Watch a
+zkratky</a>
+<ul>
+<li><a href="#aplikace-pro-hodinky" id="toc-aplikace-pro-hodinky">10.1
+Aplikace pro hodinky</a></li>
+<li><a href="#komplikace-a-widgety" id="toc-komplikace-a-widgety">10.2
+Komplikace a widgety</a></li>
+<li><a href="#akční-tlačítko-a-siri" id="toc-akční-tlačítko-a-siri">10.3
+Akční tlačítko a Siri</a></li>
+</ul></li>
+<li><a href="#část-vi-apple-health" id="toc-část-vi-apple-health">11
+Část VI — Apple Health</a></li>
+<li><a href="#část-vii-premium-a-předplatné"
+id="toc-část-vii-premium-a-předplatné">12 Část VII — Premium a
+předplatné</a>
+<ul>
+<li><a href="#free-vs.-premium-1" id="toc-free-vs.-premium-1">12.1 Free
+vs. Premium</a></li>
+<li><a href="#předplatné" id="toc-předplatné">12.2 Předplatné</a></li>
+<li><a href="#zkušební-období" id="toc-zkušební-období">12.3 Zkušební
+období</a></li>
+</ul></li>
+<li><a href="#část-viii-nastavení-soukromí-a-účet"
+id="toc-část-viii-nastavení-soukromí-a-účet">13 Část VIII — Nastavení,
+soukromí a účet</a>
+<ul>
+<li><a href="#vaše-data" id="toc-vaše-data">13.1 Vaše data</a></li>
+</ul></li>
+<li><a href="#část-ix-řešení-potíží-a-faq"
+id="toc-část-ix-řešení-potíží-a-faq">14 Část IX — Řešení potíží a
+FAQ</a></li>
+<li><a href="#příloha-slovníček" id="toc-příloha-slovníček">15 Příloha —
+Slovníček</a></li>
+</ul>
+</nav>
+<h1 id="subten-uživatelská-příručka">Subten — Uživatelská příručka</h1>
+<p><em>Verze 1.0 · červenec 2026</em></p>
+<p><strong>Subten je určen pro osoby starší 18 let.</strong></p>
+<h1 id="úvodní-slovo">1 Úvodní slovo</h1>
+<p>Vítejte v uživatelské příručce aplikace <strong>Subten</strong> —
+kouče pro rekompozici těla pro iPhone a Apple Watch. Subten kombinuje
+zapisování jídla (AI skenování z fotky, čárové kódy, vyhledávání),
+adaptivní kalorický a makro engine, který se učí z vašich skutečných
+výsledků, tréninkový modul, hlubokou integraci s Apple Health a AI
+mentora.</p>
+<h2 id="co-v-této-příručce-najdete">1.1 Co v této příručce najdete</h2>
+<p>Příručka pokrývá celou aplikaci: od vytvoření účtu a úvodního
+dotazníku přes všechny záložky a funkce až po předplatné, soukromí a
+řešení potíží. Je to průvodce typu <em>jak na to</em>: u každé funkce
+najdete, k čemu slouží, jak ji krok za krokem ovládat a co vám aplikace
+zobrazuje a proč.</p>
+<p>Žádné předchozí znalosti výživy nejsou potřeba. Kdekoli se aplikace
+opírá o nějaký koncept (kalorický deficit, makroživiny, energetická
+dostupnost, adaptivní cíle), příručka jej stručně a srozumitelně
+vysvětlí.</p>
+<p>Příručku můžete číst dvěma způsoby:</p>
+<ul>
+<li><strong>Od začátku</strong> — části I a II vás seznámí s koncepty a
+provedou nastavením; poté pokračujte obrazovkami, které používáte
+nejčastěji.</li>
+<li><strong>Jako referenci</strong> — každá kapitola je samostatná.
+Kapitoly popisující obrazovky mají stejnou strukturu, takže stejný typ
+informace najdete vždy na stejném místě.</li>
+</ul>
+<h2 id="jak-je-příručka-členěna">1.2 Jak je příručka členěna</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Část</th>
+<th>Obsah</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I — Seznámení se Subtenem</td>
+<td>Co je Subten, klíčové koncepty (energetický model, adaptivní cíle,
+kalibrace, Free vs. Premium), mapa obrazovek.</td>
+</tr>
+<tr>
+<td>II — Začínáme</td>
+<td>Vytvoření účtu, možnosti přihlášení, 7krokový úvodní dotazník,
+nastavení prvního dne.</td>
+</tr>
+<tr>
+<td>III — Pět záložek</td>
+<td>Jedna kapitola na každou záložku: Dnes, Jídlo, Trénink, Pokrok,
+Mentor.</td>
+</tr>
+<tr>
+<td>IV — Adaptivní engine</td>
+<td>Jak se vaše kalorické a makro cíle vyvíjejí z vašich skutečných dat
+a jaké jsou vestavěné strategie (cheat meal, dietní pauza, refeed,
+protokol při plató).</td>
+</tr>
+<tr>
+<td>V — Apple Watch a zkratky</td>
+<td>Aplikace pro hodinky, komplikace, akční tlačítko a zkratky
+Siri.</td>
+</tr>
+<tr>
+<td>VI — Apple Health</td>
+<td>Co přesně Subten čte a zapisuje, přepínače podle typu dat, zdravotní
+upozornění.</td>
+</tr>
+<tr>
+<td>VII — Premium a předplatné</td>
+<td>Free vs. Premium, zkušební období, promo kódy, sportovní balíčky,
+obnovení nákupů.</td>
+</tr>
+<tr>
+<td>VIII — Nastavení, soukromí a účet</td>
+<td>Profil, připomínky, export/import dat, souhlas s AI, smazání
+účtu.</td>
+</tr>
+<tr>
+<td>IX — Řešení potíží a FAQ</td>
+<td>Běžné problémy a jejich řešení.</td>
+</tr>
+<tr>
+<td>Příloha</td>
+<td>Slovníček pojmů.</td>
+</tr>
+</tbody>
+</table>
+<p>Kapitoly o obrazovkách (část III) mají pevnou strukturu: <em>K čemu
+slouží → Rychlý start → Krok za krokem → Pole a možnosti → Návaznosti na
+další obrazovky → Časté chyby → Omezení</em>.</p>
+<h2 id="typografické-konvence">1.3 Typografické konvence</h2>
+<ul>
+<li><strong>Tučné písmo</strong> označuje prvek uživatelského rozhraní —
+tlačítko, položku menu nebo název záložky: klepněte na
+<strong>Uložit</strong>.</li>
+<li><em>Kurzíva</em> označuje hodnotu nebo stav, který aplikace
+zobrazuje: kruh se zbarví <em>červeně</em>, když jste nad cílem.</li>
+<li><code>Neproporcionální písmo</code> označuje něco, co píšete.</li>
+<li>Rámečky označené <strong>Tip</strong>, <strong>Poznámka</strong> a
+<strong>Upozornění</strong> zvýrazňují zkratky, souvislosti a
+úskalí.</li>
+</ul>
+<blockquote>
+<p><strong>Poznámka:</strong> Rozhraní Subtenu je k dispozici v
+<strong>angličtině, slovenštině a češtině</strong>. Tato příručka
+používá české rozhraní; anglická a slovenská verze příručky používají
+odpovídající lokalizované popisky.</p>
+</blockquote>
+<hr />
+<h1 id="část-i-seznámení-se-subtenem">2 Část I — Seznámení se
+Subtenem</h1>
+<h2 id="co-je-subten">2.1 Co je Subten</h2>
+<p>Subten je aplikace pro iOS (s doprovodnou aplikací pro Apple Watch)
+zaměřená na <strong>rekompozici těla</strong> — hubnutí tuku, budování
+svalů, nebo obojí. Její slogan je přímočarý: <em>„−10 kg. Žádné
+výmluvy.“</em> Pod tou přímočarostí se ale skrývá promyšlený engine:</p>
+<ul>
+<li>Zapisujete, co jíte — <strong>fotkou (AI)</strong>, <strong>čárovým
+kódem</strong>, <strong>vyhledáváním</strong>, <strong>skenem
+etikety</strong> nebo ručně.</li>
+<li>Zapisujete (nebo importujete) svůj <strong>trénink</strong> a
+<strong>váhu</strong>.</li>
+<li>Subten čte data o aktivitě, spánku a regeneraci z <strong>Apple
+Health</strong>.</li>
+<li>Každý týden <strong>adaptivní engine</strong> porovná, co jste
+skutečně snědli, s tím, jak se skutečně pohnula vaše váha, změří váš
+skutečný udržovací příjem a upraví denní kalorické a makro cíle — s
+bezpečnostními pojistkami.</li>
+<li><strong>AI mentor</strong> (záložka Mentor) zhodnotí váš den i
+týden, vysvětlí, co čísla znamenají, a umí za vás zapsat jídlo nebo
+aktivitu.</li>
+</ul>
+<p>Subten je určen dospělým: aplikace při úvodním nastavení vynucuje
+<strong>věkovou hranici 18+</strong>.</p>
+<h2 id="klíčové-koncepty">2.2 Klíčové koncepty</h2>
+<h3 id="energetický-model-zbývá-cíl-snědeno">Energetický model: Zbývá =
+Cíl − Snědeno</h3>
+<p>Subten používá na všech obrazovkách jediný, záměrně jednoduchý
+energetický vzorec:</p>
+<p><strong>Zbývá = Denní cíl − Snědeno</strong></p>
+<p>Váš denní cíl <em>už zahrnuje plánovanou aktivitu</em>. Na rozdíl od
+mnoha kalorických aplikací cvičení <strong>nenavyšuje</strong> váš
+zbývající rozpočet: trénink vám ve výchozím nastavení „nevydělá“ jídlo
+navíc. Aktivita z Apple Health se zobrazuje jen pro informaci. Pouze
+když váš <em>naměřený</em> pohyb zřetelně převýší plán, aplikace denní
+cíl rozšíří a zobrazí jej jako <em>Cíl + Pohyb navíc</em>. Tím se
+předchází klasické pasti dvojího započítání, kdy optimistické odhady
+spálených kalorií vymažou váš deficit.</p>
+<h3 id="adaptivní-cíle-a-kalibrace">Adaptivní cíle a kalibrace</h3>
+<p>Vaše počáteční cíle vycházejí ze standardního odhadu (rovnice
+Mifflin–St Jeor plus aktivitní násobitel). Odhady jsou téměř u každého
+nepřesné — Subten je proto bere jen jako výchozí bod. Zhruba
+<strong>první dva týdny</strong> se aplikace <em>kalibruje</em>:
+potřebuje dostatek zapsaných dnů a vážení, než datům začne důvěřovat.
+Poté se cíle <strong>každý týden</strong> znovu odvozují z vašeho
+skutečného příjmu a skutečného trendu váhy. Pravidla a bezpečnostní
+pojistky podrobně vysvětluje část IV.</p>
+<h3 id="plán-vs.-realita">Plán vs. realita</h3>
+<p>Váš <strong>tréninkový plán</strong> řídí vaše výživové cíle
+(tréninkové dny mohou mít jiné cíle než dny odpočinkové — viz <em>typy
+dnů</em> níže). To, co Apple Health <em>naměří</em>, slouží ke kontrole
+reality vůči plánu, ne k jeho přepisování minutu po minutě.</p>
+<h3 id="typy-dnů">Typy dnů</h3>
+<p>Každý den má svůj typ — <strong>Síla</strong>,
+<strong>Kardio</strong>, <strong>Odpočinek</strong> nebo
+<strong>Vlastní</strong> — zobrazený jako štítek na záložce Jídlo. Typy
+dnů umožňují carb cycling: denní cíl se může podle typu dne lišit.
+Speciální typy dnů nastavené strategiemi (cheat day, refeed, dietní
+pauza) jsou z týdenní adaptace vyloučeny, aby jeden plánovaný „vysoký“
+den nezkreslil vaše statistiky.</p>
+<h3 id="free-vs.-premium">Free vs. Premium</h3>
+<p>Základní smyčka je zdarma: zapisování jídla vyhledáváním, čárovým
+kódem a ručně, přehledová obrazovka, tréninková záložka Můj plán,
+sledování pokroku, synchronizace s Apple Health, připomínky a
+export/import dat. <strong>Premium</strong> odemyká AI funkce (skenování
+fotek, skenování etiket, jídelníčky, Mentora) a plný tréninkový modul
+(Posilovna, Sport, osobní rekordy). Úplné srovnání najdete v kapitole
+9.</p>
+<h2 id="mapa-aplikace">2.3 Mapa aplikace</h2>
+<p>Aplikace má <strong>pět záložek</strong>:</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Záložka</th>
+<th>K čemu slouží</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Dnes</strong></td>
+<td>Váš den na jeden pohled: energetický kruh, rychlé akce, kroky, voda,
+spánek a regenerace, dnešní trénink a jídla.</td>
+</tr>
+<tr>
+<td><strong>Jídlo</strong></td>
+<td>Jídelníček: zapisování, úpravy a plánování jídel; AI jídelníček a
+nákupní seznam.</td>
+</tr>
+<tr>
+<td><strong>Trénink</strong></td>
+<td>Váš tréninkový plán, knihovna cviků, aktivní trénink s odpočinkovým
+časovačem, osobní rekordy.</td>
+</tr>
+<tr>
+<td><strong>Pokrok</strong></td>
+<td>Graf váhy a trendu, tělesné míry, AI hodnocení postavy, fotky
+pokroku, série.</td>
+</tr>
+<tr>
+<td><strong>Mentor</strong></td>
+<td>AI mentor: chat, denní a týdenní přehledy, jídelníček, nákupní
+seznam.</td>
+</tr>
+</tbody>
+</table>
+<p>Do Nastavení se dostanete přes ikonu ozubeného kola na záložce
+<strong>Dnes</strong>.</p>
+<!-- SCREENSHOT 01: Tab bar / Today overview — dashboard with energy ring, quick actions visible -->
+<figure>
+<img src="images/01-today-overview.jpg"
+alt="Záložka Dnes a lišta pěti záložek." />
+<figcaption aria-hidden="true">Záložka Dnes a lišta pěti
+záložek.</figcaption>
+</figure>
+<hr />
+<h1 id="část-ii-začínáme">3 Část II — Začínáme</h1>
+<p>Tato část vás provede od instalace aplikace k prvnímu plně
+nastavenému dni.</p>
+<h2 id="rychlý-start">3.1 Rychlý start</h2>
+<ol type="1">
+<li>Otevřete Subten. Na uvítací obrazovce klepněte na
+<strong>Začít</strong> (Get Started), případně na <strong>Už mám
+účet</strong>, pokud jste se již registrovali.</li>
+<li>Projděte 7krokovým úvodním dotazníkem: profil → úroveň aktivity →
+cíl → volitelné hodnocení postavy → volitelný tréninkový plán → Apple
+Health.</li>
+<li>Klepněte na <strong>Hotovo</strong>. Spustí se vaše bezplatné
+zkušební období a ocitnete se na záložce <strong>Dnes</strong>.</li>
+<li>Zapište první jídlo: záložka <strong>Jídlo</strong> →
+<strong>+</strong> u jídla → vyhledejte, naskenujte čárový kód, nebo
+vyfoťte (Premium).</li>
+<li>Přidejte dnešní váhu na záložce <strong>Pokrok</strong>, aby mohla
+začít kalibrace.</li>
+<li>Volitelně: v <strong>Nastavení → Připomínky</strong> zapněte
+připomínky jídel, vody a vážení.</li>
+</ol>
+<h2 id="vytvoření-účtu-a-přihlášení">3.2 Vytvoření účtu a
+přihlášení</h2>
+<p>Při prvním spuštění Subten zobrazí přihlašovací obrazovku. Účet
+můžete vytvořit třemi způsoby:</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Způsob</th>
+<th>Poznámky</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>E-mail + heslo</strong></td>
+<td>Klasická registrace; e-mail potvrdíte.</td>
+</tr>
+<tr>
+<td><strong>Přihlásit se přes Apple</strong></td>
+<td>Nejrychlejší na iPhonu; svůj skutečný e-mail můžete skrýt.</td>
+</tr>
+<tr>
+<td><strong>Přihlásit se přes Google</strong></td>
+<td>Používá váš účet Google.</td>
+</tr>
+</tbody>
+</table>
+<p>Než se tlačítka Apple/Google aktivují, musíte souhlasit s
+<strong>podmínkami</strong>.</p>
+<p><strong>Zapomněli jste heslo?</strong> Klepněte na <strong>Zapomenuté
+heslo?</strong>, zadejte svůj e-mail a klikněte na odkaz ve zprávě pro
+obnovení — otevře aplikaci přímo na obrazovce pro nové heslo.</p>
+<!-- SCREENSHOT 02: Auth screen — sign in / sign up with Apple + Google buttons visible -->
+<figure>
+<img src="images/02-auth.jpg"
+alt="Přihlašovací obrazovka se všemi třemi způsoby." />
+<figcaption aria-hidden="true">Přihlašovací obrazovka se všemi třemi
+způsoby.</figcaption>
+</figure>
+<h2 id="úvodní-dotazník-krok-za-krokem">3.3 Úvodní dotazník krok za
+krokem</h2>
+<p>Úvodní nastavení je 7krokový dotazník s ukazatelem postupu (<em>Krok
+X / 7</em>). Kdykoli se můžete vrátit tlačítkem <strong>Zpět</strong>;
+kroky 5 a 6 lze <strong>přeskočit</strong>.</p>
+<blockquote>
+<p><strong>Upozornění:</strong> Subten je pouze pro dospělé. Výběr data
+narození nepřijme datum, podle kterého by vám bylo méně než 18 let.</p>
+</blockquote>
+<p><strong>Krok 1 — Vítejte.</strong> Aplikace se představí. Na iPhonu
+15 Pro a novějších se navíc zobrazí tip: <strong>akční tlačítko</strong>
+(Action Button) můžete namapovat na rychlé přidání jídla.</p>
+<p><strong>Krok 2 — Profil.</strong> Zvolte <strong>pohlaví</strong>,
+nastavte <strong>datum narození</strong>, <strong>výšku</strong>
+(120–220 cm), <strong>aktuální váhu</strong> a <strong>cílovou
+váhu</strong> (obě 35–200 kg). Z těchto údajů vychází počáteční
+kalorický odhad.</p>
+<!-- SCREENSHOT 03: Onboarding profile step — gender cards, height/weight steppers -->
+<figure>
+<img src="images/03-onboarding-profile.jpg"
+alt="Krok 2 — váš základní profil." />
+<figcaption aria-hidden="true">Krok 2 — váš základní
+profil.</figcaption>
+</figure>
+<p><strong>Krok 3 — Úroveň aktivity.</strong> Vyberte z možností
+<em>Sedavá</em>, <em>Lehká</em>, <em>Střední</em>, <em>Aktivní</em>,
+<em>Velmi aktivní</em> — každá karta vysvětluje, co to znamená v počtu
+tréninků týdně. Volte upřímně; adaptivní engine chyby odhadu opraví, ale
+s realistickým startem se ustálí rychleji.</p>
+<p><strong>Krok 4 — Cíl.</strong> Zvolte <strong>Spálit tuk</strong>,
+<strong>Nabrat svaly</strong>, <strong>Rekompozice</strong> nebo
+<strong>Udržovat</strong>.</p>
+<ul>
+<li>Hubnutí přidává výběr <strong>tempa</strong> (<em>Pomalé / Střední /
+Rychlé</em>).</li>
+<li>Nabírání svalů přidává výběr <strong>tréninkových
+zkušeností</strong> (<em>Začátečník / Pokročilý / Zkušený</em>) —
+zkušení cvičenci nabírají svaly pomaleji, takže je nadbytek menší.</li>
+</ul>
+<p>Živá náhledová karta ukazuje vaše výchozí cíle: denní kcal,
+bílkoviny/sacharidy/tuky, deficit či nadbytek, odhadovaný <strong>čas do
+cíle</strong> a váš BMR a TDEE.</p>
+<!-- SCREENSHOT 04: Onboarding goal step — goal cards + live preview card with kcal/macros/ETA -->
+<figure>
+<img src="images/04-onboarding-goal.jpg"
+alt="Krok 4 — výběr cíle s živým náhledem cílových hodnot." />
+<figcaption aria-hidden="true">Krok 4 — výběr cíle s živým náhledem
+cílových hodnot.</figcaption>
+</figure>
+<p><strong>Krok 5 — Hodnocení postavy (volitelné).</strong> Rychlé
+vizuální sebehodnocení, které zpřesní odhad tělesného tuku. Pokud
+nechcete, klepněte na <strong>Přeskočit</strong>.</p>
+<p><strong>Krok 6 — Tréninkový plán (volitelný).</strong> Vyberte
+tréninkový split: <strong>Full Body 3×</strong>, <strong>Horní/dolní
+polovina 4×</strong>, <strong>Bro Split 5×</strong> nebo
+<strong>Push/Pull/Legs 6×</strong>. Plán můžete později změnit nebo si
+na záložce Trénink sestavit vlastní.</p>
+<p><strong>Krok 7 — Apple Health.</strong> Subten vysvětlí, co chce číst
+(váhu, kroky, srdeční data, spánek…). Klepněte na <strong>Povolit
+přístup</strong> a potvrďte v systémovém dialogu iOS. Tento krok můžete
+i přeskočit a povolit přístup později v <strong>Nastavení →
+Zdraví</strong>. Klepněte na <strong>Hotovo</strong> — váš profil se
+uloží a spustí se <strong>bezplatné zkušební období</strong>.</p>
+<h2 id="první-nastavení-která-stojí-za-kontrolu">3.4 První nastavení,
+která stojí za kontrolu</h2>
+<ul>
+<li><strong>Jazyk</strong> — Nastavení → Jazyk: angličtina, slovenština
+nebo čeština (vyžaduje restart aplikace).</li>
+<li><strong>Jednotky</strong> — Nastavení → Jednotky: kilogramy nebo
+libry (jen pro zobrazení; data se ukládají v kg).</li>
+<li><strong>Připomínky</strong> — Nastavení → Připomínky: snídaně, oběd,
+večeře, voda, trénink (jen v tréninkové dny) a vážení, každá s vlastním
+časem.</li>
+</ul>
+<hr />
+<h1 id="dnes-přehled">4 Dnes (přehled)</h1>
+<h2 id="k-čemu-slouží">4.1 K čemu slouží</h2>
+<p>Záložka <strong>Dnes</strong> je vaše domovská obrazovka: jediný
+pohled vám řekne, jak den probíhá — energetický rozpočet, aktivita,
+voda, regenerace, plánovaný trénink a zapsaná jídla. Zároveň je
+odrazovým můstkem pro nejčastější akce.</p>
+<h2 id="co-uvidíte">4.2 Co uvidíte</h2>
+<p>Odshora dolů (karty se zobrazují, jen když jsou relevantní):</p>
+<ul>
+<li><strong>Bannery</strong> — zdravotní upozornění (z anomálií v Apple
+Health), aktivní <em>životní situace</em> a během prvních ~2 týdnů
+banner <strong>Kalibrujeme vaše cíle</strong>: <em>„Zapisujte jídla a
+važte se ~2 týdny — kalorie doladíme podle vašich skutečných
+výsledků.“</em></li>
+<li><strong>Pozdrav</strong> s vaším cílem a <strong>sérií</strong>
+(počet po sobě jdoucích dnů zapisování, zobrazený jako plamínek).</li>
+<li><strong>Energetický kruh</strong> — <em>Snědeno / Cíl</em>,
+uprostřed <strong>Zbývá</strong>, štítek <strong>energetické
+dostupnosti</strong> (<em>nízká / pozor / ok / optimální</em>) a
+aktivita pro informaci. Když týdenní adaptace právě změnila vaše cíle,
+zobrazí se zde odznak <strong>Tento týden upraveno</strong>.</li>
+<li><strong>Rychlé akce</strong> — <strong>Přidat jídlo</strong> (otevře
+nabídku způsobů zápisu), <strong>+250 ml</strong> vody, <strong>Spustit
+trénink</strong>.</li>
+<li><strong>Řádek statistik</strong> — kroky, kcal ze cvičení,
+voda.</li>
+<li>Dlaždice <strong>Spánek a zátěž</strong> a rozbalovací <strong>panel
+regenerace</strong> — skóre regenerace 0–100 sestavené z HRV, klidové
+tepové frekvence, spánku, SpO₂, dechové frekvence a teploty zápěstí,
+každá metrika se srozumitelným vysvětlením a tréninkovým
+doporučením.</li>
+<li><strong>Výkonnostní profil</strong> — radar regenerace, síly a
+výživy.</li>
+<li><strong>Dnešní trénink</strong>, <strong>minikarta váhy</strong>
+(změna za 7 dní) a <strong>dnešní jídla</strong>.</li>
+</ul>
+<!-- SCREENSHOT 05: Dashboard full scroll top — energy ring, quick actions, stats row -->
+<figure>
+<img src="images/05-dashboard-top.jpg"
+alt="Energetický kruh, rychlé akce a denní statistiky." />
+<figcaption aria-hidden="true">Energetický kruh, rychlé akce a denní
+statistiky.</figcaption>
+</figure>
+<!-- SCREENSHOT 06: Recovery bar expanded — score with HRV, RHR, sleep metrics -->
+<figure>
+<img src="images/06-recovery.jpg"
+alt="Rozbalený panel regenerace s vysvětlením jednotlivých metrik." />
+<figcaption aria-hidden="true">Rozbalený panel regenerace s vysvětlením
+jednotlivých metrik.</figcaption>
+</figure>
+<blockquote>
+<p><strong>Poznámka — Apple Watch není potřeba.</strong> Skóre
+regenerace i všechny zdravotní metriky (HRV, tepová frekvence, spánek,
+SpO₂…) Subten <strong>čte z Apple Health</strong>, ne přímo z hodinek.
+Zdrojem může být <strong>cokoli, co tato data do Apple Health
+zapisuje</strong> — Apple Watch, Garmin, Oura, Whoop, jiné náramky či
+prsteny, nebo i samotný iPhone (kroky, spánek). Pokud v Apple Health
+žádná taková data nejsou, regenerace se jednoduše nezobrazí.</p>
+</blockquote>
+<h2 id="panel-nástrojů">4.3 Panel nástrojů</h2>
+<ul>
+<li><strong>Ozubené kolo</strong> — otevře <strong>Nastavení</strong>
+(kapitola 10).</li>
+<li><strong>Srdce v kroužku</strong> — <strong>Životní situace</strong>:
+dočasné režimy (nemoc, dovolená, vysoký stres…), které pozastaví nebo
+zmírní engine, aby vám jeden špatný týden nerozhodil cíle.</li>
+<li><strong>Historie</strong> — procházení minulých dnů ve stejném
+rozložení karet.</li>
+<li><strong>Životní styl</strong> — dávkování vody a sledování doplňků
+stravy.</li>
+</ul>
+<h2 id="časté-chyby">4.4 Časté chyby</h2>
+<ul>
+<li><strong>Očekávat, že cvičení přidá jídlo do rozpočtu.</strong>
+Záměrně nepřidává (viz energetický model, §2.2). Denní cíl rozšíří jen
+pohyb zřetelně nad plán.</li>
+<li><strong>Odbýt kalibrační banner a hodnotit cíle třetí den.</strong>
+První odhad je záměrně konzervativní; nechte dvoutýdenní kalibraci
+doběhnout.</li>
+</ul>
+<hr />
+<h1 id="jídlo">5 Jídlo</h1>
+<h2 id="k-čemu-slouží-1">5.1 K čemu slouží</h2>
+<p>Záložka <strong>Jídlo</strong> je váš jídelníček: vše, co jíte a
+pijete, uspořádané podle jídel (snídaně, oběd, večeře, svačina), s
+denními součty vůči vašim cílům — včetně <strong>vlákniny</strong>.</p>
+<h2 id="obrazovka">5.2 Obrazovka</h2>
+<ul>
+<li><strong>Záhlaví s datem</strong> — šipky pro předchozí/následující
+den, klepnutím na datum otevřete kalendář.</li>
+<li><strong>Karta denních součtů</strong> — kalorický kruh s hodnotou
+<em>Zbývá</em> plus sloupce pro bílkoviny, sacharidy, tuky a vlákninu.
+Zobrazuje se zde i štítek aktuálního <strong>typu dne</strong> (Síla /
+Kardio / Odpočinek / Vlastní).</li>
+<li><strong>Sekce jídel</strong> — každá s nabídkou
+<strong>přidání</strong>, řádkem součtů a čipy
+<strong>nedávných</strong> a <strong>častých</strong> potravin pro zápis
+jedním klepnutím.</li>
+<li><strong>Panel nástrojů</strong> — <strong>Recepty</strong>,
+<strong>Kopírovat ze dne</strong> (kterýkoli z posledních 7 dnů),
+<strong>Jídelníček</strong>, <strong>Skenovat</strong>.</li>
+</ul>
+<!-- SCREENSHOT 07: Food tab — a day with meals logged, totals card with macro bars -->
+<figure>
+<img src="images/07-food-diary.jpg"
+alt="Zapsaný den: karta součtů a sekce jídel." />
+<figcaption aria-hidden="true">Zapsaný den: karta součtů a sekce
+jídel.</figcaption>
+</figure>
+<h2 id="způsoby-zápisu-jídla">5.3 Způsoby zápisu jídla</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Způsob</th>
+<th>Jak</th>
+<th>Dostupnost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Vyhledávání</strong></td>
+<td>Napište název, vyberte výsledek, nastavte množství. Přílohy lze
+přidat ve stejném kroku.</td>
+<td>Free</td>
+</tr>
+<tr>
+<td><strong>Čárový kód</strong></td>
+<td>Namiřte fotoaparát na čárový kód; produkt se načte z databáze Open
+Food Facts.</td>
+<td>Free</td>
+</tr>
+<tr>
+<td><strong>AI sken z fotky</strong></td>
+<td>Vyfoťte svůj talíř (nebo vyberte z galerie); AI jídlo rozpozná a
+doplní makra, která zkontrolujete a potvrdíte.</td>
+<td>Premium</td>
+</tr>
+<tr>
+<td><strong>Sken nutriční etikety</strong></td>
+<td>Vyfoťte etiketu; AI přečte hodnoty.</td>
+<td>Premium</td>
+</tr>
+<tr>
+<td><strong>Skener receptů a Recepty</strong></td>
+<td>Naskenujte nebo si uložte vícesložkové recepty a zapisujte jejich
+porce.</td>
+<td>Free</td>
+</tr>
+<tr>
+<td><strong>Rychlé přidání</strong></td>
+<td>Napište název a kcal/bílkoviny/sacharidy/tuky/vlákninu přímo.</td>
+<td>Free</td>
+</tr>
+<tr>
+<td><strong>Oblíbené / Nedávné / Časté</strong></td>
+<td>Opakovaný zápis často používaných potravin jedním klepnutím (uložíte
+ikonou srdce).</td>
+<td>Free</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Tip:</strong> Skeny z fotky fungují i offline — zařadí se do
+fronty a zpracují se, jakmile budete zase online. Banner ukazuje
+čekající a neúspěšné skeny; klepnutím na něj otevřete <strong>frontu
+skenů</strong>.</p>
+</blockquote>
+<blockquote>
+<p><strong>Tip pro nejlepší výsledek:</strong> Skener má tři režimy —
+<strong>Čárový kód · Etiketa · Jídlo</strong>. Pokud se produkt
+<strong>nenajde podle čárového kódu</strong> (chybí v databázi Open Food
+Facts), přepněte na režim <strong>Etiketa</strong> a vyfoťte obal s
+<strong>výživovou tabulkou</strong> (hodnoty na 100 g nebo na porci). AI
+z ní přečte makra a doplní je za vás — spolehlivěji než odhad z talíře
+přes režim Jídlo.</p>
+</blockquote>
+<!-- SCREENSHOT 08: AI photo scan — camera view or result sheet with recognized meal and macros -->
+<figure>
+<img src="images/08-photo-scan.jpg"
+alt="Zápis jídla fotkou: vyfoťte, zkontrolujte, potvrďte." />
+<figcaption aria-hidden="true">Zápis jídla fotkou: vyfoťte,
+zkontrolujte, potvrďte.</figcaption>
+</figure>
+<!-- SCREENSHOT 09: Barcode scanner in action -->
+<figure>
+<img src="images/09-barcode.jpg"
+alt="Skenování čárových kódů proti databázi Open Food Facts." />
+<figcaption aria-hidden="true">Skenování čárových kódů proti databázi
+Open Food Facts.</figcaption>
+</figure>
+<h2 id="úpravy-záznamů">5.4 Úpravy záznamů</h2>
+<p>Klepnutím na řádek potraviny otevřete úpravy: změňte gramáž
+krokovačem po ±10 g nebo předvolbami (50/100/150/200/300 g), případně
+makra zcela přepište. Přejetím nebo přes kontextové menu můžete
+potravinu <strong>přidat do oblíbených</strong>, <strong>přesunout do
+jiného jídla</strong>, <strong>zkopírovat do dneška</strong> (z minulého
+dne) nebo <strong>smazat</strong> (s potvrzením).</p>
+<h2 id="ai-jídelníček-a-nákupní-seznam-premium">5.5 AI jídelníček a
+nákupní seznam (Premium)</h2>
+<p><strong>Panel nástrojů → Jídelníček</strong> vygeneruje celý den
+jídel odpovídající vašim aktuálním cílům. Preference můžete zadat běžným
+jazykem (<em>„asijská kuchyně, bez mléčných výrobků“</em>). Plán
+zkontrolujte, klepnutím na <strong>přidat do dne</strong> jej zapište a
+pro ingredience otevřete <strong>nákupní seznam</strong>.</p>
+<!-- SCREENSHOT 10: Meal plan — generated day of meals with targets header -->
+<figure>
+<img src="images/10-meal-plan.jpg"
+alt="Vygenerovaný den odpovídající vašim cílům." />
+<figcaption aria-hidden="true">Vygenerovaný den odpovídající vašim
+cílům.</figcaption>
+</figure>
+<h2 id="časté-chyby-1">5.6 Časté chyby</h2>
+<ul>
+<li><strong>Slepě věřit skenu z fotky.</strong> Odhad AI je výchozí bod
+— před potvrzením zkontrolujte velikost porce, zvlášť u míchaných
+jídel.</li>
+<li><strong>Zapsat jídlo do špatného dne.</strong> Po použití kalendáře
+zkontrolujte záhlaví s datem; aplikace zůstává na dni, na který jste
+přešli.</li>
+</ul>
+<h2 id="omezení">5.7 Omezení</h2>
+<ul>
+<li>Skenování fotek a etiket vyžaduje Premium a (pro zpracování)
+připojení k internetu.</li>
+<li>Pokrytí čárových kódů závisí na databázi Open Food Facts; regionální
+produkty mohou chybět — použijte Rychlé přidání a uložte si je do
+oblíbených.</li>
+</ul>
+<hr />
+<h1 id="trénink">6 Trénink</h1>
+<h2 id="k-čemu-slouží-2">6.1 K čemu slouží</h2>
+<p>Záložka <strong>Trénink</strong> obsahuje váš plán, vaše tréninky a
+historii. Má čtyři podzáložky: <strong>Můj plán</strong>,
+<strong>Posilovna</strong>, <strong>Sport</strong> a
+<strong>Knihovna</strong>.</p>
+<h2 id="můj-plán-zdarma">6.2 Můj plán (zdarma)</h2>
+<p>Váš aktivní plán: banner pro pokračování v rozdělaném tréninku, pás
+týdne, dnešní trénink, sekce <strong>tréninků z Apple Watch</strong>,
+které můžete importovat, týdenní statistiky a historie tréninků. Odtud
+můžete <strong>Přidat aktivitu</strong> (ručně zapsat kardio) nebo
+<strong>Vytvořit tréninkový plán</strong>.</p>
+<!-- SCREENSHOT 11: Training — My Plan with week strip and today's workout -->
+<figure>
+<img src="images/11-training-myplan.jpg"
+alt="Můj plán: přehled týdne a dnešní trénink." />
+<figcaption aria-hidden="true">Můj plán: přehled týdne a dnešní
+trénink.</figcaption>
+</figure>
+<h2 id="aktivní-trénink">6.3 Aktivní trénink</h2>
+<p>Spuštěním tréninku se otevře živá obrazovka: cviky se sériemi a
+opakováními, <strong>odpočinkový časovač</strong> a <strong>Live
+Activity</strong> na zamčené obrazovce, takže odpočinek sledujete bez
+odemykání telefonu. Dokončený trénink se uloží do historie a (pokud jste
+to povolili) do Apple Health; nové <strong>osobní rekordy</strong> se
+rozpoznávají automaticky.</p>
+<!-- SCREENSHOT 12: Active workout — sets/reps and rest timer -->
+<figure>
+<img src="images/12-active-workout.jpg"
+alt="Obrazovka aktivního tréninku s odpočinkovým časovačem." />
+<figcaption aria-hidden="true">Obrazovka aktivního tréninku s
+odpočinkovým časovačem.</figcaption>
+</figure>
+<h2 id="posilovna-a-sport-premium">6.4 Posilovna a Sport (Premium)</h2>
+<ul>
+<li><strong>Posilovna</strong> — kompletní katalog tréninkových plánů a
+šablon.</li>
+<li><strong>Sport</strong> — plány zaměřené na konkrétní sporty (hokej,
+fotbal, tenis, basketbal…) dodávané jako <strong>sportovní
+balíčky</strong> (Sport Packs).</li>
+</ul>
+<p>Bez Premium se v těchto podzáložkách zobrazuje karta s nabídkou
+předplatného.</p>
+<h2 id="knihovna">6.5 Knihovna</h2>
+<p>Knihovna cviků: filtrujte podle svalové skupiny, sledujte animované
+ukázky, čtěte pokyny k technice a vytvářejte <strong>vlastní
+cviky</strong>.</p>
+<!-- SCREENSHOT 13: Exercise library with muscle filter and an exercise detail -->
+<figure>
+<img src="images/13-library.jpg" alt="Knihovna cviků." />
+<figcaption aria-hidden="true">Knihovna cviků.</figcaption>
+</figure>
+<h2 id="návaznosti">6.6 Návaznosti</h2>
+<ul>
+<li>Typy dnů ve vašem plánu řídí denní cíle na záložce Jídlo (carb
+cycling).</li>
+<li>Tréninky se synchronizují s Apple Health a aplikací pro hodinky;
+tréninky zaznamenané na hodinkách se objeví v <strong>Mém plánu</strong>
+k importu.</li>
+</ul>
+<blockquote>
+<p><strong>Poznámka:</strong> Tréninkový modul obsahuje upozornění ke
+cvičení — Subten poskytuje vedení, ne lékařskou radu. Přestaňte s
+jakýmkoli cvikem, který způsobuje bolest.</p>
+</blockquote>
+<hr />
+<h1 id="pokrok">7 Pokrok</h1>
+<h2 id="k-čemu-slouží-3">7.1 K čemu slouží</h2>
+<p>Záložka <strong>Pokrok</strong> sleduje výsledek: váhu, trend,
+složení těla, míry a fotky.</p>
+<h2 id="obrazovka-1">7.2 Obrazovka</h2>
+<ul>
+<li><strong>Hlavní karta váhy</strong> — aktuální váha a tlačítko
+<strong>přidat váhu</strong>. Važte se v konzistentní čas (nejlépe
+ráno).</li>
+<li><strong>Graf váhy</strong> — s volitelnými rozsahy. Adaptivní engine
+pracuje s <em>trendem</em>, ne s jednotlivým vážením.</li>
+<li><strong>AI hodnocení postavy</strong> — asistované vizuální
+hodnocení, které odhaduje složení těla.</li>
+<li><strong>Složení těla</strong> a <strong>tělesné míry</strong> —
+zapisujte pas, boky, paže a další, každou míru sledovanou v čase.</li>
+<li><strong>Série</strong> a <strong>fotky pokroku</strong> —
+konzistentní fotky (stejné světlo, stejný postoj) často motivují víc než
+váha.</li>
+</ul>
+<!-- SCREENSHOT 14: Progress tab — weight chart with data, measurement cards -->
+<figure>
+<img src="images/14-progress.jpg" alt="Trend váhy a míry." />
+<figcaption aria-hidden="true">Trend váhy a míry.</figcaption>
+</figure>
+<h2 id="ai-hodnocení-postavy">7.3 AI hodnocení postavy</h2>
+<p><strong>AI hodnocení postavy</strong> (Premium) odhadne ze tří
+fotografií složení těla, somatotyp, hodnocení svalových skupin a
+doporučení. Otevřete jej na záložce <strong>Pokrok → AI hodnocení
+těla</strong>.</p>
+<ol type="1">
+<li>Přidejte tři fotografie — <strong>zepředu</strong>, <strong>z
+boku</strong> a <strong>zezadu</strong> (vyfoťte nebo vyberte z
+galerie).</li>
+<li>Klepněte na <strong>Analyzovat</strong>.</li>
+</ol>
+<!-- SCREENSHOT 21: Body assessment — three photo slots (front/side/back) + Analyze -->
+<figure>
+<img src="images/21-body-assessment.jpg"
+alt="Tři fotografie postavy pro AI analýzu." />
+<figcaption aria-hidden="true">Tři fotografie postavy pro AI
+analýzu.</figcaption>
+</figure>
+<blockquote>
+<p><strong>Upozornění — fotky se posílají do externí služby.</strong>
+Analýza postavy neprobíhá na zařízení. Při první AI funkci, která posílá
+data mimo telefon, se zobrazí obrazovka souhlasu: Subten odešle
+<strong>vaše fotky postavy</strong> a zdravotní metriky poskytovatelům
+AI modelů (např. Google Gemini) přes OpenRouter, <strong>zpracované na
+serverech v USA</strong>, a to pouze pro vytvoření vašeho výsledku. Bez
+udělení souhlasu funkce neběží; zbytek aplikace můžete používat i bez
+něj. (Platí to i v Soukromém režimu — viz 8.3.)</p>
+</blockquote>
+<!-- SCREENSHOT 20: AI consent — data sent off-device warning before body analysis -->
+<figure>
+<img src="images/20-ai-consent.jpg"
+alt="Obrazovka souhlasu před odesláním fotek do externí AI." />
+<figcaption aria-hidden="true">Obrazovka souhlasu před odesláním fotek
+do externí AI.</figcaption>
+</figure>
+<p>Výsledek je <strong>AI odhad</strong>, nikoli lékařské měření —
+přesnost závisí na osvětlení a póze.</p>
+<h2 id="časté-chyby-2">7.4 Časté chyby</h2>
+<ul>
+<li><strong>Vážit se jednou týdně a panikařit.</strong> Denní váha
+kolísá o 1–2 kg podle vody a načasování jídla. Važte se často, posuzujte
+trendovou křivku a jednotlivá měření ignorujte.</li>
+</ul>
+<hr />
+<h1 id="mentor-ai-mentor">8 Mentor (AI mentor)</h1>
+<h2 id="k-čemu-slouží-4">8.1 K čemu slouží</h2>
+<p>Záložka <strong>Mentor</strong> je váš AI mentor: chat, který zná
+vaše data, a čtyři přehledy na jedno klepnutí. Vysvětluje, navrhuje a —
+s vaším potvrzením — jedná.</p>
+<blockquote>
+<p><strong>Poznámka:</strong> V souladu s nařízením EU o umělé
+inteligenci (EU AI Act) Mentor uvádí, že komunikujete s AI mentorem.
+Není to lékař, nutriční specialista ani trenér; se zdravotními obtížemi
+se obraťte na odborníka.</p>
+</blockquote>
+<h2 id="obrazovka-2">8.2 Obrazovka</h2>
+<ul>
+<li><strong>Chat</strong> — odpovědi se streamují; zprávu můžete
+upravit, zopakovat, zkopírovat, zastavit generování nebo začít nový
+chat. Čipy s návrhy se přizpůsobují denní době.</li>
+<li><strong>Čtyři dlaždice</strong> — <strong>Denní přehled</strong>,
+<strong>Týdenní přehled</strong> (7denní grafy regenerace, trendu váhy,
+plnění kalorií, průměrů maker a tréninku plus AI postřeh),
+<strong>Jídelníček</strong>, <strong>Nákupní seznam</strong>.</li>
+<li><strong>Banner plató</strong> — když se váš pokrok zastaví, Mentor
+nabídne podrobnou analýzu.</li>
+<li><strong>Akční karty</strong> — Mentor může navrhnout, že za vás
+zapíše jídlo nebo aktivitu; nic se nezapíše, dokud to nepotvrdíte.</li>
+</ul>
+<!-- SCREENSHOT 15: Coach chat with a reply and suggestion chips -->
+<figure>
+<img src="images/15-coach-chat.jpg"
+alt="Konverzace s mentorem — vpravo nahoře odznak „On-device” se zámkem (odpověď běží v zařízení)." />
+<figcaption aria-hidden="true">Konverzace s mentorem — vpravo nahoře
+odznak „On-device” se zámkem (odpověď běží v zařízení).</figcaption>
+</figure>
+<!-- SCREENSHOT 16: Weekly Review — 7-day charts and AI insight -->
+<figure>
+<img src="images/16-weekly-review.jpg" alt="Týdenní přehled." />
+<figcaption aria-hidden="true">Týdenní přehled.</figcaption>
+</figure>
+<h2 id="ai-v-zařízení-soukromý-režim">8.3 AI v zařízení (Soukromý
+režim)</h2>
+<p>Textové funkce Mentora (chat, denní a týdenní přehled, analýza plató)
+umí Subten zpracovat <strong>přímo na vašem iPhonu</strong> — bez
+odeslání čehokoli do cloudu. Děje se to <strong>automaticky</strong>,
+nemusíte nic zapínat.</p>
+<p><strong>Jak to poznáte v chatu:</strong> když odpověď Mentora běží v
+zařízení, v hlavičce konverzace je odznak se <strong>zámkem a nápisem
+„On-device”</strong> (tj. „v zařízení”). Když tento odznak
+<strong>není</strong>, odpověď zpracoval <strong>cloud</strong>.
+Jednoduché pravidlo: <em>zámek = v zařízení, bez zámku = cloud.</em></p>
+<p>Lokální model je dostupný jen na iPhonech s <strong>6 GB RAM a
+více</strong>. Na slabších zařízeních (méně než 6 GB) Mentor používá
+<strong>vždy cloud</strong> a odznak „On-device” se nezobrazí nikdy.</p>
+<h3 id="první-stažení-modelu-pouze-přes-wi-fi">První stažení modelu
+(pouze přes Wi-Fi)</h3>
+<p>Aby fungovala AI v zařízení, potřebuje Subten jazykový model (~3 GB).
+<strong>Douč­ovací adaptér je součástí aplikace</strong>, ale samotný
+základní model se <strong>stahuje až po instalaci</strong>, a to
+takto:</p>
+<ul>
+<li>Stahování probíhá <strong>na pozadí při spuštění aplikace</strong> —
+bez obrazovky, ukazatele průběhu či akce z vaší strany.</li>
+<li>Stahuje se <strong>pouze přes Wi-Fi (nebo ethernet)</strong>. Na
+mobilních datech se přeskočí a zkusí znovu při dalším spuštění na
+Wi-Fi.</li>
+<li><strong>Dokud se model nestáhne a nenačte, Mentor používá
+cloud</strong> (a odznak „On-device” se neukazuje). Po dokončení se
+Subten automaticky přepne na lokální model.</li>
+<li>Stahování je <strong>přerušitelné a pokračovatelné</strong> — pokud
+se přeruší, dokončí se později a už stažené části se nestahují znovu.
+Model se neukládá do zálohy (iCloud).</li>
+</ul>
+<p>Prakticky: <strong>po první instalaci nechte telefon chvíli na
+Wi-Fi</strong> a AI v zařízení se připraví sama. Do té doby aplikace
+funguje normálně, jen přes cloud.</p>
+<h3 id="kdy-běží-lokální-model-a-kdy-cloud">Kdy běží lokální model a kdy
+cloud</h3>
+<p>Subten se rozhoduje <strong>automaticky</strong> — nemusíte nic
+přepínat. <strong>Lokální (on-device) model</strong> se použije, když
+jsou splněny všechny tři podmínky zároveň:</p>
+<ul>
+<li>jde o <strong>textovou funkci Mentora</strong>: chat, <strong>denní
+přehled</strong>, <strong>týdenní přehled</strong> nebo <strong>analýza
+plató</strong>;</li>
+<li>jazyk aplikace je <strong>slovenština, čeština nebo
+angličtina</strong>;</li>
+<li>lokální model je stažený a načtený v paměti (iPhone s <strong>6 GB
+RAM a více</strong>).</li>
+</ul>
+<p>Tehdy odpověď nese odznak <em>On-device</em> a nic neopouští telefon.
+Ve všech ostatních případech se použije <strong>cloud (OpenRouter
+API)</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Funkce</th>
+<th>Kde běží</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chat, denní/týdenní přehled, analýza plató (SK/CS/EN)</td>
+<td>Lokálně*</td>
+</tr>
+<tr>
+<td>Skenování jídla z fotky, skenování etikety a receptu</td>
+<td>Vždy cloud</td>
+</tr>
+<tr>
+<td><strong>AI hodnocení postavy</strong> (posílá fotky)</td>
+<td>Vždy cloud</td>
+</tr>
+<tr>
+<td>AI jídelníček, AI odhad jídla</td>
+<td>Vždy cloud</td>
+</tr>
+<tr>
+<td>Chat, který má zapsat jídlo/aktivitu do deníku</td>
+<td>Cloud</td>
+</tr>
+<tr>
+<td>Nepodporovaný jazyk nebo model ještě není připraven</td>
+<td>Cloud</td>
+</tr>
+</tbody>
+</table>
+<p>* Pokud lokální generování selže, Subten <strong>tiše přepne na
+cloud</strong>, abyste dostali odpověď (neplatí v Soukromém režimu).</p>
+<h3 id="soukromý-režim-volitelný-přepínač">Soukromý režim (volitelný
+přepínač)</h3>
+<p>Na iPhonech s 6 GB RAM a více najdete v <strong>Nastavení</strong>
+přepínač <strong>Soukromý režim: AI pouze v zařízení</strong>. Běžné
+(automatické) chování už tak upřednostňuje zařízení; tento přepínač
+navíc <strong>zakáže přepnutí na cloud</strong> pro textové funkce
+Mentora — pokud by lokální model nemohl odpovědět, raději zobrazí
+poctivou chybu, než by data poslal do cloudu. <strong>Offline se
+aplikace chová stejně</strong> jako v soukromém režimu.</p>
+<p>I v soukromém režimu <strong>cloudové funkce zůstávají v
+cloudu</strong>: skenování jídla, etikety a receptu, AI odhad jídla,
+jídelníček a hodnocení postavy (posílají vaše fotky) — ty bez cloudu
+jednoduše neběží.</p>
+<h2 id="dostupnost">8.4 Dostupnost</h2>
+<p>Mentor je funkce <strong>Premium</strong>; bez Premium záložka
+zobrazuje kartu s nabídkou odemknutí.</p>
+<hr />
+<h1 id="část-iv-adaptivní-engine">9 Část IV — Adaptivní engine</h1>
+<p>Tato kapitola uživatelsky vysvětluje, jak se vaše cíle v čase mění.
+Nemusíte pro to nic dělat — stačí zapisovat jídlo a vážit se.</p>
+<h2 id="kalibrace-první-2-týdny">9.1 Kalibrace (první ~2 týdny)</h2>
+<p>Engine na vaše cíle nesáhne, dokud nemá: alespoň <strong>14
+dní</strong> historie, alespoň <strong>10 dní</strong> se zapsaným
+příjmem a alespoň <strong>3 vážení</strong>. Do té doby záložka Dnes
+zobrazuje kalibrační banner. Výchozí cíle jsou záměrně
+konzervativní.</p>
+<h2 id="týdenní-adaptace">9.2 Týdenní adaptace</h2>
+<p>Každých 7 dní engine změří váš <strong>skutečný udržovací
+příjem</strong> z reálných dat: váš průměrný příjem a skutečný trend
+váhy dohromady prozradí, kolik doopravdy spálíte. Nový denní cíl je
+tento naměřený udržovací příjem plus deficit či nadbytek podle vašeho
+cíle. Bezpečnostní pojistky:</p>
+<ul>
+<li>Cíle se posouvají nejvýše o <strong>±250 kcal týdně</strong> (až
++400 při nabírání svalů), takže žádné skoky.</li>
+<li>Pokud hubnete rychleji než 1 % tělesné hmotnosti týdně, zasáhne
+<strong>brzda</strong> — engine kalorie mírně <em>zvýší</em>, aby
+ochránil svaly.</li>
+<li><strong>Refeedové, cheatové, plató a dietně-pauzové dny</strong> (a
+krátká rezerva po nich) se vylučují; týdny dietní pauzy se přeskakují
+celé.</li>
+<li><strong>Tvrdý kalorický strop zdola</strong> (podle pohlaví) se
+nikdy nepodkročí.</li>
+</ul>
+<p>Když se cíle změní, uvidíte na záložce Dnes odznak <strong>Tento
+týden upraveno</strong> a Mentor vám změnu umí vysvětlit.</p>
+<h2 id="čas-do-cíle-eta">9.3 Čas do cíle (ETA)</h2>
+<p>Váš odhad dosažení cíle se přepočítává z naměřeného trendu. Může
+ukazovat <em>sbíráme data</em>, <em>žádný jasný trend</em>, <em>cíl
+dosažen</em>, nebo konkrétní datum. Pokud by aktuální trend znamenal
+déle než zhruba dva roky, aplikace odhad zastropuje, místo aby
+zobrazovala fikci.</p>
+<h2 id="strategie">9.4 Strategie</h2>
+<p><strong>Nastavení → Pokročilé → Životní situace a strategie</strong>
+(a centrum strategií) nabízejí plánované protokoly:</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Strategie</th>
+<th>Co dělá</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cheat meal</strong></td>
+<td>Jedno plánované volné jídlo; den se vyloučí z adaptace.</td>
+</tr>
+<tr>
+<td><strong>Refeed</strong></td>
+<td>Plánovaný den s vyšším příjmem sacharidů, užitečný v dlouhých fázích
+hubnutí.</td>
+</tr>
+<tr>
+<td><strong>Dietní pauza</strong></td>
+<td>1–2 týdny na udržovacím příjmu; engine pozastaví adaptaci.</td>
+</tr>
+<tr>
+<td><strong>Protokol při plató</strong></td>
+<td>Strukturovaná reakce, když váha stagnuje navzdory dodržování
+plánu.</td>
+</tr>
+</tbody>
+</table>
+<p>Používání vestavěných strategií (místo nahodilých dnů mimo plán)
+udržuje vaše data čistá a adaptaci přesnou.</p>
+<hr />
+<h1 id="část-v-apple-watch-a-zkratky">10 Část V — Apple Watch a
+zkratky</h1>
+<h2 id="aplikace-pro-hodinky">10.1 Aplikace pro hodinky</h2>
+<p>Aplikace Subten pro Apple Watch je <strong>volitelný doplněk</strong>
+— pohodlný pohled na den přímo na zápěstí (kruhy, voda, komplikace).
+<strong>Není podmínkou používání Subtenu:</strong> zdravotní data
+(regeneraci, spánek, tepovou frekvenci…) čte Subten z Apple Health
+nezávisle na ní, takže do Apple Health mohou přispívat i hodinky jiné
+značky nebo jiný nositelný senzor (viz kapitola 11).</p>
+<p>Domovská obrazovka na hodinkách zrcadlí váš den:</p>
+<ul>
+<li><strong>Soustředné kruhy</strong> — kalorie plus bílkoviny,
+sacharidy, tuky a vláknina; uprostřed se zobrazuje <em>zbývá</em> (nebo
+<em>přes</em>, červeně).</li>
+<li><strong>Energetická karta</strong> a kompaktní sloupce maker.</li>
+<li><strong>Řádek regenerace</strong> — jsou-li data o regeneraci k
+dispozici, klepnutím zobrazíte detail.</li>
+<li><strong>Tlačítko vody</strong> — klepnutím <strong>+250 ml</strong>,
+dlouhým podržením další dávky.</li>
+</ul>
+<!-- SCREENSHOT 17: Watch app Today screen with rings (Watch simulator) -->
+<figure>
+<img src="images/17-watch.jpg" alt="Obrazovka Dnes na hodinkách." />
+<figcaption aria-hidden="true">Obrazovka Dnes na hodinkách.</figcaption>
+</figure>
+<h2 id="komplikace-a-widgety">10.2 Komplikace a widgety</h2>
+<p>Přidejte si komplikaci Subten na ciferník a uvidíte zbývající kalorie
+na jeden pohled; widget na iPhonu dělá totéž na domovské obrazovce.</p>
+<h2 id="akční-tlačítko-a-siri">10.3 Akční tlačítko a Siri</h2>
+<p>Na iPhonu 15 Pro a novějších můžete <strong>akční tlačítko</strong>
+(Action Button) namapovat na akci Subtenu <em>Přidat jídlo</em> nebo
+<em>Skenovat jídlo</em>. Stejné akce fungují se Siri a v aplikaci
+Zkratky; hodinky přidávají akci <em>Zapsat vodu</em>.</p>
+<hr />
+<h1 id="část-vi-apple-health">11 Část VI — Apple Health</h1>
+<p>Subten žádá o přístup ke Zdraví, jen když jej výslovně povolíte (krok
+7 úvodního nastavení nebo <strong>Nastavení → Zdraví</strong>). Každý
+typ dat ovládáte samostatně.</p>
+<p>Subten čte to, co je <strong>v Apple Health</strong>, bez ohledu na
+to, které zařízení tam data zapsalo. <strong>Apple Watch není
+podmínka</strong> — stačí cokoli, co do Apple Health přispívá: Apple
+Watch, Garmin, Oura, Whoop, jiné náramky a prsteny, nebo samotný iPhone
+(kroky, spánek). Čím více dat v Apple Health máte, tím přesnější jsou
+regenerace a doporučení; bez nich Subten funguje dál, jen tyto funkce
+zůstanou prázdné.</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Data</th>
+<th>Směr</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Váha</td>
+<td>čtení <strong>i zápis</strong></td>
+</tr>
+<tr>
+<td>Kroky, aktivní energie, tréninky, spánek, voda</td>
+<td>čtení</td>
+</tr>
+<tr>
+<td>HRV, klidová tepová frekvence, SpO₂, dechová frekvence, teplota
+zápěstí</td>
+<td>čtení (skóre regenerace)</td>
+</tr>
+<tr>
+<td>Přijaté kalorie, makra, voda</td>
+<td><strong>zápis</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Zdravotní upozornění:</strong> když data vykazují anomálie
+(neobvyklé SpO₂, dechovou frekvenci, tep, HRV, teplotu nebo spánek),
+Subten zobrazí banner na záložce Dnes. Jde o informativní upozornění, ne
+o diagnózy.</p>
+<blockquote>
+<p><strong>Tip:</strong> Pokud čísla vypadají zdvojeně (např. trénink
+započítaný dvakrát), zkontrolujte, že tréninky zapisuje jen jedna
+aplikace, nebo vypněte synchronizaci daného typu v <strong>Nastavení →
+Zdraví → Synchronizace podle typu</strong>.</p>
+</blockquote>
+<hr />
+<h1 id="část-vii-premium-a-předplatné">12 Část VII — Premium a
+předplatné</h1>
+<h2 id="free-vs.-premium-1">12.1 Free vs. Premium</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Funkce</th>
+<th>Free</th>
+<th>Premium</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Zapisování jídla: vyhledávání, čárový kód, ručně, recepty,
+oblíbené</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Přehled, Pokrok, série</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Trénink — Můj plán, Knihovna</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Synchronizace s Apple Health, připomínky, aplikace pro hodinky</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Export a import dat</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>AI skenování fotek a etiket</td>
+<td>—</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>AI jídelníčky a nákupní seznam</td>
+<td>—</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>AI Mentor (chat, přehledy)</td>
+<td>—</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Trénink — Posilovna a Sport, osobní rekordy</td>
+<td>—</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Sportovní balíčky</td>
+<td>—</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Synchronizace přes iCloud</td>
+<td>—</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<h2 id="předplatné">12.2 Předplatné</h2>
+<p>Nabídka předplatného obsahuje <strong>měsíční</strong> a
+<strong>roční</strong> plán (roční je označen jako
+<em>Nejvýhodnější</em> s rozpisem ceny na měsíc) s bezplatným zkušebním
+obdobím. Nákupy probíhají přes vaše Apple ID; předplatné se automaticky
+obnovuje, dokud jej nezrušíte v nastavení iOS. <strong>Obnovit
+nákupy</strong> obnoví existující předplatné na novém zařízení. Pole
+<strong>promo kód</strong> přijímá kódy.</p>
+<!-- SCREENSHOT 18: Paywall — monthly/yearly plans with trial info -->
+<figure>
+<img src="images/18-paywall.jpg" alt="Obrazovka předplatného." />
+<figcaption aria-hidden="true">Obrazovka předplatného.</figcaption>
+</figure>
+<h2 id="zkušební-období">12.3 Zkušební období</h2>
+<p>Lokální bezplatné zkušební období se spustí po dokončení úvodního
+nastavení. Po jeho skončení se AI a prémiové tréninkové funkce opět
+zamknou a aplikace zobrazí <em>Zkušební období vypršelo — Aktivovat
+Premium</em>. K vašim datům nikdy nepřijdete: zapisování, pokrok a
+export zůstávají zdarma.</p>
+<hr />
+<h1 id="část-viii-nastavení-soukromí-a-účet">13 Část VIII — Nastavení,
+soukromí a účet</h1>
+<p>Nastavení otevřete ozubeným kolem na záložce
+<strong>Dnes</strong>.</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Sekce</th>
+<th>Co v ní najdete</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Upravit profil a cíle</strong></td>
+<td>Změna cílové váhy, cíle, tempa, aktivity — cíle se přepočítají.</td>
+</tr>
+<tr>
+<td><strong>Předplatné</strong></td>
+<td>Stav Premium, aktivace, promo kód.</td>
+</tr>
+<tr>
+<td><strong>Soukromý režim</strong></td>
+<td>Přepínač AI pouze v zařízení (zařízení s 6 GB+, viz §8.3).</td>
+</tr>
+<tr>
+<td><strong>Připomínky</strong></td>
+<td>Snídaně, oběd, večeře, voda, trénink, vážení — každá s vlastním
+časem.</td>
+</tr>
+<tr>
+<td><strong>Zdraví</strong></td>
+<td>Hlavní přepínač plus přepínače synchronizace podle typu.</td>
+</tr>
+<tr>
+<td><strong>Jednotky</strong></td>
+<td>kg / lbs (jen pro zobrazení).</td>
+</tr>
+<tr>
+<td><strong>Jazyk</strong></td>
+<td>Angličtina / slovenština / čeština (vyžaduje restart).</td>
+</tr>
+<tr>
+<td><strong>Pokročilé</strong></td>
+<td>Životní situace a strategie; <strong>Export a import</strong> vašich
+dat.</td>
+</tr>
+<tr>
+<td><strong>Zpětná vazba</strong></td>
+<td>Odeslání zpětné vazby vývojáři.</td>
+</tr>
+<tr>
+<td><strong>Účet</strong></td>
+<td>Odhlášení; <strong>Smazat účet a data</strong>.</td>
+</tr>
+<tr>
+<td><strong>AI v Subtenu</strong></td>
+<td>Co dělají AI funkce, přepínač souhlasu se sdílením dat pro AI,
+zásady ochrany soukromí a prohlášení.</td>
+</tr>
+<tr>
+<td><strong>O aplikaci</strong></td>
+<td>Informace o verzi.</td>
+</tr>
+</tbody>
+</table>
+<!-- SCREENSHOT 19: Settings screen -->
+<figure>
+<img src="images/19-settings.jpg" alt="Nastavení." />
+<figcaption aria-hidden="true">Nastavení.</figcaption>
+</figure>
+<h2 id="vaše-data">13.1 Vaše data</h2>
+<ul>
+<li><strong>Export a import</strong> (zdarma, GDPR): exportujte vše do
+souboru a importujte na jiném zařízení nebo po přeinstalaci.</li>
+<li><strong>Smazat účet a data</strong> vymaže server, zařízení i
+iCloud. Je to nevratné — máte-li pochybnosti, nejdřív exportujte.</li>
+<li><strong>Souhlas s AI:</strong> AI funkce využívající cloud běží jen
+s vaším výslovným souhlasem, který ovládáte v sekci <strong>AI v
+Subtenu</strong>. Soukromý režim (§8.3) udrží koučování plně v
+zařízení.</li>
+</ul>
+<hr />
+<h1 id="část-ix-řešení-potíží-a-faq">14 Část IX — Řešení potíží a
+FAQ</h1>
+<p><strong>Banner hlásí „Nepodařilo se načíst databázi
+potravin.“</strong> Klepněte na <strong>Zkusit znovu</strong>. Pokud
+potíž přetrvává, aplikaci vynuceně ukončete a znovu otevřete.</p>
+<p><strong>Můj sken z fotky visí ve stavu „čeká“.</strong> Skeny se
+offline řadí do fronty a zpracují se automaticky, jakmile budete online.
+Frontu skenů otevřete z banneru a neúspěšné položky zopakujte.</p>
+<p><strong>Na obrazovce předplatného se nenačítají ceny.</strong>
+<em>Cena není k dispozici, zkuste to později</em> znamená, že App Store
+neodpověděl — klepněte na <strong>Zkusit znovu</strong> a zkontrolujte
+připojení.</p>
+<p><strong>Moje cíle se týdny nezměnily.</strong> Ověřte, že splňujete
+kalibrační minima (§9.1): dostatek zapsaných dnů a alespoň 3 vážení v
+daném okně. Týdny dietní pauzy se přeskakují záměrně.</p>
+<p><strong>Zbývá se při cvičení nezvyšuje.</strong> Je to záměr — viz
+energetický model (§2.2).</p>
+<p><strong>Kroky/váha se nesynchronizují.</strong> Zkontrolujte
+<strong>Nastavení → Zdraví</strong>: hlavní přepínač i přepínač daného
+typu. Pak zkontrolujte iOS <strong>Nastavení → Soukromí a zabezpečení →
+Zdraví → Subten</strong>.</p>
+<p><strong>Změnil(a) jsem jazyk, ale aplikace je namíchaná.</strong>
+Restartujte aplikaci — změna jazyka to vyžaduje.</p>
+<p><strong>Záložka Mentor zobrazuje jen kartu s odemknutím.</strong>
+Mentor je Premium; spusťte zkušební období nebo si předplaťte. Pokud
+Premium <em>máte</em>, klepněte na obrazovce předplatného na
+<strong>Obnovit nákupy</strong>.</p>
+<p><strong>Nemohu vybrat své datum narození.</strong> Subten je 18+;
+výběr data to vynucuje.</p>
+<p><strong>Smazání účtu selhalo.</strong> Potřebujete připojení k síti
+(musí se smazat i kopie na serveru). Zkuste to znovu online; pokud potíž
+přetrvává, kontaktujte podporu přes <strong>Nastavení → Zpětná
+vazba</strong>.</p>
+<hr />
+<h1 id="příloha-slovníček">15 Příloha — Slovníček</h1>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Pojem</th>
+<th>Význam</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BMR</strong></td>
+<td>Bazální metabolismus — energie spálená v naprostém klidu.</td>
+</tr>
+<tr>
+<td><strong>TDEE</strong></td>
+<td>Celkový denní energetický výdej — BMR plus veškerá aktivita; váš
+skutečný udržovací příjem.</td>
+</tr>
+<tr>
+<td><strong>Deficit / nadbytek</strong></td>
+<td>Jíst pod / nad udržovacím příjmem — hnací síla hubnutí tuku /
+nabírání svalů.</td>
+</tr>
+<tr>
+<td><strong>Makra</strong></td>
+<td>Bílkoviny, sacharidy, tuky (Subten sleduje i vlákninu).</td>
+</tr>
+<tr>
+<td><strong>Rekompozice</strong></td>
+<td>Hubnutí tuku a budování svalů ve stejném období.</td>
+</tr>
+<tr>
+<td><strong>Energetická dostupnost (EA)</strong></td>
+<td>Energie, která tělu zbývá po tréninku; chronicky <em>nízká</em> EA
+škodí zdraví i adaptaci.</td>
+</tr>
+<tr>
+<td><strong>Typ dne</strong></td>
+<td>Síla / Kardio / Odpočinek / Vlastní — řídí denní cíle (carb
+cycling).</td>
+</tr>
+<tr>
+<td><strong>Kalibrace</strong></td>
+<td>Prvních ~2 týdnů, během nichž Subten sbírá data, než začne cíle
+adaptovat.</td>
+</tr>
+<tr>
+<td><strong>Refeed</strong></td>
+<td>Plánovaný den s vyšším příjmem sacharidů v rámci dietní fáze.</td>
+</tr>
+<tr>
+<td><strong>Dietní pauza</strong></td>
+<td>Plánovaná 1–2týdenní přestávka na udržovacích kaloriích.</td>
+</tr>
+<tr>
+<td><strong>Série</strong></td>
+<td>Počet po sobě jdoucích dnů zapisování.</td>
+</tr>
+<tr>
+<td><strong>HRV</strong></td>
+<td>Variabilita srdeční frekvence — ukazatel regenerace čtený z Apple
+Health.</td>
+</tr>
+<tr>
+<td><strong>Live Activity</strong></td>
+<td>Widget na zamčené obrazovce iOS zobrazovaný během aktivního
+tréninku.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Subten — Uživatelská příručka · v1.0 · © 2026</em></p>
+</body>
+</html>
