@@ -1,0 +1,1654 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Subten — User Manual</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style>
+    :root{ --fg:#1c1c1e; --muted:#6b6b70; --brand:#2e9e5b; --line:#e6e6ea; --bg:#ffffff; --tip:#f4faf6; }
+    @media (prefers-color-scheme: dark){
+      :root{ --fg:#e9e9ec; --muted:#a0a0a8; --brand:#4fb87c; --line:#2c2c32; --bg:#151517; --tip:#16241b; }
+    }
+    html{ -webkit-text-size-adjust:100%; }
+    body{ max-width:760px; margin:0 auto; padding:28px 20px 96px;
+          font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+          color:var(--fg); background:var(--bg); }
+    h1.title{ font-size:1.9rem; line-height:1.2; margin:.2em 0 .1em; }
+    p.subtitle{ color:var(--muted); margin:0 0 1.5em; }
+    h1{ font-size:1.5rem; margin:2.2em 0 .5em; padding-top:.7em; border-top:2px solid var(--line); }
+    h2{ font-size:1.2rem; margin:1.8em 0 .4em; }
+    h3{ font-size:1.03rem; margin:1.4em 0 .3em; }
+    a{ color:var(--brand); text-decoration:none; } a:hover{ text-decoration:underline; }
+    figure{ margin:1.6em auto; text-align:center; }
+    figure img{ width:250px; max-width:70%; height:auto; border:1px solid var(--line);
+                border-radius:14px; box-shadow:0 2px 14px rgba(0,0,0,.10); }
+    figcaption{ color:var(--muted); font-style:italic; font-size:.86rem; margin-top:.55em; }
+    table{ width:100%; border-collapse:collapse; margin:1.2em 0; font-size:.95rem; }
+    th,td{ border:1px solid var(--line); padding:.5em .65em; text-align:left; vertical-align:top; }
+    th{ background:rgba(127,127,127,.08); }
+    blockquote{ margin:1.2em 0; padding:.7em 1em; border-left:3px solid var(--brand);
+                background:var(--tip); border-radius:0 8px 8px 0; }
+    blockquote p{ margin:.3em 0; }
+    code{ background:rgba(127,127,127,.12); padding:.1em .35em; border-radius:5px; font-size:.9em; }
+    hr{ border:0; border-top:1px solid var(--line); margin:2em 0; }
+    #TOC{ background:rgba(127,127,127,.05); border:1px solid var(--line); border-radius:12px;
+          padding:.8em 1.2em; margin:1.5em 0 2.5em; font-size:.95rem; }
+    #TOC>ul{ margin:.3em 0; } #TOC ul{ list-style:none; padding-left:1.1em; }
+    #TOC>ul{ padding-left:0; } #TOC li{ margin:.16em 0; }
+    #TOC a{ color:var(--fg); } #TOC a:hover{ color:var(--brand); }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Subten — User Manual</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Contents</h2>
+<ul>
+<li><a href="#subten-user-manual" id="toc-subten-user-manual">Subten —
+User Manual</a></li>
+<li><a href="#foreword" id="toc-foreword">1 Foreword</a>
+<ul>
+<li><a href="#what-you-will-find-in-this-manual"
+id="toc-what-you-will-find-in-this-manual">1.1 What you will find in
+this manual</a></li>
+<li><a href="#how-the-manual-is-organized"
+id="toc-how-the-manual-is-organized">1.2 How the manual is
+organized</a></li>
+<li><a href="#typographic-conventions"
+id="toc-typographic-conventions">1.3 Typographic conventions</a></li>
+</ul></li>
+<li><a href="#part-i-introducing-subten"
+id="toc-part-i-introducing-subten">2 Part I — Introducing Subten</a>
+<ul>
+<li><a href="#what-is-subten" id="toc-what-is-subten">2.1 What is
+Subten</a></li>
+<li><a href="#key-concepts" id="toc-key-concepts">2.2 Key
+concepts</a></li>
+<li><a href="#a-map-of-the-app" id="toc-a-map-of-the-app">2.3 A map of
+the app</a></li>
+</ul></li>
+<li><a href="#part-ii-getting-started"
+id="toc-part-ii-getting-started">3 Part II — Getting started</a>
+<ul>
+<li><a href="#quick-start" id="toc-quick-start">3.1 Quick start</a></li>
+<li><a href="#creating-an-account-and-signing-in"
+id="toc-creating-an-account-and-signing-in">3.2 Creating an account and
+signing in</a></li>
+<li><a href="#onboarding-step-by-step"
+id="toc-onboarding-step-by-step">3.3 Onboarding step by step</a></li>
+<li><a href="#first-settings-worth-checking"
+id="toc-first-settings-worth-checking">3.4 First settings worth
+checking</a></li>
+</ul></li>
+<li><a href="#today-dashboard" id="toc-today-dashboard">4 Today
+(Dashboard)</a>
+<ul>
+<li><a href="#what-it-is-for" id="toc-what-it-is-for">4.1 What it is
+for</a></li>
+<li><a href="#what-you-will-see" id="toc-what-you-will-see">4.2 What you
+will see</a></li>
+<li><a href="#toolbar" id="toc-toolbar">4.3 Toolbar</a></li>
+<li><a href="#common-mistakes" id="toc-common-mistakes">4.4 Common
+mistakes</a></li>
+</ul></li>
+<li><a href="#food" id="toc-food">5 Food</a>
+<ul>
+<li><a href="#what-it-is-for-1" id="toc-what-it-is-for-1">5.1 What it is
+for</a></li>
+<li><a href="#the-screen" id="toc-the-screen">5.2 The screen</a></li>
+<li><a href="#ways-to-log-food" id="toc-ways-to-log-food">5.3 Ways to
+log food</a></li>
+<li><a href="#editing-entries" id="toc-editing-entries">5.4 Editing
+entries</a></li>
+<li><a href="#ai-meal-plan-and-shopping-list-premium"
+id="toc-ai-meal-plan-and-shopping-list-premium">5.5 AI meal plan and
+shopping list (Premium)</a></li>
+<li><a href="#common-mistakes-1" id="toc-common-mistakes-1">5.6 Common
+mistakes</a></li>
+<li><a href="#limitations" id="toc-limitations">5.7 Limitations</a></li>
+</ul></li>
+<li><a href="#training" id="toc-training">6 Training</a>
+<ul>
+<li><a href="#what-it-is-for-2" id="toc-what-it-is-for-2">6.1 What it is
+for</a></li>
+<li><a href="#my-plan-free" id="toc-my-plan-free">6.2 My Plan
+(free)</a></li>
+<li><a href="#active-workout" id="toc-active-workout">6.3 Active
+workout</a></li>
+<li><a href="#gym-and-sport-premium" id="toc-gym-and-sport-premium">6.4
+Gym and Sport (Premium)</a></li>
+<li><a href="#library" id="toc-library">6.5 Library</a></li>
+<li><a href="#connections" id="toc-connections">6.6 Connections</a></li>
+</ul></li>
+<li><a href="#progress" id="toc-progress">7 Progress</a>
+<ul>
+<li><a href="#what-it-is-for-3" id="toc-what-it-is-for-3">7.1 What it is
+for</a></li>
+<li><a href="#the-screen-1" id="toc-the-screen-1">7.2 The
+screen</a></li>
+<li><a href="#ai-body-assessment" id="toc-ai-body-assessment">7.3 AI
+body assessment</a></li>
+<li><a href="#common-mistakes-2" id="toc-common-mistakes-2">7.4 Common
+mistakes</a></li>
+</ul></li>
+<li><a href="#coach-ai-mentor" id="toc-coach-ai-mentor">8 Coach (AI
+mentor)</a>
+<ul>
+<li><a href="#what-it-is-for-4" id="toc-what-it-is-for-4">8.1 What it is
+for</a></li>
+<li><a href="#the-screen-2" id="toc-the-screen-2">8.2 The
+screen</a></li>
+<li><a href="#on-device-ai-private-mode"
+id="toc-on-device-ai-private-mode">8.3 On-device AI (Private
+mode)</a></li>
+<li><a href="#availability" id="toc-availability">8.4
+Availability</a></li>
+</ul></li>
+<li><a href="#part-iv-the-adaptive-engine"
+id="toc-part-iv-the-adaptive-engine">9 Part IV — The adaptive engine</a>
+<ul>
+<li><a href="#calibration-first-2-weeks"
+id="toc-calibration-first-2-weeks">9.1 Calibration (first ~2
+weeks)</a></li>
+<li><a href="#weekly-adaptation" id="toc-weekly-adaptation">9.2 Weekly
+adaptation</a></li>
+<li><a href="#time-to-goal-eta" id="toc-time-to-goal-eta">9.3 Time to
+goal (ETA)</a></li>
+<li><a href="#strategies" id="toc-strategies">9.4 Strategies</a></li>
+</ul></li>
+<li><a href="#part-v-apple-watch-shortcuts"
+id="toc-part-v-apple-watch-shortcuts">10 Part V — Apple Watch &amp;
+shortcuts</a>
+<ul>
+<li><a href="#the-watch-app" id="toc-the-watch-app">10.1 The Watch
+app</a></li>
+<li><a href="#complications-and-widgets"
+id="toc-complications-and-widgets">10.2 Complications and
+widgets</a></li>
+<li><a href="#action-button-and-siri"
+id="toc-action-button-and-siri">10.3 Action Button and Siri</a></li>
+</ul></li>
+<li><a href="#part-vi-apple-health" id="toc-part-vi-apple-health">11
+Part VI — Apple Health</a></li>
+<li><a href="#part-vii-premium-subscription"
+id="toc-part-vii-premium-subscription">12 Part VII — Premium &amp;
+subscription</a>
+<ul>
+<li><a href="#free-vs-premium-1" id="toc-free-vs-premium-1">12.1 Free vs
+Premium</a></li>
+<li><a href="#subscribing" id="toc-subscribing">12.2
+Subscribing</a></li>
+<li><a href="#trial" id="toc-trial">12.3 Trial</a></li>
+</ul></li>
+<li><a href="#part-viii-settings-privacy-account"
+id="toc-part-viii-settings-privacy-account">13 Part VIII — Settings,
+privacy &amp; account</a>
+<ul>
+<li><a href="#your-data" id="toc-your-data">13.1 Your data</a></li>
+</ul></li>
+<li><a href="#part-ix-troubleshooting-faq"
+id="toc-part-ix-troubleshooting-faq">14 Part IX — Troubleshooting &amp;
+FAQ</a></li>
+<li><a href="#appendix-glossary" id="toc-appendix-glossary">15 Appendix
+— Glossary</a></li>
+</ul>
+</nav>
+<h1 id="subten-user-manual">Subten — User Manual</h1>
+<p><em>Version 1.0 · covers Subten for iOS build 16+ · July
+2026</em></p>
+<h1 id="foreword">1 Foreword</h1>
+<p>Welcome to the user manual for <strong>Subten</strong> — the
+body-recomposition coach for iPhone and Apple Watch. Subten combines
+food logging (AI photo scanning, barcode, search), an adaptive calorie
+and macro engine that learns from your real results, a training module,
+deep Apple Health integration, and an AI mentor.</p>
+<h2 id="what-you-will-find-in-this-manual">1.1 What you will find in
+this manual</h2>
+<p>This manual covers the whole app: from creating an account and the
+onboarding interview, through every tab and feature, to subscriptions,
+privacy and troubleshooting. It is a <em>how-to-use</em> guide: for
+every feature you will find what it is for, how to operate it step by
+step, and what the app shows you and why.</p>
+<p>No prior nutrition knowledge is assumed. Wherever the app relies on a
+concept (calorie deficit, macros, energy availability, adaptive
+targets), the manual briefly explains it in plain language.</p>
+<p>You can read the manual two ways:</p>
+<ul>
+<li><strong>From the beginning</strong> — Parts I and II introduce the
+concepts and get you set up; then continue with the screens you use
+most.</li>
+<li><strong>As a reference</strong> — each chapter is self-contained.
+Chapters describing screens share the same structure, so the same type
+of information is always in the same place.</li>
+</ul>
+<h2 id="how-the-manual-is-organized">1.2 How the manual is
+organized</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Part</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I — Introducing Subten</td>
+<td>What Subten is, key concepts (the energy model, adaptive targets,
+calibration, Free vs Premium), a map of the screens.</td>
+</tr>
+<tr>
+<td>II — Getting started</td>
+<td>Account creation, sign-in options, the 7-step onboarding, first-day
+setup.</td>
+</tr>
+<tr>
+<td>III — The five tabs</td>
+<td>One chapter per tab: Today, Food, Training, Progress, Coach.</td>
+</tr>
+<tr>
+<td>IV — The adaptive engine</td>
+<td>How your calorie and macro targets evolve from your real data, and
+the built-in strategies (cheat meal, diet break, refeed, plateau
+protocol).</td>
+</tr>
+<tr>
+<td>V — Apple Watch &amp; shortcuts</td>
+<td>The Watch app, complications, the Action Button and Siri
+shortcuts.</td>
+</tr>
+<tr>
+<td>VI — Apple Health</td>
+<td>Exactly what Subten reads and writes, per-type switches, health
+alerts.</td>
+</tr>
+<tr>
+<td>VII — Premium &amp; subscription</td>
+<td>Free vs Premium, trial, promo codes, Sport Packs, restoring
+purchases.</td>
+</tr>
+<tr>
+<td>VIII — Settings, privacy &amp; account</td>
+<td>Profile, reminders, data export/import, AI consent, deleting your
+account.</td>
+</tr>
+<tr>
+<td>IX — Troubleshooting &amp; FAQ</td>
+<td>Common problems and their solutions.</td>
+</tr>
+<tr>
+<td>Appendix</td>
+<td>Glossary.</td>
+</tr>
+</tbody>
+</table>
+<p>Screen chapters (Part III) share a fixed structure: <em>What it is
+for → Quick start → Step by step → Fields and options → Connections to
+other screens → Common mistakes → Limitations</em>.</p>
+<h2 id="typographic-conventions">1.3 Typographic conventions</h2>
+<ul>
+<li><strong>Bold</strong> marks a user-interface element — a button,
+menu item or tab name: tap <strong>Save</strong>.</li>
+<li><em>Italics</em> mark a value or state the app displays: the ring
+turns <em>red</em> when you are over target.</li>
+<li><code>Monospace</code> marks something you type.</li>
+<li>Boxes labelled <strong>Tip</strong>, <strong>Note</strong> and
+<strong>Warning</strong> highlight shortcuts, context and pitfalls.</li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> Subten’s interface is available in
+<strong>English, Slovak and Czech</strong>. This manual uses the English
+interface; the Slovak and Czech editions of the manual use the
+corresponding localized labels.</p>
+</blockquote>
+<hr />
+<h1 id="part-i-introducing-subten">2 Part I — Introducing Subten</h1>
+<h2 id="what-is-subten">2.1 What is Subten</h2>
+<p>Subten is an iOS app (with an Apple Watch companion) for <strong>body
+recomposition</strong> — losing fat, building muscle, or both. Its
+tagline is blunt: <em>“−10 kg. No excuses.”</em> Underneath the
+bluntness sits a careful engine:</p>
+<ul>
+<li>You log what you eat — by <strong>photo (AI)</strong>,
+<strong>barcode</strong>, <strong>search</strong>, <strong>label
+scan</strong> or manually.</li>
+<li>You log (or import) your <strong>training</strong> and your
+<strong>weight</strong>.</li>
+<li>Subten reads activity, sleep and recovery data from <strong>Apple
+Health</strong>.</li>
+<li>Every week, the <strong>adaptive engine</strong> compares what you
+actually ate with how your weight actually moved, measures your true
+maintenance, and adjusts your daily calorie and macro targets — with
+safety rails.</li>
+<li>The <strong>AI mentor</strong> (Coach tab) reviews your day and
+week, explains what the numbers mean, and can log food or activities for
+you.</li>
+</ul>
+<p>Subten is designed for adults: the app enforces an <strong>18+ age
+gate</strong> during onboarding.</p>
+<h2 id="key-concepts">2.2 Key concepts</h2>
+<h3 id="the-energy-model-remaining-goal-eaten">The energy model:
+Remaining = Goal − Eaten</h3>
+<p>Subten uses a single, deliberately simple energy formula on every
+screen:</p>
+<p><strong>Remaining = Daily Goal − Eaten</strong></p>
+<p>Your Daily Goal <em>already accounts for your planned activity</em>.
+Unlike many calorie apps, exercise does <strong>not</strong> inflate
+your remaining budget: a workout does not “earn” you extra food by
+default. Activity from Apple Health is shown for information. Only when
+your <em>measured</em> movement clearly exceeds your plan does the app
+extend the day’s target, shown as <em>Goal + Extra movement</em>. This
+prevents the classic double-counting trap where optimistic exercise
+estimates cancel out your deficit.</p>
+<h3 id="adaptive-targets-and-calibration">Adaptive targets and
+calibration</h3>
+<p>Your initial targets come from a standard estimate (the Mifflin–St
+Jeor equation plus an activity multiplier). Estimates are wrong for
+almost everyone — so Subten treats them only as a starting point. For
+roughly the <strong>first two weeks</strong> the app is
+<em>calibrating</em>: it needs enough logged days and weigh-ins before
+it trusts the data. After that, targets are re-derived
+<strong>weekly</strong> from your real intake and real weight trend.
+Part IV explains the rules and safety rails in detail.</p>
+<h3 id="plan-vs-reality">Plan vs Reality</h3>
+<p>Your <strong>training plan</strong> drives your nutrition targets
+(training days can carry different targets than rest days — see <em>day
+types</em> below). What Apple Health <em>measures</em> is used to check
+reality against the plan, not to rewrite it minute by minute.</p>
+<h3 id="day-types">Day types</h3>
+<p>Each day has a type — <strong>Strength</strong>,
+<strong>Cardio</strong>, <strong>Rest</strong> or
+<strong>Custom</strong> — shown as a badge on the Food tab. Day types
+allow carb cycling: the daily target can differ by day type. Special day
+types set by strategies (cheat day, refeed, diet break) are excluded
+from the weekly adaptation so one planned high day doesn’t distort your
+statistics.</p>
+<h3 id="free-vs-premium">Free vs Premium</h3>
+<p>The core loop is free: food logging by search, barcode and manual
+entry, the dashboard, the My Plan training tab, progress tracking, Apple
+Health sync, reminders, and data export/import. <strong>Premium</strong>
+unlocks the AI features (photo scanning, label scanning, meal plans, the
+Coach) and the full training module (Gym, Sport, Personal Records).
+Chapter 9 has the full comparison.</p>
+<h2 id="a-map-of-the-app">2.3 A map of the app</h2>
+<p>The app has <strong>five tabs</strong>:</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Tab</th>
+<th>What it is for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Today</strong></td>
+<td>Your day at a glance: energy ring, quick actions, steps, water,
+sleep and recovery, today’s training and meals.</td>
+</tr>
+<tr>
+<td><strong>Food</strong></td>
+<td>The food diary: log, edit and plan meals; AI meal plan and shopping
+list.</td>
+</tr>
+<tr>
+<td><strong>Training</strong></td>
+<td>Your training plan, workout library, active workout with rest timer,
+personal records.</td>
+</tr>
+<tr>
+<td><strong>Progress</strong></td>
+<td>Weight and trend chart, body measurements, AI body assessment,
+progress photos, streak.</td>
+</tr>
+<tr>
+<td><strong>Coach</strong></td>
+<td>The AI mentor: chat, daily and weekly reviews, meal plan, shopping
+list.</td>
+</tr>
+</tbody>
+</table>
+<p>Settings are reached from the gear icon on the <strong>Today</strong>
+tab.</p>
+<!-- SCREENSHOT 01: Tab bar / Today overview — dashboard with energy ring, quick actions visible -->
+<figure>
+<img src="images/01-today-overview.jpg"
+alt="The Today tab and the five-tab bar." />
+<figcaption aria-hidden="true">The Today tab and the five-tab
+bar.</figcaption>
+</figure>
+<hr />
+<h1 id="part-ii-getting-started">3 Part II — Getting started</h1>
+<p>This part takes you from installing the app to your first fully
+set-up day.</p>
+<h2 id="quick-start">3.1 Quick start</h2>
+<ol type="1">
+<li>Open Subten. On the welcome screen tap <strong>Get Started</strong>
+(or <strong>I have an account</strong> if you already registered).</li>
+<li>Complete the 7-step onboarding: profile → activity level → goal →
+optional body assessment → optional training plan → Apple Health.</li>
+<li>Tap <strong>Done</strong>. Your free trial starts and you land on
+the <strong>Today</strong> tab.</li>
+<li>Log your first meal: <strong>Food</strong> tab → <strong>+</strong>
+at a meal → search, scan a barcode, or take a photo (Premium).</li>
+<li>Add today’s weight on the <strong>Progress</strong> tab so
+calibration can begin.</li>
+<li>Optional: in <strong>Settings → Reminders</strong> switch on meal,
+water and weigh-in reminders.</li>
+</ol>
+<h2 id="creating-an-account-and-signing-in">3.2 Creating an account and
+signing in</h2>
+<p>On first launch Subten shows the sign-in screen. You can create an
+account three ways:</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Method</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>E-mail + password</strong></td>
+<td>Classic registration; you confirm your e-mail.</td>
+</tr>
+<tr>
+<td><strong>Sign in with Apple</strong></td>
+<td>Fastest on iPhone; you may hide your real e-mail.</td>
+</tr>
+<tr>
+<td><strong>Sign in with Google</strong></td>
+<td>Uses your Google account.</td>
+</tr>
+</tbody>
+</table>
+<p>You must agree to the <strong>Terms</strong> before the Apple/Google
+buttons become active.</p>
+<p><strong>Forgot your password?</strong> Tap <strong>Forgot
+password?</strong>, enter your e-mail, and follow the link in the reset
+message — it opens the app directly on the new-password screen.</p>
+<!-- SCREENSHOT 02: Auth screen — sign in / sign up with Apple + Google buttons visible -->
+<figure>
+<img src="images/02-auth.jpg"
+alt="The sign-in screen with all three methods." />
+<figcaption aria-hidden="true">The sign-in screen with all three
+methods.</figcaption>
+</figure>
+<h2 id="onboarding-step-by-step">3.3 Onboarding step by step</h2>
+<p>Onboarding is a 7-step interview with a progress indicator (<em>Step
+X / 7</em>). You can go <strong>Back</strong> at any time; steps 5 and 6
+can be <strong>skipped</strong>.</p>
+<blockquote>
+<p><strong>Warning:</strong> Subten is for adults only. The
+date-of-birth picker will not accept a date that makes you younger than
+18.</p>
+</blockquote>
+<p><strong>Step 1 — Welcome.</strong> The app introduces itself. iPhone
+15 Pro and newer also show a tip: you can map the <strong>Action
+Button</strong> to quick-add food.</p>
+<p><strong>Step 2 — Profile.</strong> Choose <strong>Gender</strong>,
+set your <strong>date of birth</strong>, <strong>height</strong>
+(120–220 cm), <strong>current weight</strong> and <strong>target
+weight</strong> (35–200 kg each). These feed the initial calorie
+estimate.</p>
+<!-- SCREENSHOT 03: Onboarding profile step — gender cards, height/weight steppers -->
+<figure>
+<img src="images/03-onboarding-profile.jpg"
+alt="Step 2 — your basic profile." />
+<figcaption aria-hidden="true">Step 2 — your basic profile.</figcaption>
+</figure>
+<p><strong>Step 3 — Activity level.</strong> Pick from
+<em>Sedentary</em>, <em>Light</em>, <em>Moderate</em>, <em>Active</em>,
+<em>Very active</em> — each card explains what it means in workouts per
+week. Choose honestly; the adaptive engine will correct estimation
+errors, but a realistic start converges faster.</p>
+<p><strong>Step 4 — Goal.</strong> Choose <strong>Burn fat</strong>,
+<strong>Build muscle</strong>, <strong>Recomposition</strong> or
+<strong>Maintain</strong>.</p>
+<ul>
+<li>Fat loss adds a <strong>Pace</strong> picker (<em>Slow / Medium /
+Fast</em>).</li>
+<li>Muscle gain adds a <strong>Training experience</strong> picker
+(<em>Novice / Intermediate / Advanced</em>) — experienced lifters gain
+muscle more slowly, so the surplus is smaller.</li>
+</ul>
+<p>A live preview card shows your starting targets: daily kcal,
+protein/carbs/fat, the deficit or surplus, your estimated <strong>time
+to goal</strong>, and your BMR and TDEE.</p>
+<!-- SCREENSHOT 04: Onboarding goal step — goal cards + live preview card with kcal/macros/ETA -->
+<figure>
+<img src="images/04-onboarding-goal.jpg"
+alt="Step 4 — goal selection with the live target preview." />
+<figcaption aria-hidden="true">Step 4 — goal selection with the live
+target preview.</figcaption>
+</figure>
+<p><strong>Step 5 — Body assessment (optional).</strong> A quick visual
+self-assessment that refines body-fat estimates. Tap
+<strong>Skip</strong> if you prefer.</p>
+<p><strong>Step 6 — Training plan (optional).</strong> Pick a training
+split: <strong>Full Body 3×</strong>, <strong>Upper/Lower 4×</strong>,
+<strong>Bro Split 5×</strong> or <strong>Push/Pull/Legs 6×</strong>. You
+can change or build a custom plan later on the Training tab.</p>
+<p><strong>Step 7 — Apple Health.</strong> Subten explains what it wants
+to read (weight, steps, heart data, sleep…). Tap <strong>Allow
+access</strong> and confirm in the iOS sheet. You can also skip this and
+enable it later in <strong>Settings → Health</strong>. Tap
+<strong>Done</strong> — your profile is saved and your <strong>free
+trial</strong> starts.</p>
+<h2 id="first-settings-worth-checking">3.4 First settings worth
+checking</h2>
+<ul>
+<li><strong>Language</strong> — Settings → Language: English, Slovak or
+Czech (requires an app restart).</li>
+<li><strong>Units</strong> — Settings → Units: kilograms or pounds
+(display only; data is stored in kg).</li>
+<li><strong>Reminders</strong> — Settings → Reminders: breakfast, lunch,
+dinner, water, training (workout days only) and weigh-in, each with its
+own time.</li>
+</ul>
+<hr />
+<h1 id="today-dashboard">4 Today (Dashboard)</h1>
+<h2 id="what-it-is-for">4.1 What it is for</h2>
+<p>The <strong>Today</strong> tab is your home screen: one glance tells
+you how the day is going — energy budget, activity, water, recovery,
+planned training and logged meals. It is also the launch pad for the
+most frequent actions.</p>
+<h2 id="what-you-will-see">4.2 What you will see</h2>
+<p>From top to bottom (cards appear only when relevant):</p>
+<ul>
+<li><strong>Banners</strong> — health alerts (from Apple Health
+anomalies), an active <em>life situation</em>, and during the first ~2
+weeks the <strong>Calibrating your targets</strong> banner: <em>“Keep
+logging meals and weigh-ins for ~2 weeks — we’ll fine-tune your calories
+from your real results.”</em></li>
+<li><strong>Greeting</strong> with your goal and your
+<strong>streak</strong> (consecutive days of logging, shown as a
+flame).</li>
+<li><strong>Energy ring</strong> — <em>Eaten / Goal</em>, with
+<strong>Remaining</strong> in the middle, an <strong>Energy
+Availability</strong> chip (<em>low / watch / ok / optimal</em>), and
+activity shown for information. When the weekly adaptation has just
+changed your targets, an <strong>Adapted this week</strong> badge
+appears here.</li>
+<li><strong>Quick actions</strong> — <strong>Add food</strong> (opens a
+menu of logging methods), <strong>+250 ml</strong> water, <strong>Start
+training</strong>.</li>
+<li><strong>Stats row</strong> — steps, exercise kcal, water.</li>
+<li><strong>Sleep &amp; Strain</strong> tiles and the expandable
+<strong>Recovery bar</strong> — a 0–100 recovery score built from HRV,
+resting heart rate, sleep, SpO₂, respiratory rate and wrist temperature,
+each with a plain-language explanation and a training
+recommendation.</li>
+<li><strong>Performance Profile</strong> — a radar of recovery, strength
+and nutrition.</li>
+<li><strong>Today’s training</strong>, a <strong>weight
+mini-card</strong> (7-day change) and <strong>today’s
+meals</strong>.</li>
+</ul>
+<!-- SCREENSHOT 05: Dashboard full scroll top — energy ring, quick actions, stats row -->
+<figure>
+<img src="images/05-dashboard-top.jpg"
+alt="Energy ring, quick actions and daily stats." />
+<figcaption aria-hidden="true">Energy ring, quick actions and daily
+stats.</figcaption>
+</figure>
+<!-- SCREENSHOT 06: Recovery bar expanded — score with HRV, RHR, sleep metrics -->
+<figure>
+<img src="images/06-recovery.jpg"
+alt="The expanded recovery bar with per-metric explanations." />
+<figcaption aria-hidden="true">The expanded recovery bar with per-metric
+explanations.</figcaption>
+</figure>
+<h2 id="toolbar">4.3 Toolbar</h2>
+<ul>
+<li><strong>Gear</strong> — opens <strong>Settings</strong> (chapter
+10).</li>
+<li><strong>Heart circle</strong> — <strong>Life situations</strong>:
+temporary modes (illness, vacation, high stress…) that pause or soften
+the engine so a bad week doesn’t wreck your targets.</li>
+<li><strong>History</strong> — browse past days in the same card
+layout.</li>
+<li><strong>Lifestyle</strong> — water dosing and supplement
+tracking.</li>
+</ul>
+<h2 id="common-mistakes">4.4 Common mistakes</h2>
+<ul>
+<li><strong>Expecting exercise to add food budget.</strong> By design it
+doesn’t (see the energy model, §2.2). Only clearly-above-plan movement
+extends the day’s target.</li>
+<li><strong>Dismissing the calibration banner and judging targets on day
+3.</strong> The first estimate is deliberately conservative; let the
+two-week calibration finish.</li>
+</ul>
+<hr />
+<h1 id="food">5 Food</h1>
+<h2 id="what-it-is-for-1">5.1 What it is for</h2>
+<p>The <strong>Food</strong> tab is your diary: everything you eat and
+drink, organized by meal (Breakfast, Lunch, Dinner, Snack), with daily
+totals against your targets — including <strong>fiber</strong>.</p>
+<h2 id="the-screen">5.2 The screen</h2>
+<ul>
+<li><strong>Date header</strong> — arrows for previous/next day, tap the
+date for a calendar.</li>
+<li><strong>Daily totals card</strong> — calorie ring with
+<em>Remaining</em>, plus bars for protein, carbs, fat and fiber. The
+current <strong>day type</strong> badge (Strength / Cardio / Rest /
+Custom) is shown here.</li>
+<li><strong>Meal sections</strong> — each with an <strong>add</strong>
+menu, a totals line, and one-tap chips of <strong>Recent</strong> and
+<strong>Frequent</strong> foods.</li>
+<li><strong>Toolbar</strong> — <strong>Recipes</strong>, <strong>Copy
+from day</strong> (any of the last 7 days), <strong>Meal plan</strong>,
+<strong>Scan</strong>.</li>
+</ul>
+<!-- SCREENSHOT 07: Food tab — a day with meals logged, totals card with macro bars -->
+<figure>
+<img src="images/07-food-diary.jpg"
+alt="A logged day: totals card and meal sections." />
+<figcaption aria-hidden="true">A logged day: totals card and meal
+sections.</figcaption>
+</figure>
+<h2 id="ways-to-log-food">5.3 Ways to log food</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Method</th>
+<th>How</th>
+<th>Availability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Search</strong></td>
+<td>Type a name, pick a result, set the amount. Side dishes can be added
+in the same flow.</td>
+<td>Free</td>
+</tr>
+<tr>
+<td><strong>Barcode</strong></td>
+<td>Point the camera at the barcode; the product loads from the Open
+Food Facts database.</td>
+<td>Free</td>
+</tr>
+<tr>
+<td><strong>AI photo scan</strong></td>
+<td>Photograph your plate (or pick from the gallery); the AI identifies
+the meal and fills in macros, which you review and confirm.</td>
+<td>Premium</td>
+</tr>
+<tr>
+<td><strong>Nutrition label scan</strong></td>
+<td>Photograph the label; the AI reads the values.</td>
+<td>Premium</td>
+</tr>
+<tr>
+<td><strong>Recipe scanner &amp; Recipes</strong></td>
+<td>Scan or store multi-ingredient recipes and log portions of
+them.</td>
+<td>Free</td>
+</tr>
+<tr>
+<td><strong>Quick add</strong></td>
+<td>Type a name and kcal/protein/carbs/fat/fiber directly.</td>
+<td>Free</td>
+</tr>
+<tr>
+<td><strong>Favorites / Recent / Frequent</strong></td>
+<td>One-tap re-logging of foods you use often (save with the heart
+icon).</td>
+<td>Free</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Tip:</strong> Photo scans work offline too — they are queued
+and processed when you’re back online. A banner shows pending and failed
+scans; tap it to open the <strong>scan queue</strong>.</p>
+</blockquote>
+<blockquote>
+<p><strong>Tip for the best result:</strong> The scanner has three modes
+— <strong>Barcode · Label · Food</strong>. If a product <strong>isn’t
+found by barcode</strong> (missing from the Open Food Facts database),
+switch to <strong>Label</strong> mode and photograph the packaging’s
+<strong>nutrition table</strong> (values per 100 g or per serving). The
+AI reads the macros from it and fills them in for you — more reliable
+than estimating from a plate in Food mode.</p>
+</blockquote>
+<!-- SCREENSHOT 08: AI photo scan — camera view or result sheet with recognized meal and macros -->
+<figure>
+<img src="images/08-photo-scan.jpg"
+alt="AI photo logging: snap, review, confirm." />
+<figcaption aria-hidden="true">AI photo logging: snap, review,
+confirm.</figcaption>
+</figure>
+<!-- SCREENSHOT 09: Barcode scanner in action -->
+<figure>
+<img src="images/09-barcode.jpg"
+alt="Barcode scanning against the Open Food Facts database." />
+<figcaption aria-hidden="true">Barcode scanning against the Open Food
+Facts database.</figcaption>
+</figure>
+<h2 id="editing-entries">5.4 Editing entries</h2>
+<p>Tap any food row to edit: change grams with a ±10 g stepper or
+presets (50/100/150/200/300 g), or override macros entirely. Swipe or
+use the context menu to <strong>favorite</strong>, <strong>move to
+another meal</strong>, <strong>copy to today</strong> (from a past day)
+or <strong>delete</strong> (with confirmation).</p>
+<h2 id="ai-meal-plan-and-shopping-list-premium">5.5 AI meal plan and
+shopping list (Premium)</h2>
+<p><strong>Toolbar → Meal plan</strong> generates a full day of meals
+matching your current targets. You can state preferences in plain
+language (<em>“Asian cuisine, no dairy”</em>). Review the plan, tap
+<strong>add to day</strong> to log it, and open the <strong>Shopping
+list</strong> for the ingredients.</p>
+<!-- SCREENSHOT 10: Meal plan — generated day of meals with targets header -->
+<figure>
+<img src="images/10-meal-plan.jpg"
+alt="A generated day matching your targets." />
+<figcaption aria-hidden="true">A generated day matching your
+targets.</figcaption>
+</figure>
+<h2 id="common-mistakes-1">5.6 Common mistakes</h2>
+<ul>
+<li><strong>Trusting a photo scan blindly.</strong> The AI estimate is a
+starting point — check the portion size before confirming, especially
+for mixed dishes.</li>
+<li><strong>Logging into the wrong day.</strong> Check the date header
+after using the calendar; the app keeps whatever day you navigated
+to.</li>
+</ul>
+<h2 id="limitations">5.7 Limitations</h2>
+<ul>
+<li>Photo and label scanning require Premium and (for processing) an
+internet connection.</li>
+<li>Barcode coverage depends on the Open Food Facts database; regional
+products may be missing — use Quick add and save as a favorite.</li>
+</ul>
+<hr />
+<h1 id="training">6 Training</h1>
+<h2 id="what-it-is-for-2">6.1 What it is for</h2>
+<p>The <strong>Training</strong> tab holds your plan, your workouts and
+your history. It has four sub-tabs: <strong>My Plan</strong>,
+<strong>Gym</strong>, <strong>Sport</strong> and
+<strong>Library</strong>.</p>
+<h2 id="my-plan-free">6.2 My Plan (free)</h2>
+<p>Your active plan: a resume-workout banner if one is in progress, the
+week strip, today’s workout, a section of <strong>Apple Watch
+workouts</strong> you can import, weekly stats and your workout history.
+From here you can <strong>Add activity</strong> (log cardio manually) or
+<strong>Create training plan</strong>.</p>
+<!-- SCREENSHOT 11: Training — My Plan with week strip and today's workout -->
+<figure>
+<img src="images/11-training-myplan.jpg"
+alt="My Plan: week overview and today’s session." />
+<figcaption aria-hidden="true">My Plan: week overview and today’s
+session.</figcaption>
+</figure>
+<h2 id="active-workout">6.3 Active workout</h2>
+<p>Starting a workout opens the live screen: exercises with sets and
+reps, a <strong>rest timer</strong>, and a <strong>Live
+Activity</strong> on your lock screen so you can track rest without
+unlocking. Finishing a session records it to history and (if allowed) to
+Apple Health; new <strong>Personal Records</strong> are detected
+automatically.</p>
+<!-- SCREENSHOT 12: Active workout — sets/reps and rest timer -->
+<figure>
+<img src="images/12-active-workout.jpg"
+alt="The active workout screen with rest timer." />
+<figcaption aria-hidden="true">The active workout screen with rest
+timer.</figcaption>
+</figure>
+<h2 id="gym-and-sport-premium">6.4 Gym and Sport (Premium)</h2>
+<ul>
+<li><strong>Gym</strong> — the full catalogue of workout plans and
+templates.</li>
+<li><strong>Sport</strong> — sport-specific plans (hockey, football,
+tennis, basketball…) delivered as <strong>Sport Packs</strong>.</li>
+</ul>
+<p>Without Premium these sub-tabs show a paywall card.</p>
+<h2 id="library">6.5 Library</h2>
+<p>The exercise library: filter by muscle group, watch animated
+demonstrations, read technique instructions, and create <strong>custom
+exercises</strong>.</p>
+<!-- SCREENSHOT 13: Exercise library with muscle filter and an exercise detail -->
+<figure>
+<img src="images/13-library.jpg" alt="The exercise library." />
+<figcaption aria-hidden="true">The exercise library.</figcaption>
+</figure>
+<h2 id="connections">6.6 Connections</h2>
+<ul>
+<li>Your plan’s day types drive the Food tab’s daily targets (carb
+cycling).</li>
+<li>Workouts sync with Apple Health and the Watch app; Watch-recorded
+workouts appear in <strong>My Plan</strong> for import.</li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> The training module includes an exercise
+disclaimer — Subten provides guidance, not medical advice. Stop any
+exercise that causes pain.</p>
+</blockquote>
+<hr />
+<h1 id="progress">7 Progress</h1>
+<h2 id="what-it-is-for-3">7.1 What it is for</h2>
+<p>The <strong>Progress</strong> tab tracks the outcome: weight, trend,
+body composition, measurements and photos.</p>
+<h2 id="the-screen-1">7.2 The screen</h2>
+<ul>
+<li><strong>Weight hero card</strong> — current weight and an
+<strong>add weight</strong> button. Log at a consistent time (mornings
+work best).</li>
+<li><strong>Weight chart</strong> — with selectable ranges. The
+<em>trend</em>, not any single weigh-in, is what the adaptive engine
+uses.</li>
+<li><strong>AI body assessment</strong> — a guided visual assessment
+that estimates body composition.</li>
+<li><strong>Body composition</strong> and <strong>Body
+measurements</strong> — log waist, hips, arms and more, each tracked
+over time.</li>
+<li><strong>Streak</strong> and <strong>Progress photos</strong> —
+consistent photos (same light, same pose) are often more motivating than
+the scale.</li>
+</ul>
+<!-- SCREENSHOT 14: Progress tab — weight chart with data, measurement cards -->
+<figure>
+<img src="images/14-progress.jpg"
+alt="Weight trend and measurements." />
+<figcaption aria-hidden="true">Weight trend and
+measurements.</figcaption>
+</figure>
+<h2 id="ai-body-assessment">7.3 AI body assessment</h2>
+<p><strong>AI body assessment</strong> (Premium) estimates body
+composition, somatotype, muscle-group ratings and recommendations from
+three photos. Open it on the <strong>Progress → AI body
+assessment</strong> card.</p>
+<ol type="1">
+<li>Add three photos — <strong>front</strong>, <strong>side</strong> and
+<strong>back</strong> (take a photo or pick from your gallery).</li>
+<li>Tap <strong>Analyze</strong>.</li>
+</ol>
+<!-- SCREENSHOT 21: Body assessment — three photo slots (front/side/back) + Analyze -->
+<figure>
+<img src="images/21-body-assessment.jpg"
+alt="Three body photos for the AI analysis." />
+<figcaption aria-hidden="true">Three body photos for the AI
+analysis.</figcaption>
+</figure>
+<blockquote>
+<p><strong>Notice — your photos are sent to an external
+service.</strong> The body analysis does not run on-device. The first
+time you use an AI feature that sends data off the phone, a consent
+screen appears: Subten sends <strong>your body photos</strong> and
+health metrics to AI model providers (e.g. Google Gemini) via
+OpenRouter, <strong>processed on servers in the USA</strong>, solely to
+produce your result. The feature will not run without consent; you can
+use the rest of the app without it. (This applies in Private mode too —
+see 8.3.)</p>
+</blockquote>
+<!-- SCREENSHOT 20: AI consent — data sent off-device warning before body analysis -->
+<figure>
+<img src="images/20-ai-consent.jpg"
+alt="The consent screen shown before photos are sent to the external AI." />
+<figcaption aria-hidden="true">The consent screen shown before photos
+are sent to the external AI.</figcaption>
+</figure>
+<p>The result is an <strong>AI estimate</strong>, not a medical
+measurement — accuracy depends on lighting and pose.</p>
+<h2 id="common-mistakes-2">7.4 Common mistakes</h2>
+<ul>
+<li><strong>Weighing once a week and panicking.</strong> Daily weight
+fluctuates 1–2 kg with water and food timing. Weigh often, judge the
+trend line, ignore single readings.</li>
+</ul>
+<hr />
+<h1 id="coach-ai-mentor">8 Coach (AI mentor)</h1>
+<h2 id="what-it-is-for-4">8.1 What it is for</h2>
+<p>The <strong>Coach</strong> tab is your AI mentor: a chat that knows
+your data and four one-tap reviews. It explains, suggests and — with
+your confirmation — acts.</p>
+<blockquote>
+<p><strong>Note:</strong> As required by the EU AI Act, the Coach
+discloses that you are communicating with an AI mentor. It is not a
+doctor, nutritionist or trainer; for medical concerns see a
+professional.</p>
+</blockquote>
+<h2 id="the-screen-2">8.2 The screen</h2>
+<ul>
+<li><strong>Chat</strong> — streaming replies; you can edit a message,
+retry, copy, stop generation, or start a new chat. Suggestion chips
+adapt to the time of day.</li>
+<li><strong>Four tiles</strong> — <strong>Daily review</strong>,
+<strong>Weekly Review</strong> (7-day charts of recovery, weight trend,
+calorie compliance, macro averages and training, plus an AI insight),
+<strong>Meal plan</strong>, <strong>Shopping list</strong>.</li>
+<li><strong>Plateau banner</strong> — when your progress stalls, the
+Coach offers a deep-dive analysis.</li>
+<li><strong>Action cards</strong> — the Coach can propose logging a food
+or an activity for you; nothing is logged until you confirm.</li>
+</ul>
+<!-- SCREENSHOT 15: Coach chat with a reply and suggestion chips -->
+<figure>
+<img src="images/15-coach-chat.jpg"
+alt="Chatting with the mentor — the “On-device” lock badge (top right) means the reply runs on the device." />
+<figcaption aria-hidden="true">Chatting with the mentor — the
+“On-device” lock badge (top right) means the reply runs on the
+device.</figcaption>
+</figure>
+<!-- SCREENSHOT 16: Weekly Review — 7-day charts and AI insight -->
+<figure>
+<img src="images/16-weekly-review.jpg" alt="The Weekly Review." />
+<figcaption aria-hidden="true">The Weekly Review.</figcaption>
+</figure>
+<h2 id="on-device-ai-private-mode">8.3 On-device AI (Private mode)</h2>
+<p>Subten can run the Coach’s text features (chat, the daily and weekly
+reviews, plateau analysis) <strong>directly on your iPhone</strong> —
+without sending anything to the cloud. This happens
+<strong>automatically</strong>; you don’t switch anything on.</p>
+<p><strong>How to tell in chat:</strong> when a Coach reply runs on the
+device, the conversation header shows a badge with a <strong>lock and
+the word “On-device”</strong>. When that badge is
+<strong>absent</strong>, the reply was handled by the
+<strong>cloud</strong>. Simple rule: <em>lock = on-device, no lock =
+cloud.</em></p>
+<p>The local model is only available on iPhones with <strong>6 GB of RAM
+or more</strong>. On weaker devices (under 6 GB) the Coach
+<strong>always uses the cloud</strong> and the “On-device” badge never
+appears.</p>
+<h3 id="first-model-download-wi-fi-only">First model download (Wi-Fi
+only)</h3>
+<p>For on-device AI to work, Subten needs a language model (~3 GB).
+<strong>The fine-tune adapter ships inside the app</strong>, but the
+base model itself is <strong>downloaded after install</strong>, like
+this:</p>
+<ul>
+<li>The download runs <strong>in the background at app launch</strong> —
+no screen, no progress bar, nothing you have to do.</li>
+<li>It downloads <strong>over Wi-Fi (or ethernet) only</strong>. On
+cellular it is skipped and retried at the next launch on Wi-Fi.</li>
+<li><strong>Until the model is downloaded and loaded, the Coach uses the
+cloud</strong> (and the “On-device” badge doesn’t show). Once it’s
+ready, Subten switches to the local model automatically.</li>
+<li>The download is <strong>interruptible and resumable</strong> — if it
+stops, it finishes later, and already-downloaded parts are not fetched
+again. The model is kept out of your (iCloud) backup.</li>
+</ul>
+<p>In practice: <strong>after the first install, leave the phone on
+Wi-Fi for a while</strong> and on-device AI prepares itself. Until then
+the app works normally, just via the cloud.</p>
+<h3 id="when-the-local-model-runs-and-when-the-cloud-does">When the
+local model runs, and when the cloud does</h3>
+<p>Subten decides <strong>automatically</strong> — you don’t switch
+anything. The <strong>local (on-device) model</strong> is used when all
+three conditions hold at once:</p>
+<ul>
+<li>it is a <strong>Coach text feature</strong>: chat, the <strong>daily
+review</strong>, the <strong>weekly review</strong> or the
+<strong>plateau analysis</strong>;</li>
+<li>the app language is <strong>Slovak, Czech or English</strong>;</li>
+<li>the local model has been downloaded and loaded into memory (iPhone
+with <strong>6 GB of RAM or more</strong>).</li>
+</ul>
+<p>In that case the reply carries the <em>on-device</em> badge and
+nothing leaves the phone. In every other case the <strong>cloud
+(OpenRouter API)</strong> is used:</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Where it runs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chat, daily/weekly review, plateau analysis (SK/CS/EN)</td>
+<td>Local*</td>
+</tr>
+<tr>
+<td>Food photo scan, nutrition-label and recipe scan</td>
+<td>Always cloud</td>
+</tr>
+<tr>
+<td><strong>AI body assessment</strong> (sends photos)</td>
+<td>Always cloud</td>
+</tr>
+<tr>
+<td>AI meal plan, AI food estimation</td>
+<td>Always cloud</td>
+</tr>
+<tr>
+<td>Chat that logs a food/activity to your diary</td>
+<td>Cloud</td>
+</tr>
+<tr>
+<td>Unsupported language, or the model isn’t ready yet</td>
+<td>Cloud</td>
+</tr>
+</tbody>
+</table>
+<p>* If local generation fails, Subten <strong>silently falls back to
+the cloud</strong> so you still get an answer (except in Private
+mode).</p>
+<h3 id="private-mode-optional-toggle">Private mode (optional
+toggle)</h3>
+<p>On iPhones with 6 GB of RAM or more, <strong>Settings</strong> has a
+<strong>Private mode: AI on device only</strong> toggle. The normal
+(automatic) behaviour already prefers the device; this toggle
+additionally <strong>disables the cloud fallback</strong> for the
+Coach’s text features — if the local model can’t answer, it shows an
+honest error rather than sending data to the cloud. <strong>Offline
+behaves the same</strong> as Private mode.</p>
+<p>Even in Private mode, <strong>cloud features stay in the
+cloud</strong>: food, label and recipe scans, AI food estimation, meal
+plans and body assessment (which send your photos) — these simply won’t
+run without the cloud.</p>
+<h2 id="availability">8.4 Availability</h2>
+<p>The Coach is a <strong>Premium</strong> feature; without Premium the
+tab shows an unlock card.</p>
+<hr />
+<h1 id="part-iv-the-adaptive-engine">9 Part IV — The adaptive
+engine</h1>
+<p>This chapter explains, in user terms, how your targets change over
+time. You don’t need to do anything for this to work — just log food and
+weigh-ins.</p>
+<h2 id="calibration-first-2-weeks">9.1 Calibration (first ~2 weeks)</h2>
+<p>The engine will not touch your targets until it has: at least
+<strong>14 days</strong> of history, at least <strong>10 days</strong>
+with logged intake, and at least <strong>3 weigh-ins</strong>. Until
+then the Today tab shows the calibration banner. The starting targets
+are deliberately conservative.</p>
+<h2 id="weekly-adaptation">9.2 Weekly adaptation</h2>
+<p>Every 7 days the engine measures your <strong>true
+maintenance</strong> from real data: your average intake and your actual
+weight trend together reveal how much you really burn. Your new daily
+goal is that measured maintenance plus your goal’s deficit or surplus.
+Safety rails:</p>
+<ul>
+<li>Targets move by at most <strong>±250 kcal per week</strong> (up to
++400 for muscle gain), so no whiplash.</li>
+<li>A <strong>brake</strong> engages if you lose faster than 1 % of body
+weight per week — the engine nudges calories <em>up</em> to protect
+muscle.</li>
+<li><strong>Refeed, cheat, plateau and diet-break days</strong> (and a
+short buffer after them) are excluded; diet-break weeks are skipped
+entirely.</li>
+<li>A <strong>hard calorie floor</strong> (sex-based) is never
+crossed.</li>
+</ul>
+<p>When targets change you’ll see the <strong>Adapted this week</strong>
+badge on the Today tab, and the Coach can explain the change.</p>
+<h2 id="time-to-goal-eta">9.3 Time to goal (ETA)</h2>
+<p>Your ETA is recomputed from the measured trend. It can read
+<em>collecting data</em>, <em>no clear trend</em>, <em>goal
+reached</em>, or an actual date. If the current trend would take longer
+than about two years, the app caps the estimate rather than display
+fiction.</p>
+<h2 id="strategies">9.4 Strategies</h2>
+<p><strong>Settings → Advanced → Life situations &amp;
+Strategies</strong> (and the strategy hub) offer planned protocols:</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cheat meal</strong></td>
+<td>One planned free meal; the day is excluded from adaptation.</td>
+</tr>
+<tr>
+<td><strong>Refeed</strong></td>
+<td>A planned higher-carb day, useful in long fat-loss phases.</td>
+</tr>
+<tr>
+<td><strong>Diet break</strong></td>
+<td>1–2 weeks at maintenance; the engine pauses adaptation.</td>
+</tr>
+<tr>
+<td><strong>Plateau protocol</strong></td>
+<td>A structured response when weight stalls despite compliance.</td>
+</tr>
+</tbody>
+</table>
+<p>Using the built-in strategies (instead of ad-hoc off-plan days) keeps
+your data clean and your adaptation accurate.</p>
+<hr />
+<h1 id="part-v-apple-watch-shortcuts">10 Part V — Apple Watch &amp;
+shortcuts</h1>
+<h2 id="the-watch-app">10.1 The Watch app</h2>
+<p>The Watch home screen mirrors your day:</p>
+<ul>
+<li><strong>Concentric rings</strong> — calories plus protein, carbs,
+fat and fiber; the centre shows <em>remaining</em> (or <em>over</em>, in
+red).</li>
+<li><strong>Energy card</strong> and compact macro bars.</li>
+<li><strong>Recovery row</strong> — when recovery data exists, tap
+through for the detail.</li>
+<li><strong>Water button</strong> — tap for <strong>+250 ml</strong>,
+long-press for other doses.</li>
+</ul>
+<!-- SCREENSHOT 17: Watch app Today screen with rings (Watch simulator) -->
+<figure>
+<img src="images/17-watch.jpg" alt="The Watch Today screen." />
+<figcaption aria-hidden="true">The Watch Today screen.</figcaption>
+</figure>
+<h2 id="complications-and-widgets">10.2 Complications and widgets</h2>
+<p>Add the Subten complication to your watch face for at-a-glance
+remaining calories; the iPhone widget does the same on your home
+screen.</p>
+<h2 id="action-button-and-siri">10.3 Action Button and Siri</h2>
+<p>On iPhone 15 Pro and newer you can map the <strong>Action
+Button</strong> to Subten’s <em>Add food</em> or <em>Scan food</em>
+intent. The same intents work with Siri and the Shortcuts app; the Watch
+adds a <em>Log Water</em> intent.</p>
+<hr />
+<h1 id="part-vi-apple-health">11 Part VI — Apple Health</h1>
+<p>Subten asks for Health access only when you explicitly enable it
+(onboarding step 7 or <strong>Settings → Health</strong>). You control
+each type separately.</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Data</th>
+<th>Direction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Weight</td>
+<td>read <strong>and write</strong></td>
+</tr>
+<tr>
+<td>Steps, Active energy, Workouts, Sleep, Water</td>
+<td>read</td>
+</tr>
+<tr>
+<td>HRV, resting heart rate, SpO₂, respiratory rate, wrist
+temperature</td>
+<td>read (recovery score)</td>
+</tr>
+<tr>
+<td>Consumed calories, macros, water</td>
+<td><strong>write</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Health alerts:</strong> when the data shows anomalies
+(unusual SpO₂, respiratory rate, heart rate, HRV, temperature or sleep),
+Subten surfaces a banner on the Today tab. These are informational
+nudges, not diagnoses.</p>
+<blockquote>
+<p><strong>Tip:</strong> If numbers look doubled (e.g. a workout counted
+twice), check that only one app writes workouts, or disable that type’s
+sync in <strong>Settings → Health → Sync by type</strong>.</p>
+</blockquote>
+<hr />
+<h1 id="part-vii-premium-subscription">12 Part VII — Premium &amp;
+subscription</h1>
+<h2 id="free-vs-premium-1">12.1 Free vs Premium</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Free</th>
+<th>Premium</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Food logging: search, barcode, manual, recipes, favorites</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Dashboard, Progress, streaks</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Training — My Plan, Library</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Apple Health sync, reminders, Watch app</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Data export &amp; import</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>AI photo &amp; label scanning</td>
+<td>—</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>AI meal plans &amp; shopping list</td>
+<td>—</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>AI Coach (chat, reviews)</td>
+<td>—</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Training — Gym &amp; Sport, Personal Records</td>
+<td>—</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Sport Packs</td>
+<td>—</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>iCloud sync</td>
+<td>—</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<h2 id="subscribing">12.2 Subscribing</h2>
+<p>The paywall offers <strong>Monthly</strong> and
+<strong>Yearly</strong> plans (Yearly is marked <em>Best value</em> with
+a per-month breakdown) with a free-trial period. Purchases go through
+your Apple ID; subscriptions auto-renew until cancelled in iOS Settings.
+<strong>Restore purchases</strong> recovers an existing subscription on
+a new device. A <strong>promo code</strong> field accepts codes.</p>
+<!-- SCREENSHOT 18: Paywall — monthly/yearly plans with trial info -->
+<figure>
+<img src="images/18-paywall.jpg" alt="The subscription screen." />
+<figcaption aria-hidden="true">The subscription screen.</figcaption>
+</figure>
+<h2 id="trial">12.3 Trial</h2>
+<p>A local free trial starts when you finish onboarding. When it ends,
+AI and premium training features lock again and the app shows <em>Trial
+expired — Activate Premium</em>. Your data is never locked away:
+logging, progress and export stay free.</p>
+<hr />
+<h1 id="part-viii-settings-privacy-account">13 Part VIII — Settings,
+privacy &amp; account</h1>
+<p>Open Settings from the gear on the <strong>Today</strong> tab.</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Section</th>
+<th>What is there</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Edit profile &amp; goals</strong></td>
+<td>Change weight targets, goal, pace, activity — targets
+recompute.</td>
+</tr>
+<tr>
+<td><strong>Subscription</strong></td>
+<td>Premium status, activation, promo code.</td>
+</tr>
+<tr>
+<td><strong>Private mode</strong></td>
+<td>On-device-only AI toggle (6 GB+ devices, see §8.3).</td>
+</tr>
+<tr>
+<td><strong>Reminders</strong></td>
+<td>Breakfast, lunch, dinner, water, training, weigh-in — each with its
+own time.</td>
+</tr>
+<tr>
+<td><strong>Health</strong></td>
+<td>Master toggle plus per-type sync switches.</td>
+</tr>
+<tr>
+<td><strong>Units</strong></td>
+<td>kg / lbs (display only).</td>
+</tr>
+<tr>
+<td><strong>Language</strong></td>
+<td>English / Slovak / Czech (restart required).</td>
+</tr>
+<tr>
+<td><strong>Advanced</strong></td>
+<td>Life situations &amp; Strategies; <strong>Export &amp;
+Import</strong> of your data.</td>
+</tr>
+<tr>
+<td><strong>Feedback</strong></td>
+<td>Send feedback to the developer.</td>
+</tr>
+<tr>
+<td><strong>Account</strong></td>
+<td>Sign out; <strong>Delete account &amp; data</strong>.</td>
+</tr>
+<tr>
+<td><strong>AI in Subten</strong></td>
+<td>What the AI features do, the AI data-sharing consent toggle, privacy
+policy and disclaimer.</td>
+</tr>
+<tr>
+<td><strong>About</strong></td>
+<td>Version information.</td>
+</tr>
+</tbody>
+</table>
+<!-- SCREENSHOT 19: Settings screen -->
+<figure>
+<img src="images/19-settings.jpg" alt="Settings." />
+<figcaption aria-hidden="true">Settings.</figcaption>
+</figure>
+<h2 id="your-data">13.1 Your data</h2>
+<ul>
+<li><strong>Export &amp; Import</strong> (free, GDPR): export everything
+to a file, import it on another device or after reinstalling.</li>
+<li><strong>Delete account &amp; data</strong> wipes the server, the
+device and iCloud. This is irreversible — export first if in doubt.</li>
+<li><strong>AI consent:</strong> AI features that use the cloud only run
+with your explicit consent, controllable in <strong>AI in
+Subten</strong>. Private mode (§8.3) keeps coaching fully
+on-device.</li>
+</ul>
+<hr />
+<h1 id="part-ix-troubleshooting-faq">14 Part IX — Troubleshooting &amp;
+FAQ</h1>
+<p><strong>A banner says “Food database failed to load.”</strong> Tap
+<strong>Retry</strong>. If it persists, force-quit and reopen the
+app.</p>
+<p><strong>My photo scan is stuck “pending.”</strong> Scans queue
+offline and process automatically once you’re online. Open the scan
+queue from the banner to retry failed items.</p>
+<p><strong>Prices don’t load on the paywall.</strong> <em>Price
+unavailable, try again later</em> means the App Store didn’t respond —
+tap <strong>Retry</strong>, check your connection.</p>
+<p><strong>My targets haven’t changed in weeks.</strong> Check you meet
+the calibration minimums (§9.1): enough logged days and at least 3
+weigh-ins in the window. Diet-break weeks are skipped by design.</p>
+<p><strong>Remaining doesn’t grow when I exercise.</strong> By design —
+see the energy model (§2.2).</p>
+<p><strong>Steps/weight don’t sync.</strong> Check <strong>Settings →
+Health</strong>: the master toggle and the per-type switch. Then check
+iOS <strong>Settings → Privacy &amp; Security → Health →
+Subten</strong>.</p>
+<p><strong>I changed the language but the app is mixed.</strong> Restart
+the app — the language switch requires it.</p>
+<p><strong>The Coach tab just shows an unlock card.</strong> The Coach
+is Premium; start the trial or subscribe. If you <em>are</em> Premium,
+tap <strong>Restore purchases</strong> on the paywall.</p>
+<p><strong>I can’t select my birth date.</strong> Subten is 18+; the
+picker enforces it.</p>
+<p><strong>Deleting my account failed.</strong> You need a network
+connection (the server copy must be wiped too). Try again online;
+contact support via <strong>Settings → Feedback</strong> if it
+persists.</p>
+<hr />
+<h1 id="appendix-glossary">15 Appendix — Glossary</h1>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BMR</strong></td>
+<td>Basal metabolic rate — energy burned at complete rest.</td>
+</tr>
+<tr>
+<td><strong>TDEE</strong></td>
+<td>Total daily energy expenditure — BMR plus all activity; your true
+maintenance.</td>
+</tr>
+<tr>
+<td><strong>Deficit / surplus</strong></td>
+<td>Eating below / above maintenance — the driver of fat loss / muscle
+gain.</td>
+</tr>
+<tr>
+<td><strong>Macros</strong></td>
+<td>Protein, carbohydrates, fat (Subten also tracks fiber).</td>
+</tr>
+<tr>
+<td><strong>Recomposition</strong></td>
+<td>Losing fat and building muscle in the same period.</td>
+</tr>
+<tr>
+<td><strong>Energy Availability (EA)</strong></td>
+<td>Energy left for the body after training; chronically <em>low</em> EA
+harms health and adaptation.</td>
+</tr>
+<tr>
+<td><strong>Day type</strong></td>
+<td>Strength / Cardio / Rest / Custom — drives per-day targets (carb
+cycling).</td>
+</tr>
+<tr>
+<td><strong>Calibration</strong></td>
+<td>The first ~2 weeks in which Subten gathers data before adapting
+targets.</td>
+</tr>
+<tr>
+<td><strong>Refeed</strong></td>
+<td>A planned higher-carb day within a diet phase.</td>
+</tr>
+<tr>
+<td><strong>Diet break</strong></td>
+<td>A planned 1–2 week pause at maintenance calories.</td>
+</tr>
+<tr>
+<td><strong>Streak</strong></td>
+<td>Consecutive days of logging.</td>
+</tr>
+<tr>
+<td><strong>HRV</strong></td>
+<td>Heart-rate variability — a recovery indicator read from Apple
+Health.</td>
+</tr>
+<tr>
+<td><strong>Live Activity</strong></td>
+<td>The iOS lock-screen widget shown during an active workout.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Subten — User Manual · v1.0 · © 2026</em></p>
+</body>
+</html>
