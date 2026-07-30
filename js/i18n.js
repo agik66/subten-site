@@ -251,6 +251,8 @@ window.SUBTEN_I18N = {
   "footer.terms":   { sk: "Podmienky používania", en: "Terms of Service", cz: "Podmínky používání" },
   "footer.delete":  { sk: "Vymazanie účtu", en: "Delete account", cz: "Smazání účtu" },
   "footer.support": { sk: "Podpora", en: "Support", cz: "Podpora" },
+  "footer.manual":  { sk: "Príručka", en: "User manual", cz: "Příručka" },
+  "footer.email":   { sk: "Napíš nám", en: "Email us", cz: "Napiš nám" },
   "footer.rights":  { sk: "© 2026 Subten. Všetky práva vyhradené.", en: "© 2026 Subten. All rights reserved.", cz: "© 2026 Subten. Všechna práva vyhrazena." },
   "footer.made":    { sk: "Vytvorené na Slovensku 🇸🇰", en: "Made in Slovakia 🇸🇰", cz: "Vyrobeno na Slovensku 🇸🇰" },
 
