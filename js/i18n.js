@@ -66,8 +66,7 @@ window.SUBTEN_I18N = {
   "hero.meta3":   { sk: "Bez reklám", en: "No ads", cz: "Bez reklam" },
 
   /* store badges */
-  "badge.ios.top":  { sk: "Čoskoro na", en: "Coming soon on", cz: "Brzy na" },
-  "badge.and.top":  { sk: "Čoskoro na", en: "Coming soon on", cz: "Brzy na" },
+  "badge.ios.top":  { sk: "Stiahni na", en: "Download on the", cz: "Stáhni na" },
 
   /* strip */
   "strip.1": { sk: "Apple Health & Watch", en: "Apple Health & Watch", cz: "Apple Health & Watch" },
@@ -85,7 +84,7 @@ window.SUBTEN_I18N = {
   "food.title":     { sk: "Jedlo a makrá", en: "Food & macros", cz: "Jídlo a makra" },
   "food.desc":      { sk: "Naskenuj čiarový kód alebo odfoť tanier. Subten dopočíta kalórie, bielkoviny, sacharidy, tuky aj vlákninu.", en: "Scan a barcode or snap your plate. Subten works out calories, protein, carbs, fat and fiber.", cz: "Naskenuj čárový kód nebo vyfoť talíř. Subten dopočítá kalorie, bílkoviny, sacharidy, tuky i vlákninu." },
   "training.title": { sk: "Tréning a šport", en: "Training & sport", cz: "Trénink a sport" },
-  "training.desc":  { sk: "Plány do posilňovne aj periodizované športové cykly — futbal, hokej, beh, cyklistika a ďalšie.", en: "Gym splits and periodized sport cycles — football, hockey, running, cycling and more.", cz: "Plány do posilovny i periodizované sportovní cykly — fotbal, hokej, běh, cyklistika a další." },
+  "training.desc":  { sk: "Plány do posilňovne aj periodizované športové cykly — hokej, futbal, tenis a basketbal.", en: "Gym splits and periodized sport cycles — hockey, football, tennis and basketball.", cz: "Plány do posilovny i periodizované sportovní cykly — hokej, fotbal, tenis a basketbal." },
   "recovery.title": { sk: "Regenerácia", en: "Recovery", cz: "Regenerace" },
   "recovery.desc":  { sk: "HRV, pokojový tep, spánok a SpO₂ z hodiniek v jednom skóre pripravenosti.", en: "HRV, resting heart rate, sleep and SpO₂ from your watch in one readiness score.", cz: "HRV, klidový tep, spánek a SpO₂ z hodinek v jednom skóre připravenosti." },
   "coachf.title":   { sk: "AI Coach", en: "AI Coach", cz: "AI Coach" },
@@ -104,7 +103,7 @@ window.SUBTEN_I18N = {
   "sc.train.title": { sk: "Trénuj podľa plánu, nie od oka", en: "Train to a plan, not by guesswork", cz: "Trénuj podle plánu, ne od oka" },
   "sc.train.desc":  { sk: "Vyber si rozpis do posilňovne alebo periodizovaný plán pre svoj šport. Subten ti pripraví týždeň a vedie ťa cvik po cviku.", en: "Pick a gym split or a periodized plan for your sport. Subten lays out your week and guides you exercise by exercise.", cz: "Vyber si rozpis do posilovny nebo periodizovaný plán pro svůj sport. Subten ti připraví týden a vede tě cvik po cviku." },
   "sc.train.li1":   { sk: "Celé telo, PPL, Upper/Lower, Wendler a ďalšie", en: "Full body, PPL, Upper/Lower, Wendler and more", cz: "Celé tělo, PPL, Upper/Lower, Wendler a další" },
-  "sc.train.li2":   { sk: "Periodizované cykly pre 8+ športov", en: "Periodized cycles for 8+ sports", cz: "Periodizované cykly pro 8+ sportů" },
+  "sc.train.li2":   { sk: "Periodizované cykly pre hokej, futbal, tenis a basketbal", en: "Periodized cycles for hockey, football, tennis and basketball", cz: "Periodizované cykly pro hokej, fotbal, tenis a basketbal" },
   "sc.train.li3":   { sk: "Knižnica cvikov s návodmi a zásahmi svalov", en: "Exercise library with guides and muscle maps", cz: "Knihovna cviků s návody a zásahy svalů" },
 
   /* showcase: recovery */
@@ -155,7 +154,7 @@ window.SUBTEN_I18N = {
   "pro.per.year": { sk: "/ rok", en: "/ year", cz: "/ rok" },
   "pro.toggle.month": { sk: "Mesačne", en: "Monthly", cz: "Měsíčně" },
   "pro.toggle.year":  { sk: "Ročne", en: "Yearly", cz: "Ročně" },
-  "pro.save":     { sk: "−37 %", en: "−37%", cz: "−37 %" },
+  "pro.save":     { sk: "−48 %", en: "−48%", cz: "−48 %" },
   "pro.trial.month": { sk: "1 týždeň zadarmo na vyskúšanie", en: "1-week free trial", cz: "1 týden zdarma na vyzkoušení" },
   "pro.trial.year":  { sk: "1 týždeň zadarmo na vyskúšanie", en: "1-week free trial", cz: "1 týden zdarma na vyzkoušení" },
   "pro.sub":      { sk: "Plný výkon Subten vrátane AI trénera.", en: "The full power of Subten, including the AI coach.", cz: "Plný výkon Subtenu včetně AI trenéra." },
@@ -232,15 +231,10 @@ window.SUBTEN_I18N = {
   "faq.a5": { sk: "Nie. AI Coach je pomocník pri rozhodovaní, nie zdravotná služba. Pri zdravotných ťažkostiach sa obráť na odborníka.", en: "No. The AI Coach helps you make decisions — it's not a medical service. For health issues, see a professional.", cz: "Ne. AI Coach je pomocník při rozhodování, ne zdravotní služba. Při zdravotních potížích se obrať na odborníka." },
 
   /* final cta */
-  "cta.soon": { sk: "Spúšťame čoskoro pre iPhone a Android", en: "Launching soon for iPhone and Android", cz: "Spouštíme brzy pro iPhone a Android" },
-  "cta.title": { sk: "Buď medzi prvými, kto vyskúša Subten", en: "Be among the first to try Subten", cz: "Buď mezi prvními, kdo vyzkouší Subten" },
-  "cta.lede":  { sk: "Nechaj nám e-mail a dáme ti vedieť hneď, ako spustíme. Žiadny spam — len jedna správa pri štarte.", en: "Leave your email and we'll let you know the moment we launch. No spam — just one message at launch.", cz: "Nech nám e-mail a dáme ti vědět hned, jak spustíme. Žádný spam — jen jedna zpráva při startu." },
-  "cta.email_ph": { sk: "tvoj@email.sk", en: "your@email.com", cz: "tvuj@email.cz" },
-  "cta.notify": { sk: "Daj mi vedieť", en: "Notify me", cz: "Dej mi vědět" },
-  "cta.success": { sk: "Hotovo! Ozveme sa ti pri spustení 🎉", en: "Done! We'll be in touch at launch 🎉", cz: "Hotovo! Ozveme se ti při spuštění 🎉" },
-  "cta.privacy": { sk: "Tvoj e-mail použijeme len na oznámenie spustenia.", en: "We'll only use your email to announce the launch.", cz: "Tvůj e-mail použijeme jen k oznámení spuštění." },
-  "cta.alsoon": { sk: "Čoskoro v obchodoch", en: "Coming soon to stores", cz: "Brzy v obchodech" },
-  "cta.invalid": { sk: "Zadaj platný e-mail", en: "Enter a valid email", cz: "Zadej platný e-mail" },
+  "cta.soon": { sk: "Už je vonku — pre iPhone a Apple Watch", en: "Out now — for iPhone and Apple Watch", cz: "Už je venku — pro iPhone a Apple Watch" },
+  "cta.title": { sk: "Stiahni si Subten a začni ešte dnes", en: "Download Subten and start today", cz: "Stáhni si Subten a začni ještě dnes" },
+  "cta.lede":  { sk: "Stiahnutie je zadarmo. Premium si môžeš vyskúšať a kedykoľvek zrušiť v App Store.", en: "Free to download. You can try Premium and cancel anytime in the App Store.", cz: "Stažení je zdarma. Premium si můžeš vyzkoušet a kdykoli zrušit v App Store." },
+  "cta.note": { sk: "Predplatné sa účtuje cez tvoje Apple ID. Zrušíš ho kedykoľvek v nastaveniach App Store.", en: "Subscriptions are billed through your Apple ID. Cancel anytime in your App Store settings.", cz: "Předplatné se účtuje přes tvé Apple ID. Zrušíš ho kdykoli v nastavení App Store." },
 
   /* footer */
   "footer.tagline": { sk: "Tréning, výživa a regenerácia v jednej appke. Tvoj AI tréner vždy po ruke.", en: "Training, nutrition and recovery in one app. Your AI coach, always with you.", cz: "Trénink, výživa a regenerace v jedné appce. Tvůj AI trenér vždy po ruce." },

@@ -75,7 +75,9 @@ Prepínač jazykov v hlavičke sa doplní sám.
 ## 4. Čo ešte upraviť (placeholdery)
 
 - **E-mail:** `support@subten-app.eu` — hľadaj v `js/i18n.js` a v pätách stránok.
-- **Odkazy na App Store / Google Play:** zatiaľ `#` — doplň reálne odkazy
-  v `index.html` (hľadaj `store-badge`).
-- **Cena Premium:** `4,99 €/mesiac` — uprav v `index.html` (sekcia `pricing`).
+- **Odkaz na App Store:** `https://apps.apple.com/app/id6782001783` —
+  v `index.html` (hľadaj `store-badge`). Subten je iOS-only — na webe smie
+  byť len App Store, žiadny iný obchod ani iná platforma.
+- **Cena Premium:** `3,99 €/mesiac` a `24,99 €/rok` — uprav v `index.html`
+  (sekcia `pricing`).
 - **Texty právnych dokumentov** sú priamo v súboroch v priečinku `legal/`.
