@@ -26,6 +26,24 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://subten-app.eu/support.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://subten-app.eu/support.html"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://subten-app.eu/support.html?lang=sk"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://subten-app.eu/support.html?lang=cz"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://subten-app.eu/support.html"/>
+  </url>
+  <url>
+    <loc>https://subten-app.eu/manual/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://subten-app.eu/manual/en.html"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://subten-app.eu/manual/sk.html"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://subten-app.eu/manual/cs.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://subten-app.eu/manual/en.html"/>
+  </url>
+  <url>
     <loc>https://subten-app.eu/legal/privacy.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

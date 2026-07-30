@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script>
+  /* Theme: default light, follow the OS color scheme (prefers-color-scheme). */
+  (function () {
+    try {
+      var mq = window.matchMedia("(prefers-color-scheme: dark)");
+      var set = function (dark) {
+        document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+      };
+      set(mq.matches);
+      var onChange = function (e) { set(e.matches); };
+      if (mq.addEventListener) mq.addEventListener("change", onChange);
+      else if (mq.addListener) mq.addListener(onChange);
+    } catch (e) {}
+  })();
+</script>
+<title>Subten — Support / Podpora</title>
+<meta name="description" content="Subten support: contact, subscriptions, restoring purchases, account deletion, user manual and privacy." />
+<link rel="canonical" href="https://subten-app.eu/support.html" />
+<link rel="alternate" hreflang="en" href="https://subten-app.eu/support.html" />
+<link rel="alternate" hreflang="sk" href="https://subten-app.eu/support.html?lang=sk" />
+<link rel="alternate" hreflang="cs" href="https://subten-app.eu/support.html?lang=cz" />
+<link rel="alternate" hreflang="x-default" href="https://subten-app.eu/support.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;450;500;550;600;700;800&family=Schibsted+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/site.css" />
+<link rel="stylesheet" href="css/legal.css" />
+<link rel="icon" type="image/png" href="assets/brand/favicon.png" />
+<link rel="apple-touch-icon" href="assets/brand/subten-icon.png" />
+<style>
+  [id]{scroll-margin-top:90px;}
+  .sup-steps { list-style: none; counter-reset: sstep; margin: 8px 0 24px; display: flex; flex-direction: column; gap: 14px; padding: 0; }
+  .sup-steps li { position: relative; padding: 18px 22px 18px 64px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); font-size: 16px; color: var(--ink); }
+  .sup-steps li::before { counter-increment: sstep; content: counter(sstep); position: absolute; left: 18px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-family: var(--font-display); font-weight: 800; font-size: 15px; display: grid; place-items: center; }
+  .sup-steps li strong { font-weight: 700; }
+  .sup-mail { font-family: var(--font-display); font-weight: 800; font-size: clamp(19px, 3vw, 24px); letter-spacing: -0.02em; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html" aria-label="Subten">
+      <span class="logo" aria-hidden="true">
+        <img src="assets/brand/subten-logo.png" alt="" width="30" height="30" style="border-radius:7px;display:block;" />
+      </span>
+      Subten
+    </a>
+    <div class="nav-right" style="margin-left:auto;">
+      <div class="lang-toggle" role="group" aria-label="Language"></div>
+      <a href="index.html" class="btn btn-primary nav-cta" data-i18n="nav.cta">Stiahnuť</a>
+    </div>
+  </div>
+</header>
+
+<main class="legal-main">
+  <div class="container">
+    <div class="legal-wrap">
+      <a class="legal-back" href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        <span data-lang-block="sk">Späť na Subten</span><span data-lang-block="en">Back to Subten</span><span data-lang-block="cz">Zpět na Subten</span>
+      </a>
+
+      <!-- ============ SK ============ -->
+      <div data-lang-block="sk">
+        <div class="legal-head">
+          <h1>Podpora</h1>
+          <p class="updated">Sme tu, ak niečo nefunguje alebo si nevieš rady.</p>
+        </div>
+        <div class="legal-body">
+
+          <div class="legal-callout">
+            <p><strong>Napíš nám</strong>
+            <a class="sup-mail" href="mailto:support@subten-app.eu">support@subten-app.eu</a><br />
+            Odpovedáme spravidla do 2 pracovných dní.</p>
+          </div>
+          <p>Ak píšeš o probléme v aplikácii, pomôže nám model zariadenia, verzia iOS a verzia Subten (nájdeš ju v <strong>Nastavenia → O aplikácii</strong>).</p>
+
+          <h2 id="s-sk-1">Ako zruším predplatné Premium?</h2>
+          <p>Predplatné beží cez tvoje Apple ID, takže sa ruší priamo v App Store — nie v aplikácii Subten:</p>
+          <ol class="sup-steps">
+            <li>Otvor <strong>Nastavenia</strong> na iPhone a ťukni hore na <strong>svoje meno</strong>.</li>
+            <li>Zvoľ <strong>Predplatné</strong>.</li>
+            <li>Ťukni na <strong>Subten</strong> a potom na <strong>Zrušiť predplatné</strong>.</li>
+          </ol>
+          <p>Predplatné zostane aktívne do konca zaplateného obdobia a potom sa jednoducho neobnoví. <strong>Odinštalovanie aplikácie predplatné nezruší</strong> — rovnako ho nezruší ani vymazanie účtu.</p>
+          <p>Vrátenie peňazí rieši Apple, nie my. Žiadosť podáš na <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener">reportaproblem.apple.com</a>.</p>
+
+          <h2 id="s-sk-2">Zaplatil som, ale Premium sa nezobrazuje</h2>
+          <p>Skús obnoviť nákupy — najmä na novom zariadení alebo po preinštalovaní:</p>
+          <ol class="sup-steps">
+            <li>Skontroluj, že si prihlásený tým <strong>istým Apple ID</strong>, cez ktoré si predplatné kúpil.</li>
+            <li>V Subten otvor <strong>Nastavenia → Predplatné</strong>.</li>
+            <li>Ťukni na <strong>Obnoviť nákupy</strong>.</li>
+          </ol>
+          <p>Ak sa Premium ani potom neaktivuje, napíš nám na <a href="mailto:support@subten-app.eu">support@subten-app.eu</a> a prilož potvrdenie o platbe od Apple.</p>
+
+          <h2 id="s-sk-3">Ako vymažem účet a dáta?</h2>
+          <p>Účet vymažeš priamo v aplikácii v <strong>Nastavenia → Účet → Vymazať účet</strong>, alebo nám napíš z e-mailu spojeného s účtom. Celý postup aj zoznam toho, čo sa vymaže, nájdeš na stránke <a href="legal/account-deletion.html">Vymazanie účtu a dát</a>.</p>
+
+          <h2 id="s-sk-4">Kde nájdem návod k aplikácii?</h2>
+          <p>Kompletnú používateľskú príručku — od prvého spustenia cez zapisovanie jedla, tréningy a AI trénera až po nastavenia — nájdeš na <a href="manual/">subten-app.eu/manual</a>. Je dostupná v slovenčine, češtine a angličtine.</p>
+
+          <h2 id="s-sk-5">Apple Health a moje súkromie</h2>
+          <p>Prepojenie s <strong>Apple Health</strong> je dobrovoľné. Subten si pýta prístup len k typom údajov, ktoré naozaj používa (napr. hmotnosť, kroky, aktívne kalórie, tréningy, spánok, tep) a ku každému typu si môžeš zvlášť zapnúť alebo vypnúť synchronizáciu v <strong>Nastavenia → Zdravie</strong>. Prístup vieš kedykoľvek odobrať v iOS: <strong>Nastavenia → Ochrana súkromia a zabezpečenie → Health → Subten</strong>.</p>
+          <p>Zdravotné údaje z Apple Health nikdy nepredávame ani nepoužívame na reklamu. Podrobnosti sú v <a href="legal/privacy.html">Zásadách ochrany súkromia</a>.</p>
+
+          <h2 id="s-sk-6">Právne dokumenty</h2>
+          <ul>
+            <li><a href="legal/privacy.html">Zásady ochrany súkromia</a></li>
+            <li><a href="legal/terms.html">Podmienky používania</a></li>
+            <li><a href="legal/account-deletion.html">Vymazanie účtu a dát</a></li>
+          </ul>
+
+          <h2 id="s-sk-7">Zdravotné upozornenie</h2>
+          <p>Subten je nástroj na sledovanie výživy a tréningu, nie zdravotnícka pomôcka. Neposkytuje lekárske rady, diagnózu ani liečbu. Ak máš zdravotné ťažkosti, si tehotná alebo užívaš lieky, poraď sa najprv s lekárom.</p>
+
+        </div>
+      </div>
+
+      <!-- ============ EN ============ -->
+      <div data-lang-block="en">
+        <div class="legal-head">
+          <h1>Support</h1>
+          <p class="updated">We're here if something breaks or you're stuck.</p>
+        </div>
+        <div class="legal-body">
+
+          <div class="legal-callout">
+            <p><strong>Contact us</strong>
+            <a class="sup-mail" href="mailto:support@subten-app.eu">support@subten-app.eu</a><br />
+            We usually reply within 2 business days.</p>
+          </div>
+          <p>If you're reporting a problem in the app, it helps to include your device model, iOS version and Subten version (you'll find it under <strong>Settings → About</strong>).</p>
+
+          <h2>How do I cancel my Premium subscription?</h2>
+          <p>Subscriptions are billed through your Apple ID, so they're cancelled in the App Store — not inside Subten:</p>
+          <ol class="sup-steps">
+            <li>Open <strong>Settings</strong> on your iPhone and tap <strong>your name</strong> at the top.</li>
+            <li>Choose <strong>Subscriptions</strong>.</li>
+            <li>Tap <strong>Subten</strong>, then <strong>Cancel Subscription</strong>.</li>
+          </ol>
+          <p>Your subscription stays active until the end of the period you've already paid for, then simply doesn't renew. <strong>Deleting the app does not cancel the subscription</strong> — and neither does deleting your account.</p>
+          <p>Refunds are handled by Apple, not by us. Request one at <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener">reportaproblem.apple.com</a>.</p>
+
+          <h2>I paid but Premium isn't showing up</h2>
+          <p>Restore your purchases — especially on a new device or after reinstalling:</p>
+          <ol class="sup-steps">
+            <li>Make sure you're signed in with the <strong>same Apple ID</strong> you used to buy the subscription.</li>
+            <li>In Subten, open <strong>Settings → Subscription</strong>.</li>
+            <li>Tap <strong>Restore purchases</strong>.</li>
+          </ol>
+          <p>If Premium still doesn't activate, email <a href="mailto:support@subten-app.eu">support@subten-app.eu</a> and attach your Apple receipt.</p>
+
+          <h2>How do I delete my account and data?</h2>
+          <p>You can delete your account in the app under <strong>Settings → Account → Delete account</strong>, or email us from the address linked to your account. The full steps and a list of what gets removed are on the <a href="legal/account-deletion.html">Delete account &amp; data</a> page.</p>
+
+          <h2>Where is the user manual?</h2>
+          <p>The complete user manual — from first launch through food logging, training and the AI Coach to settings — is at <a href="manual/">subten-app.eu/manual</a>. It's available in English, Slovak and Czech.</p>
+
+          <h2>Apple Health and my privacy</h2>
+          <p>Connecting <strong>Apple Health</strong> is optional. Subten only requests the data types it actually uses (e.g. weight, steps, active energy, workouts, sleep, heart rate), and you can turn each type's sync on or off individually under <strong>Settings → Health</strong>. You can revoke access at any time in iOS: <strong>Settings → Privacy &amp; Security → Health → Subten</strong>.</p>
+          <p>We never sell your Apple Health data or use it for advertising. Details are in our <a href="legal/privacy.html">Privacy Policy</a>.</p>
+
+          <h2>Legal documents</h2>
+          <ul>
+            <li><a href="legal/privacy.html">Privacy Policy</a></li>
+            <li><a href="legal/terms.html">Terms of Use</a></li>
+            <li><a href="legal/account-deletion.html">Delete account &amp; data</a></li>
+          </ul>
+
+          <h2>Health disclaimer</h2>
+          <p>Subten is a nutrition and training tracking tool, not a medical device. It does not provide medical advice, diagnosis or treatment. If you have a health condition, are pregnant or take medication, talk to your doctor first.</p>
+
+        </div>
+      </div>
+
+      <!-- ============ CZ ============ -->
+      <div data-lang-block="cz">
+        <div class="legal-head">
+          <h1>Podpora</h1>
+          <p class="updated">Jsme tu, když něco nefunguje nebo si nevíš rady.</p>
+        </div>
+        <div class="legal-body">
+
+          <div class="legal-callout">
+            <p><strong>Napiš nám</strong>
+            <a class="sup-mail" href="mailto:support@subten-app.eu">support@subten-app.eu</a><br />
+            Odpovídáme zpravidla do 2 pracovních dnů.</p>
+          </div>
+          <p>Pokud hlásíš problém v aplikaci, pomůže nám model zařízení, verze iOS a verze Subten (najdeš ji v <strong>Nastavení → O aplikaci</strong>).</p>
+
+          <h2 id="s-cz-1">Jak zruším předplatné Premium?</h2>
+          <p>Předplatné běží přes tvé Apple ID, takže se ruší přímo v App Store — ne v aplikaci Subten:</p>
+          <ol class="sup-steps">
+            <li>Otevři <strong>Nastavení</strong> na iPhonu a klepni nahoře na <strong>své jméno</strong>.</li>
+            <li>Zvol <strong>Předplatné</strong>.</li>
+            <li>Klepni na <strong>Subten</strong> a poté na <strong>Zrušit předplatné</strong>.</li>
+          </ol>
+          <p>Předplatné zůstane aktivní do konce zaplaceného období a poté se prostě neobnoví. <strong>Odinstalování aplikace předplatné nezruší</strong> — stejně tak ho nezruší ani smazání účtu.</p>
+          <p>Vrácení peněz řeší Apple, ne my. Žádost podáš na <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener">reportaproblem.apple.com</a>.</p>
+
+          <h2 id="s-cz-2">Zaplatil jsem, ale Premium se nezobrazuje</h2>
+          <p>Zkus obnovit nákupy — hlavně na novém zařízení nebo po přeinstalování:</p>
+          <ol class="sup-steps">
+            <li>Zkontroluj, že jsi přihlášený <strong>stejným Apple ID</strong>, přes které jsi předplatné koupil.</li>
+            <li>V Subten otevři <strong>Nastavení → Předplatné</strong>.</li>
+            <li>Klepni na <strong>Obnovit nákupy</strong>.</li>
+          </ol>
+          <p>Pokud se Premium ani poté neaktivuje, napiš nám na <a href="mailto:support@subten-app.eu">support@subten-app.eu</a> a přilož potvrzení o platbě od Apple.</p>
+
+          <h2 id="s-cz-3">Jak smažu účet a data?</h2>
+          <p>Účet smažeš přímo v aplikaci v <strong>Nastavení → Účet → Smazat účet</strong>, nebo nám napiš z e-mailu spojeného s účtem. Celý postup i seznam toho, co se smaže, najdeš na stránce <a href="legal/account-deletion.html">Smazání účtu a dat</a>.</p>
+
+          <h2 id="s-cz-4">Kde najdu návod k aplikaci?</h2>
+          <p>Kompletní uživatelskou příručku — od prvního spuštění přes zapisování jídla, tréninky a AI trenéra až po nastavení — najdeš na <a href="manual/">subten-app.eu/manual</a>. Je dostupná v češtině, slovenštině a angličtině.</p>
+
+          <h2 id="s-cz-5">Apple Health a mé soukromí</h2>
+          <p>Propojení s <strong>Apple Health</strong> je dobrovolné. Subten si žádá přístup jen k typům údajů, které skutečně používá (např. hmotnost, kroky, aktivní kalorie, tréninky, spánek, tep), a u každého typu si můžeš zvlášť zapnout nebo vypnout synchronizaci v <strong>Nastavení → Zdraví</strong>. Přístup můžeš kdykoli odebrat v iOS: <strong>Nastavení → Soukromí a zabezpečení → Health → Subten</strong>.</p>
+          <p>Zdravotní údaje z Apple Health nikdy neprodáváme ani nepoužíváme k reklamě. Podrobnosti jsou v <a href="legal/privacy.html">Zásadách ochrany soukromí</a>.</p>
+
+          <h2 id="s-cz-6">Právní dokumenty</h2>
+          <ul>
+            <li><a href="legal/privacy.html">Zásady ochrany soukromí</a></li>
+            <li><a href="legal/terms.html">Podmínky používání</a></li>
+            <li><a href="legal/account-deletion.html">Smazání účtu a dat</a></li>
+          </ul>
+
+          <h2 id="s-cz-7">Zdravotní upozornění</h2>
+          <p>Subten je nástroj pro sledování výživy a tréninku, ne zdravotnický prostředek. Neposkytuje lékařské rady, diagnózu ani léčbu. Pokud máš zdravotní potíže, jsi těhotná nebo užíváš léky, poraď se nejdřív s lékařem.</p>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom" style="margin-top:0;border-top:none;padding-top:0;">
+      <span data-i18n="footer.rights">© 2026 Subten. Všetky práva vyhradené.</span>
+      <span style="display:flex;gap:22px;flex-wrap:wrap;">
+        <a href="legal/privacy.html" data-i18n="footer.privacy" style="color:var(--ink-2);">Ochrana súkromia</a>
+        <a href="legal/terms.html" data-i18n="footer.terms" style="color:var(--ink-2);">Podmienky používania</a>
+        <a href="legal/account-deletion.html" data-i18n="footer.delete" style="color:var(--ink-2);">Vymazanie účtu</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
