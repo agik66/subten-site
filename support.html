@@ -39,6 +39,30 @@
   .sup-steps li::before { counter-increment: sstep; content: counter(sstep); position: absolute; left: 18px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-family: var(--font-display); font-weight: 800; font-size: 15px; display: grid; place-items: center; }
   .sup-steps li strong { font-weight: 700; }
   .sup-mail { font-family: var(--font-display); font-weight: 800; font-size: clamp(19px, 3vw, 24px); letter-spacing: -0.02em; }
+
+  /* user manual — the main self-service resource, kept above the FAQ */
+  .man-grid { display: flex; flex-direction: column; gap: 12px; margin: 18px 0 20px; }
+  .man-row {
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r-md); padding: 16px 20px;
+  }
+  .man-lang { font-family: var(--font-display); font-weight: 800; font-size: 16.5px; letter-spacing: -0.02em; color: var(--ink); }
+  .man-links { display: flex; gap: 10px; flex-wrap: wrap; margin-left: auto; }
+  .legal-body .man-links a {
+    display: inline-flex; align-items: center; gap: 7px; white-space: nowrap;
+    font-size: 14.5px; font-weight: 650; padding: 8px 15px; border-radius: 999px;
+    border: 1px solid var(--border); transition: background .2s, border-color .2s, color .2s;
+  }
+  .legal-body .man-links a.man-online { background: var(--accent); color: var(--accent-ink); border-color: transparent; }
+  .legal-body .man-links a.man-online:hover { background: var(--accent-strong); }
+  .legal-body .man-links a.man-pdf { background: transparent; color: var(--ink-2); }
+  .legal-body .man-links a.man-pdf:hover { color: var(--ink); border-color: var(--ink-3); }
+  .man-links svg { width: 15px; height: 15px; flex-shrink: 0; }
+  @media (max-width: 520px) {
+    .man-row { align-items: flex-start; flex-direction: column; gap: 12px; }
+    .man-links { margin-left: 0; }
+  }
 </style>
 </head>
 <body>
@@ -81,6 +105,41 @@
           </div>
           <p>Ak píšeš o probléme v aplikácii, pomôže nám model zariadenia, verzia iOS a verzia Subten (nájdeš ju v <strong>Nastavenia → O aplikácii</strong>).</p>
 
+          <h2 id="s-sk-manual">Používateľská príručka</h2>
+          <p>Než nám napíšeš, skús príručku — je to najrýchlejšia cesta k odpovedi. Na 38 stranách prevedie celou aplikáciou: prvé spustenie a nastavenie cieľov, zapisovanie jedla a skenovanie čiarových kódov, tréningový plán, AI tréner, Apple Health, predplatné aj všetky nastavenia.</p>
+          <div class="man-grid">
+            <div class="man-row">
+              <span class="man-lang">Slovenčina</span>
+              <span class="man-links">
+                <a class="man-online" href="manual/sk.html">Čítať online</a>
+                <a class="man-pdf" href="manual/pdf/subten-manual-sk.pdf" download>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  PDF · 7 MB
+                </a>
+              </span>
+            </div>
+            <div class="man-row">
+              <span class="man-lang">Čeština</span>
+              <span class="man-links">
+                <a class="man-online" href="manual/cs.html">Čítať online</a>
+                <a class="man-pdf" href="manual/pdf/subten-manual-cs.pdf" download>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  PDF · 7 MB
+                </a>
+              </span>
+            </div>
+            <div class="man-row">
+              <span class="man-lang">English</span>
+              <span class="man-links">
+                <a class="man-online" href="manual/en.html">Čítať online</a>
+                <a class="man-pdf" href="manual/pdf/subten-manual-en.pdf" download>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  PDF · 6 MB
+                </a>
+              </span>
+            </div>
+          </div>
+
           <h2 id="s-sk-1">Ako zruším predplatné Premium?</h2>
           <p>Predplatné beží cez tvoje Apple ID, takže sa ruší priamo v App Store — nie v aplikácii Subten:</p>
           <ol class="sup-steps">
@@ -102,9 +161,6 @@
 
           <h2 id="s-sk-3">Ako vymažem účet a dáta?</h2>
           <p>Účet vymažeš priamo v aplikácii v <strong>Nastavenia → Účet → Vymazať účet</strong>, alebo nám napíš z e-mailu spojeného s účtom. Celý postup aj zoznam toho, čo sa vymaže, nájdeš na stránke <a href="legal/account-deletion.html">Vymazanie účtu a dát</a>.</p>
-
-          <h2 id="s-sk-4">Kde nájdem návod k aplikácii?</h2>
-          <p>Kompletnú používateľskú príručku — od prvého spustenia cez zapisovanie jedla, tréningy a AI trénera až po nastavenia — nájdeš na <a href="manual/">subten-app.eu/manual</a>. Je dostupná v slovenčine, češtine a angličtine.</p>
 
           <h2 id="s-sk-5">Apple Health a moje súkromie</h2>
           <p>Prepojenie s <strong>Apple Health</strong> je dobrovoľné. Subten si pýta prístup len k typom údajov, ktoré naozaj používa (napr. hmotnosť, kroky, aktívne kalórie, tréningy, spánok, tep) a ku každému typu si môžeš zvlášť zapnúť alebo vypnúť synchronizáciu v <strong>Nastavenia → Zdravie</strong>. Prístup vieš kedykoľvek odobrať v iOS: <strong>Nastavenia → Ochrana súkromia a zabezpečenie → Health → Subten</strong>.</p>
@@ -138,6 +194,41 @@
           </div>
           <p>If you're reporting a problem in the app, it helps to include your device model, iOS version and Subten version (you'll find it under <strong>Settings → About</strong>).</p>
 
+          <h2 id="s-en-manual">User manual</h2>
+          <p>Before you email us, try the manual — it's the fastest way to an answer. Across 38 pages it walks through the whole app: first launch and setting your goals, logging food and scanning barcodes, the training plan, the AI Coach, Apple Health, subscriptions and every setting.</p>
+          <div class="man-grid">
+            <div class="man-row">
+              <span class="man-lang">English</span>
+              <span class="man-links">
+                <a class="man-online" href="manual/en.html">Read online</a>
+                <a class="man-pdf" href="manual/pdf/subten-manual-en.pdf" download>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  PDF · 6 MB
+                </a>
+              </span>
+            </div>
+            <div class="man-row">
+              <span class="man-lang">Slovenčina</span>
+              <span class="man-links">
+                <a class="man-online" href="manual/sk.html">Read online</a>
+                <a class="man-pdf" href="manual/pdf/subten-manual-sk.pdf" download>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  PDF · 7 MB
+                </a>
+              </span>
+            </div>
+            <div class="man-row">
+              <span class="man-lang">Čeština</span>
+              <span class="man-links">
+                <a class="man-online" href="manual/cs.html">Read online</a>
+                <a class="man-pdf" href="manual/pdf/subten-manual-cs.pdf" download>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  PDF · 7 MB
+                </a>
+              </span>
+            </div>
+          </div>
+
           <h2>How do I cancel my Premium subscription?</h2>
           <p>Subscriptions are billed through your Apple ID, so they're cancelled in the App Store — not inside Subten:</p>
           <ol class="sup-steps">
@@ -159,9 +250,6 @@
 
           <h2>How do I delete my account and data?</h2>
           <p>You can delete your account in the app under <strong>Settings → Account → Delete account</strong>, or email us from the address linked to your account. The full steps and a list of what gets removed are on the <a href="legal/account-deletion.html">Delete account &amp; data</a> page.</p>
-
-          <h2>Where is the user manual?</h2>
-          <p>The complete user manual — from first launch through food logging, training and the AI Coach to settings — is at <a href="manual/">subten-app.eu/manual</a>. It's available in English, Slovak and Czech.</p>
 
           <h2>Apple Health and my privacy</h2>
           <p>Connecting <strong>Apple Health</strong> is optional. Subten only requests the data types it actually uses (e.g. weight, steps, active energy, workouts, sleep, heart rate), and you can turn each type's sync on or off individually under <strong>Settings → Health</strong>. You can revoke access at any time in iOS: <strong>Settings → Privacy &amp; Security → Health → Subten</strong>.</p>
@@ -195,6 +283,41 @@
           </div>
           <p>Pokud hlásíš problém v aplikaci, pomůže nám model zařízení, verze iOS a verze Subten (najdeš ji v <strong>Nastavení → O aplikaci</strong>).</p>
 
+          <h2 id="s-cz-manual">Uživatelská příručka</h2>
+          <p>Než nám napíšeš, zkus příručku — je to nejrychlejší cesta k odpovědi. Na 38 stranách provede celou aplikací: první spuštění a nastavení cílů, zapisování jídla a skenování čárových kódů, tréninkový plán, AI trenér, Apple Health, předplatné i všechna nastavení.</p>
+          <div class="man-grid">
+            <div class="man-row">
+              <span class="man-lang">Čeština</span>
+              <span class="man-links">
+                <a class="man-online" href="manual/cs.html">Číst online</a>
+                <a class="man-pdf" href="manual/pdf/subten-manual-cs.pdf" download>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  PDF · 7 MB
+                </a>
+              </span>
+            </div>
+            <div class="man-row">
+              <span class="man-lang">Slovenčina</span>
+              <span class="man-links">
+                <a class="man-online" href="manual/sk.html">Číst online</a>
+                <a class="man-pdf" href="manual/pdf/subten-manual-sk.pdf" download>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  PDF · 7 MB
+                </a>
+              </span>
+            </div>
+            <div class="man-row">
+              <span class="man-lang">English</span>
+              <span class="man-links">
+                <a class="man-online" href="manual/en.html">Číst online</a>
+                <a class="man-pdf" href="manual/pdf/subten-manual-en.pdf" download>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  PDF · 6 MB
+                </a>
+              </span>
+            </div>
+          </div>
+
           <h2 id="s-cz-1">Jak zruším předplatné Premium?</h2>
           <p>Předplatné běží přes tvé Apple ID, takže se ruší přímo v App Store — ne v aplikaci Subten:</p>
           <ol class="sup-steps">
@@ -216,9 +339,6 @@
 
           <h2 id="s-cz-3">Jak smažu účet a data?</h2>
           <p>Účet smažeš přímo v aplikaci v <strong>Nastavení → Účet → Smazat účet</strong>, nebo nám napiš z e-mailu spojeného s účtem. Celý postup i seznam toho, co se smaže, najdeš na stránce <a href="legal/account-deletion.html">Smazání účtu a dat</a>.</p>
-
-          <h2 id="s-cz-4">Kde najdu návod k aplikaci?</h2>
-          <p>Kompletní uživatelskou příručku — od prvního spuštění přes zapisování jídla, tréninky a AI trenéra až po nastavení — najdeš na <a href="manual/">subten-app.eu/manual</a>. Je dostupná v češtině, slovenštině a angličtině.</p>
 
           <h2 id="s-cz-5">Apple Health a mé soukromí</h2>
           <p>Propojení s <strong>Apple Health</strong> je dobrovolné. Subten si žádá přístup jen k typům údajů, které skutečně používá (např. hmotnost, kroky, aktivní kalorie, tréninky, spánek, tep), a u každého typu si můžeš zvlášť zapnout nebo vypnout synchronizaci v <strong>Nastavení → Zdraví</strong>. Přístup můžeš kdykoli odebrat v iOS: <strong>Nastavení → Soukromí a zabezpečení → Health → Subten</strong>.</p>
