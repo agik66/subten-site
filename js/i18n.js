@@ -67,6 +67,7 @@ window.SUBTEN_I18N = {
 
   /* store badges */
   "badge.ios.top":  { sk: "Stiahni na", en: "Download on the", cz: "Stáhni na" },
+  "badge.and.top":  { sk: "Čoskoro na", en: "Coming soon on", cz: "Brzy na" },
 
   /* strip */
   "strip.1": { sk: "Apple Health & Watch", en: "Apple Health & Watch", cz: "Apple Health & Watch" },
