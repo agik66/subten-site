@@ -74,7 +74,7 @@ Prepínač jazykov v hlavičke sa doplní sám.
 
 ## 4. Čo ešte upraviť (placeholdery)
 
-- **E-mail:** `support@subten-app.eu` — hľadaj v `js/i18n.js` a v pätách stránok.
+- **E-mail:** `subten@syenit.com` (podpora), `privacy@syenit.com` (súkromie/GDPR), `legal@syenit.com` (podmienky) — hľadaj v pätách stránok a v `legal/`.
 - **Odkaz na App Store:** `https://apps.apple.com/app/id6782001783` —
   v `index.html` (hľadaj `store-badge`). Subten je iOS-only — na webe smie
   byť len App Store, žiadny iný obchod ani iná platforma.
