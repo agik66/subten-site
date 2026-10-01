@@ -5,14 +5,14 @@
    AKO ZMENIŤ TEXT:
    Nájdi riadok s textom a prepíš ho medzi úvodzovkami "...".
    Každý text má verziu pre každý jazyk, napr.:
-       "hero.cta1": { sk: "Stiahnuť zadarmo", en: "Download free", cz: "Stáhnout zdarma" },
+       "hero.cta1": { sk: "Čoskoro v App Store", en: "Coming soon to the App Store", cz: "Brzy v App Storu" },
    Uprav "sk" (slovensky) alebo "en" (anglicky) podľa potreby.
 
    AKO PRIDAŤ NOVÝ JAZYK (napr. češtinu "cs"):
    1) Pridaj jazyk do zoznamu SUBTEN_LANGUAGES nižšie, napr.:
           { code: "cs", label: "CZ" }
    2) Ku každému textu dopíš jeho preklad, napr.:
-          "hero.cta1": { sk: "...", en: "...", cs: "Stáhnout zdarma" },
+          "hero.cta1": { sk: "Čoskoro v App Store", en: "Coming soon to the App Store", cz: "Brzy v App Storu" },
       (ak preklad chýba, automaticky sa použije angličtina ako záloha)
    3) Na právnych stránkach (priečinok legal/) priraď k blokom
       ďalší <div data-lang-block="cs"> s prekladom.
@@ -47,7 +47,7 @@ window.SUBTEN_I18N = {
   "nav.soon":     { sk: "čoskoro", en: "soon", cz: "brzy" },
   "nav.calculator":{ sk: "Kalkulačka", en: "Calculator", cz: "Kalkulačka" },
   "nav.recipes":  { sk: "Recepty", en: "Recipes", cz: "Recepty" },
-  "nav.cta":      { sk: "Stiahnuť", en: "Get the app", cz: "Stáhnout" },
+  "nav.cta":      { sk: "Čoskoro", en: "Soon", cz: "Brzy" },
 
   /* hero */
   "hero.badge":   { sk: "Nové · AI tréner v reálnom čase", en: "New · Real-time AI coach", cz: "Nové · AI trenér v reálném čase" },
@@ -59,14 +59,13 @@ window.SUBTEN_I18N = {
     sk: "Subten spojí kalórie, makrá, tréningový plán a dáta z hodiniek — a tvoj AI tréner ti každý deň povie, čo robiť ďalej.",
     en: "Subten brings together calories, macros, your training plan and watch data — and your AI coach tells you exactly what to do next, every day.", cz: "Subten spojí kalorie, makra, tréninkový plán a data z hodinek — a tvůj AI trenér ti každý den řekne, co dělat dál."
   },
-  "hero.cta1":    { sk: "Stiahnuť zadarmo", en: "Download free", cz: "Stáhnout zdarma" },
+  "hero.cta1":    { sk: "Čoskoro v App Store", en: "Coming soon to the App Store", cz: "Brzy v App Storu" },
   "hero.cta2":    { sk: "Pozrieť funkcie", en: "See features", cz: "Prohlédnout funkce" },
-  "hero.meta1":   { sk: "Zadarmo na stiahnutie", en: "Free to download", cz: "Zdarma ke stažení" },
+  "hero.meta1":   { sk: "Bez reklám", en: "No ads", cz: "Bez reklam" },
   "hero.meta2":   { sk: "Synchronizácia s Apple Health", en: "Syncs with Apple Health", cz: "Synchronizace s Apple Health" },
   "hero.meta3":   { sk: "Bez reklám", en: "No ads", cz: "Bez reklam" },
 
   /* store badges */
-  "badge.ios.top":  { sk: "Stiahni na", en: "Download on the", cz: "Stáhni na" },
 
   /* strip */
   "strip.1": { sk: "Apple Health & Watch", en: "Apple Health & Watch", cz: "Apple Health & Watch" },
@@ -119,7 +118,7 @@ window.SUBTEN_I18N = {
   "step1.title":  { sk: "Prepoj hodinky", en: "Connect your watch", cz: "Propoj hodinky" },
   "step1.desc":   { sk: "Spoj Subten s Apple Health alebo svojím nositeľom — spánok, tep a pohyb sa načítajú samé.", en: "Link Subten with Apple Health or your wearable — sleep, heart rate and activity flow in automatically.", cz: "Spoj Subten s Apple Health nebo svým nositelným zařízením — spánek, tep a pohyb se načtou samy." },
   "step2.title":  { sk: "Nastav cieľ", en: "Set your goal", cz: "Nastav cíl" },
-  "step2.desc":   { sk: "Chudnutie, naberanie alebo výkon? Subten dopočíta kalórie a makrá presne na mieru.", en: "Lose, gain or perform? Subten calculates your calories and macros to match.", cz: "Hubnutí, nabírání nebo výkon? Subten dopočítá kalorie a makra přesně na míru." },
+  "step2.desc":   { sk: "Udržať, nabrať alebo trénovať na výkon? Subten nastaví kalórie a makrá podľa tvojho cieľa.", en: "Maintain, gain or train for performance? Subten sets your calories and macros to match your goal.", cz: "Udržet, nabrat nebo trénovat na výkon? Subten nastaví kalorie a makra podle tvého cíle." },
   "step3.title":  { sk: "Nechaj sa viesť", en: "Let it guide you", cz: "Nech se vést" },
   "step3.desc":   { sk: "Každý deň dostaneš jasný plán jedla, tréningu a regenerácie — a AI trénera, keď sa potrebuješ poradiť.", en: "Every day you get a clear plan for food, training and recovery — plus an AI coach whenever you need advice.", cz: "Každý den dostaneš jasný plán jídla, tréninku a regenerace — a AI trenéra, když se potřebuješ poradit." },
 
@@ -147,7 +146,7 @@ window.SUBTEN_I18N = {
   "free.f4":      { sk: "Synchronizácia s Apple Health", en: "Apple Health sync", cz: "Synchronizace s Apple Health" },
   "free.f5":      { sk: "AI funkcie a AI Coach", en: "AI features & AI Coach", cz: "AI funkce a AI Coach" },
   "free.f6":      { sk: "Hotové a periodizované plány", en: "Ready-made & periodized plans", cz: "Hotové a periodizované plány" },
-  "free.cta":     { sk: "Stiahnuť zadarmo", en: "Download free", cz: "Stáhnout zdarma" },
+  "free.cta":     { sk: "Čoskoro v App Store", en: "Coming soon to the App Store", cz: "Brzy v App Storu" },
   "pro.name":     { sk: "Premium", en: "Premium", cz: "Premium" },
   "pro.badge":    { sk: "Najobľúbenejšie", en: "Most popular", cz: "Nejoblíbenější" },
   "pro.per":      { sk: "/ mesiac", en: "/ month", cz: "/ měsíc" },
@@ -164,7 +163,7 @@ window.SUBTEN_I18N = {
   "pro.f4":       { sk: "Sken jedla z fotky", en: "Photo food scanning", cz: "Sken jídla z fotky" },
   "pro.f5":       { sk: "Týždenné hodnotenia a trendy", en: "Weekly reviews & trends", cz: "Týdenní hodnocení a trendy" },
   "pro.f6":       { sk: "Plán jedál a nákupný zoznam", en: "Meal plans & shopping lists", cz: "Plán jídel a nákupní seznam" },
-  "pro.cta":      { sk: "Vyskúšať Premium", en: "Try Premium", cz: "Vyzkoušet Premium" },
+  "pro.cta":      { sk: "Premium čoskoro", en: "Premium coming soon", cz: "Premium brzy" },
 
   /* generator */
   "gen.kicker":     { sk: "Tréningový generátor", en: "Training generator", cz: "Tréninkový generátor" },
@@ -203,16 +202,17 @@ window.SUBTEN_I18N = {
   "gen.qr.hint":    { sk: "V appke Subten choď do Tréning → Importovať → Skenovať QR", en: "In Subten app go to Training → Import → Scan QR", cz: "V appce Subten jdi do Trénink → Importovat → Skenovat QR" },
   "gen.cta.title":  { sk: "Chceš plný zážitok?", en: "Want the full experience?", cz: "Chceš plný zážitek?" },
   "gen.cta.desc":   { sk: "V appke Subten dostaneš presné vedenie cvik po cviku, GIF animácie, časovač odpočinku a automatické prispôsobenie podľa regenerácie.", en: "In the Subten app you get step-by-step guidance, GIF animations, rest timer and automatic adjustments based on your recovery.", cz: "V appce Subten dostaneš přesné vedení cvik po cviku, GIF animace, časovač odpočinku a automatické přizpůsobení podle regenerace." },
-  "gen.cta.btn":    { sk: "Stiahnuť Subten", en: "Download Subten", cz: "Stáhnout Subten" },
+  "rec.cta.btn":    { sk: "Čoskoro v App Store", en: "Coming soon to the App Store", cz: "Brzy v App Storu" },
+  "gen.cta.btn":    { sk: "Čoskoro v App Store", en: "Coming soon to the App Store", cz: "Brzy v App Storu" },
   "gen.restart":    { sk: "Vygenerovať nový plán", en: "Generate new plan", cz: "Vygenerovat nový plán" },
 
   /* generator — coming soon */
   "gen.cs.badge": { sk: "Čoskoro", en: "Coming soon", cz: "Již brzy" },
   "gen.cs.title": { sk: "Generátor čoskoro spustíme", en: "The generator is coming soon", cz: "Generátor brzy spustíme" },
   "gen.cs.text":  {
-    sk: "Pracujeme na generátore tréningových plánov na mieru — vyberieš si cieľ, úroveň a počet dní a dostaneš kompletný rozpis s ukážkami cvikov. Medzitým vyskúšaj našu kalkulačku alebo si stiahni appku.",
-    en: "We're building a custom training-plan generator — pick your goal, level and training days and get a full plan with exercise demos. In the meantime, try our calculator or get the app.",
-    cz: "Pracujeme na generátoru tréninkových plánů na míru — vybereš si cíl, úroveň a počet dní a dostaneš kompletní rozpis s ukázkami cviků. Mezitím vyzkoušej naši kalkulačku nebo si stáhni appku."
+    sk: "Pracujeme na generátore tréningových plánov na mieru — vyberieš si cieľ, úroveň a počet dní a dostaneš kompletný rozpis s ukážkami cvikov. Medzitým vyskúšaj našu kalkulačku.",
+    en: "We're building a custom training-plan generator — pick your goal, level and training days and get a full plan with exercise demos. In the meantime, try our calculator.",
+    cz: "Pracujeme na generátoru tréninkových plánů na míru — vybereš si cíl, úroveň a počet dní a dostaneš kompletní rozpis s ukázkami cviků. Mezitím vyzkoušej naši kalkulačku."
   },
   "gen.cs.cta":   { sk: "Vyskúšať kalkulačku", en: "Try the calculator", cz: "Vyzkoušet kalkulačku" },
 
@@ -231,10 +231,9 @@ window.SUBTEN_I18N = {
   "faq.a5": { sk: "Nie. AI Coach je pomocník pri rozhodovaní, nie zdravotná služba. Pri zdravotných ťažkostiach sa obráť na odborníka.", en: "No. The AI Coach helps you make decisions — it's not a medical service. For health issues, see a professional.", cz: "Ne. AI Coach je pomocník při rozhodování, ne zdravotní služba. Při zdravotních potížích se obrať na odborníka." },
 
   /* final cta */
-  "cta.soon": { sk: "Už je vonku — pre iPhone a Apple Watch", en: "Out now — for iPhone and Apple Watch", cz: "Už je venku — pro iPhone a Apple Watch" },
-  "cta.title": { sk: "Stiahni si Subten a začni ešte dnes", en: "Download Subten and start today", cz: "Stáhni si Subten a začni ještě dnes" },
-  "cta.lede":  { sk: "Stiahnutie je zadarmo. Premium si môžeš vyskúšať a kedykoľvek zrušiť v App Store.", en: "Free to download. You can try Premium and cancel anytime in the App Store.", cz: "Stažení je zdarma. Premium si můžeš vyzkoušet a kdykoli zrušit v App Store." },
-  "cta.note": { sk: "Predplatné sa účtuje cez tvoje Apple ID. Zrušíš ho kedykoľvek v nastaveniach App Store.", en: "Subscriptions are billed through your Apple ID. Cancel anytime in your App Store settings.", cz: "Předplatné se účtuje přes tvé Apple ID. Zrušíš ho kdykoli v nastavení App Store." },
+  "cta.soon": { sk: "Pre iPhone a Apple Watch", en: "For iPhone and Apple Watch", cz: "Pro iPhone a Apple Watch" },
+  "cta.title": { sk: "Čoskoro v App Store", en: "Coming soon to the App Store", cz: "Brzy v App Storu" },
+  "cta.lede":  { sk: "Subten ešte nie je dostupný na stiahnutie.", en: "Subten is not available to download yet.", cz: "Subten zatím není ke stažení." },
 
   /* footer */
   "footer.tagline": { sk: "Tréning, výživa a regenerácia v jednej appke. Tvoj AI tréner vždy po ruke.", en: "Training, nutrition and recovery in one app. Your AI coach, always with you.", cz: "Trénink, výživa a regenerace v jedné appce. Tvůj AI trenér vždy po ruce." },
