@@ -180,8 +180,6 @@ window.SUBTEN_I18N = {
   "gen.next":       { sk: "Ďalej", en: "Next", cz: "Dál" },
   "gen.back":       { sk: "Späť", en: "Back", cz: "Zpět" },
   "gen.generate":   { sk: "Vygenerovať plán", en: "Generate plan", cz: "Vygenerovat plán" },
-  "gen.goal.fat":   { sk: "Chudnutie", en: "Fat loss", cz: "Hubnutí" },
-  "gen.goal.fat.d": { sk: "Znížiť tuk, udržať svaly a zrýchliť metabolizmus.", en: "Burn fat, preserve muscle and boost metabolism.", cz: "Snížit tuk, udržet svaly a zrychlit metabolismus." },
   "gen.goal.muscle":   { sk: "Naberanie svalov", en: "Muscle gain", cz: "Nabírání svalů" },
   "gen.goal.muscle.d": { sk: "Hypertrofia, silový rast a progresívne preťaženie.", en: "Hypertrophy, strength gains and progressive overload.", cz: "Hypertrofie, silový růst a progresivní přetížení." },
   "gen.goal.maintain":   { sk: "Údržba", en: "Maintenance", cz: "Údržba" },
@@ -279,7 +277,7 @@ window.SUBTEN_I18N = {
   },
 
   "calc.goal":          { sk: "Cieľ", en: "Goal", cz: "Cíl" },
-  "calc.goal.fatloss":  { sk: "Chudnutie (−500 kcal)", en: "Fat loss (−500 kcal)", cz: "Hubnutí (−500 kcal)" },
+  "calc.goal.fatloss":  { sk: "Deficit (−500 kcal)", en: "Calorie deficit (−500 kcal)", cz: "Deficit (−500 kcal)" },
   "calc.goal.maintain": { sk: "Udržanie", en: "Maintain", cz: "Udržení" },
   "calc.goal.gain":     { sk: "Naberanie (+300 kcal)", en: "Muscle gain (+300 kcal)", cz: "Nabírání (+300 kcal)" },
   "calc.goal.recomp":   { sk: "Rekompozícia (0 kcal)", en: "Recomp (0 kcal)", cz: "Rekompozice (0 kcal)" },
@@ -447,9 +445,9 @@ window.SUBTEN_I18N = {
   },
   "calc.faq.q2": { sk: "Aký je rozdiel medzi BMR a TDEE?", en: "What's the difference between BMR and TDEE?", cz: "Jaký je rozdíl mezi BMR a TDEE?" },
   "calc.faq.a2": {
-    sk: "TDEE (celkový denný energetický výdaj) je BMR vynásobené koeficientom aktivity — kalórie, ktoré reálne spáliš za deň. Kalorický cieľ sa potom odvíja od TDEE podľa toho, či chceš chudnúť, udržať alebo naberať.",
-    en: "TDEE (total daily energy expenditure) is your BMR multiplied by an activity factor — the calories you actually burn in a day. Your calorie target is then built on top of TDEE depending on whether you want to lose, maintain or gain.",
-    cz: "TDEE (celkový denní energetický výdej) je BMR vynásobené koeficientem aktivity — kalorie, které reálně spálíš za den. Kalorický cíl se pak odvíjí od TDEE podle toho, zda chceš hubnout, udržet nebo nabírat."
+    sk: "TDEE (celkový denný energetický výdaj) je BMR vynásobené koeficientom aktivity — kalórie, ktoré reálne spáliš za deň. Kalorický cieľ sa potom odvíja od TDEE podľa toho, či chceš byť v deficite, udržiavať alebo naberať.",
+    en: "TDEE (total daily energy expenditure) is your BMR multiplied by an activity factor — the calories you actually burn in a day. Your calorie target is then built on top of TDEE depending on whether you want a calorie deficit, maintenance or a surplus.",
+    cz: "TDEE (celkový denní energetický výdej) je BMR vynásobené koeficientem aktivity — kalorie, které reálně spálíš za den. Kalorický cíl se pak odvíjí od TDEE podle toho, zda chceš být v deficitu, udržovat nebo nabírat."
   },
   "calc.faq.q3": { sk: "Ako si vypočítam makrá?", en: "How do I calculate my macros?", cz: "Jak si spočítám makra?" },
   "calc.faq.a3": {
@@ -465,9 +463,9 @@ window.SUBTEN_I18N = {
   },
   "calc.faq.q5": { sk: "Je táto kalorická kalkulačka zadarmo?", en: "Is this calorie calculator free?", cz: "Je tato kalorická kalkulačka zdarma?" },
   "calc.faq.a5": {
-    sk: "Áno — kalkulačka je úplne zadarmo a beží celá v tvojom prehliadači; bez registrácie a žiadne dáta neopúšťajú tvoje zariadenie. Na denné sledovanie a AI trénera vyskúšaj appku Subten.",
-    en: "Yes — the calculator is completely free and runs entirely in your browser; no signup and no data leaves your device. For daily tracking and an AI coach, try the Subten app.",
-    cz: "Ano — kalkulačka je zcela zdarma a běží celá v tvém prohlížeči; bez registrace a žádná data neopouštějí tvoje zařízení. Na denní sledování a AI trenéra vyzkoušej appku Subten."
+    sk: "Áno — kalkulačka je úplne zadarmo a beží celá v tvojom prehliadači; bez registrácie a zadané údaje nikam neodosielame. Na denné sledovanie a AI trénera vyskúšaj appku Subten.",
+    en: "Yes — the calculator is completely free and runs entirely in your browser; no signup, and we don't send the values you enter anywhere. For daily tracking and an AI coach, try the Subten app.",
+    cz: "Ano — kalkulačka je zcela zdarma a běží celá v tvém prohlížeči; bez registrace a zadané údaje nikam neodesíláme. Na denní sledování a AI trenéra vyzkoušej appku Subten."
   }
 };
 

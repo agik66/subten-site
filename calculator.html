@@ -78,10 +78,10 @@
       "@type": "FAQPage",
       "mainEntity": [
         { "@type": "Question", "name": "What is BMR (basal metabolic rate)?", "acceptedAnswer": { "@type": "Answer", "text": "BMR is the energy your body burns at complete rest to keep basic functions running. Subten uses the Mifflin-St Jeor equation: 10×weight(kg) + 6.25×height(cm) − 5×age + a sex constant." } },
-        { "@type": "Question", "name": "What's the difference between BMR and TDEE?", "acceptedAnswer": { "@type": "Answer", "text": "TDEE (total daily energy expenditure) is your BMR multiplied by an activity factor — the calories you actually burn in a day. Your calorie target is then built on top of TDEE depending on whether you want to lose, maintain or gain." } },
+        { "@type": "Question", "name": "What's the difference between BMR and TDEE?", "acceptedAnswer": { "@type": "Answer", "text": "TDEE (total daily energy expenditure) is your BMR multiplied by an activity factor — the calories you actually burn in a day. Your calorie target is then built on top of TDEE depending on whether you want a calorie deficit, maintenance or a surplus." } },
         { "@type": "Question", "name": "How do I calculate my macros?", "acceptedAnswer": { "@type": "Answer", "text": "Start with protein (1.6–2.2 g per kg of body weight), set fat to at least 0.6 g/kg or 20% of calories, and fill the rest with carbs. Subten also adds fiber at 14 g per 1000 kcal." } },
         { "@type": "Question", "name": "What is carb cycling?", "acceptedAnswer": { "@type": "Answer", "text": "Carb cycling shifts your carbs across the week by training load — more on hard days, fewer on rest days — while keeping the weekly average equal to your target. Protein and fat stay steady." } },
-        { "@type": "Question", "name": "Is this calorie calculator free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — the calculator is completely free and runs entirely in your browser; no signup and no data leaves your device. For daily tracking and an AI coach, try the Subten app." } }
+        { "@type": "Question", "name": "Is this calorie calculator free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — the calculator is completely free and runs entirely in your browser; no signup, and we don't send the values you enter anywhere. For daily tracking and an AI coach, try the Subten app." } }
       ]
     }
   ]
@@ -298,7 +298,7 @@ select.inp{appearance:none;-webkit-appearance:none;background-image:url("data:im
         <div class="field">
           <label data-i18n="calc.goal">Cieľ</label>
           <select class="inp" id="in-goal">
-            <option value="fatLoss" data-i18n="calc.goal.fatloss">Chudnutie (−500 kcal)</option>
+            <option value="fatLoss" data-i18n="calc.goal.fatloss">Deficit (−500 kcal)</option>
             <option value="maintain" selected data-i18n="calc.goal.maintain">Udržanie</option>
             <option value="muscleGain" data-i18n="calc.goal.gain">Naberanie (+300 kcal)</option>
             <option value="recomp" data-i18n="calc.goal.recomp">Rekompozícia (0 kcal)</option>
