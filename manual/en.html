@@ -358,7 +358,7 @@ FAQ</a></li>
 </ul>
 </nav>
 <h1 id="subten-user-manual">Subten — User Manual</h1>
-<p><em>Version 1.0 · July 2026</em></p>
+<p><em>Version 1.1 · October 2026</em></p>
 <p><strong>Subten is intended for people aged 18 and over.</strong></p>
 <h1 id="foreword">1 Foreword</h1>
 <p>Welcome to the user manual for <strong>Subten</strong> — the
@@ -426,7 +426,7 @@ shortcuts.</td>
 </tr>
 <tr>
 <td>VI — Apple Health</td>
-<td>Exactly what Subten reads and writes, per-type switches, health
+<td>What Subten reads and writes, per-type switches, health
 alerts.</td>
 </tr>
 <tr>
@@ -484,7 +484,7 @@ scan</strong> or manually.</li>
 <li>Subten reads activity, sleep and recovery data from <strong>Apple
 Health</strong>.</li>
 <li>Every week, the <strong>adaptive engine</strong> compares what you
-actually ate with how your weight actually moved, measures your true
+actually ate with how your weight actually moved, estimates your true
 maintenance, and adjusts your daily calorie and macro targets — with
 safety rails.</li>
 <li>The <strong>AI mentor</strong> (Coach tab) reviews your day and
@@ -535,7 +535,7 @@ statistics.</p>
 entry, the dashboard, the My Plan training tab, progress tracking, Apple
 Health sync, reminders, and data export/import. <strong>Premium</strong>
 unlocks the AI features (photo scanning, label scanning, meal plans, the
-Coach) and the full training module (Gym, Sport, Personal Records).
+Coach) and the full training module (Gym, Sport).
 Chapter 12.1 has the full comparison.</p>
 <h2 id="a-map-of-the-app">2.3 A map of the app</h2>
 <p>The app has <strong>five tabs</strong>:</p>
@@ -1198,10 +1198,10 @@ with logged intake, and at least <strong>3 weigh-ins</strong>. Until
 then the Today tab shows the calibration banner. The starting targets
 are deliberately conservative.</p>
 <h2 id="weekly-adaptation">9.2 Weekly adaptation</h2>
-<p>Every 7 days the engine measures your <strong>true
+<p>Every 7 days the engine estimates your <strong>true
 maintenance</strong> from real data: your average intake and your actual
-weight trend together reveal how much you really burn. Your new daily
-goal is that measured maintenance plus your goal’s deficit or surplus.
+weight trend together show roughly how much you burn. Your new daily
+goal is that estimated maintenance plus your goal’s deficit or surplus.
 Safety rails:</p>
 <ul>
 <li>Targets move by at most <strong>±250 kcal per week</strong> (up to
@@ -1258,7 +1258,7 @@ phases.</td>
 </tbody>
 </table>
 <p>Using the built-in strategies (instead of ad-hoc off-plan days) keeps
-your data clean and your adaptation accurate.</p>
+your data clean and your adaptation more reliable.</p>
 <hr />
 <h1 id="part-v-apple-watch-shortcuts">10 Part V — Apple Watch &amp;
 shortcuts</h1>
@@ -1303,8 +1303,8 @@ each type separately.</p>
 of which device wrote it. <strong>An Apple Watch is not
 required</strong> — anything that feeds Apple Health works: an Apple
 Watch, Garmin, Oura, Whoop, other bands and rings, or the iPhone itself
-(steps, sleep). The more data Apple Health holds, the more accurate
-recovery and recommendations are; without it Subten still works, those
+(steps, sleep). The more data Apple Health holds, the more
+recovery and recommendations have to go on; without it Subten still works, those
 features just stay empty.</p>
 <table>
 <colgroup>
@@ -1370,7 +1370,7 @@ subscription</h1>
 <td>✓</td>
 </tr>
 <tr>
-<td>Training — My Plan, Library</td>
+<td>Training — My Plan, Library, Personal Records</td>
 <td>✓</td>
 <td>✓</td>
 </tr>
@@ -1400,7 +1400,7 @@ subscription</h1>
 <td>✓</td>
 </tr>
 <tr>
-<td>Training — Gym &amp; Sport, Personal Records</td>
+<td>Training — Gym &amp; Sport (sport plans)</td>
 <td>—</td>
 <td>✓</td>
 </tr>
@@ -1419,11 +1419,7 @@ subscriptions auto-renew unless cancelled at least 24 hours before the
 end of the period in iOS: <strong>Settings → [your name] →
 Subscriptions</strong>. <strong>Restore purchases</strong> recovers an
 existing subscription on a new device.</p>
-<!-- SCREENSHOT 18: Paywall — monthly/yearly plans with trial info -->
-<figure>
-<img src="en-images/18-paywall.jpg" alt="The subscription screen." />
-<figcaption aria-hidden="true">The subscription screen.</figcaption>
-</figure>
+<!-- SCREENSHOT 18: Paywall — removed in build 38 (old shot showed Sport Packs, "promo code" button, USD prices); re-shoot from the current paywall -->
 <h2 id="trial">12.3 Trial period</h2>
 <p>The trial period is an introductory offer from the App Store on each
 plan: <strong>1 week</strong> on the monthly plan, <strong>2
