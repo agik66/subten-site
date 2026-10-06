@@ -340,7 +340,9 @@ subscription</a>
 Premium</a></li>
 <li><a href="#subscribing" id="toc-subscribing">12.2
 Subscribing</a></li>
-<li><a href="#trial" id="toc-trial">12.3 Trial</a></li>
+<li><a href="#trial" id="toc-trial">12.3 Trial period</a></li>
+<li><a href="#bring-your-own-key-byok" id="toc-bring-your-own-key-byok">12.4
+Bring your own key (BYOK)</a></li>
 </ul></li>
 <li><a href="#part-viii-settings-privacy-account"
 id="toc-part-viii-settings-privacy-account">13 Part VIII — Settings,
@@ -429,8 +431,8 @@ alerts.</td>
 </tr>
 <tr>
 <td>VII — Premium &amp; subscription</td>
-<td>Free vs Premium, trial, promo codes, Sport Packs, restoring
-purchases.</td>
+<td>Free vs Premium, subscriptions and the trial period, your own key
+(BYOK), restoring purchases.</td>
 </tr>
 <tr>
 <td>VIII — Settings, privacy &amp; account</td>
@@ -470,9 +472,9 @@ corresponding localized labels.</p>
 <h1 id="part-i-introducing-subten">2 Part I — Introducing Subten</h1>
 <h2 id="what-is-subten">2.1 What is Subten</h2>
 <p>Subten is an iOS app (with an Apple Watch companion) for <strong>body
-recomposition</strong> — losing fat, building muscle, or both. Its
-tagline is blunt: <em>“−10 kg. No excuses.”</em> Underneath the
-bluntness sits a careful engine:</p>
+recomposition</strong> — burning fat, building muscle, or both. Its
+tagline: <em>“Nutrition, training and recovery in one place.”</em>
+Underneath sits a careful engine:</p>
 <ul>
 <li>You log what you eat — by <strong>photo (AI)</strong>,
 <strong>barcode</strong>, <strong>search</strong>, <strong>label
@@ -534,7 +536,7 @@ entry, the dashboard, the My Plan training tab, progress tracking, Apple
 Health sync, reminders, and data export/import. <strong>Premium</strong>
 unlocks the AI features (photo scanning, label scanning, meal plans, the
 Coach) and the full training module (Gym, Sport, Personal Records).
-Chapter 9 has the full comparison.</p>
+Chapter 12.1 has the full comparison.</p>
 <h2 id="a-map-of-the-app">2.3 A map of the app</h2>
 <p>The app has <strong>five tabs</strong>:</p>
 <table>
@@ -595,8 +597,8 @@ set-up day.</p>
 (or <strong>I have an account</strong> if you already registered).</li>
 <li>Complete the 6-step onboarding: profile → activity level → goal →
 optional training plan → Apple Health.</li>
-<li>Tap <strong>Done</strong>. Your free trial starts and you land on
-the <strong>Today</strong> tab.</li>
+<li>Tap <strong>Done</strong> and you land on the
+<strong>Today</strong> tab.</li>
 <li>Log your first meal: <strong>Food</strong> tab → <strong>+</strong>
 at a meal → search, scan a barcode, or take a photo (Premium).</li>
 <li>Add today’s weight on the <strong>Progress</strong> tab so
@@ -678,9 +680,9 @@ errors, but a realistic start converges faster.</p>
 <strong>Build muscle</strong>, <strong>Recomposition</strong> or
 <strong>Maintain</strong>.</p>
 <ul>
-<li>Fat loss adds a <strong>Pace</strong> picker (<em>Slow / Medium /
+<li>Burn fat adds a <strong>Pace</strong> picker (<em>Slow / Medium /
 Fast</em>).</li>
-<li>Muscle gain adds a <strong>Training experience</strong> picker
+<li>Build muscle adds a <strong>Training experience</strong> picker
 (<em>Novice / Intermediate / Advanced</em>) — experienced lifters gain
 muscle more slowly, so the surplus is smaller.</li>
 </ul>
@@ -702,8 +704,8 @@ can change or build a custom plan later on the Training tab.</p>
 to read (weight, steps, heart data, sleep…). Tap <strong>Allow
 access</strong> and confirm in the iOS sheet. You can also skip this and
 enable it later in <strong>Settings → Health</strong>. Tap
-<strong>Done</strong> — your profile is saved and your <strong>free
-trial</strong> starts.</p>
+<strong>Done</strong> — your profile is saved and the
+<strong>Today</strong> tab opens.</p>
 <h2 id="first-settings-worth-checking">3.4 First settings worth
 checking</h2>
 <ul>
@@ -986,7 +988,7 @@ timer.</figcaption>
 <li><strong>Gym</strong> — the full catalogue of workout plans and
 templates.</li>
 <li><strong>Sport</strong> — sport-specific plans (hockey, football,
-tennis, basketball…) delivered as <strong>Sport Packs</strong>.</li>
+tennis, basketball…).</li>
 </ul>
 <p>Without Premium these sub-tabs show a paywall card.</p>
 <h2 id="library">6.5 Library</h2>
@@ -1132,7 +1134,7 @@ review</strong>, the <strong>weekly review</strong> or the
 with <strong>6 GB of RAM or more</strong>).</li>
 </ul>
 <p>In that case the reply carries the <em>on-device</em> badge and
-nothing leaves the phone. In every other case the <strong>cloud
+the request is not processed in the cloud. In every other case the <strong>cloud
 (OpenRouter API)</strong> is used:</p>
 <table>
 <thead>
@@ -1204,8 +1206,8 @@ Safety rails:</p>
 <ul>
 <li>Targets move by at most <strong>±250 kcal per week</strong> (up to
 +400 for muscle gain), so no whiplash.</li>
-<li>A <strong>brake</strong> engages if you lose faster than 1 % of body
-weight per week — the engine nudges calories <em>up</em> to protect
+<li>A <strong>brake</strong> engages if your weight drops faster than 1 %
+of body weight per week — the engine nudges calories <em>up</em> to protect
 muscle.</li>
 <li><strong>Refeed, cheat, plateau and diet-break days</strong> (and a
 short buffer after them) are excluded; diet-break weeks are skipped
@@ -1242,7 +1244,8 @@ Strategies</strong> (and the strategy hub) offer planned protocols:</p>
 </tr>
 <tr>
 <td><strong>Refeed</strong></td>
-<td>A planned higher-carb day, useful in long fat-loss phases.</td>
+<td>A planned higher-carb day, useful in long calorie-deficit
+phases.</td>
 </tr>
 <tr>
 <td><strong>Diet break</strong></td>
@@ -1402,13 +1405,8 @@ subscription</h1>
 <td>✓</td>
 </tr>
 <tr>
-<td>Sport Packs</td>
-<td>—</td>
-<td>✓</td>
-</tr>
-<tr>
 <td>iCloud sync</td>
-<td>—</td>
+<td>✓</td>
 <td>✓</td>
 </tr>
 </tbody>
@@ -1416,20 +1414,37 @@ subscription</h1>
 <h2 id="subscribing">12.2 Subscribing</h2>
 <p>The paywall offers <strong>Monthly</strong> and
 <strong>Yearly</strong> plans (Yearly is marked <em>Best value</em> with
-a per-month breakdown) with a free-trial period. Purchases go through
-your Apple ID; subscriptions auto-renew until cancelled in iOS Settings.
-<strong>Restore purchases</strong> recovers an existing subscription on
-a new device. A <strong>promo code</strong> field accepts codes.</p>
+a per-month breakdown). Purchases go through your Apple ID;
+subscriptions auto-renew unless cancelled at least 24 hours before the
+end of the period in iOS: <strong>Settings → [your name] →
+Subscriptions</strong>. <strong>Restore purchases</strong> recovers an
+existing subscription on a new device.</p>
 <!-- SCREENSHOT 18: Paywall — monthly/yearly plans with trial info -->
 <figure>
 <img src="en-images/18-paywall.jpg" alt="The subscription screen." />
 <figcaption aria-hidden="true">The subscription screen.</figcaption>
 </figure>
-<h2 id="trial">12.3 Trial</h2>
-<p>A local free trial starts when you finish onboarding. When it ends,
-AI and premium training features lock again and the app shows <em>Trial
-expired — Activate Premium</em>. Your data is never locked away:
-logging, progress and export stay free.</p>
+<h2 id="trial">12.3 Trial period</h2>
+<p>The trial period is an introductory offer from the App Store on each
+plan: <strong>1 week</strong> on the monthly plan, <strong>2
+weeks</strong> on the yearly plan. Whether you’re eligible and how long
+it lasts is shown on the paywall before you confirm the purchase. You
+aren’t charged during the trial; unless you cancel at least 24 hours
+before it ends, it automatically converts into a paid subscription.</p>
+<p>The app itself never starts a trial — after onboarding you use the
+free version. Your data is never locked away: logging, progress and
+export keep working without Premium.</p>
+<h2 id="bring-your-own-key-byok">12.4 Bring your own key (BYOK)</h2>
+<p><strong>BYOK</strong> (<em>Bring Your Own Key</em>) is a one-time
+purchase, not a subscription. You’ll find it under <strong>Settings → AI
+Mentor → OpenRouter API key</strong>. After buying it, enter your own
+API key from OpenRouter there (generate one at
+<code>openrouter.ai/keys</code>) and tap <strong>Test and
+save</strong>. The AI features then run through your key and your
+OpenRouter account — requests go straight to OpenRouter, and AI usage is
+billed to you by OpenRouter, not by Subten. The key is stored in your
+iPhone’s Keychain. You can restore the purchase on the same screen with
+<strong>Restore purchases</strong>.</p>
 <hr />
 <h1 id="part-viii-settings-privacy-account">13 Part VIII — Settings,
 privacy &amp; account</h1>
@@ -1453,7 +1468,13 @@ recompute.</td>
 </tr>
 <tr>
 <td><strong>Subscription</strong></td>
-<td>Premium status, activation, promo code.</td>
+<td>Premium status and activation (the paywall, with <strong>Restore
+purchases</strong>).</td>
+</tr>
+<tr>
+<td><strong>AI Mentor</strong></td>
+<td>OpenRouter API key for the one-time BYOK purchase (§12.4); shown
+when you don’t have Premium.</td>
 </tr>
 <tr>
 <td><strong>Private mode</strong></td>
@@ -1513,8 +1534,8 @@ to a file, import it on another device or after reinstalling.</li>
 device and iCloud. This is irreversible — export first if in doubt.</li>
 <li><strong>AI consent:</strong> AI features that use the cloud only run
 with your explicit consent, controllable in <strong>AI in
-Subten</strong>. Private mode (§8.3) keeps coaching fully
-on-device.</li>
+Subten</strong>. Private mode (§8.3) turns off the cloud fallback for
+the Coach’s text features.</li>
 </ul>
 <hr />
 <h1 id="part-ix-troubleshooting-faq">14 Part IX — Troubleshooting &amp;
@@ -1540,7 +1561,8 @@ Subten</strong>.</p>
 <p><strong>I changed the language but the app is mixed.</strong> Restart
 the app — the language switch requires it.</p>
 <p><strong>The Coach tab just shows an unlock card.</strong> The Coach
-is Premium; start the trial or subscribe. If you <em>are</em> Premium,
+is Premium; subscribe (the App Store offers a trial period) or buy
+BYOK with your own key (§12.4). If you <em>are</em> Premium,
 tap <strong>Restore purchases</strong> on the paywall.</p>
 <p><strong>I can’t select my birth date.</strong> Subten is 18+; the
 picker enforces it.</p>
@@ -1573,8 +1595,8 @@ maintenance.</td>
 </tr>
 <tr>
 <td><strong>Deficit / surplus</strong></td>
-<td>Eating below / above maintenance — the driver of fat loss / muscle
-gain.</td>
+<td>Eating below / above maintenance — the basis of burning fat /
+building muscle.</td>
 </tr>
 <tr>
 <td><strong>Macros</strong></td>
@@ -1582,7 +1604,7 @@ gain.</td>
 </tr>
 <tr>
 <td><strong>Recomposition</strong></td>
-<td>Losing fat and building muscle in the same period.</td>
+<td>Burning fat and building muscle in the same period.</td>
 </tr>
 <tr>
 <td><strong>Energy Availability (EA)</strong></td>
