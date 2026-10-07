@@ -79,8 +79,6 @@
           <p>Náš server beží na platforme Supabase v dátovom centre v Írsku (EÚ). Ukladáme na ňom:</p>
           <ul>
             <li><strong>Účet</strong> — e-mail a heslo (len v zahashovanej podobe), alebo prihlásenie cez Apple (iPhone) či Google. Pri prihlásení cez Apple aj identifikátor Apple a token, ktorým pri zmazaní účtu zrušíme prepojenie s Apple.</li>
-            <!-- PODMIENKA: platí až po migrácii stĺpcov terms_accepted_at / terms_version v produkcii -->
-            <li><strong>Prijatie podmienok</strong> — dátum a verziu podmienok, ktoré si prijal(a).</li>
             <li><strong>Technické údaje (iPhone)</strong> — verzia aplikácie a systému, typ zariadenia (iPhone alebo iPad), jazyk a región, dátum registrácie a posledného použitia.</li>
             <li><strong>Predplatné</strong> — plán, dátum vypršania, identifikátor produktu a identifikátor nákupu od Apple alebo Google Play.</li>
             <li><strong>Štatistiky používania (iPhone)</strong> naviazané na tvoj účet — počet dokončených tréningov, počet rozhovorov s AI trénerom v cloude a čas posledného z nich.</li>
@@ -149,8 +147,6 @@
 
           <h2 id="sk-11">11. Uchovávanie a vymazanie</h2>
           <p>Údaje v telefóne a v tvojom iCloud máš pod kontrolou ty. Údaje na našom serveri uchovávame, kým máš účet.</p>
-          <!-- PODMIENKA: platí až po nastavení mazacej úlohy (cron) pre premium_usage v produkcii -->
-          <p>Záznamy o AI požiadavkách mažeme po 180 dňoch.</p>
           <p>Keď zmažeš účet v aplikácii (iPhone: Nastavenia → Účet, Android: Profil → Dáta a súkromie), okamžite zmažeme tvoj účet a všetky údaje z časti 3. Aplikácia zmaže aj dáta v telefóne a záznamy, ktoré Subten zapísal do Zdravia alebo Health Connect. Na iPhone zmaže aj dáta aplikácie v tvojom iCloud. Účet môžeš zmazať aj cez <a href="account-deletion.html">stránku o vymazaní účtu</a>.</p>
           <p>V technických zálohách hostingu môžu údaje zostať do ich pravidelného prepísania, najdlhšie 30 dní. Účtovné a daňové záznamy uchovávame tak dlho, ako vyžaduje zákon. Zmazanie účtu nezruší predplatné ani históriu nákupov u Apple alebo Google. Ak používaš vlastný kľúč OpenRouter, históriu vo svojom účte OpenRouter spravuješ sám(a).</p>
 
@@ -197,8 +193,6 @@
           <p>Our server runs on Supabase in a data centre in Ireland (EU). We store:</p>
           <ul>
             <li><strong>Account</strong>: your email and password (hashed only), or Sign in with Apple (iPhone) or Google. With Sign in with Apple, also your Apple identifier and a token we use to revoke the Apple link when you delete your account.</li>
-            <!-- CONDITION: true only after the terms_accepted_at / terms_version columns are migrated in production -->
-            <li><strong>Terms acceptance</strong>: the date and version of the terms you accepted.</li>
             <li><strong>Technical details (iPhone)</strong>: app and OS version, device type (iPhone or iPad), language and region, sign-up date and last use.</li>
             <li><strong>Subscription</strong>: plan, expiry date, product identifier and purchase identifier from Apple or Google Play.</li>
             <li><strong>Usage statistics (iPhone)</strong>, linked to your account: number of completed workouts, number of cloud AI coach conversations and when the last one happened.</li>
@@ -267,8 +261,6 @@
 
           <h2>11. Retention and deletion</h2>
           <p>Data on your phone and in your iCloud is under your control. We keep data on our server for as long as you have an account.</p>
-          <!-- CONDITION: true only after a purge job (cron) for premium_usage is set up in production -->
-          <p>Records of AI requests are deleted after 180 days.</p>
           <p>When you delete your account in the app (iPhone: Settings → Account, Android: Profile → Data &amp; privacy), we immediately delete your account and all data listed in section 3. The app also deletes the data on your phone and the entries Subten wrote to Health or Health Connect. On iPhone it also deletes the app's data in your iCloud. You can also delete your account on the <a href="account-deletion.html">account deletion page</a>.</p>
           <p>Data may remain in our hosting provider's technical backups until they are overwritten, for at most 30 days. We keep accounting and tax records for as long as the law requires. Deleting your account doesn't cancel your subscription or your purchase history with Apple or Google. If you use your own OpenRouter key, you manage the history in your OpenRouter account yourself.</p>
 
@@ -315,8 +307,6 @@
           <p>Náš server běží na platformě Supabase v datovém centru v Irsku (EU). Ukládáme na něm:</p>
           <ul>
             <li><strong>Účet</strong> — e-mail a heslo (jen v zahashované podobě), nebo přihlášení přes Apple (iPhone) či Google. Při přihlášení přes Apple i identifikátor Apple a token, kterým při smazání účtu zrušíme propojení s Apple.</li>
-            <!-- PODMÍNKA: platí až po migraci sloupců terms_accepted_at / terms_version v produkci -->
-            <li><strong>Přijetí podmínek</strong> — datum a verzi podmínek, které jsi přijal(a).</li>
             <li><strong>Technické údaje (iPhone)</strong> — verze aplikace a systému, typ zařízení (iPhone nebo iPad), jazyk a region, datum registrace a posledního použití.</li>
             <li><strong>Předplatné</strong> — plán, datum vypršení, identifikátor produktu a identifikátor nákupu od Apple nebo Google Play.</li>
             <li><strong>Statistiky používání (iPhone)</strong> propojené s tvým účtem — počet dokončených tréninků, počet konverzací s AI trenérem v cloudu a čas té poslední.</li>
@@ -385,8 +375,6 @@
 
           <h2 id="cz-11">11. Uchovávání a smazání</h2>
           <p>Data v telefonu a ve tvém iCloudu máš pod kontrolou ty. Údaje na našem serveru uchováváme, dokud máš účet.</p>
-          <!-- PODMÍNKA: platí až po nastavení mazací úlohy (cron) pro premium_usage v produkci -->
-          <p>Záznamy o AI požadavcích mažeme po 180 dnech.</p>
           <p>Když smažeš účet v aplikaci (iPhone: Nastavení → Účet, Android: Profil → Data a soukromí), okamžitě smažeme tvůj účet a všechny údaje z části 3. Aplikace smaže i data v telefonu a záznamy, které Subten zapsal do Zdraví nebo Health Connect. Na iPhonu smaže i data aplikace ve tvém iCloudu. Účet můžeš smazat i přes <a href="account-deletion.html">stránku o smazání účtu</a>.</p>
           <p>V technických zálohách hostingu mohou údaje zůstat do jejich pravidelného přepsání, nejdéle 30 dní. Účetní a daňové záznamy uchováváme tak dlouho, jak vyžaduje zákon. Smazání účtu nezruší předplatné ani historii nákupů u Apple nebo Google. Pokud používáš vlastní klíč OpenRouter, historii ve svém účtu OpenRouter spravuješ sám(a).</p>
 
