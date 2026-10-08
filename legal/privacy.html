@@ -79,13 +79,15 @@
           <p>Náš server beží na platforme Supabase v dátovom centre v Írsku (EÚ). Ukladáme na ňom:</p>
           <ul>
             <li><strong>Účet</strong> — e-mail a heslo (len v zahashovanej podobe), alebo prihlásenie cez Apple (iPhone) či Google. Pri prihlásení cez Apple aj identifikátor Apple a token, ktorým pri zmazaní účtu zrušíme prepojenie s Apple.</li>
+            <li><strong>Prijatie podmienok</strong> — dátum a verziu podmienok, ktoré si prijal(a).</li>
             <li><strong>Technické údaje (iPhone)</strong> — verzia aplikácie a systému, typ zariadenia (iPhone alebo iPad), jazyk a región, dátum registrácie a posledného použitia.</li>
             <li><strong>Predplatné</strong> — plán, dátum vypršania, identifikátor produktu a identifikátor nákupu od Apple alebo Google Play.</li>
             <li><strong>Štatistiky používania (iPhone)</strong> naviazané na tvoj účet — počet dokončených tréningov, počet rozhovorov s AI trénerom v cloude a čas posledného z nich.</li>
             <li><strong>Záznamy o AI požiadavkách</strong>, ktoré idú cez náš server — identifikátor tvojho účtu, funkcia, model, počet tokenov a čas. Nikdy obsah požiadavky ani odpovede.</li>
             <li><strong>Spätná väzba (iPhone)</strong>, ktorú nám pošleš — text, kategória, verzia aplikácie a typ zariadenia.</li>
+            <li><strong>Nahlásená odpoveď AI (Android)</strong> — ak odpoveď AI nahlásiš, uložíme jej text, dôvod a tvoju poznámku, aby sme ju mohli posúdiť.</li>
           </ul>
-          <p>Na serveri nemáme tvoje jedlá, tréningy, zdravotné záznamy, fotky ani obsah rozhovorov s AI. K údajom má prístup len oprávnený personál prevádzkovateľa, napríklad pri riešení podpory alebo kontrole nákladov na AI.</p>
+          <p>Na serveri nemáme tvoje jedlá, tréningy, zdravotné záznamy, fotky ani obsah rozhovorov s AI, okrem odpovede AI, ktorú nahlásiš. K údajom má prístup len oprávnený personál prevádzkovateľa, napríklad pri riešení podpory alebo kontrole nákladov na AI.</p>
 
           <h2 id="sk-4">4. Apple Health (iPhone)</h2>
           <p>Ak povolíš prístup, Subten číta z aplikácie Zdravie tieto údaje: hmotnosť, percento telesného tuku, aktívnu a pokojovú energiu, prijatú energiu, vodu, kroky, variabilitu srdcovej frekvencie (HRV), pokojový tep, VO₂max, saturáciu kyslíka (SpO₂), frekvenciu dýchania, teplotu zápästia počas spánku, spánok a tréningy. Do Zdravia zapisuje hmotnosť, aktívnu energiu a tréningy. Údaje zobrazujeme v aplikácii, počítame z nich skóre regenerácie, spánku a záťaže a používame ich na upozornenia. Hmotnosť, vodu, spánok a tep z tréningov si aplikácia ukladá aj do svojej databázy, a teda aj do tvojho iCloud. Do AI ich posielame len s tvojím súhlasom (časť 6). Údaje zo Zdravia nikdy nepoužívame na reklamu ani ich nepredávame. Prístup môžeš kedykoľvek zmeniť v aplikácii Zdravie alebo v nastaveniach iPhonu.</p>
@@ -147,7 +149,7 @@
 
           <h2 id="sk-11">11. Uchovávanie a vymazanie</h2>
           <p>Údaje v telefóne a v tvojom iCloud máš pod kontrolou ty. Údaje na našom serveri uchovávame, kým máš účet.</p>
-          <p>Keď zmažeš účet v aplikácii (iPhone: Nastavenia → Účet, Android: Profil → Dáta a súkromie), okamžite zmažeme tvoj účet a všetky údaje z časti 3. Aplikácia zmaže aj dáta v telefóne a záznamy, ktoré Subten zapísal do Zdravia alebo Health Connect. Na iPhone zmaže aj dáta aplikácie v tvojom iCloud. Účet môžeš zmazať aj cez <a href="account-deletion.html">stránku o vymazaní účtu</a>.</p>
+          <p>Keď zmažeš účet v aplikácii (iPhone: Nastavenia → Účet, Android: Nastavenia → Dáta a súkromie), okamžite zmažeme tvoj účet a všetky údaje z časti 3. Aplikácia zmaže aj dáta v telefóne a záznamy, ktoré Subten zapísal do Zdravia alebo Health Connect. Na iPhone zmaže aj dáta aplikácie v tvojom iCloud. Účet môžeš zmazať aj cez <a href="account-deletion.html">stránku o vymazaní účtu</a>.</p>
           <p>V technických zálohách hostingu môžu údaje zostať do ich pravidelného prepísania, najdlhšie 30 dní. Účtovné a daňové záznamy uchovávame tak dlho, ako vyžaduje zákon. Zmazanie účtu nezruší predplatné ani históriu nákupov u Apple alebo Google. Ak používaš vlastný kľúč OpenRouter, históriu vo svojom účte OpenRouter spravuješ sám(a).</p>
 
           <h2 id="sk-12">12. Tvoje práva</h2>
@@ -193,13 +195,15 @@
           <p>Our server runs on Supabase in a data centre in Ireland (EU). We store:</p>
           <ul>
             <li><strong>Account</strong>: your email and password (hashed only), or Sign in with Apple (iPhone) or Google. With Sign in with Apple, also your Apple identifier and a token we use to revoke the Apple link when you delete your account.</li>
+            <li><strong>Terms acceptance</strong>: the date and version of the terms you accepted.</li>
             <li><strong>Technical details (iPhone)</strong>: app and OS version, device type (iPhone or iPad), language and region, sign-up date and last use.</li>
             <li><strong>Subscription</strong>: plan, expiry date, product identifier and purchase identifier from Apple or Google Play.</li>
             <li><strong>Usage statistics (iPhone)</strong>, linked to your account: number of completed workouts, number of cloud AI coach conversations and when the last one happened.</li>
             <li><strong>Records of AI requests</strong> that go through our server: your account identifier, the feature, the model, token counts and time. Never the content of the request or the answer.</li>
             <li><strong>Feedback (iPhone)</strong> you send us: text, category, app version and device type.</li>
+            <li><strong>Reported AI answers (Android)</strong>: if you report an AI answer, we store its text, the reason and your note so we can review it.</li>
           </ul>
-          <p>Our server does not hold your meals, workouts, health records, photos or the content of your AI conversations. Only authorised staff of the controller can access the data, for example to handle support or check AI costs.</p>
+          <p>Our server does not hold your meals, workouts, health records, photos or the content of your AI conversations, except an AI answer you report. Only authorised staff of the controller can access the data, for example to handle support or check AI costs.</p>
 
           <h2>4. Apple Health (iPhone)</h2>
           <p>If you allow access, Subten reads these data from the Health app: weight, body fat percentage, active and resting energy, dietary energy, water, steps, heart rate variability (HRV), resting heart rate, VO₂max, blood oxygen (SpO₂), respiratory rate, sleeping wrist temperature, sleep and workouts. It writes weight, active energy and workouts to Health. We show these data in the app, calculate recovery, sleep and strain scores from them, and use them for alerts. The app also saves weight, water, sleep and workout heart rate in its own database, and therefore in your iCloud. They're sent to AI only with your consent (section 6). We never use Health data for advertising and never sell it. You can change access at any time in the Health app or in your iPhone settings.</p>
@@ -261,7 +265,7 @@
 
           <h2>11. Retention and deletion</h2>
           <p>Data on your phone and in your iCloud is under your control. We keep data on our server for as long as you have an account.</p>
-          <p>When you delete your account in the app (iPhone: Settings → Account, Android: Profile → Data &amp; privacy), we immediately delete your account and all data listed in section 3. The app also deletes the data on your phone and the entries Subten wrote to Health or Health Connect. On iPhone it also deletes the app's data in your iCloud. You can also delete your account on the <a href="account-deletion.html">account deletion page</a>.</p>
+          <p>When you delete your account in the app (iPhone: Settings → Account, Android: Settings → Data &amp; privacy), we immediately delete your account and all data listed in section 3. The app also deletes the data on your phone and the entries Subten wrote to Health or Health Connect. On iPhone it also deletes the app's data in your iCloud. You can also delete your account on the <a href="account-deletion.html">account deletion page</a>.</p>
           <p>Data may remain in our hosting provider's technical backups until they are overwritten, for at most 30 days. We keep accounting and tax records for as long as the law requires. Deleting your account doesn't cancel your subscription or your purchase history with Apple or Google. If you use your own OpenRouter key, you manage the history in your OpenRouter account yourself.</p>
 
           <h2>12. Your rights</h2>
@@ -307,13 +311,15 @@
           <p>Náš server běží na platformě Supabase v datovém centru v Irsku (EU). Ukládáme na něm:</p>
           <ul>
             <li><strong>Účet</strong> — e-mail a heslo (jen v zahashované podobě), nebo přihlášení přes Apple (iPhone) či Google. Při přihlášení přes Apple i identifikátor Apple a token, kterým při smazání účtu zrušíme propojení s Apple.</li>
+            <li><strong>Přijetí podmínek</strong> — datum a verzi podmínek, které jsi přijal(a).</li>
             <li><strong>Technické údaje (iPhone)</strong> — verze aplikace a systému, typ zařízení (iPhone nebo iPad), jazyk a region, datum registrace a posledního použití.</li>
             <li><strong>Předplatné</strong> — plán, datum vypršení, identifikátor produktu a identifikátor nákupu od Apple nebo Google Play.</li>
             <li><strong>Statistiky používání (iPhone)</strong> propojené s tvým účtem — počet dokončených tréninků, počet konverzací s AI trenérem v cloudu a čas té poslední.</li>
             <li><strong>Záznamy o AI požadavcích</strong>, které jdou přes náš server — identifikátor tvého účtu, funkce, model, počet tokenů a čas. Nikdy obsah požadavku ani odpovědi.</li>
             <li><strong>Zpětná vazba (iPhone)</strong>, kterou nám pošleš — text, kategorie, verze aplikace a typ zařízení.</li>
+            <li><strong>Nahlášená odpověď AI (Android)</strong> — pokud odpověď AI nahlásíš, uložíme její text, důvod a tvou poznámku, abychom ji mohli posoudit.</li>
           </ul>
-          <p>Na serveru nemáme tvá jídla, tréninky, zdravotní záznamy, fotky ani obsah konverzací s AI. K údajům má přístup jen oprávněný personál správce, například při řešení podpory nebo kontrole nákladů na AI.</p>
+          <p>Na serveru nemáme tvá jídla, tréninky, zdravotní záznamy, fotky ani obsah konverzací s AI, kromě odpovědi AI, kterou nahlásíš. K údajům má přístup jen oprávněný personál správce, například při řešení podpory nebo kontrole nákladů na AI.</p>
 
           <h2 id="cz-4">4. Apple Health (iPhone)</h2>
           <p>Pokud povolíš přístup, Subten čte z aplikace Zdraví tyto údaje: hmotnost, procento tělesného tuku, aktivní a klidovou energii, přijatou energii, vodu, kroky, variabilitu srdeční frekvence (HRV), klidový tep, VO₂max, saturaci kyslíkem (SpO₂), dechovou frekvenci, teplotu zápěstí během spánku, spánek a tréninky. Do Zdraví zapisuje hmotnost, aktivní energii a tréninky. Údaje zobrazujeme v aplikaci, počítáme z nich skóre regenerace, spánku a zátěže a používáme je pro upozornění. Hmotnost, vodu, spánek a tep z tréninků si aplikace ukládá i do své databáze, a tedy i do tvého iCloudu. Do AI je posíláme jen s tvým souhlasem (část 6). Údaje ze Zdraví nikdy nepoužíváme k reklamě ani je neprodáváme. Přístup můžeš kdykoli změnit v aplikaci Zdraví nebo v nastavení iPhonu.</p>
@@ -375,7 +381,7 @@
 
           <h2 id="cz-11">11. Uchovávání a smazání</h2>
           <p>Data v telefonu a ve tvém iCloudu máš pod kontrolou ty. Údaje na našem serveru uchováváme, dokud máš účet.</p>
-          <p>Když smažeš účet v aplikaci (iPhone: Nastavení → Účet, Android: Profil → Data a soukromí), okamžitě smažeme tvůj účet a všechny údaje z části 3. Aplikace smaže i data v telefonu a záznamy, které Subten zapsal do Zdraví nebo Health Connect. Na iPhonu smaže i data aplikace ve tvém iCloudu. Účet můžeš smazat i přes <a href="account-deletion.html">stránku o smazání účtu</a>.</p>
+          <p>Když smažeš účet v aplikaci (iPhone: Nastavení → Účet, Android: Nastavení → Data a soukromí), okamžitě smažeme tvůj účet a všechny údaje z části 3. Aplikace smaže i data v telefonu a záznamy, které Subten zapsal do Zdraví nebo Health Connect. Na iPhonu smaže i data aplikace ve tvém iCloudu. Účet můžeš smazat i přes <a href="account-deletion.html">stránku o smazání účtu</a>.</p>
           <p>V technických zálohách hostingu mohou údaje zůstat do jejich pravidelného přepsání, nejdéle 30 dní. Účetní a daňové záznamy uchováváme tak dlouho, jak vyžaduje zákon. Smazání účtu nezruší předplatné ani historii nákupů u Apple nebo Google. Pokud používáš vlastní klíč OpenRouter, historii ve svém účtu OpenRouter spravuješ sám(a).</p>
 
           <h2 id="cz-12">12. Tvá práva</h2>
