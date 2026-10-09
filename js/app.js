@@ -111,4 +111,39 @@
     }
     btns.forEach((b) => b.addEventListener("click", () => setPlan(b.dataset.plan)));
   });
+  /* ---- screenshoty podľa jazyka a témy (assets/shots/<jazyk>/<téma>/<názov>.webp) ---- */
+  const SHOT_LANG = { sk: "sk", cz: "cs", en: "en" };
+  function syncShots() {
+    const lang = SHOT_LANG[window.__subtenLang] || "en";
+    const theme = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+    document.querySelectorAll("img[data-shot]").forEach((img) => {
+      const src = "assets/shots/" + lang + "/" + theme + "/" + img.dataset.shot + ".webp";
+      if (img.getAttribute("src") !== src) img.setAttribute("src", src);
+    });
+  }
+  document.addEventListener("subten:lang", syncShots);
+  new MutationObserver(syncShots).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  syncShots();
+
+  /* ---- CTA do obchodu — prepínač je v js/release.js ---- */
+  const REL = window.SUBTEN_RELEASE || {};
+  const BADGE_FILE = { sk: "sk", cz: "cs", en: "en" };
+  const BADGE_ALT = { sk: "Stiahnuť v App Store", cz: "Stáhnout v App Storu", en: "Download on the App Store" };
+  function syncStoreCtas() {
+    if (!REL.live) return;
+    const lang = window.__subtenLang || "en";
+    document.querySelectorAll("[data-store-cta]").forEach((a) => {
+      a.setAttribute("href", REL.appStoreUrl);
+      a.setAttribute("target", "_blank");
+      a.setAttribute("rel", "noopener");
+      a.hidden = false;
+      if (a.dataset.storeCta === "badge") {
+        a.className = "store-badge-link";
+        a.innerHTML = '<img src="assets/badges/app-store-' + (BADGE_FILE[lang] || "en") + '.svg" alt="' +
+          (BADGE_ALT[lang] || BADGE_ALT.en) + '" width="144" height="48" />';
+      }
+    });
+  }
+  document.addEventListener("subten:lang", syncStoreCtas);
+  syncStoreCtas();
 })();

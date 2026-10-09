@@ -21,12 +21,12 @@
 
 <!-- Primary SEO (localized at runtime via data-i18n / data-i18n-attr; EN here is the crawl default) -->
 <title data-i18n="calc.meta.title">Nutrition Calculator — BMR, TDEE, Calories &amp; Macros | Subten</title>
-<meta name="description" data-i18n-attr="content: calc.meta.desc" content="Free nutrition calculator: work out your BMR, TDEE, daily calorie target and macros (protein, carbs, fat, fiber) with carb cycling and hydration. Exact formulas, instant results, no signup." />
+<meta name="description" data-i18n-attr="content: calc.meta.desc" content="Free nutrition calculator: work out your BMR, TDEE, daily calorie target and macros (protein, carbs, fat, fiber) with carb cycling and hydration. Verified formulas, done in seconds, no signup." />
 <meta name="keywords" content="nutrition calculator, BMR calculator, TDEE calculator, calorie calculator, macro calculator, carb cycling, nutričná kalkulačka, kalorická kalkulačka, makro kalkulačka, nutriční kalkulačka" />
-<link rel="canonical" href="https://subten-app.eu/calculator.html" />
+<link rel="canonical" href="https://subten-app.eu/calculator.html" data-lang-canonical="https://subten-app.eu/calculator.html" />
 <link rel="alternate" hreflang="en" href="https://subten-app.eu/calculator.html" />
 <link rel="alternate" hreflang="sk" href="https://subten-app.eu/calculator.html?lang=sk" />
-<link rel="alternate" hreflang="cs" href="https://subten-app.eu/calculator.html?lang=cz" />
+<link rel="alternate" hreflang="cs" href="https://subten-app.eu/calculator.html?lang=cs" />
 <link rel="alternate" hreflang="x-default" href="https://subten-app.eu/calculator.html" />
 
 <!-- Open Graph -->
@@ -34,7 +34,7 @@
 <meta property="og:site_name" content="Subten" />
 <meta property="og:url" content="https://subten-app.eu/calculator.html" />
 <meta property="og:title" data-i18n-attr="content: calc.meta.title" content="Nutrition Calculator — BMR, TDEE, Calories &amp; Macros | Subten" />
-<meta property="og:description" data-i18n-attr="content: calc.meta.desc" content="Free nutrition calculator: BMR, TDEE, daily calorie target and macros with carb cycling and hydration. Instant results, no signup." />
+<meta property="og:description" data-i18n-attr="content: calc.meta.desc" content="Free nutrition calculator: BMR, TDEE, daily calorie target and macros with carb cycling and hydration. Done in seconds, no signup." />
 <meta property="og:image" content="https://subten-app.eu/assets/brand/og-calculator.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
@@ -46,7 +46,7 @@
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" data-i18n-attr="content: calc.meta.title" content="Nutrition Calculator — BMR, TDEE, Calories &amp; Macros | Subten" />
-<meta name="twitter:description" data-i18n-attr="content: calc.meta.desc" content="Free nutrition calculator: BMR, TDEE, calorie target and macros with carb cycling. Instant results, no signup." />
+<meta name="twitter:description" data-i18n-attr="content: calc.meta.desc" content="Free nutrition calculator: BMR, TDEE, calorie target and macros with carb cycling. Done in seconds, no signup." />
 <meta name="twitter:image" content="https://subten-app.eu/assets/brand/og-calculator.png" />
 
 <!-- Structured data -->
@@ -228,14 +228,13 @@ select.inp{appearance:none;-webkit-appearance:none;background-image:url("data:im
     </div>
     <nav class="nav-links">
       <a href="index.html#features" data-i18n="nav.features">Funkcie</a>
-      <a href="generator.html" class="nav-link-soon"><span data-i18n="nav.generator">Generátor</span><span class="nav-soon" data-i18n="nav.soon">čoskoro</span></a>
       <a href="calculator.html" style="color:var(--accent);" data-i18n="nav.calculator">Kalkulačka</a>
       <a href="recipes.html" data-i18n="nav.recipes">Recepty</a>
       <a href="index.html#pricing" data-i18n="nav.pricing">Cenník</a>
     </nav>
     <div class="nav-right">
       <div class="lang-toggle" role="group" aria-label="Language"></div>
-      <a href="index.html#download" class="btn btn-primary nav-cta" data-i18n="nav.cta">Čoskoro</a>
+      <a href="index.html#download" class="btn btn-primary nav-cta" data-store-cta="text" data-i18n="nav.cta">Čoskoro</a>
       <button class="menu-btn" aria-label="Menu"><span class="bar"></span></button>
     </div>
   </div>
@@ -245,8 +244,8 @@ select.inp{appearance:none;-webkit-appearance:none;background-image:url("data:im
 
 <section class="calc-hero">
   <div class="container">
-    <span class="kicker" data-i18n="calc.kicker">Kalkulačka zadarmo</span>
-    <h1 data-i18n="calc.h1">Tvoje čísla — presne ako v appke.</h1>
+    <span class="kicker" data-i18n="calc.kicker">Nutričná kalkulačka zadarmo</span>
+    <h1 data-i18n="calc.h1">Nutričná kalkulačka — BMR, TDEE a&nbsp;makrá</h1>
     <p class="lede" data-i18n="calc.lede">Rovnaké vzorce, aké poháňajú Subten: BMR, TDEE, denný kalorický cieľ, makrá s carb cyclingom, hydratácia a skóre regenerácie. Všetko počíta tvoj prehliadač naživo — nič sa nikam neposiela.</p>
   </div>
 </section>
@@ -331,7 +330,7 @@ select.inp{appearance:none;-webkit-appearance:none;background-image:url("data:im
                 <input class="inp" id="in-hrv" type="number" inputmode="numeric" min="10" max="200" placeholder="—" />
               </div>
               <div class="field">
-                <label data-i18n="calc.wear.rhr">Kľudový tep (bpm)</label>
+                <label data-i18n="calc.wear.rhr">Pokojový tep (bpm)</label>
                 <input class="inp" id="in-rhr" type="number" inputmode="numeric" min="30" max="120" placeholder="—" />
               </div>
             </div>
@@ -391,7 +390,7 @@ select.inp{appearance:none;-webkit-appearance:none;background-image:url("data:im
       <!-- ===== RESULTS ===== -->
       <div>
         <div class="calc-panel">
-          <p class="calc-section-label" data-i18n="calc.out.title">Tvoje výsledky</p>
+          <p class="calc-section-label" data-i18n="calc.out.title">Tvoje čísla</p>
 
           <div class="res-grid">
             <div class="stat">
@@ -472,7 +471,7 @@ select.inp{appearance:none;-webkit-appearance:none;background-image:url("data:im
           <!-- secondary scores -->
           <div class="res-block" id="scores-block" style="display:none">
             <h3 data-i18n="calc.scores.title">Skóre regenerácie</h3>
-            <p class="res-sub" data-i18n="calc.scores.sub">WHOOP-style heuristiky z dát hodiniek. V appke sa počítajú automaticky z Apple Health.</p>
+            <p class="res-sub" data-i18n="calc.scores.sub">Orientačné skóre z dát hodiniek. V appke sa počítajú automaticky z Apple Health.</p>
             <div class="res-grid">
               <div class="stat" id="card-recovery" style="display:none">
                 <div class="k" data-i18n="calc.recovery">Recovery</div>
@@ -493,7 +492,7 @@ select.inp{appearance:none;-webkit-appearance:none;background-image:url("data:im
           </div>
 
           <div class="res-block" id="scores-hint">
-            <div class="note-card" data-i18n="calc.scores.hint"><b>Tip:</b> Vyplň <b>Dáta z hodiniek</b> vľavo a doplníme aj Recovery, Sleep a Strain skóre — presne ako ich appka ukazuje z Apple Watch.</div>
+            <div class="note-card" data-i18n="calc.scores.hint"><b>Tip:</b> Vyplň <b>Dáta z hodiniek</b> vľavo a doplníme aj orientačné Recovery, Sleep a Strain skóre, aké appka ukazuje z Apple Watch.</div>
           </div>
         </div>
 
@@ -515,23 +514,23 @@ select.inp{appearance:none;-webkit-appearance:none;background-image:url("data:im
     <div class="faq">
       <details class="faq-item" open>
         <summary><span data-i18n="calc.faq.q1">Čo je BMR (bazálny metabolizmus)?</span><span class="faq-icon" aria-hidden="true"></span></summary>
-        <div class="faq-answer"><p data-i18n="calc.faq.a1">BMR je energia, ktorú telo spáli v úplnom pokoji na základné životné funkcie.</p></div>
+        <div class="faq-answer"><p data-i18n="calc.faq.a1">BMR je energia, ktorú telo spáli v úplnom pokoji na základné životné funkcie. Subten používa rovnicu Mifflin-St Jeor: 10×váha(kg) + 6,25×výška(cm) − 5×vek + konštanta podľa pohlavia.</p></div>
       </details>
       <details class="faq-item">
         <summary><span data-i18n="calc.faq.q2">Aký je rozdiel medzi BMR a TDEE?</span><span class="faq-icon" aria-hidden="true"></span></summary>
-        <div class="faq-answer"><p data-i18n="calc.faq.a2">TDEE je BMR vynásobené koeficientom aktivity — kalórie, ktoré reálne spáliš za deň.</p></div>
+        <div class="faq-answer"><p data-i18n="calc.faq.a2">TDEE (celkový denný energetický výdaj) je BMR vynásobené koeficientom aktivity — kalórie, ktoré reálne spáliš za deň. Kalorický cieľ sa potom odvíja od TDEE podľa toho, či chceš byť v deficite, udržiavať alebo naberať.</p></div>
       </details>
       <details class="faq-item">
         <summary><span data-i18n="calc.faq.q3">Ako si vypočítam makrá?</span><span class="faq-icon" aria-hidden="true"></span></summary>
-        <div class="faq-answer"><p data-i18n="calc.faq.a3">Začni bielkovinami (1,6–2,2 g/kg), tuky aspoň 0,6 g/kg a zvyšok doplň sacharidmi.</p></div>
+        <div class="faq-answer"><p data-i18n="calc.faq.a3">Začni bielkovinami (1,6–2,2 g na kg hmotnosti), tuky nastav aspoň na 0,6 g/kg alebo 20 % kalórií a zvyšok doplň sacharidmi. Subten pridáva aj vlákninu 14 g na 1000 kcal.</p></div>
       </details>
       <details class="faq-item">
         <summary><span data-i18n="calc.faq.q4">Čo je carb cycling?</span><span class="faq-icon" aria-hidden="true"></span></summary>
-        <div class="faq-answer"><p data-i18n="calc.faq.a4">Carb cycling presúva sacharidy počas týždňa podľa záťaže, pričom týždenný priemer ostáva rovný cieľu.</p></div>
+        <div class="faq-answer"><p data-i18n="calc.faq.a4">Carb cycling presúva sacharidy počas týždňa podľa záťaže — viac v ťažké dni, menej v dni voľna — pričom týždenný priemer ostáva rovný cieľu. Bielkoviny a tuky sú stabilné.</p></div>
       </details>
       <details class="faq-item">
         <summary><span data-i18n="calc.faq.q5">Je táto kalorická kalkulačka zadarmo?</span><span class="faq-icon" aria-hidden="true"></span></summary>
-        <div class="faq-answer"><p data-i18n="calc.faq.a5">Áno — kalkulačka je úplne zadarmo a beží celá v tvojom prehliadači, bez registrácie.</p></div>
+        <div class="faq-answer"><p data-i18n="calc.faq.a5">Áno — kalkulačka je úplne zadarmo a beží celá v tvojom prehliadači; bez registrácie a zadané údaje nikam neodosielame. Na denné sledovanie a AI trénera vyskúšaj aplikáciu Subten.</p></div>
       </details>
     </div>
   </div>
@@ -547,13 +546,12 @@ select.inp{appearance:none;-webkit-appearance:none;background-image:url("data:im
           <span class="logo" aria-hidden="true"><img src="assets/brand/subten-logo.png" alt="Subten" width="30" height="30" style="border-radius:7px;display:block;" /></span>
           Subten
         </a>
-        <p data-i18n="footer.tagline">Tréning, výživa a regenerácia v jednej appke.</p>
+        <p data-i18n="footer.tagline">Tréning, výživa a regenerácia v jednej appke. Tvoj AI tréner vždy po ruke.</p>
       </div>
       <div class="footer-cols">
         <div class="footer-col">
           <h4 data-i18n="footer.product">Produkt</h4>
           <a href="index.html#features" data-i18n="nav.features">Funkcie</a>
-          <a href="generator.html" data-i18n="nav.generator">Generátor</a>
           <a href="calculator.html" data-i18n="nav.calculator">Kalkulačka</a>
           <a href="recipes.html" data-i18n="nav.recipes">Recepty</a>
           <a href="index.html#pricing" data-i18n="nav.pricing">Cenník</a>
@@ -571,12 +569,13 @@ select.inp{appearance:none;-webkit-appearance:none;background-image:url("data:im
       </div>
     </div>
     <div class="footer-bottom">
-      <span data-i18n="footer.rights">© 2026 Subten. Všetky práva vyhradené.</span>
+      <span data-i18n="footer.rights">© 2026 Syenit, s.&nbsp;r.&nbsp;o. · 18+, nie je zdravotnícka pomôcka, hodnoty sú odhady</span>
       <span data-i18n="footer.made">Vytvorené na Slovensku 🇸🇰</span>
     </div>
   </div>
 </footer>
 
+<script src="js/release.js"></script>
 <script src="js/i18n.js"></script>
 <script src="js/app.js"></script>
 <script>

@@ -421,9 +421,6 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 800; letter-spacing:
   background: #000;
   border-radius: 999px;
 }
-/* The hero back phone (coach-dark.png) still has an island baked into the
-   screenshot — skip the overlay there so it isn't doubled. */
-.phone-back .dynamic-island { display: none; }
 
 /* ============================================================
    MARQUEE / trust strip
@@ -681,3 +678,26 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 800; letter-spacing:
 
 /* lang visibility */
 [data-i18n-show] { display: none; }
+
+/* ============================================================
+   Doplnky (web pred vydaním): screenshoty, BYOK riadok, odznak obchodu
+   ============================================================ */
+img.screen-slot { object-fit: cover; object-position: top center; background: #000; }
+.price-byok { max-width: 760px; margin: 28px auto 0; text-align: center; color: var(--ink-2); font-size: 14.5px; line-height: 1.55; }
+.price-byok strong { color: var(--ink); }
+/* oficiálny odznak „Download on the App Store" — zobrazí sa až po prepnutí v js/release.js */
+.store-badge-link { display: inline-flex; line-height: 0; border-radius: 9px; transition: transform .2s var(--ease), filter .2s; }
+.store-badge-link:hover { transform: translateY(-2px); filter: brightness(1.12); }
+.store-badge-link img { display: block; height: 48px; width: auto; }
+.store-badge-link[hidden] { display: none; }
+.cta-card .store-badge-link { margin-bottom: 4px; }
+
+/* Úzke telefóny (375 px): hamburger sa musí zmestiť do hlavičky */
+@media (max-width: 460px) {
+  .nav-inner { gap: 8px; }
+  .nav-right { gap: 6px; margin-left: auto; }
+  .brand { font-size: 18px; gap: 9px; }
+  .lang-btn { padding: 6px 8px; }
+  a.nav-cta { padding: 9px 14px; font-size: 13px; }
+  .menu-btn { width: 38px; }
+}

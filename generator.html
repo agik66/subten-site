@@ -18,8 +18,9 @@
     } catch (e) {}
   })();
 </script>
+<meta name="robots" content="noindex" />
 <title>Subten — Generátor tréningového plánu</title>
-<meta name="description" content="Vygeneruj si tréningový plán na mieru zadarmo. Vyber cieľ, úroveň a počet dní — Subten ti pripraví kompletný týždenný rozpis s GIF ukážkami cvikov." />
+<meta name="description" content="Vygeneruj si tréningový plán na mieru. Vyber cieľ, úroveň a počet dní — Subten ti pripraví kompletný týždenný rozpis s GIF ukážkami cvikov." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;450;500;550;600;700;800&family=Schibsted+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet" />
@@ -52,14 +53,13 @@
     </div>
     <nav class="nav-links">
       <a href="index.html#features" data-i18n="nav.features">Funkcie</a>
-      <a href="generator.html" class="nav-link-soon" style="color:var(--accent);"><span data-i18n="nav.generator">Generátor</span><span class="nav-soon" data-i18n="nav.soon">čoskoro</span></a>
       <a href="calculator.html" data-i18n="nav.calculator">Kalkulačka</a>
       <a href="recipes.html" data-i18n="nav.recipes">Recepty</a>
       <a href="index.html#pricing" data-i18n="nav.pricing">Cenník</a>
     </nav>
     <div class="nav-right">
       <div class="lang-toggle" role="group" aria-label="Language"></div>
-      <a href="index.html#download" class="btn btn-primary nav-cta" data-i18n="nav.cta">Čoskoro</a>
+      <a href="index.html#download" class="btn btn-primary nav-cta" data-store-cta="text" data-i18n="nav.cta">Čoskoro</a>
       <button class="menu-btn" aria-label="Menu"><span class="bar"></span></button>
     </div>
   </div>
@@ -75,7 +75,7 @@
     <p class="lede" data-i18n="gen.cs.text">Pracujeme na generátore tréningových plánov na mieru — vyberieš si cieľ, úroveň a počet dní a dostaneš kompletný rozpis s ukážkami cvikov. Medzitým vyskúšaj našu kalkulačku.</p>
     <div class="cs-cta">
       <a href="calculator.html" class="btn btn-primary" data-i18n="gen.cs.cta">Vyskúšať kalkulačku</a>
-      <a href="index.html#download" class="btn btn-ghost" data-i18n="nav.cta">Čoskoro</a>
+      <a href="index.html#download" class="btn btn-ghost" data-store-cta="text" data-i18n="nav.cta">Čoskoro</a>
     </div>
   </div>
 </section>
@@ -90,13 +90,12 @@
           <span class="logo" aria-hidden="true"><img src="assets/brand/subten-logo.png" alt="Subten" width="30" height="30" style="border-radius:7px;display:block;" /></span>
           Subten
         </a>
-        <p data-i18n="footer.tagline">Tréning, výživa a regenerácia v jednej appke.</p>
+        <p data-i18n="footer.tagline">Tréning, výživa a regenerácia v jednej appke. Tvoj AI tréner vždy po ruke.</p>
       </div>
       <div class="footer-cols">
         <div class="footer-col">
           <h4 data-i18n="footer.product">Produkt</h4>
           <a href="index.html#features" data-i18n="nav.features">Funkcie</a>
-          <a href="generator.html" data-i18n="nav.generator">Generátor</a>
           <a href="calculator.html" data-i18n="nav.calculator">Kalkulačka</a>
           <a href="recipes.html" data-i18n="nav.recipes">Recepty</a>
           <a href="index.html#pricing" data-i18n="nav.pricing">Cenník</a>
@@ -114,12 +113,13 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span data-i18n="footer.rights">&copy; 2026 Subten. Všetky práva vyhradené.</span>
-      <span data-i18n="footer.made">Vytvorené na Slovensku</span>
+      <span data-i18n="footer.rights">© 2026 Syenit, s.&nbsp;r.&nbsp;o. · 18+, nie je zdravotnícka pomôcka, hodnoty sú odhady</span>
+      <span data-i18n="footer.made">Vytvorené na Slovensku 🇸🇰</span>
     </div>
   </div>
 </footer>
 
+<script src="js/release.js"></script>
 <script src="js/i18n.js"></script>
 <script src="js/app.js"></script>
 

@@ -24,7 +24,7 @@
 window.SUBTEN_LANGUAGES = [
   { code: "sk", label: "SK", name: "Slovenčina" },
   { code: "en", label: "EN", name: "English" },
-  { code: "cz", label: "CZ", name: "Čeština" }
+  { code: "cz", label: "CS", name: "Čeština" } /* interný kód "cz"; v URL aj v <html lang> sa používa "cs" */
   /* To add a language, add ONE line here, e.g.:
      { code: "it", label: "IT", name: "Italiano" },
      { code: "de", label: "DE", name: "Deutsch" },
@@ -40,7 +40,7 @@ window.SUBTEN_I18N = {
   /* nav */
   "nav.features": { sk: "Funkcie", en: "Features", cz: "Funkce" },
   "nav.how":      { sk: "Ako to funguje", en: "How it works", cz: "Jak to funguje" },
-  "nav.coach":    { sk: "AI Coach", en: "AI Coach", cz: "AI Coach" },
+  "nav.coach":    { sk: "AI tréner", en: "AI coach", cz: "AI trenér" },
   "nav.pricing":  { sk: "Cenník", en: "Pricing", cz: "Ceník" },
   "nav.faq":      { sk: "FAQ", en: "FAQ", cz: "FAQ" },
   "nav.generator":{ sk: "Generátor", en: "Generator", cz: "Generátor" },
@@ -50,20 +50,14 @@ window.SUBTEN_I18N = {
   "nav.cta":      { sk: "Čoskoro", en: "Soon", cz: "Brzy" },
 
   /* hero */
-  "hero.badge":   { sk: "Nové · AI tréner v reálnom čase", en: "New · Real-time AI coach", cz: "Nové · AI trenér v reálném čase" },
-  "hero.title":   {
-    sk: "Jedlo, tréning a&nbsp;<span class='text-grad'>regenerácia</span> v jednej appke.",
-    en: "Food, training and&nbsp;<span class='text-grad'>recovery</span> in one app.", cz: "Jídlo, trénink a&nbsp;<span class='text-grad'>regenerace</span> v jedné appce."
-  },
-  "hero.lede":    {
-    sk: "Subten spojí kalórie, makrá, tréningový plán a dáta z hodiniek — a tvoj AI tréner ti každý deň povie, čo robiť ďalej.",
-    en: "Subten brings together calories, macros, your training plan and watch data — and your AI coach tells you exactly what to do next, every day.", cz: "Subten spojí kalorie, makra, tréninkový plán a data z hodinek — a tvůj AI trenér ti každý den řekne, co dělat dál."
-  },
+  "hero.badge":   { sk: "AI tréner a plány pre 8 športov", en: "AI coach and plans for 8 sports", cz: "AI trenér a plány pro 8 sportů" },
+  "hero.title":   { sk: "Jedlo, tréning a&nbsp;<span class='text-grad'>regenerácia</span> v jednej appke.", en: "Food, training and&nbsp;<span class='text-grad'>recovery</span> in one app.", cz: "Jídlo, trénink a&nbsp;<span class='text-grad'>regenerace</span> v jedné aplikaci." },
+  "hero.lede":    { sk: "Subten spojí kalórie, makrá, tréningový plán a dáta z hodiniek — a tvoj AI tréner ti každý deň navrhne, čo robiť ďalej.", en: "Subten brings together calories, macros, your training plan and watch data — and your AI coach suggests what to do next, every day.", cz: "Subten spojí kalorie, makra, tréninkový plán a data z hodinek — a tvůj AI trenér ti každý den navrhne, co dělat dál." },
   "hero.cta1":    { sk: "Čoskoro v App Store", en: "Coming soon to the App Store", cz: "Brzy v App Storu" },
   "hero.cta2":    { sk: "Pozrieť funkcie", en: "See features", cz: "Prohlédnout funkce" },
   "hero.meta1":   { sk: "Bez reklám", en: "No ads", cz: "Bez reklam" },
   "hero.meta2":   { sk: "Synchronizácia s Apple Health", en: "Syncs with Apple Health", cz: "Synchronizace s Apple Health" },
-  "hero.meta3":   { sk: "Bez reklám", en: "No ads", cz: "Bez reklam" },
+  "hero.meta3":   { sk: "Aj na Apple Watch", en: "On Apple Watch too", cz: "I na Apple Watch" },
 
   /* store badges */
 
@@ -73,28 +67,28 @@ window.SUBTEN_I18N = {
   "strip.3": { sk: "AI sken jedla", en: "AI food scan", cz: "AI sken jídla" },
   "strip.4": { sk: "Periodizované plány", en: "Periodized plans", cz: "Periodizované plány" },
   "strip.5": { sk: "Makrá & kalórie", en: "Macros & calories", cz: "Makra & kalorie" },
-  "strip.6": { sk: "Slovensky & anglicky", en: "Slovak & English", cz: "Slovensky, anglicky & česky" },
+  "strip.6": { sk: "6 jazykov", en: "6 languages", cz: "6 jazyků" },
 
   /* features */
   "feat.kicker": { sk: "Čo Subten dokáže", en: "What Subten does", cz: "Co Subten umí" },
-  "feat.title":  { sk: "Všetko pre tvoj progres — bez piatich appiek.", en: "Everything for your progress — without five apps.", cz: "Vše pro tvůj progres — bez pěti appek." },
+  "feat.title":  { sk: "Všetko pre tvoj progres — bez piatich appiek.", en: "Everything for your progress — without five apps.", cz: "Vše pro tvůj progres — bez pěti aplikací." },
   "feat.lede":   { sk: "Sleduj jedlo, trénuj podľa plánu, meraj regeneráciu a nechaj sa viesť AI trénerom. V jednom čistom rozhraní.", en: "Track food, train to a plan, measure recovery and get guided by an AI coach. In one clean interface.", cz: "Sleduj jídlo, trénuj podle plánu, měř regeneraci a nech se vést AI trenérem. V jednom čistém rozhraní." },
 
   "food.title":     { sk: "Jedlo a makrá", en: "Food & macros", cz: "Jídlo a makra" },
-  "food.desc":      { sk: "Naskenuj čiarový kód alebo odfoť tanier. Subten dopočíta kalórie, bielkoviny, sacharidy, tuky aj vlákninu.", en: "Scan a barcode or snap your plate. Subten works out calories, protein, carbs, fat and fiber.", cz: "Naskenuj čárový kód nebo vyfoť talíř. Subten dopočítá kalorie, bílkoviny, sacharidy, tuky i vlákninu." },
+  "food.desc":      { sk: "Naskenuj čiarový kód alebo odfoť tanier — AI odhadne kalórie a makrá. Sleduješ aj bielkoviny, sacharidy, tuky a vlákninu.", en: "Scan a barcode or snap your plate — AI estimates calories and macros. Track protein, carbs, fat and fiber too.", cz: "Naskenuj čárový kód nebo vyfoť talíř — AI odhadne kalorie a makra. Sleduješ i bílkoviny, sacharidy, tuky a vlákninu." },
   "training.title": { sk: "Tréning a šport", en: "Training & sport", cz: "Trénink a sport" },
-  "training.desc":  { sk: "Plány do posilňovne aj periodizované športové cykly — hokej, futbal, tenis a basketbal.", en: "Gym splits and periodized sport cycles — hockey, football, tennis and basketball.", cz: "Plány do posilovny i periodizované sportovní cykly — hokej, fotbal, tenis a basketbal." },
+  "training.desc":  { sk: "Plány do posilňovne a plány pre 8 športov: hokej, futbal, tenis, basketbal, beh, cyklistika, plávanie a triatlón.", en: "Gym programmes and plans for 8 sports: hockey, football, tennis, basketball, running, cycling, swimming and triathlon.", cz: "Plány do posilovny a plány pro 8 sportů: hokej, fotbal, tenis, basketbal, běh, cyklistika, plavání a triatlon." },
   "recovery.title": { sk: "Regenerácia", en: "Recovery", cz: "Regenerace" },
   "recovery.desc":  { sk: "HRV, pokojový tep, spánok a SpO₂ z hodiniek v jednom skóre pripravenosti.", en: "HRV, resting heart rate, sleep and SpO₂ from your watch in one readiness score.", cz: "HRV, klidový tep, spánek a SpO₂ z hodinek v jednom skóre připravenosti." },
-  "coachf.title":   { sk: "AI Coach", en: "AI Coach", cz: "AI Coach" },
-  "coachf.desc":    { sk: "Tvoj osobný tréner v telefóne — pýtaj sa na výživu, tréning aj motiváciu.", en: "Your personal coach in your pocket — ask about nutrition, training and motivation.", cz: "Tvůj osobní trenér v telefonu — ptej se na výživu, trénink i motivaci." },
+  "coachf.title":   { sk: "AI tréner", en: "AI coach", cz: "AI trenér" },
+  "coachf.desc":    { sk: "AI tréner v aplikácii — pýtaj sa na výživu, tréning aj motiváciu.", en: "An AI coach in the app — ask about nutrition, training and motivation.", cz: "AI trenér v aplikaci — ptej se na výživu, trénink i motivaci." },
   "progress.title": { sk: "Progres a prehľad", en: "Progress & insights", cz: "Progres a přehled" },
-  "progress.desc":  { sk: "Týždenné hodnotenia, trend váhy a výkonnostný profil, ktorý ukáže, kam smeruješ.", en: "Weekly reviews, weight trend and a performance profile that shows where you're heading.", cz: "Týdenní hodnocení, trend váhy a výkonnostní profil, který ukáže, kam směřuješ." },
+  "progress.desc":  { sk: "Týždenné hodnotenia a história záznamov na jednom mieste — vidíš, ako sa ti darí držať plán.", en: "Weekly reviews and your full history in one place — see how well you're sticking to your plan.", cz: "Týdenní hodnocení a historie záznamů na jednom místě — vidíš, jak se ti daří držet plán." },
 
   /* showcase: food */
   "sc.food.title": { sk: "Zaznamenaj jedlo za pár sekúnd", en: "Log meals in seconds", cz: "Zaznamenej jídlo za pár sekund" },
-  "sc.food.desc":  { sk: "Sken, fotka alebo vyhľadávanie z databázy. Obľúbené a časté jedlá máš po ruke a Subten ti ukáže, čo ti ešte do cieľa chýba.", en: "Scan, photo or search the database. Favorites and frequent foods are a tap away, and Subten shows exactly what's left to hit your goal.", cz: "Sken, fotka nebo vyhledávání z databáze. Oblíbená a častá jídla máš po ruce a Subten ti ukáže, co ti ještě do cíle chybí." },
-  "sc.food.li1":   { sk: "Sken čiarového kódu a rozpoznávanie z fotky", en: "Barcode scan & photo recognition", cz: "Sken čárového kódu a rozpoznání z fotky" },
+  "sc.food.desc":  { sk: "Sken, fotka alebo vyhľadávanie z databázy. Obľúbené a časté jedlá máš po ruke a Subten ti ukáže, čo ti ešte do cieľa chýba.", en: "Scan, photo or search the database. Favorites and frequent foods are a tap away, and Subten shows what's left to hit your goal.", cz: "Sken, fotka nebo vyhledávání z databáze. Oblíbená a častá jídla máš po ruce a Subten ti ukáže, co ti ještě do cíle chybí." },
+  "sc.food.li1":   { sk: "Čiarový kód a sken jedla z fotky", en: "Barcode and photo food scan", cz: "Čárový kód a sken jídla z fotky" },
   "sc.food.li2":   { sk: "Bielkoviny, sacharidy, tuky aj vláknina", en: "Protein, carbs, fat and fiber", cz: "Bílkoviny, sacharidy, tuky i vláknina" },
   "sc.food.li3":   { sk: "Raňajky, obedy, snacky aj vlastné jedlá", en: "Breakfast, lunch, snacks and custom foods", cz: "Snídaně, obědy, snacky i vlastní jídla" },
 
@@ -102,36 +96,36 @@ window.SUBTEN_I18N = {
   "sc.train.title": { sk: "Trénuj podľa plánu, nie od oka", en: "Train to a plan, not by guesswork", cz: "Trénuj podle plánu, ne od oka" },
   "sc.train.desc":  { sk: "Vyber si rozpis do posilňovne alebo periodizovaný plán pre svoj šport. Subten ti pripraví týždeň a vedie ťa cvik po cviku.", en: "Pick a gym split or a periodized plan for your sport. Subten lays out your week and guides you exercise by exercise.", cz: "Vyber si rozpis do posilovny nebo periodizovaný plán pro svůj sport. Subten ti připraví týden a vede tě cvik po cviku." },
   "sc.train.li1":   { sk: "Celé telo, PPL, Upper/Lower, Wendler a ďalšie", en: "Full body, PPL, Upper/Lower, Wendler and more", cz: "Celé tělo, PPL, Upper/Lower, Wendler a další" },
-  "sc.train.li2":   { sk: "Periodizované cykly pre hokej, futbal, tenis a basketbal", en: "Periodized cycles for hockey, football, tennis and basketball", cz: "Periodizované cykly pro hokej, fotbal, tenis a basketbal" },
-  "sc.train.li3":   { sk: "Knižnica cvikov s návodmi a zásahmi svalov", en: "Exercise library with guides and muscle maps", cz: "Knihovna cviků s návody a zásahy svalů" },
+  "sc.train.li2":   { sk: "Periodizované plány pre 8 športov: hokej, futbal, tenis, basketbal, beh, cyklistika, plávanie a triatlón", en: "Periodized plans for 8 sports: hockey, football, tennis, basketball, running, cycling, swimming and triathlon", cz: "Periodizované plány pro 8 sportů: hokej, fotbal, tenis, basketbal, běh, cyklistika, plavání a triatlon" },
+  "sc.train.li3":   { sk: "Knižnica cvikov s návodmi a zapojenými svalmi", en: "Exercise library with guides and the muscles each exercise works", cz: "Knihovna cviků s návody a zapojenými svaly" },
 
   /* showcase: recovery */
-  "sc.rec.title": { sk: "Vieš, kedy zatlačiť a kedy si oddýchnuť", en: "Know when to push and when to rest", cz: "Víš, kdy zabrat a kdy si odpočinout" },
+  "sc.rec.title": { sk: "Vieš, kedy pridať a kedy poľaviť", en: "Know when to push harder and when to ease off", cz: "Víš, kdy přidat a kdy polevit" },
   "sc.rec.desc":  { sk: "Subten číta HRV, pokojový tep, spánok aj dýchanie z hodiniek a každé ráno ti dá jasné skóre pripravenosti — aj s vysvetlením.", en: "Subten reads HRV, resting heart rate, sleep and breathing from your watch and gives you a clear readiness score every morning — with the why.", cz: "Subten čte HRV, klidový tep, spánek i dýchání z hodinek a každé ráno ti dá jasné skóre připravenosti — i s vysvětlením." },
   "sc.rec.li1":   { sk: "Skóre regenerácie 0–100 každé ráno", en: "Recovery score 0–100 every morning", cz: "Skóre regenerace 0–100 každé ráno" },
   "sc.rec.li2":   { sk: "HRV, pokojový tep, SpO₂ a dýchanie", en: "HRV, resting HR, SpO₂ and breathing", cz: "HRV, klidový tep, SpO₂ a dýchání" },
-  "sc.rec.li3":   { sk: "Týždenné trendy, váha a kalórie", en: "Weekly trends, weight and calories", cz: "Týdenní trendy, váha a kalorie" },
+  "sc.rec.li3":   { sk: "Týždenné trendy a história záznamov", en: "Weekly trends and your full history", cz: "Týdenní trendy a historie záznamů" },
 
   /* steps */
   "steps.kicker": { sk: "Ako to funguje", en: "How it works", cz: "Jak to funguje" },
   "steps.title":  { sk: "Začni za tri minúty", en: "Get started in three minutes", cz: "Začni za tři minuty" },
-  "step1.title":  { sk: "Prepoj hodinky", en: "Connect your watch", cz: "Propoj hodinky" },
-  "step1.desc":   { sk: "Spoj Subten s Apple Health alebo svojím nositeľom — spánok, tep a pohyb sa načítajú samé.", en: "Link Subten with Apple Health or your wearable — sleep, heart rate and activity flow in automatically.", cz: "Spoj Subten s Apple Health nebo svým nositelným zařízením — spánek, tep a pohyb se načtou samy." },
+  "step1.title":  { sk: "Prepoj Apple Health", en: "Connect Apple Health", cz: "Propoj Apple Health" },
+  "step1.desc":   { sk: "Spoj Subten s Apple Health — spánok, tep a pohyb sa načítajú samé.", en: "Link Subten with Apple Health — sleep, heart rate and activity flow in automatically.", cz: "Spoj Subten s Apple Health — spánek, tep a pohyb se načtou samy." },
   "step2.title":  { sk: "Nastav cieľ", en: "Set your goal", cz: "Nastav cíl" },
-  "step2.desc":   { sk: "Udržať, nabrať alebo trénovať na výkon? Subten nastaví kalórie a makrá podľa tvojho cieľa.", en: "Maintain, gain or train for performance? Subten sets your calories and macros to match your goal.", cz: "Udržet, nabrat nebo trénovat na výkon? Subten nastaví kalorie a makra podle tvého cíle." },
+  "step2.desc":   { sk: "Udržať, nabrať alebo trénovať na výkon? Subten nastaví východiskové kalórie a makrá a týždeň po týždni ich ladí.", en: "Maintain, gain or train for performance? Subten sets your starting calories and macros and fine-tunes them week by week.", cz: "Udržet, nabrat nebo trénovat na výkon? Subten nastaví výchozí kalorie a makra a týden po týdnu je ladí." },
   "step3.title":  { sk: "Nechaj sa viesť", en: "Let it guide you", cz: "Nech se vést" },
   "step3.desc":   { sk: "Každý deň dostaneš jasný plán jedla, tréningu a regenerácie — a AI trénera, keď sa potrebuješ poradiť.", en: "Every day you get a clear plan for food, training and recovery — plus an AI coach whenever you need advice.", cz: "Každý den dostaneš jasný plán jídla, tréninku a regenerace — a AI trenéra, když se potřebuješ poradit." },
 
   /* coach */
-  "coach.kicker": { sk: "AI Coach", en: "AI Coach", cz: "AI Coach" },
-  "coach.title":  { sk: "Osobný tréner, ktorý ťa pozná", en: "A personal coach that knows you", cz: "Osobní trenér, který tě zná" },
-  "coach.lede":   { sk: "Coach vidí tvoje dáta — jedlo, tréning, spánok aj regeneráciu — a odpovedá konkrétne na tvoju situáciu. Po slovensky aj anglicky.", en: "Your coach sees your data — food, training, sleep and recovery — and answers for your exact situation. In Slovak and English.", cz: "Coach vidí tvoje data — jídlo, trénink, spánek i regeneraci — a odpovídá konkrétně na tvoji situaci. Slovensky i anglicky." },
+  "coach.kicker": { sk: "AI tréner", en: "AI coach", cz: "AI trenér" },
+  "coach.title":  { sk: "AI tréner, ktorý pozná tvoje dáta", en: "An AI coach that knows your data", cz: "AI trenér, který zná tvoje data" },
+  "coach.lede":   { sk: "AI tréner vidí tvoje dáta — jedlo, tréning, spánok aj regeneráciu — a odpovedá na tvoju situáciu. V jazyku, v ktorom mu napíšeš.", en: "Your AI coach sees your data — food, training, sleep and recovery — and answers for your situation. In the language you write to it.", cz: "AI trenér vidí tvoje data — jídlo, trénink, spánek i regeneraci — a odpovídá na tvou situaci. V jazyce, ve kterém mu napíšeš." },
   "coach.q1":     { sk: "Mám dnes trénovať? Spal som len 5 hodín.", en: "Should I train today? I only slept 5 hours.", cz: "Mám dnes trénovat? Spal jsem jen 5 hodin." },
-  "coach.a1":     { sk: "Regenerácia je 68/100 — dobrá. Choď trénovať, ale drž nižšiu intenzitu a vynechaj zlyhanie. A doplň bielkoviny — chýba ti 41 g do cieľa.", en: "Recovery is 68/100 — solid. Train, but keep intensity moderate and skip going to failure. And top up protein — you're 41 g short of your goal.", cz: "Regenerace je 68/100 — dobrá. Jdi trénovat, ale drž nižší intenzitu a vynech selhání. A doplň bílkoviny — chybí ti 41 g do cíle." },
+  "coach.a1":     { sk: "Regenerácia je 68/100 — dobrá. Choď trénovať, ale drž nižšiu intenzitu a necvič do zlyhania. A doplň bielkoviny — chýba ti 41 g do cieľa.", en: "Recovery is 68/100 — solid. Train, but keep the intensity moderate and don't train to failure. And top up protein — you're 41 g short of your goal.", cz: "Regenerace je 68/100 — dobrá. Jdi trénovat, ale drž nižší intenzitu a necvič do selhání. A doplň bílkoviny — chybí ti 41 g do cíle." },
   "coach.q2":     { sk: "Oplatí sa kazeín pred spaním?", en: "Is casein before bed worth it?", cz: "Vyplatí se kasein před spaním?" },
-  "coach.a2":     { sk: "Ak ti to sedí do makier, kľudne. Pomalé bielkoviny cez noc neuškodia, ale celkový denný príjem bielkovín rozhoduje viac.", en: "If it fits your macros, sure. Slow protein overnight won't hurt, but your total daily protein matters far more.", cz: "Pokud ti sedí do maker, klidně. Pomalé bílkoviny přes noc neuškodí, ale celkový denní příjem bílkovin rozhoduje víc." },
-  "coach.privacy": { sk: "<strong>AI v telefóne, keď je pripravená.</strong> AI tréner (súčasť Premium) spracúva požiadavky v cloude, kým v telefóne nie je pripravený model AI v zariadení. Na telefónoch so 6 GB RAM a viac potom môžu textové funkcie (chat, denné a týždenné vyhodnotenia) bežať priamo v telefóne a ich obsah sa vtedy nespracúva v cloude. Model (~3 GB) sa sťahuje iba cez Wi-Fi a v Nastaveniach v časti AI v telefóne ho zapneš alebo vypneš. Funkcie s fotkou (sken jedla) idú vždy do cloudu, s tvojím výslovným súhlasom.", en: "<strong>AI on your phone, once it is ready.</strong> The AI coach (part of Premium) handles requests in the cloud until an on-device AI model is ready on your phone. On phones with 6 GB of RAM or more, the text features (chat, daily and weekly reviews) can then run directly on the phone, and that content is no longer processed in the cloud. The model (~3 GB) downloads over Wi-Fi only, and in Settings under On-device AI you can switch it on or off. Photo features (food scan) always go to the cloud, only with your explicit consent.", cz: "<strong>AI v telefonu, jakmile je připravená.</strong> AI trenér (součást Premium) zpracovává požadavky v cloudu, dokud v telefonu není připravený model AI v zařízení. Na telefonech s 6 GB RAM a více pak mohou textové funkce (chat, denní a týdenní vyhodnocení) běžet přímo v telefonu a jejich obsah se tehdy nezpracovává v cloudu. Model (~3 GB) se stahuje jen přes Wi-Fi a v Nastavení v části AI v telefonu ho zapneš nebo vypneš. Funkce s fotkou (sken jídla) jdou vždy do cloudu, jen s tvým výslovným souhlasem." },
-  "coach.note":   { sk: "Subten Coach nie je lekár ani výživový poradca. Pri zdravotných otázkach vyhľadaj odborníka.", en: "Subten Coach is not a doctor or dietitian. For medical questions, consult a professional.", cz: "Subten Coach není lékař ani výživový poradce. Při zdravotních otázkách vyhledej odborníka." },
+  "coach.a2":     { sk: "Ak ti to sedí do makier, pokojne. Pomalé bielkoviny cez noc neuškodia, ale celkový denný príjem bielkovín rozhoduje viac.", en: "If it fits your macros, sure. Slow protein overnight won't hurt, but your total daily protein matters far more.", cz: "Pokud ti sedí do maker, klidně. Pomalé bílkoviny přes noc neuškodí, ale celkový denní příjem bílkovin rozhoduje víc." },
+  "coach.privacy": { sk: "<strong>Súhlas a súkromie.</strong> AI tréner je súčasť Premium. Otázku alebo fotku odošle na spracovanie do cloudu len s tvojím výslovným súhlasom; kde to zariadenie dovolí, môžu textové funkcie bežať aj priamo v telefóne.", en: "<strong>Consent and privacy.</strong> The AI coach is part of Premium. Your question or photo is sent to the cloud for processing only with your explicit consent; where your device allows it, text features can also run directly on the phone.", cz: "<strong>Souhlas a soukromí.</strong> AI trenér je součástí Premium. Otázku nebo fotku odešle ke zpracování do cloudu jen s tvým výslovným souhlasem; kde to zařízení dovolí, mohou textové funkce běžet i přímo v telefonu." },
+  "coach.note":   { sk: "AI tréner nie je lekár ani výživový poradca. Pri zdravotných otázkach vyhľadaj odborníka.", en: "The AI coach is not a doctor or dietitian. For medical questions, consult a professional.", cz: "AI trenér není lékař ani výživový poradce. Při zdravotních otázkách vyhledej odborníka." },
 
   /* pricing */
   "price.kicker": { sk: "Cenník", en: "Pricing", cz: "Ceník" },
@@ -140,15 +134,15 @@ window.SUBTEN_I18N = {
   "free.name":    { sk: "Free", en: "Free", cz: "Free" },
   "free.per":     { sk: "navždy", en: "forever", cz: "navždy" },
   "free.sub":     { sk: "Všetko základné, čo potrebuješ na štart.", en: "Everything you need to get going.", cz: "Vše základní, co potřebuješ na start." },
-  "free.f1":      { sk: "Sledovanie jedla a makier", en: "Food & macro tracking", cz: "Sledování jídla a maker" },
-  "free.f2":      { sk: "Databáza cvikov a vlastný tréning", en: "Exercise library & custom workouts", cz: "Databáze cviků a vlastní trénink" },
-  "free.f3":      { sk: "Denné skóre regenerácie", en: "Daily recovery score", cz: "Denní skóre regenerace" },
-  "free.f4":      { sk: "Synchronizácia s Apple Health", en: "Apple Health sync", cz: "Synchronizace s Apple Health" },
-  "free.f5":      { sk: "AI funkcie a AI Coach", en: "AI features & AI Coach", cz: "AI funkce a AI Coach" },
-  "free.f6":      { sk: "Hotové a periodizované plány", en: "Ready-made & periodized plans", cz: "Hotové a periodizované plány" },
+  "free.f1":      { sk: "Zápis jedla a makier", en: "Food & macro logging", cz: "Zápis jídla a maker" },
+  "free.f2":      { sk: "Čiarový kód", en: "Barcode scanning", cz: "Čárový kód" },
+  "free.f3":      { sk: "Vlastný tréningový plán", en: "Your own training plan", cz: "Vlastní tréninkový plán" },
+  "free.f4":      { sk: "História záznamov", en: "Full history", cz: "Historie záznamů" },
+  "free.f5":      { sk: "Denné skóre regenerácie", en: "Daily recovery score", cz: "Denní skóre regenerace" },
+  "free.f6":      { sk: "Export dát", en: "Data export", cz: "Export dat" },
   "free.cta":     { sk: "Čoskoro v App Store", en: "Coming soon to the App Store", cz: "Brzy v App Storu" },
   "pro.name":     { sk: "Premium", en: "Premium", cz: "Premium" },
-  "pro.badge":    { sk: "Najobľúbenejšie", en: "Most popular", cz: "Nejoblíbenější" },
+  "pro.badge":    { sk: "Odporúčame", en: "Recommended", cz: "Doporučujeme" },
   "pro.per":      { sk: "/ mesiac", en: "/ month", cz: "/ měsíc" },
   "pro.per.year": { sk: "/ rok", en: "/ year", cz: "/ rok" },
   "pro.toggle.month": { sk: "Mesačne", en: "Monthly", cz: "Měsíčně" },
@@ -158,17 +152,17 @@ window.SUBTEN_I18N = {
   "pro.trial.year":  { sk: "Skúšobná doba 2 týždne", en: "2-week trial", cz: "Zkušební období 2 týdny" },
   "pro.sub":      { sk: "Plný výkon Subten vrátane AI trénera.", en: "The full power of Subten, including the AI coach.", cz: "Plný výkon Subtenu včetně AI trenéra." },
   "pro.f1":       { sk: "Všetko z Free", en: "Everything in Free", cz: "Vše z Free" },
-  "pro.f2":       { sk: "AI Coach", en: "AI Coach", cz: "AI Coach" },
-  "pro.f3":       { sk: "Periodizované športové plány", en: "Periodized sport plans", cz: "Periodizované sportovní plány" },
-  "pro.f4":       { sk: "Sken jedla z fotky", en: "Photo food scanning", cz: "Sken jídla z fotky" },
-  "pro.f5":       { sk: "Týždenné hodnotenia a trendy", en: "Weekly reviews & trends", cz: "Týdenní hodnocení a trendy" },
-  "pro.f6":       { sk: "Plán jedál a nákupný zoznam", en: "Meal plans & shopping lists", cz: "Plán jídel a nákupní seznam" },
+  "pro.f2":       { sk: "AI tréner", en: "AI coach", cz: "AI trenér" },
+  "pro.f3":       { sk: "Sken jedla z fotky", en: "Photo food scan", cz: "Sken jídla z fotky" },
+  "pro.f4":       { sk: "Programy do posilňovne", en: "Gym programmes", cz: "Programy do posilovny" },
+  "pro.f5":       { sk: "Plány pre 8 športov", en: "Plans for 8 sports", cz: "Plány pro 8 sportů" },
+  "pro.f6":       { sk: "AI jedálničky a nákupný zoznam", en: "AI meal plans & shopping list", cz: "AI jídelníčky a nákupní seznam" },
   "pro.cta":      { sk: "Premium čoskoro", en: "Premium coming soon", cz: "Premium brzy" },
 
   /* generator */
   "gen.kicker":     { sk: "Tréningový generátor", en: "Training generator", cz: "Tréninkový generátor" },
   "gen.title":      { sk: "Tvoj plán na mieru<br>za 30 sekúnd", en: "Your custom plan<br>in 30 seconds", cz: "Tvůj plán na míru<br>za 30 sekund" },
-  "gen.lede":       { sk: "Vyber cieľ, úroveň a počet dní. Subten ti vygeneruje kompletný rozpis s ukážkami cvikov — a QR kódom na import do appky.", en: "Pick your goal, level and training days. Subten generates a full plan with exercise demos — and a QR code to import into the app.", cz: "Vyber cíl, úroveň a počet dní. Subten ti vygeneruje kompletní rozpis s ukázkami cviků — a QR kódem pro import do appky." },
+  "gen.lede":       { sk: "Vyber cieľ, úroveň a počet dní. Subten ti vygeneruje kompletný rozpis s ukážkami cvikov — a QR kódom na import do appky.", en: "Pick your goal, level and training days. Subten generates a full plan with exercise demos — and a QR code to import into the app.", cz: "Vyber cíl, úroveň a počet dní. Subten ti vygeneruje kompletní rozpis s ukázkami cviků — a QR kódem pro import do aplikace." },
   "gen.s1.label":   { sk: "Krok 1 zo 4", en: "Step 1 of 4", cz: "Krok 1 ze 4" },
   "gen.s1.q":       { sk: "Aký je tvoj hlavný cieľ?", en: "What's your main goal?", cz: "Jaký je tvůj hlavní cíl?" },
   "gen.s2.label":   { sk: "Krok 2 zo 4", en: "Step 2 of 4", cz: "Krok 2 ze 4" },
@@ -193,13 +187,13 @@ window.SUBTEN_I18N = {
   "gen.lvl.adv":   { sk: "Expert", en: "Advanced", cz: "Expert" },
   "gen.lvl.adv.d": { sk: "Viac ako 3 roky pravidelného tréningu.", en: "Over 3 years of consistent training.", cz: "Více než 3 roky pravidelného tréninku." },
   "gen.plan.title": { sk: "Tvoj tréningový plán", en: "Your training plan", cz: "Tvůj tréninkový plán" },
-  "gen.qr.title":   { sk: "Importuj do Subten appky", en: "Import into Subten app", cz: "Importuj do Subten appky" },
-  "gen.qr.desc":    { sk: "Naskenuj QR kód v appke Subten a celý plán sa ti automaticky načíta — s ukážkami cvikov a časovačom.", en: "Scan the QR code in the Subten app and the entire plan loads automatically — with exercise demos and rest timer.", cz: "Naskenuj QR kód v appce Subten a celý plán se ti automaticky načte — s ukázkami cviků a časovačem." },
+  "gen.qr.title":   { sk: "Importuj do Subten appky", en: "Import into Subten app", cz: "Importuj do Subten aplikace" },
+  "gen.qr.desc":    { sk: "Naskenuj QR kód v appke Subten a celý plán sa ti automaticky načíta — s ukážkami cvikov a časovačom.", en: "Scan the QR code in the Subten app and the entire plan loads automatically — with exercise demos and rest timer.", cz: "Naskenuj QR kód v aplikaci Subten a celý plán se ti automaticky načte — s ukázkami cviků a časovačem." },
   "gen.qr.copy":    { sk: "Kopírovať plán", en: "Copy plan", cz: "Kopírovat plán" },
   "gen.qr.download":{ sk: "Stiahnuť QR", en: "Download QR", cz: "Stáhnout QR" },
-  "gen.qr.hint":    { sk: "V appke Subten choď do Tréning → Importovať → Skenovať QR", en: "In Subten app go to Training → Import → Scan QR", cz: "V appce Subten jdi do Trénink → Importovat → Skenovat QR" },
+  "gen.qr.hint":    { sk: "V appke Subten choď do Tréning → Importovať → Skenovať QR", en: "In Subten app go to Training → Import → Scan QR", cz: "V aplikaci Subten jdi do Trénink → Importovat → Skenovat QR" },
   "gen.cta.title":  { sk: "Chceš plný zážitok?", en: "Want the full experience?", cz: "Chceš plný zážitek?" },
-  "gen.cta.desc":   { sk: "V appke Subten dostaneš presné vedenie cvik po cviku, GIF animácie, časovač odpočinku a automatické prispôsobenie podľa regenerácie.", en: "In the Subten app you get step-by-step guidance, GIF animations, rest timer and automatic adjustments based on your recovery.", cz: "V appce Subten dostaneš přesné vedení cvik po cviku, GIF animace, časovač odpočinku a automatické přizpůsobení podle regenerace." },
+  "gen.cta.desc":   { sk: "V appke Subten dostaneš jasné vedenie cvik po cviku, GIF animácie, časovač odpočinku a automatické prispôsobenie podľa regenerácie.", en: "In the Subten app you get step-by-step guidance, GIF animations, rest timer and automatic adjustments based on your recovery.", cz: "V aplikaci Subten dostaneš jasné vedení cvik po cviku, GIF animace, časovač odpočinku a automatické přizpůsobení podle regenerace." },
   "rec.cta.btn":    { sk: "Čoskoro v App Store", en: "Coming soon to the App Store", cz: "Brzy v App Storu" },
   "gen.cta.btn":    { sk: "Čoskoro v App Store", en: "Coming soon to the App Store", cz: "Brzy v App Storu" },
   "gen.restart":    { sk: "Vygenerovať nový plán", en: "Generate new plan", cz: "Vygenerovat nový plán" },
@@ -218,15 +212,15 @@ window.SUBTEN_I18N = {
   "faq.kicker": { sk: "FAQ", en: "FAQ", cz: "FAQ" },
   "faq.title":  { sk: "Časté otázky", en: "Frequently asked", cz: "Časté otázky" },
   "faq.q1": { sk: "Funguje Subten s Apple Watch?", en: "Does Subten work with Apple Watch?", cz: "Funguje Subten s Apple Watch?" },
-  "faq.a1": { sk: "Áno. Subten sa prepojí cez Apple Health a načíta HRV, pokojový tep, spánok, SpO₂ aj kroky. Cez Health podporujeme aj ďalšie nositeľné zariadenia.", en: "Yes. Subten connects through Apple Health and reads HRV, resting heart rate, sleep, SpO₂ and steps. Other wearables are supported through Health too.", cz: "Ano. Subten se propojí přes Apple Health a načte HRV, klidový tep, spánek, SpO₂ i kroky. Přes Health podporujeme i další nositelná zařízení." },
-  "faq.q2": { sk: "Je appka v slovenčine?", en: "Is the app in Slovak?", cz: "Je appka v češtině?" },
-  "faq.a2": { sk: "Áno, Subten je plne v slovenčine aj angličtine — vrátane AI trénera.", en: "Yes — Subten is fully available in Slovak and English, including the AI coach.", cz: "Aplikace je plně ve slovenštině a angličtině — včetně AI trenéra. Slovenštině jako Čech rozumíš bez problémů a web máme kompletně v češtině." },
+  "faq.a1": { sk: "Áno. Subten má aplikáciu pre Apple Watch — prehľad dňa, voda a komplikácie na ciferníku — a cez Apple Health načíta HRV, pokojový tep, spánok, SpO₂ aj kroky.", en: "Yes. Subten has an Apple Watch app — a daily overview, water tracking and watch-face complications — and reads HRV, resting heart rate, sleep, SpO₂ and steps through Apple Health.", cz: "Ano. Subten má aplikaci pro Apple Watch — přehled dne, vodu a komplikace na ciferníku — a přes Apple Health načte HRV, klidový tep, spánek, SpO₂ i kroky." },
+  "faq.q2": { sk: "V akých jazykoch je appka?", en: "Which languages does the app support?", cz: "V jakých jazycích je aplikace?" },
+  "faq.a2": { sk: "Appka je v 6 jazykoch: slovenčine, češtine, angličtine, nemčine, poľštine a maďarčine. Cviky, jedlá a recepty zatiaľ máme v slovenčine, češtine a angličtine.", en: "The app is available in 6 languages: Slovak, Czech, English, German, Polish and Hungarian. Exercises, foods and recipes are in Slovak, Czech and English for now.", cz: "Aplikace je v 6 jazycích: slovenštině, češtině, angličtině, němčině, polštině a maďarštině. Cviky, jídla a recepty zatím nabízíme ve slovenštině, češtině a angličtině." },
   "faq.q3": { sk: "Potrebujem Premium, aby to malo zmysel?", en: "Do I need Premium for it to be useful?", cz: "Potřebuji Premium, aby to mělo smysl?" },
-  "faq.a3": { sk: "Nie. Sledovanie jedla, makier, základné plány a denné skóre regenerácie sú zadarmo. Premium pridáva AI trénera, sken z fotky a periodizované športové plány.", en: "No. Food and macro tracking, basic plans and the daily recovery score are free. Premium adds the AI coach, photo scanning and periodized sport plans.", cz: "Ne. Sledování jídla, maker, základní plány a denní skóre regenerace jsou zdarma. Premium přidává AI trenéra, sken z fotky a periodizované sportovní plány." },
+  "faq.a3": { sk: "Nie. Zápis jedla a makier, čiarový kód, vlastný tréningový plán, história, denné skóre regenerácie, export dát aj Apple Watch sú zadarmo. Premium pridáva AI trénera, sken jedla z fotky, programy do posilňovne, plány pre 8 športov a AI jedálničky s nákupným zoznamom.", en: "No. Food and macro logging, barcode scanning, your own training plan, history, the daily recovery score, data export and Apple Watch are free. Premium adds the AI coach, photo food scan, gym programmes, plans for 8 sports and AI meal plans with a shopping list.", cz: "Ne. Zápis jídla a maker, čárový kód, vlastní tréninkový plán, historie, denní skóre regenerace, export dat i Apple Watch jsou zdarma. Premium přidává AI trenéra, sken jídla z fotky, programy do posilovny, plány pro 8 sportů a AI jídelníčky s nákupním seznamem." },
   "faq.q4": { sk: "Ako je to s mojimi dátami?", en: "What about my data?", cz: "Jak je to s mými daty?" },
-  "faq.a4": { sk: "Tvoje zdravotné dáta zostávajú tvoje. AI tréner (súčasť Premium) spracúva požiadavky v cloude, kým v telefóne nie je pripravený model AI v zariadení; na telefónoch so 6 GB RAM a viac potom môžu chat a denné či týždenné vyhodnotenia bežať priamo v telefóne a ich obsah sa vtedy nespracúva v cloude. Model sa sťahuje iba cez Wi-Fi a v Nastaveniach ho zapneš alebo vypneš. Funkcie s fotkou (sken jedla) idú vždy do cloudu — vždy len s tvojím výslovným súhlasom, pseudonymne a bez uchovávania. Nič nepredávame a účet aj dáta môžeš kedykoľvek vymazať.", en: "Your health data stays yours. The AI coach (part of Premium) handles requests in the cloud until an on-device AI model is ready on your phone; on phones with 6 GB of RAM or more, chat and daily or weekly reviews can then run directly on the phone, and that content is no longer processed in the cloud. The model downloads over Wi-Fi only, and you can switch it on or off in Settings. Photo features (food scan) always go to the cloud — only with your explicit consent, pseudonymously and without retention. We never sell anything, and you can delete your account and data anytime.", cz: "Tvoje zdravotní data zůstávají tvoje. AI trenér (součást Premium) zpracovává požadavky v cloudu, dokud v telefonu není připravený model AI v zařízení; na telefonech s 6 GB RAM a více pak mohou chat a denní či týdenní vyhodnocení běžet přímo v telefonu a jejich obsah se tehdy nezpracovává v cloudu. Model se stahuje jen přes Wi-Fi a v Nastavení ho zapneš nebo vypneš. Funkce s fotkou (sken jídla) jdou vždy do cloudu — jen s tvým výslovným souhlasem, pseudonymně a bez uchovávání. Nic neprodáváme a účet i data můžeš kdykoli smazat." },
-  "faq.q5": { sk: "Nahrádza Coach lekára alebo trénera?", en: "Is Coach a replacement for a doctor or trainer?", cz: "Nahrazuje Coach lékaře nebo trenéra?" },
-  "faq.a5": { sk: "Nie. AI Coach je pomocník pri rozhodovaní, nie zdravotná služba. Pri zdravotných ťažkostiach sa obráť na odborníka.", en: "No. The AI Coach helps you make decisions — it's not a medical service. For health issues, see a professional.", cz: "Ne. AI Coach je pomocník při rozhodování, ne zdravotní služba. Při zdravotních potížích se obrať na odborníka." },
+  "faq.a4": { sk: "Tvoje dáta nepredávame a v appke nie sú reklamy ani sledovacie nástroje. Záznamy o jedle a tréningu ostávajú v tvojom telefóne a iCloude; na našom serveri v EÚ je len účet, predplatné a údaje o používaní. Funkcie AI (sken jedla z fotky, AI tréner) posielajú obsah cez službu OpenRouter do USA, a to len s tvojím výslovným súhlasom. Účet aj dáta môžeš kedykoľvek vymazať.", en: "We don't sell your data, and the app has no ads and no trackers. Your food and training records stay on your phone and in iCloud; our EU server holds only your account, subscription and usage data. AI features (photo food scan, AI coach) send content through OpenRouter to the USA, and only with your explicit consent. You can delete your account and data at any time.", cz: "Tvoje data neprodáváme a v aplikaci nejsou reklamy ani sledovací nástroje. Záznamy o jídle a tréninku zůstávají v tvém telefonu a iCloudu; na našem serveru v EU je jen účet, předplatné a údaje o používání. Funkce AI (sken jídla z fotky, AI trenér) posílají obsah přes službu OpenRouter do USA, a to jen s tvým výslovným souhlasem. Účet i data můžeš kdykoli smazat." },
+  "faq.q5": { sk: "Nahrádza AI tréner lekára alebo trénera?", en: "Does the AI coach replace a doctor or trainer?", cz: "Nahrazuje AI trenér lékaře nebo trenéra?" },
+  "faq.a5": { sk: "Nie. AI tréner je pomocník pri rozhodovaní, nie zdravotná služba. Pri zdravotných ťažkostiach sa obráť na odborníka.", en: "No. The AI coach helps you make decisions — it's not a medical service. For health issues, see a professional.", cz: "Ne. AI trenér je pomocník při rozhodování, ne zdravotní služba. Při zdravotních potížích se obrať na odborníka." },
 
   /* final cta */
   "cta.soon": { sk: "Pre iPhone a Apple Watch", en: "For iPhone and Apple Watch", cz: "Pro iPhone a Apple Watch" },
@@ -234,7 +228,7 @@ window.SUBTEN_I18N = {
   "cta.lede":  { sk: "Subten ešte nie je dostupný na stiahnutie.", en: "Subten is not available to download yet.", cz: "Subten zatím není ke stažení." },
 
   /* footer */
-  "footer.tagline": { sk: "Tréning, výživa a regenerácia v jednej appke. Tvoj AI tréner vždy po ruke.", en: "Training, nutrition and recovery in one app. Your AI coach, always with you.", cz: "Trénink, výživa a regenerace v jedné appce. Tvůj AI trenér vždy po ruce." },
+  "footer.tagline": { sk: "Tréning, výživa a regenerácia v jednej appke. Tvoj AI tréner vždy po ruke.", en: "Training, nutrition and recovery in one app. Your AI coach, always with you.", cz: "Trénink, výživa a regenerace v jedné aplikaci. Tvůj AI trenér vždy po ruce." },
   "footer.product": { sk: "Produkt", en: "Product", cz: "Produkt" },
   "footer.legal":   { sk: "Právne", en: "Legal", cz: "Právní" },
   "footer.contact": { sk: "Kontakt", en: "Contact", cz: "Kontakt" },
@@ -244,8 +238,8 @@ window.SUBTEN_I18N = {
   "footer.support": { sk: "Podpora", en: "Support", cz: "Podpora" },
   "footer.manual":  { sk: "Príručka", en: "User manual", cz: "Příručka" },
   "footer.email":   { sk: "Napíš nám", en: "Email us", cz: "Napiš nám" },
-  "footer.rights":  { sk: "© 2026 Subten. Všetky práva vyhradené.", en: "© 2026 Subten. All rights reserved.", cz: "© 2026 Subten. Všechna práva vyhrazena." },
-  "footer.made":    { sk: "Vytvorené na Slovensku 🇸🇰", en: "Made in Slovakia 🇸🇰", cz: "Vyrobeno na Slovensku 🇸🇰" },
+  "footer.rights":  { sk: "© 2026 Syenit, s.&nbsp;r.&nbsp;o. · 18+, nie je zdravotnícka pomôcka, hodnoty sú odhady", en: "© 2026 Syenit, s.&nbsp;r.&nbsp;o. · 18+, not a medical device, values are estimates", cz: "© 2026 Syenit, s.&nbsp;r.&nbsp;o. · 18+, není zdravotnický prostředek, hodnoty jsou odhady" },
+  "footer.made":    { sk: "Vytvorené na Slovensku 🇸🇰", en: "Made in Slovakia 🇸🇰", cz: "Vytvořeno na Slovensku 🇸🇰" },
 
   /* ── calculator ── */
   "calc.kicker":  { sk: "Nutričná kalkulačka zadarmo", en: "Free nutrition calculator", cz: "Nutriční kalkulačka zdarma" },
@@ -255,7 +249,7 @@ window.SUBTEN_I18N = {
     en: "The same formulas that power Subten: BMR, TDEE, daily calorie target, macros with carb cycling, hydration and recovery scores. Everything is computed live in your browser — nothing is sent anywhere.", cz: "Stejné vzorce, jaké pohánějí Subten: BMR, TDEE, denní kalorický cíl, makra s carb cyclingem, hydratace a skóre regenerace. Vše počítá tvůj prohlížeč naživo — nic se nikam neposílá."
   },
   "calc.inputs.title": { sk: "Tvoje údaje", en: "Your details", cz: "Tvoje údaje" },
-  "calc.out.title":    { sk: "Tvoje výsledky", en: "Your results", cz: "Tvoje výsledky" },
+  "calc.out.title":    { sk: "Tvoje čísla", en: "Your numbers", cz: "Tvoje čísla" },
 
   "calc.sex":        { sk: "Pohlavie", en: "Sex", cz: "Pohlaví" },
   "calc.sex.male":   { sk: "Muž", en: "Male", cz: "Muž" },
@@ -271,10 +265,7 @@ window.SUBTEN_I18N = {
   "calc.act.moderate":     { sk: "Stredná (3–5× týždenne)", en: "Moderate (3–5×/week)", cz: "Střední (3–5× týdně)" },
   "calc.act.active":       { sk: "Aktívna (6–7× týždenne)", en: "Active (6–7×/week)", cz: "Aktivní (6–7× týdně)" },
   "calc.act.veryactive":   { sk: "Veľmi aktívna (2× denne / fyzická práca)", en: "Very active (2×/day or physical job)", cz: "Velmi aktivní (2× denně / fyzická práce)" },
-  "calc.act.hint":         {
-    sk: "Subten je pri štarte konzervatívny a strop násobiča drží na 1,5× — týždenná adaptácia ho potom doladí podľa reálnych dát.",
-    en: "Subten starts conservatively and caps the multiplier at 1.5× — weekly adaptation then fine-tunes it from your real data.", cz: "Subten je při startu konzervativní a strop násobiče drží na 1,5× — týdenní adaptace ho pak doladí podle reálných dat."
-  },
+  "calc.act.hint":         { sk: "Subten je pri štarte konzervatívny a strop násobiča drží na 1,5× — týždenná adaptácia ho potom doladí podľa reálnych dát.", en: "Subten starts conservatively and caps the multiplier at 1.5× — weekly adaptation then fine-tunes it from your real data.", cz: "Subten je při startu konzervativní a strop násobiče drží na 1,5× — týdenní adaptace ho pak doladí podle reálných dat." },
 
   "calc.goal":          { sk: "Cieľ", en: "Goal", cz: "Cíl" },
   "calc.goal.fatloss":  { sk: "Deficit (−500 kcal)", en: "Calorie deficit (−500 kcal)", cz: "Deficit (−500 kcal)" },
@@ -315,10 +306,10 @@ window.SUBTEN_I18N = {
   "calc.wear.title":   { sk: "Dáta z hodiniek — voliteľné", en: "Watch data — optional", cz: "Data z hodinek — volitelné" },
   "calc.wear.note":    {
     sk: "Tieto skóre v appke počítajú dáta z Apple Watch / Apple Health. Tu si ich môžeš odsimulovať ručným zadaním.",
-    en: "In the app these scores come from Apple Watch / Apple Health. Here you can simulate them by entering values manually.", cz: "Tato skóre v appce počítají data z Apple Watch / Apple Health. Tady si je můžeš odsimulovat ručním zadáním."
+    en: "In the app these scores come from Apple Watch / Apple Health. Here you can simulate them by entering values manually.", cz: "Tato skóre v aplikaci počítají data z Apple Watch / Apple Health. Tady si je můžeš odsimulovat ručním zadáním."
   },
   "calc.wear.hrv":     { sk: "HRV (ms, SDNN)", en: "HRV (ms, SDNN)", cz: "HRV (ms, SDNN)" },
-  "calc.wear.rhr":     { sk: "Kľudový tep (bpm)", en: "Resting HR (bpm)", cz: "Klidový tep (bpm)" },
+  "calc.wear.rhr":     { sk: "Pokojový tep (bpm)", en: "Resting HR (bpm)", cz: "Klidový tep (bpm)" },
   "calc.wear.sleep":   { sk: "Spánok (hodiny)", en: "Sleep (hours)", cz: "Spánek (hodiny)" },
   "calc.wear.heavy":   { sk: "Včera ťažký tréning?", en: "Heavy workout yesterday?", cz: "Včera těžký trénink?" },
   "calc.wear.strain":  { sk: "Pre strain skóre", en: "For strain score", cz: "Pro strain skóre" },
@@ -376,14 +367,8 @@ window.SUBTEN_I18N = {
   "calc.decimal":    { sk: ",", en: ".", cz: "," },
 
   "calc.scores.title": { sk: "Skóre regenerácie", en: "Recovery scores", cz: "Skóre regenerace" },
-  "calc.scores.sub":   {
-    sk: "WHOOP-style heuristiky z dát hodiniek. V appke sa počítajú automaticky z Apple Health.",
-    en: "WHOOP-style heuristics from watch data. In the app they are computed automatically from Apple Health.", cz: "Heuristiky ve stylu WHOOP z dat hodinek. V appce se počítají automaticky z Apple Health."
-  },
-  "calc.scores.hint":  {
-    sk: "<b>Tip:</b> Vyplň <b>Dáta z hodiniek</b> vľavo a doplníme aj Recovery, Sleep a Strain skóre — presne ako ich appka ukazuje z Apple Watch.",
-    en: "<b>Tip:</b> Fill in <b>Watch data</b> on the left and we'll add Recovery, Sleep and Strain scores too — exactly how the app shows them from Apple Watch.", cz: "<b>Tip:</b> Vyplň <b>Data z hodinek</b> vlevo a doplníme i Recovery, Sleep a Strain skóre — přesně jak je appka ukazuje z Apple Watch."
-  },
+  "calc.scores.sub":   { sk: "Orientačné skóre z dát hodiniek. V appke sa počítajú automaticky z Apple Health.", en: "Indicative scores from watch data. In the app they are computed automatically from Apple Health.", cz: "Orientační skóre z dat hodinek. V aplikaci se počítají automaticky z Apple Health." },
+  "calc.scores.hint":  { sk: "<b>Tip:</b> Vyplň <b>Dáta z hodiniek</b> vľavo a doplníme aj orientačné Recovery, Sleep a Strain skóre, aké appka ukazuje z Apple Watch.", en: "<b>Tip:</b> Fill in <b>Watch data</b> on the left and we'll add indicative Recovery, Sleep and Strain scores too, like the app shows from Apple Watch.", cz: "<b>Tip:</b> Vyplň <b>Data z hodinek</b> vlevo a doplníme i orientační Recovery, Sleep a Strain skóre, jaká aplikace ukazuje z Apple Watch." },
   "calc.recovery": { sk: "Recovery", en: "Recovery", cz: "Recovery" },
   "calc.sleep":    { sk: "Sleep score", en: "Sleep score", cz: "Sleep score" },
   "calc.strain":   { sk: "Strain", en: "Strain", cz: "Strain" },
@@ -417,11 +402,7 @@ window.SUBTEN_I18N = {
     en: "Nutrition Calculator — BMR, TDEE, Calories & Macros | Subten",
     cz: "Nutriční kalkulačka — BMR, TDEE, kalorie a makra | Subten"
   },
-  "calc.meta.desc": {
-    sk: "Bezplatná nutričná kalkulačka: vypočítaj si BMR, TDEE, denný kalorický cieľ a makrá (bielkoviny, sacharidy, tuky, vláknina) s carb cyclingom a hydratáciou. Presné vzorce, výsledky hneď, bez registrácie.",
-    en: "Free nutrition calculator: work out your BMR, TDEE, daily calorie target and macros (protein, carbs, fat, fiber) with carb cycling and hydration. Exact formulas, instant results, no signup.",
-    cz: "Bezplatná nutriční kalkulačka: spočítej si BMR, TDEE, denní kalorický cíl a makra (bílkoviny, sacharidy, tuky, vláknina) s carb cyclingem a hydratací. Přesné vzorce, výsledky ihned, bez registrace."
-  },
+  "calc.meta.desc": { sk: "Bezplatná nutričná kalkulačka: vypočítaj si BMR, TDEE, denný kalorický cieľ a makrá (bielkoviny, sacharidy, tuky, vláknina) s carb cyclingom a hydratáciou. Overené vzorce, hotovo za pár sekúnd, bez registrácie.", en: "Free nutrition calculator: work out your BMR, TDEE, daily calorie target and macros (protein, carbs, fat, fiber) with carb cycling and hydration. Verified formulas, done in seconds, no signup.", cz: "Bezplatná nutriční kalkulačka: spočítej si BMR, TDEE, denní kalorický cíl a makra (bílkoviny, sacharidy, tuky, vláknina) s carb cyclingem a hydratací. Ověřené vzorce, hotovo za pár sekund, bez registrace." },
 
   /* ── calculator: SEO content + FAQ ── */
   "calc.seo.kicker": { sk: "Ako to počítame", en: "How it works", cz: "Jak to počítáme" },
@@ -433,7 +414,7 @@ window.SUBTEN_I18N = {
   "calc.seo.intro": {
     sk: "Táto bezplatná nutričná kalkulačka premení tvoj vek, výšku, váhu, úroveň aktivity a cieľ na kompletný denný plán — BMR, TDEE, kalorický cieľ a makrá — pomocou rovnakých overených vzorcov ako appka Subten.",
     en: "This free nutrition calculator turns your age, height, weight, activity level and goal into a complete daily plan — BMR, TDEE, calorie target and macros — using the same evidence-based formulas as the Subten app.",
-    cz: "Tato bezplatná nutriční kalkulačka promění tvůj věk, výšku, váhu, úroveň aktivity a cíl v kompletní denní plán — BMR, TDEE, kalorický cíl a makra — pomocí stejných ověřených vzorců jako appka Subten."
+    cz: "Tato bezplatná nutriční kalkulačka promění tvůj věk, výšku, váhu, úroveň aktivity a cíl v kompletní denní plán — BMR, TDEE, kalorický cíl a makra — pomocí stejných ověřených vzorců jako aplikace Subten."
   },
   "calc.faq.title": { sk: "Časté otázky o kalkulačke", en: "Calculator FAQ", cz: "Časté otázky o kalkulačce" },
 
@@ -462,11 +443,39 @@ window.SUBTEN_I18N = {
     cz: "Carb cycling přesouvá sacharidy během týdne podle zátěže — víc v těžké dny, méně ve dny volna — přičemž týdenní průměr zůstává roven cíli. Bílkoviny a tuky jsou stabilní."
   },
   "calc.faq.q5": { sk: "Je táto kalorická kalkulačka zadarmo?", en: "Is this calorie calculator free?", cz: "Je tato kalorická kalkulačka zdarma?" },
-  "calc.faq.a5": {
-    sk: "Áno — kalkulačka je úplne zadarmo a beží celá v tvojom prehliadači; bez registrácie a zadané údaje nikam neodosielame. Na denné sledovanie a AI trénera vyskúšaj appku Subten.",
-    en: "Yes — the calculator is completely free and runs entirely in your browser; no signup, and we don't send the values you enter anywhere. For daily tracking and an AI coach, try the Subten app.",
-    cz: "Ano — kalkulačka je zcela zdarma a běží celá v tvém prohlížeči; bez registrace a zadané údaje nikam neodesíláme. Na denní sledování a AI trenéra vyzkoušej appku Subten."
-  }
+  "calc.faq.a5": { sk: "Áno — kalkulačka je úplne zadarmo a beží celá v tvojom prehliadači; bez registrácie a zadané údaje nikam neodosielame. Na denné sledovanie a AI trénera vyskúšaj aplikáciu Subten.", en: "Yes — the calculator is completely free and runs entirely in your browser; no signup, and we don't send the values you enter anywhere. For daily tracking and an AI coach, try the Subten app.", cz: "Ano — kalkulačka je zcela zdarma a běží celá v tvém prohlížeči; bez registrace a zadané údaje nikam neodesíláme. Na denní sledování a AI trenéra vyzkoušej aplikaci Subten." },
+  "nav.cta.live": { sk: "Stiahnuť", en: "Download", cz: "Stáhnout" },
+  "coach.name": { sk: "AI tréner", en: "AI coach", cz: "AI trenér" },
+  "free.f7": { sk: "Apple Watch a Apple Health", en: "Apple Watch & Apple Health", cz: "Apple Watch a Apple Health" },
+  "free.f8": { sk: "AI tréner, sken z fotky a plány sú v Premium", en: "AI coach, photo scan and plans are in Premium", cz: "AI trenér, sken z fotky a plány jsou v Premium" },
+  "free.cta.live": { sk: "Stiahnuť v App Store", en: "Download on the App Store", cz: "Stáhnout v App Storu" },
+  "pro.cta.live": { sk: "Stiahnuť a vyskúšať Premium", en: "Download and try Premium", cz: "Stáhnout a vyzkoušet Premium" },
+  "price.byok": { sk: "Máš vlastný kľúč od OpenRoutera? <strong>BYOK</strong> je jednorazový nákup za 3,99&nbsp;€ (nie predplatné) — AI funkcie potom bežia cez tvoj kľúč a náklady na AI ti účtuje OpenRouter.", en: "Have your own OpenRouter key? <strong>BYOK</strong> is a one-time purchase of €3.99 (not a subscription) — AI features then run through your key, and OpenRouter bills you for the AI usage.", cz: "Máš vlastní klíč od OpenRouteru? <strong>BYOK</strong> je jednorázový nákup za 3,99&nbsp;€ (ne předplatné) — AI funkce pak běží přes tvůj klíč a náklady na AI ti účtuje OpenRouter." },
+  "cta.title.live": { sk: "Subten je v App Store", en: "Subten is on the App Store", cz: "Subten je v App Storu" },
+  "cta.lede.live": { sk: "Stiahni si Subten pre iPhone a Apple Watch.", en: "Get Subten for iPhone and Apple Watch.", cz: "Stáhni si Subten pro iPhone a Apple Watch." },
+  "cta.android": { sk: "Verzia pre Android sa pripravuje.", en: "The Android version is in the works.", cz: "Verze pro Android se připravuje." },
+  "meta.title": { sk: "Subten — jedlo, tréning a regenerácia v jednej aplikácii", en: "Subten — food, training and recovery in one app", cz: "Subten — jídlo, trénink a regenerace v jedné aplikaci" },
+  "meta.desc": { sk: "Subten spája výživu, tréning a regeneráciu v jednej prehľadnej aplikácii. Zápis jedla, AI odhad kalórií a makier, tréningové plány a denné skóre regenerácie.", en: "Subten brings nutrition, training and recovery together in one clean app. Log meals, get AI estimates of calories and macros, follow training plans and see your daily recovery score.", cz: "Subten spojuje výživu, trénink a regeneraci v jedné přehledné aplikaci. Zápis jídla, AI odhad kalorií a maker, tréninkové plány a denní skóre regenerace." },
+  "meta.locale": { sk: "sk_SK", en: "en_US", cz: "cs_CZ" },
+  "meta.ogimage": { sk: "https://subten-app.eu/assets/brand/og-sk.png", en: "https://subten-app.eu/assets/brand/og-en.png", cz: "https://subten-app.eu/assets/brand/og-cs.png" },
+  "meta.ogalt": { sk: "Subten — jedlo, tréning a regenerácia v jednej aplikácii", en: "Subten — food, training and recovery in one app", cz: "Subten — jídlo, trénink a regenerace v jedné aplikaci" },
+  "shot.today.alt": { sk: "Obrazovka Dnes v aplikácii Subten: zostávajúce kalórie a makrá", en: "Today screen in the Subten app: remaining calories and macros", cz: "Obrazovka Dnes v aplikaci Subten: zbývající kalorie a makra" },
+  "shot.coach.alt": { sk: "AI tréner v aplikácii Subten", en: "AI coach in the Subten app", cz: "AI trenér v aplikaci Subten" },
+  "shot.scan.alt": { sk: "Sken jedla z fotky: rozpoznané položky s odhadom AI", en: "Photo food scan: recognised items with AI estimates", cz: "Sken jídla z fotky: rozpoznané položky s odhadem AI" },
+  "shot.training.alt": { sk: "Tréningový plán do posilňovne v aplikácii Subten", en: "Gym training plan in the Subten app", cz: "Tréninkový plán do posilovny v aplikaci Subten" },
+  "shot.recovery.alt": { sk: "Denné hodnotenie: regenerácia, HRV, pokojový tep a spánok", en: "Daily review: recovery, HRV, resting heart rate and sleep", cz: "Denní hodnocení: regenerace, HRV, klidový tep a spánek" },
+  "rec.kicker": { sk: "Knižnica receptov", en: "Recipe library", cz: "Knihovna receptů" },
+  "rec.title": { sk: "Recepty s kalóriami a makrami", en: "Recipes with calories and macros", cz: "Recepty s kaloriemi a makry" },
+  "rec.lede": { sk: "Každý recept má uvedené kalórie a makrá (hodnoty sú orientačné). Filtruj podľa kategórie, cieľa alebo kalorického rozpočtu a nájdi jedlo pre svoj plán.", en: "Every recipe lists its calories and macros (values are estimates). Filter by category, goal or calorie budget and find a meal for your plan.", cz: "Každý recept má uvedené kalorie a makra (hodnoty jsou orientační). Filtruj podle kategorie, cíle nebo kalorického rozpočtu a najdi jídlo pro svůj plán." },
+  "rec.no.title": { sk: "Žiadne recepty", en: "No recipes found", cz: "Žádné recepty" },
+  "rec.no.desc": { sk: "Skús inú kombináciu filtrov.", en: "Try a different combination of filters.", cz: "Zkus jinou kombinaci filtrů." },
+  "rec.cta.title": { sk: "Recepty priamo v aplikácii", en: "Recipes right in the app", cz: "Recepty přímo v aplikaci" },
+  "rec.cta.desc": { sk: "Jedlá si v Subten zapíšeš za pár sekúnd a vidíš, koľko ti do denného cieľa ešte chýba.", en: "Log meals in Subten in seconds and see how much is left to reach your daily goal.", cz: "Jídla si v Subten zapíšeš za pár sekund a vidíš, kolik ti do denního cíle ještě chybí." },
+  "rec.cta.btn.live": { sk: "Stiahnuť v App Store", en: "Download on the App Store", cz: "Stáhnout v App Storu" },
+  "gen.cta.btn.live": { sk: "Stiahnuť v App Store", en: "Download on the App Store", cz: "Stáhnout v App Storu" },
+  "rec.meta.title": { sk: "Subten — recepty s kalóriami a makrami", en: "Subten — recipes with calories and macros", cz: "Subten — recepty s kaloriemi a makry" },
+  "rec.meta.desc": { sk: "700 receptov s kalóriami a makrami, ingredienciami a postupom. Filtruj podľa kategórie, cieľa alebo kalorického rozpočtu. Hodnoty sú orientačné.", en: "700 recipes with calories and macros, ingredients and steps. Filter by category, goal or calorie budget. Values are estimates.", cz: "700 receptů s kaloriemi a makry, ingrediencemi a postupem. Filtruj podle kategorie, cíle nebo kalorického rozpočtu. Hodnoty jsou orientační." },
+  "rec.search": { sk: "Hľadaj recept...", en: "Search recipe...", cz: "Hledej recept..." }
 };
 
 /* ---------- runtime (netreba upravovať) ---------- */
@@ -477,17 +486,54 @@ window.SUBTEN_I18N = {
   const FALLBACK = CODES.includes("en") ? "en" : CODES[0];
   const KEY = "subten-lang";
 
+  const ALIAS = { cs: "cz" };        // ?lang=cs  ->  interný kód "cz"
+  const HTML_LANG = { cz: "cs" };    // platný BCP-47 kód do <html lang>
+  const norm = c => ALIAS[c] || c;
+  const LIVE = !!(window.SUBTEN_RELEASE && window.SUBTEN_RELEASE.live);
+  let explicitParam = false;
+
+  function storedLang() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+
   function initialLang() {
-    // ?lang=xx wins (lets search engines index a localized URL per language
-    // and powers the hreflang alternates).
+    // 1) ?lang=xx vyhráva (lokalizovaná URL pre vyhľadávače a hreflang; "cs" aj staré "cz")
     try {
-      const q = new URLSearchParams(location.search).get("lang");
-      if (q && CODES.includes(q)) return q;
+      const q = norm(new URLSearchParams(location.search).get("lang"));
+      if (q && CODES.includes(q)) { explicitParam = true; return q; }
     } catch (e) {}
-    const stored = localStorage.getItem(KEY);
+    // 2) jazyk, ktorý si návštevník vybral sám
+    const stored = norm(storedLang());
     if (CODES.includes(stored)) return stored;
-    // First visit defaults to English; users can still switch to SK/CZ.
-    return CODES.includes("en") ? "en" : CODES[0];
+    // 3) prvá návšteva: jazyk prehliadača (sk / cs), inak angličtina
+    const prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || ""];
+    for (const p of prefs) {
+      const base = String(p).toLowerCase().split("-")[0];
+      if (base === "sk") return "sk";
+      if (base === "cs" || base === "cz") return "cz";
+      if (base === "en") return "en";
+    }
+    return FALLBACK;
+  }
+
+  // Po zapnutí predaja (SUBTEN_RELEASE.live) má kľúč "xyz.live" prednosť pred "xyz".
+  function entryFor(key) {
+    key = key && key.trim();
+    if (LIVE && DICT[key + ".live"]) return DICT[key + ".live"];
+    return DICT[key];
+  }
+  function valueOf(entry, lang) { return entry[lang] != null ? entry[lang] : entry[FALLBACK]; }
+
+  // pevná medzera za jednopísmenovými predložkami/spojkami v nadpisoch (sk, cs)
+  const ONE_LETTER = /(^|[\s(])([ksvzouaiKSVZOUAI])\s+(?=\S)/g;
+  function tieHeadings(lang) {
+    if (lang === "en") return;
+    document.querySelectorAll("h1,h2,h3,h4,.display,.h2").forEach(h => {
+      const w = document.createTreeWalker(h, NodeFilter.SHOW_TEXT);
+      let n;
+      while ((n = w.nextNode())) {
+        const t = n.nodeValue.replace(ONE_LETTER, "$1$2\u00A0").replace(ONE_LETTER, "$1$2\u00A0");
+        if (t !== n.nodeValue) n.nodeValue = t;
+      }
+    });
   }
 
   // ---- dropdown switcher ----
@@ -545,21 +591,32 @@ window.SUBTEN_I18N = {
     bindGlobalClose();
   }
 
-  function apply(lang) {
+  function apply(lang, persist) {
+    lang = norm(lang);
     if (!CODES.includes(lang)) lang = CODES[0];
-    document.documentElement.lang = lang;
+    document.documentElement.lang = HTML_LANG[lang] || lang;
     const idx = CODES.indexOf(lang);
 
     document.querySelectorAll("[data-i18n]").forEach(el => {
-      const entry = DICT[el.getAttribute("data-i18n")];
-      if (entry) { const v = entry[lang] != null ? entry[lang] : entry[FALLBACK]; if (v != null) el.innerHTML = v; }
+      const entry = entryFor(el.getAttribute("data-i18n"));
+      if (entry) { const v = valueOf(entry, lang); if (v != null) el.innerHTML = v; }
     });
     document.querySelectorAll("[data-i18n-attr]").forEach(el => {
       el.getAttribute("data-i18n-attr").split(";").forEach(pair => {
-        const [attr, key] = pair.split(":");
-        const entry = DICT[key && key.trim()];
-        if (entry) { const v = entry[lang] != null ? entry[lang] : entry[FALLBACK]; if (v != null) el.setAttribute(attr.trim(), v); }
+        const i = pair.indexOf(":");
+        if (i < 0) return;
+        const entry = entryFor(pair.slice(i + 1));
+        if (entry) { const v = valueOf(entry, lang); if (v != null) el.setAttribute(pair.slice(0, i).trim(), v); }
       });
+    });
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+      const entry = entryFor(el.getAttribute("data-i18n-placeholder"));
+      if (entry) { const v = valueOf(entry, lang); if (v != null) el.setAttribute("placeholder", v); }
+    });
+    // canonical: pri URL s ?lang= ukazuje sám na seba (platné pre hreflang)
+    document.querySelectorAll('link[rel="canonical"][data-lang-canonical]').forEach(c => {
+      const base = c.getAttribute("data-lang-canonical");
+      c.setAttribute("href", explicitParam ? base + "?lang=" + (HTML_LANG[lang] || lang) : base);
     });
     // whole-block language switch (legal pages); fall back to first available block
     const blocks = document.querySelectorAll("[data-lang-block]");
@@ -568,6 +625,7 @@ window.SUBTEN_I18N = {
       const showCode = present.has(lang) ? lang : (present.has(FALLBACK) ? FALLBACK : [...present][0]);
       blocks.forEach(el => { el.style.display = el.getAttribute("data-lang-block") === showCode ? "" : "none"; });
     }
+    tieHeadings(lang);
     // dropdown UI state: current label on the button + active/checked option
     const meta = LANGS[idx] || LANGS[0];
     document.querySelectorAll(".lang-toggle").forEach(t => {
@@ -581,12 +639,15 @@ window.SUBTEN_I18N = {
         b.setAttribute("aria-selected", on ? "true" : "false");
       });
     });
-    localStorage.setItem(KEY, lang);
+    // uloží sa len vedomá voľba návštevníka, nie automaticky zistený jazyk
+    if (persist) { try { localStorage.setItem(KEY, lang); } catch (e) {} }
     window.__subtenLang = lang;
+    try { document.dispatchEvent(new CustomEvent("subten:lang", { detail: { lang } })); } catch (e) {}
   }
 
-  window.SubtenSetLang = apply;
+  window.SubtenSetLang = function (l) { apply(l, true); };
   function init() { buildToggles(); apply(initialLang()); }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
-  else init();
+  // Skripty sú na konci <body>, DOM je už hotový — prekladáme hneď (bez bliknutia slovenčiny).
+  if (document.body) init();
+  else document.addEventListener("DOMContentLoaded", init);
 })();
