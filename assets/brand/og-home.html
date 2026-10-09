@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8" />
+<!-- Zdroj pre assets/brand/og-sk.png, og-cs.png, og-en.png (1200×630).
+     Render: Chrome headless, okno 1200×630, URL og-home.html?l=sk|cs|en  -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Schibsted+Grotesk:wght@600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{ --bg:#060807; --surface:#121613; --border:rgba(255,255,255,.10); --ink:#F4F7F4; --ink-2:#AFB7B0; --accent:#4FD389; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:1200px;height:630px;overflow:hidden;}
+  body{
+    background:
+      radial-gradient(90% 120% at 78% -20%, rgba(79,211,137,.20), transparent 55%),
+      radial-gradient(70% 90% at 8% 110%, rgba(47,190,110,.10), transparent 60%),
+      var(--bg);
+    color:var(--ink); font-family:"Manrope",system-ui,sans-serif; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+    display:flex; align-items:center;
+  }
+  .wrap{display:flex; align-items:center; gap:40px; padding:0 0 0 76px; width:100%;}
+  .left{flex:1; min-width:0;}
+  .brand{display:flex; align-items:center; gap:14px; margin-bottom:34px;}
+  .brand img{width:52px; height:52px; border-radius:12px; display:block;}
+  .brand b{font-family:"Schibsted Grotesk",sans-serif; font-weight:800; font-size:32px; letter-spacing:-.04em;}
+  h1{font-family:"Schibsted Grotesk",sans-serif; font-weight:800; font-size:68px; line-height:1.04; letter-spacing:-.035em; margin-bottom:24px;}
+  h1 .g{background:linear-gradient(100deg,#5FE39A,#2FBE6E); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;}
+  .sub{font-size:25px; color:var(--ink-2); font-weight:550; line-height:1.4; max-width:600px; margin-bottom:32px;}
+  .pills{display:flex; gap:12px; flex-wrap:wrap;}
+  .pill{font-size:18px; font-weight:650; background:var(--surface); border:1px solid var(--border); border-radius:999px; padding:10px 22px;}
+  .pill.accent{background:rgba(79,211,137,.12); border-color:rgba(79,211,137,.35); color:var(--accent);}
+  .phone{width:330px; flex:none; margin-top:150px; padding:11px; border-radius:50px 50px 0 0; background:linear-gradient(150deg,#2b2e2c,#0c0d0c 60%);
+    box-shadow:0 40px 90px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.12); margin-right:72px;}
+  .phone .scr{border-radius:40px 40px 0 0; overflow:hidden; aspect-ratio:1320/2868; background:#000;}
+  .phone img{width:100%; height:100%; object-fit:cover; object-position:top; display:block;}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="left">
+      <div class="brand"><img src="subten-logo.png" alt="" /><b>Subten</b></div>
+      <h1 id="h"></h1>
+      <p class="sub" id="s"></p>
+      <div class="pills" id="p"></div>
+    </div>
+    <div class="phone"><div class="scr"><img id="shot" alt="" /></div></div>
+  </div>
+<script>
+  const L = new URLSearchParams(location.search).get("l") || "sk";
+  const T = {
+    sk: { h: "Jedlo, tréning a&nbsp;<span class='g'>regenerácia</span> v&nbsp;jednej aplikácii.", s: "Subten spája výživu, tréning a regeneráciu v jednej prehľadnej aplikácii.", p: ["AI tréner", "Apple Watch", "Bez reklám"] },
+    cs: { h: "Jídlo, trénink a&nbsp;<span class='g'>regenerace</span> v&nbsp;jedné aplikaci.", s: "Subten spojuje výživu, trénink a regeneraci v jedné přehledné aplikaci.", p: ["AI trenér", "Apple Watch", "Bez reklam"] },
+    en: { h: "Food, training and&nbsp;<span class='g'>recovery</span> in one app.", s: "Subten brings nutrition, training and recovery together in one clean app.", p: ["AI coach", "Apple Watch", "No ads"] }
+  }[L];
+  document.documentElement.lang = L;
+  document.getElementById("h").innerHTML = T.h;
+  document.getElementById("s").textContent = T.s;
+  document.getElementById("p").innerHTML = T.p.map((x, i) => `<span class="pill${i === 0 ? " accent" : ""}">${x}</span>`).join("");
+  document.getElementById("shot").src = `../shots/${L}/dark/today.webp`;
+</script>
+</body>
+</html>
