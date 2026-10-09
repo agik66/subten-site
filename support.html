@@ -20,10 +20,10 @@
 </script>
 <title>Subten — Support / Podpora</title>
 <meta name="description" content="Subten support: contact, subscriptions, restoring purchases, account deletion, user manual and privacy." />
-<link rel="canonical" href="https://subten-app.eu/support.html" />
+<link rel="canonical" href="https://subten-app.eu/support.html" data-lang-canonical="https://subten-app.eu/support.html" />
 <link rel="alternate" hreflang="en" href="https://subten-app.eu/support.html" />
 <link rel="alternate" hreflang="sk" href="https://subten-app.eu/support.html?lang=sk" />
-<link rel="alternate" hreflang="cs" href="https://subten-app.eu/support.html?lang=cz" />
+<link rel="alternate" hreflang="cs" href="https://subten-app.eu/support.html?lang=cs" />
 <link rel="alternate" hreflang="x-default" href="https://subten-app.eu/support.html" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -77,7 +77,7 @@
     </a>
     <div class="nav-right" style="margin-left:auto;">
       <div class="lang-toggle" role="group" aria-label="Language"></div>
-      <a href="index.html" class="btn btn-primary nav-cta" data-i18n="nav.cta">Čoskoro</a>
+      <a href="index.html" class="btn btn-primary nav-cta" data-store-cta="text" data-i18n="nav.cta">Čoskoro</a>
     </div>
   </div>
 </header>
@@ -106,7 +106,7 @@
           <p>Ak píšeš o probléme v aplikácii, pomôže nám model zariadenia, verzia iOS alebo Androidu a verzia Subten (nájdeš ju v <strong>Nastavenia → O aplikácii</strong>).</p>
 
           <h2 id="s-sk-manual">Používateľská príručka</h2>
-          <p>Než nám napíšeš, skús príručku — je to najrýchlejšia cesta k odpovedi. Na 38 stranách prevedie celou aplikáciou pre iPhone: prvé spustenie a nastavenie cieľov, zapisovanie jedla a skenovanie čiarových kódov, tréningový plán, AI tréner, Apple Health, predplatné aj všetky nastavenia.</p>
+          <p>Než nám napíšeš, skús príručku — je to najrýchlejšia cesta k odpovedi. Prevedie celou aplikáciou pre iPhone: prvé spustenie a nastavenie cieľov, zapisovanie jedla a skenovanie čiarových kódov, tréningový plán, AI tréner, Apple Health, predplatné aj všetky nastavenia.</p>
           <div class="man-grid">
             <div class="man-row">
               <span class="man-lang">Slovenčina</span>
@@ -163,15 +163,15 @@
           <p>AI funkcie potom bežia cez <strong>tvoj kľúč a tvoj účet u OpenRoutera</strong>: požiadavky odchádzajú priamo do OpenRoutera a náklady na AI ti účtuje OpenRouter podľa svojho cenníka, nie my. Kľúč sa ukladá v zabezpečenom úložisku telefónu (Keychain na iPhone, Keystore na Androide).</p>
 
           <h2 id="s-sk-3">Ako vymažem účet a dáta?</h2>
-          <p>Účet vymažeš priamo v aplikácii — na iPhone v <strong>Nastavenia → Účet → Odstrániť účet a dáta</strong>, na Androide v <strong>Nastavenia → Dáta a súkromie → Vymazať účet</strong> — alebo nám napíš na <a href="mailto:subten@syenit.com">subten@syenit.com</a> z e-mailu spojeného s účtom. Celý postup aj zoznam toho, čo sa vymaže, nájdeš na stránke <a href="legal/account-deletion.html">Vymazanie účtu a dát</a>. Vymazanie účtu nezruší predplatné — to zruš v App Store alebo Google Play.</p>
+          <p>Účet vymažeš priamo v aplikácii — na iPhone v <strong>Nastavenia → Účet → Odstrániť účet a dáta</strong>, na Androide v <strong>Nastavenia → Dáta a súkromie → Vymazať účet</strong> — alebo nám napíš na <a href="mailto:privacy@syenit.com">privacy@syenit.com</a> z e-mailu spojeného s účtom. Celý postup aj zoznam toho, čo sa vymaže, nájdeš na stránke <a href="legal/account-deletion.html">Vymazanie účtu a dát</a>. Vymazanie účtu nezruší predplatné — to zruš v App Store alebo Google Play.</p>
 
-          <h2 id="s-sk-4">Beží AI Coach v cloude, alebo priamo v telefóne?</h2>
-          <p>AI Coach (súčasť Premium) spracúva požiadavky <strong>v cloude</strong>, kým v telefóne nie je pripravený model AI v zariadení. Na telefónoch so 6 GB RAM a viac potom môžu textové funkcie — chat, denné a týždenné vyhodnotenia, analýza plató — bežať <strong>priamo v telefóne</strong> a ich obsah sa vtedy nespracúva v cloude. Model (~3 GB) sa sťahuje iba cez Wi-Fi a v <strong>Nastaveniach</strong> v časti <strong>AI v telefóne</strong> (na Androide <strong>AI na zariadení</strong>) ho zapneš alebo vypneš. Spoznáš to podľa odznaku so zámkom a nápisom <strong>„On-device"</strong> v hlavičke konverzácie — bez zámku odpoveď spracoval cloud. Funkcie, ktoré posielajú fotky (sken jedla, generovanie jedálnička), bežia vždy v cloude a len s tvojím súhlasom.</p>
-          <p>Na iPhone nájdeš v <strong>Nastavenia → AI v telefóne</strong> prepínač <strong>Súkromný režim: AI len na zariadení</strong> (na zariadeniach s 6 GB+ RAM). Bežné správanie už aj tak uprednostňuje zariadenie; tento prepínač navyše vypne záložný cloud pre textové funkcie AI Coacha — ak lokálny model nevie odpovedať, uvidíš férovú chybu namiesto odoslania dát do cloudu.</p>
+          <h2 id="s-sk-4">Beží AI tréner v cloude, alebo priamo v telefóne?</h2>
+          <p>AI tréner (súčasť Premium) spracúva požiadavky <strong>v cloude</strong>, kým v telefóne nie je pripravený model AI v zariadení. Na telefónoch so 6 GB RAM a viac potom môžu textové funkcie — chat, denné a týždenné vyhodnotenia, analýza plató — bežať <strong>priamo v telefóne</strong> a ich obsah sa vtedy nespracúva v cloude. Model (~3 GB) sa sťahuje iba cez Wi-Fi a v <strong>Nastaveniach</strong> v časti <strong>AI v telefóne</strong> (na Androide <strong>AI na zariadení</strong>) ho zapneš alebo vypneš. Spoznáš to podľa odznaku so zámkom a nápisom <strong>„On-device"</strong> v hlavičke konverzácie — bez zámku odpoveď spracoval cloud. Sken jedla z fotky beží vždy v cloude a len s tvojím súhlasom (posiela sa fotka). Generovanie jedálnička žiadne fotky neposiela.</p>
+          <p>Na iPhone nájdeš v <strong>Nastavenia → AI v telefóne</strong> prepínač <strong>Súkromný režim: AI len na zariadení</strong> (na zariadeniach s 6 GB+ RAM). Bežné správanie už aj tak uprednostňuje zariadenie; tento prepínač navyše vypne záložný cloud pre textové funkcie AI trénera — ak lokálny model nevie odpovedať, uvidíš férovú chybu namiesto odoslania dát do cloudu.</p>
 
           <h2 id="s-sk-5">Apple Health a moje súkromie</h2>
           <p>Prepojenie s <strong>Apple Health</strong> je dobrovoľné. Subten si pýta prístup len k typom údajov, ktoré naozaj používa (napr. hmotnosť, kroky, aktívne kalórie, tréningy, spánok, tep) a ku každému typu si môžeš zvlášť zapnúť alebo vypnúť synchronizáciu v <strong>Nastavenia → Zdravie</strong>. Prístup vieš kedykoľvek odobrať v iOS: <strong>Nastavenia → Ochrana súkromia a zabezpečenie → Health → Subten</strong>.</p>
-          <p><strong>Apple Watch nie je potrebný.</strong> Subten číta metriky regenerácie (tep, HRV, spánok, SpO₂…) z <strong>Apple Health</strong>, nie priamo z hodiniek — zdrojom môže byť čokoľvek, čo do Apple Health tieto dáta zapisuje: Apple Watch, Garmin, Oura, Whoop, iný náramok/prsteň, alebo aj samotný iPhone (kroky, spánok).</p>
+          <p><strong>Apple Watch nie je potrebný.</strong> Subten číta metriky regenerácie (tep, HRV, spánok, SpO₂…) z <strong>Apple Health</strong>, nie priamo z hodiniek — zdrojom môže byť čokoľvek, čo do Apple Health tieto dáta zapisuje: Apple Watch, iné hodinky, náramok či prsteň, alebo aj samotný iPhone (kroky, spánok).</p>
           <p>Zdravotné údaje z Apple Health nikdy nepredávame ani nepoužívame na reklamu. Podrobnosti sú v <a href="legal/privacy.html">Zásadách ochrany súkromia</a>.</p>
 
           <h2 id="s-sk-6">Právne dokumenty</h2>
@@ -203,7 +203,7 @@
           <p>If you're reporting a problem in the app, it helps to include your device model, iOS or Android version and Subten version (you'll find it under <strong>Settings → About</strong>).</p>
 
           <h2 id="s-en-manual">User manual</h2>
-          <p>Before you email us, try the manual — it's the fastest way to an answer. Across 38 pages it walks through the whole iPhone app: first launch and setting your goals, logging food and scanning barcodes, the training plan, the AI Coach, Apple Health, subscriptions and every setting.</p>
+          <p>Before you email us, try the manual — it's the fastest way to an answer. It walks you through the whole iPhone app: first launch and setting your goals, logging food and scanning barcodes, the training plan, the AI coach, Apple Health, subscriptions and every setting.</p>
           <div class="man-grid">
             <div class="man-row">
               <span class="man-lang">English</span>
@@ -260,15 +260,15 @@
           <p>The AI features then run through <strong>your key and your OpenRouter account</strong>: requests go straight to OpenRouter, and AI usage is billed to you by OpenRouter under its own pricing, not by us. The key is kept in your phone's secure storage (Keychain on iPhone, Keystore on Android).</p>
 
           <h2>How do I delete my account and data?</h2>
-          <p>You can delete your account in the app — on iPhone under <strong>Settings → Account → Delete account &amp; data</strong>, on Android under <strong>Settings → Data &amp; privacy → Delete account</strong> — or email <a href="mailto:subten@syenit.com">subten@syenit.com</a> from the address linked to your account. The full steps and a list of what gets removed are on the <a href="legal/account-deletion.html">Delete account &amp; data</a> page. Deleting your account does not cancel a subscription — cancel it in the App Store or Google Play.</p>
+          <p>You can delete your account in the app — on iPhone under <strong>Settings → Account → Delete account &amp; data</strong>, on Android under <strong>Settings → Data &amp; privacy → Delete account</strong> — or email <a href="mailto:privacy@syenit.com">privacy@syenit.com</a> from the address linked to your account. The full steps and a list of what gets removed are on the <a href="legal/account-deletion.html">Delete account &amp; data</a> page. Deleting your account does not cancel a subscription — cancel it in the App Store or Google Play.</p>
 
-          <h2>Does the AI Coach run in the cloud, or on my phone?</h2>
-          <p>The AI Coach (part of Premium) handles requests <strong>in the cloud</strong> until an on-device AI model is ready on your phone. On phones with 6 GB of RAM or more, the text features — chat, daily and weekly reviews, plateau analysis — can then run <strong>directly on the phone</strong>, and that content is no longer processed in the cloud. The model (~3 GB) downloads over Wi-Fi only, and in <strong>Settings</strong> under <strong>On-device AI</strong> (on iPhone: <strong>AI on your iPhone</strong>) you can switch it on or off. You can tell from a badge with a lock and the word <strong>“On-device”</strong> in the chat header — no lock means the cloud handled it. Features that send photos (food photo scan, meal-plan generation) always run in the cloud, and only with your consent.</p>
-          <p>On iPhone, under <strong>Settings → AI on your iPhone</strong> there's a <strong>Private mode: AI on device only</strong> toggle (on 6 GB+ devices). Normal behaviour already prefers the device; this toggle additionally disables the cloud fallback for the Coach's text features — if the local model can't answer, you'll see an honest error instead of data being sent to the cloud.</p>
+          <h2>Does the AI coach run in the cloud, or on my phone?</h2>
+          <p>The AI coach (part of Premium) handles requests <strong>in the cloud</strong> until an on-device AI model is ready on your phone. On phones with 6 GB of RAM or more, the text features — chat, daily and weekly reviews, plateau analysis — can then run <strong>directly on the phone</strong>, and that content is no longer processed in the cloud. The model (~3 GB) downloads over Wi-Fi only, and in <strong>Settings</strong> under <strong>On-device AI</strong> (on iPhone: <strong>AI on your iPhone</strong>) you can switch it on or off. You can tell from a badge with a lock and the word <strong>“On-device”</strong> in the chat header — no lock means the cloud handled it. The food photo scan always runs in the cloud, and only with your consent (the photo is sent). Meal-plan generation doesn't send any photos.</p>
+          <p>On iPhone, under <strong>Settings → AI on your iPhone</strong> there's a <strong>Private mode: AI on device only</strong> toggle (on 6 GB+ devices). Normal behaviour already prefers the device; this toggle additionally disables the cloud fallback for the coach's text features — if the local model can't answer, you'll see an honest error instead of data being sent to the cloud.</p>
 
           <h2>Apple Health and my privacy</h2>
           <p>Connecting <strong>Apple Health</strong> is optional. Subten only requests the data types it actually uses (e.g. weight, steps, active energy, workouts, sleep, heart rate), and you can turn each type's sync on or off individually under <strong>Settings → Health</strong>. You can revoke access at any time in iOS: <strong>Settings → Privacy &amp; Security → Health → Subten</strong>.</p>
-          <p><strong>No Apple Watch required.</strong> Subten reads recovery metrics (heart rate, HRV, sleep, SpO₂…) from <strong>Apple Health</strong>, not directly from a watch — the source can be anything that writes those metrics into Apple Health: an Apple Watch, Garmin, Oura, Whoop, another band or ring, or even the iPhone itself (steps, sleep).</p>
+          <p><strong>No Apple Watch required.</strong> Subten reads recovery metrics (heart rate, HRV, sleep, SpO₂…) from <strong>Apple Health</strong>, not directly from a watch — the source can be anything that writes those metrics into Apple Health: an Apple Watch, other watches, a band or a ring, or even the iPhone itself (steps, sleep).</p>
           <p>We never sell your Apple Health data or use it for advertising. Details are in our <a href="legal/privacy.html">Privacy Policy</a>.</p>
 
           <h2>Legal documents</h2>
@@ -300,7 +300,7 @@
           <p>Pokud hlásíš problém v aplikaci, pomůže nám model zařízení, verze iOS nebo Androidu a verze Subten (najdeš ji v <strong>Nastavení → O aplikaci</strong>).</p>
 
           <h2 id="s-cz-manual">Uživatelská příručka</h2>
-          <p>Než nám napíšeš, zkus příručku — je to nejrychlejší cesta k odpovědi. Na 38 stranách provede celou aplikací pro iPhone: první spuštění a nastavení cílů, zapisování jídla a skenování čárových kódů, tréninkový plán, AI trenér, Apple Health, předplatné i všechna nastavení.</p>
+          <p>Než nám napíšeš, zkus příručku — je to nejrychlejší cesta k odpovědi. Provede celou aplikací pro iPhone: první spuštění a nastavení cílů, zapisování jídla a skenování čárových kódů, tréninkový plán, AI trenér, Apple Health, předplatné i všechna nastavení.</p>
           <div class="man-grid">
             <div class="man-row">
               <span class="man-lang">Čeština</span>
@@ -357,15 +357,15 @@
           <p>AI funkce pak běží přes <strong>tvůj klíč a tvůj účet u OpenRouteru</strong>: požadavky odcházejí přímo do OpenRouteru a náklady na AI ti účtuje OpenRouter podle svého ceníku, ne my. Klíč se ukládá v zabezpečeném úložišti telefonu (Keychain na iPhonu, Keystore na Androidu).</p>
 
           <h2 id="s-cz-3">Jak smažu účet a data?</h2>
-          <p>Účet smažeš přímo v aplikaci — na iPhonu v <strong>Nastavení → Účet → Smazat účet a data</strong>, na Androidu v <strong>Nastavení → Data a soukromí → Vymazat účet</strong> — nebo nám napiš na <a href="mailto:subten@syenit.com">subten@syenit.com</a> z e-mailu spojeného s účtem. Celý postup i seznam toho, co se smaže, najdeš na stránce <a href="legal/account-deletion.html">Smazání účtu a dat</a>. Smazání účtu nezruší předplatné — to zruš v App Store nebo Google Play.</p>
+          <p>Účet smažeš přímo v aplikaci — na iPhonu v <strong>Nastavení → Účet → Smazat účet a data</strong>, na Androidu v <strong>Nastavení → Data a soukromí → Vymazat účet</strong> — nebo nám napiš na <a href="mailto:privacy@syenit.com">privacy@syenit.com</a> z e-mailu spojeného s účtem. Celý postup i seznam toho, co se smaže, najdeš na stránce <a href="legal/account-deletion.html">Smazání účtu a dat</a>. Smazání účtu nezruší předplatné — to zruš v App Store nebo Google Play.</p>
 
-          <h2 id="s-cz-4">Běží AI Coach v cloudu, nebo přímo v telefonu?</h2>
-          <p>AI Coach (součást Premium) zpracovává požadavky <strong>v cloudu</strong>, dokud v telefonu není připravený model AI v zařízení. Na telefonech s 6 GB RAM a více pak mohou textové funkce — chat, denní a týdenní vyhodnocení, analýza plató — běžet <strong>přímo v telefonu</strong> a jejich obsah se tehdy nezpracovává v cloudu. Model (~3 GB) se stahuje jen přes Wi-Fi a v <strong>Nastavení</strong> v části <strong>AI v telefonu</strong> (na Androidu <strong>AI v zařízení</strong>) ho zapneš nebo vypneš. Poznáš to podle odznaku se zámkem a nápisem <strong>„On-device"</strong> v hlavičce konverzace — bez zámku odpověď zpracoval cloud. Funkce, které posílají fotky (sken jídla, generování jídelníčku), běží vždy v cloudu a jen s tvým souhlasem.</p>
-          <p>Na iPhonu najdeš v <strong>Nastavení → AI v telefonu</strong> přepínač <strong>Soukromý režim: AI jen v zařízení</strong> (na zařízeních s 6 GB+ RAM). Běžné chování už tak upřednostňuje zařízení; tento přepínač navíc vypne záložní cloud pro textové funkce AI Coache — pokud lokální model neumí odpovědět, uvidíš férovou chybu místo odeslání dat do cloudu.</p>
+          <h2 id="s-cz-4">Běží AI trenér v cloudu, nebo přímo v telefonu?</h2>
+          <p>AI trenér (součást Premium) zpracovává požadavky <strong>v cloudu</strong>, dokud v telefonu není připravený model AI v zařízení. Na telefonech s 6 GB RAM a více pak mohou textové funkce — chat, denní a týdenní vyhodnocení, analýza plató — běžet <strong>přímo v telefonu</strong> a jejich obsah se tehdy nezpracovává v cloudu. Model (~3 GB) se stahuje jen přes Wi-Fi a v <strong>Nastavení</strong> v části <strong>AI v telefonu</strong> (na Androidu <strong>AI v zařízení</strong>) ho zapneš nebo vypneš. Poznáš to podle odznaku se zámkem a nápisem <strong>„On-device"</strong> v hlavičce konverzace — bez zámku odpověď zpracoval cloud. Sken jídla z fotky běží vždy v cloudu a jen s tvým souhlasem (posílá se fotka). Generování jídelníčku žádné fotky neposílá.</p>
+          <p>Na iPhonu najdeš v <strong>Nastavení → AI v telefonu</strong> přepínač <strong>Soukromý režim: AI jen v zařízení</strong> (na zařízeních s 6 GB+ RAM). Běžné chování už tak upřednostňuje zařízení; tento přepínač navíc vypne záložní cloud pro textové funkce AI trenére — pokud lokální model neumí odpovědět, uvidíš férovou chybu místo odeslání dat do cloudu.</p>
 
           <h2 id="s-cz-5">Apple Health a mé soukromí</h2>
           <p>Propojení s <strong>Apple Health</strong> je dobrovolné. Subten si žádá přístup jen k typům údajů, které skutečně používá (např. hmotnost, kroky, aktivní kalorie, tréninky, spánek, tep), a u každého typu si můžeš zvlášť zapnout nebo vypnout synchronizaci v <strong>Nastavení → Zdraví</strong>. Přístup můžeš kdykoli odebrat v iOS: <strong>Nastavení → Soukromí a zabezpečení → Health → Subten</strong>.</p>
-          <p><strong>Apple Watch není nutný.</strong> Subten čte metriky regenerace (tep, HRV, spánek, SpO₂…) z <strong>Apple Health</strong>, ne přímo z hodinek — zdrojem může být cokoliv, co do Apple Health tato data zapisuje: Apple Watch, Garmin, Oura, Whoop, jiný náramek/prsten, nebo i samotný iPhone (kroky, spánek).</p>
+          <p><strong>Apple Watch není nutný.</strong> Subten čte metriky regenerace (tep, HRV, spánek, SpO₂…) z <strong>Apple Health</strong>, ne přímo z hodinek — zdrojem může být cokoliv, co do Apple Health tato data zapisuje: Apple Watch, jiné hodinky, náramek či prsten, nebo i samotný iPhone (kroky, spánek).</p>
           <p>Zdravotní údaje z Apple Health nikdy neprodáváme ani nepoužíváme k reklamě. Podrobnosti jsou v <a href="legal/privacy.html">Zásadách ochrany soukromí</a>.</p>
 
           <h2 id="s-cz-6">Právní dokumenty</h2>
@@ -388,7 +388,7 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-bottom" style="margin-top:0;border-top:none;padding-top:0;">
-      <span data-i18n="footer.rights">© 2026 Subten. Všetky práva vyhradené.</span>
+      <span data-i18n="footer.rights">© 2026 Syenit, s.&nbsp;r.&nbsp;o. · 18+, nie je zdravotnícka pomôcka, hodnoty sú odhady</span>
       <span style="display:flex;gap:22px;flex-wrap:wrap;">
         <a href="legal/privacy.html" data-i18n="footer.privacy" style="color:var(--ink-2);">Ochrana súkromia</a>
         <a href="legal/terms.html" data-i18n="footer.terms" style="color:var(--ink-2);">Podmienky používania</a>
@@ -398,6 +398,7 @@
   </div>
 </footer>
 
+<script src="js/release.js"></script>
 <script src="js/i18n.js"></script>
 <script src="js/app.js"></script>
 </body>
