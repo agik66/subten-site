@@ -450,7 +450,6 @@ window.SUBTEN_I18N = {
   "free.f8": { sk: "AI tréner, sken z fotky a plány sú v Premium", en: "AI coach, photo scan and plans are in Premium", cz: "AI trenér, sken z fotky a plány jsou v Premium" },
   "free.cta.live": { sk: "Stiahnuť zadarmo", en: "Download for free", cz: "Stáhnout zdarma" },
   "pro.cta.live": { sk: "Stiahnuť a vyskúšať Premium", en: "Download and try Premium", cz: "Stáhnout a vyzkoušet Premium" },
-  "price.byok": { sk: "Máš vlastný kľúč od OpenRoutera? <strong>BYOK</strong> je jednorazový nákup za 3,99&nbsp;€ (nie predplatné) — AI funkcie potom bežia cez tvoj kľúč a náklady na AI ti účtuje OpenRouter.", en: "Have your own OpenRouter key? <strong>BYOK</strong> is a one-time purchase of €3.99 (not a subscription) — AI features then run through your key, and OpenRouter bills you for the AI usage.", cz: "Máš vlastní klíč od OpenRouteru? <strong>BYOK</strong> je jednorázový nákup za 3,99&nbsp;€ (ne předplatné) — AI funkce pak běží přes tvůj klíč a náklady na AI ti účtuje OpenRouter." },
   "cta.title.live": { sk: "Subten je v App Store a Google Play", en: "Subten is on the App Store and Google Play", cz: "Subten je v App Storu a na Google Play" },
   "cta.lede.live": { sk: "Stiahni si Subten pre iPhone, Apple Watch a Android.", en: "Get Subten for iPhone, Apple Watch and Android.", cz: "Stáhni si Subten pro iPhone, Apple Watch a Android." },
   "cta.soon.live": { sk: "Pre iPhone, Apple Watch a Android", en: "For iPhone, Apple Watch and Android", cz: "Pro iPhone, Apple Watch a Android" },
