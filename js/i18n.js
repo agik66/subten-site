@@ -112,7 +112,7 @@ window.SUBTEN_I18N = {
   "step1.title":  { sk: "Prepoj Apple Health", en: "Connect Apple Health", cz: "Propoj Apple Health" },
   "step1.desc":   { sk: "Spoj Subten s Apple Health — spánok, tep a pohyb sa načítajú samé.", en: "Link Subten with Apple Health — sleep, heart rate and activity flow in automatically.", cz: "Spoj Subten s Apple Health — spánek, tep a pohyb se načtou samy." },
   "step2.title":  { sk: "Nastav cieľ", en: "Set your goal", cz: "Nastav cíl" },
-  "step2.desc":   { sk: "Udržať, nabrať alebo trénovať na výkon? Subten nastaví východiskové kalórie a makrá a týždeň po týždni ich ladí.", en: "Maintain, gain or train for performance? Subten sets your starting calories and macros and fine-tunes them week by week.", cz: "Udržet, nabrat nebo trénovat na výkon? Subten nastaví výchozí kalorie a makra a týden po týdnu je ladí." },
+  "step2.desc":   { sk: "Udržať, nabrať alebo trénovať na výkon? Subten nastaví kalórie a makrá podľa tvojho profilu a tréningového plánu.", en: "Maintain, gain or train for performance? Subten sets your calories and macros from your profile and training plan.", cz: "Udržet, nabrat nebo trénovat na výkon? Subten nastaví kalorie a makra podle tvého profilu a tréninkového plánu." },
   "step3.title":  { sk: "Nechaj sa viesť", en: "Let it guide you", cz: "Nech se vést" },
   "step3.desc":   { sk: "Každý deň dostaneš jasný plán jedla, tréningu a regenerácie — a AI trénera, keď sa potrebuješ poradiť.", en: "Every day you get a clear plan for food, training and recovery — plus an AI coach whenever you need advice.", cz: "Každý den dostaneš jasný plán jídla, tréninku a regenerace — a AI trenéra, když se potřebuješ poradit." },
 
@@ -265,7 +265,7 @@ window.SUBTEN_I18N = {
   "calc.act.moderate":     { sk: "Stredná (3–5× týždenne)", en: "Moderate (3–5×/week)", cz: "Střední (3–5× týdně)" },
   "calc.act.active":       { sk: "Aktívna (6–7× týždenne)", en: "Active (6–7×/week)", cz: "Aktivní (6–7× týdně)" },
   "calc.act.veryactive":   { sk: "Veľmi aktívna (2× denne / fyzická práca)", en: "Very active (2×/day or physical job)", cz: "Velmi aktivní (2× denně / fyzická práce)" },
-  "calc.act.hint":         { sk: "Subten je pri štarte konzervatívny a strop násobiča drží na 1,5× — týždenná adaptácia ho potom doladí podľa reálnych dát.", en: "Subten starts conservatively and caps the multiplier at 1.5× — weekly adaptation then fine-tunes it from your real data.", cz: "Subten je při startu konzervativní a strop násobiče drží na 1,5× — týdenní adaptace ho pak doladí podle reálných dat." },
+  "calc.act.hint":         { sk: "Subten je pri štarte konzervatívny a strop násobiča drží na 1,5× — keď sa v niektorý deň hýbeš výrazne viac než obvykle, cieľ na ten deň to zohľadní.", en: "Subten starts conservatively and caps the multiplier at 1.5× — on days you move clearly more than usual, that day's target takes it into account.", cz: "Subten je při startu konzervativní a strop násobiče drží na 1,5× — když se v některý den hýbeš výrazně víc než obvykle, cíl na ten den to zohlední." },
 
   "calc.goal":          { sk: "Cieľ", en: "Goal", cz: "Cíl" },
   "calc.goal.fatloss":  { sk: "Deficit (−500 kcal)", en: "Calorie deficit (−500 kcal)", cz: "Deficit (−500 kcal)" },
@@ -392,8 +392,8 @@ window.SUBTEN_I18N = {
   "calc.str.rest":   { sk: "Oddych", en: "Rest", cz: "Odpočinek" },
 
   "calc.disclaimer": {
-    sk: "Orientačný prepočet podľa verejne dokumentovaných vzorcov Subtenu. Nenahrádza lekársku ani odbornú výživovú radu. Appka cieľ priebežne adaptuje podľa reálnych dát (hmotnosť + príjem za 21 dní), čo táto jednorazová kalkulačka nerobí.",
-    en: "An indicative calculation based on Subten's documented formulas. It does not replace medical or professional nutrition advice. The app continuously adapts your target from real data (weight + intake over 21 days), which this one-shot calculator does not do.", cz: "Orientační přepočet podle veřejně dokumentovaných vzorců Subtenu. Nenahrazuje lékařskou ani odbornou výživovou radu. Aplikace cíl průběžně adaptuje podle reálných dat (váha + příjem za 21 dní), což tato jednorázová kalkulačka nedělá."
+    sk: "Orientačný prepočet podľa verejne dokumentovaných vzorcov Subtenu. Nenahrádza lekársku ani odbornú výživovú radu. Appka navyše zohľadní dni, keď sa hýbeš výrazne viac než obvykle — to táto jednorazová kalkulačka nerobí.",
+    en: "An indicative calculation based on Subten's documented formulas. It does not replace medical or professional nutrition advice. On days you move clearly more than usual, the app also takes that into account — this one-shot calculator does not.", cz: "Orientační přepočet podle veřejně dokumentovaných vzorců Subtenu. Nenahrazuje lékařskou ani odbornou výživovou radu. Aplikace navíc zohlední dny, kdy se hýbeš výrazně víc než obvykle — to tato jednorázová kalkulačka nedělá."
   },
 
   /* ── calculator: SEO meta (localized <title> / description / OG) ── */
