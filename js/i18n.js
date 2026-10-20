@@ -101,9 +101,9 @@ window.SUBTEN_I18N = {
 
   /* showcase: recovery */
   "sc.rec.title": { sk: "Vieš, kedy pridať a kedy poľaviť", en: "Know when to push harder and when to ease off", cz: "Víš, kdy přidat a kdy polevit" },
-  "sc.rec.desc":  { sk: "Subten číta HRV, pokojový tep, spánok aj dýchanie z hodiniek a každé ráno ti dá jasné skóre pripravenosti — aj s vysvetlením.", en: "Subten reads HRV, resting heart rate, sleep and breathing from your watch and gives you a clear readiness score every morning — with the why.", cz: "Subten čte HRV, klidový tep, spánek i dýchání z hodinek a každé ráno ti dá jasné skóre připravenosti — i s vysvětlením." },
+  "sc.rec.desc":  { sk: "Subten číta HRV, pokojový tep a spánok z hodiniek a každé ráno ti dá jasné skóre pripravenosti — aj s vysvetlením.", en: "Subten reads HRV, resting heart rate and sleep from your watch and gives you a clear readiness score every morning — with the why.", cz: "Subten čte HRV, klidový tep a spánek z hodinek a každé ráno ti dá jasné skóre připravenosti — i s vysvětlením." },
   "sc.rec.li1":   { sk: "Skóre regenerácie 0–100 každé ráno", en: "Recovery score 0–100 every morning", cz: "Skóre regenerace 0–100 každé ráno" },
-  "sc.rec.li2":   { sk: "HRV, pokojový tep, SpO₂ a dýchanie", en: "HRV, resting HR, SpO₂ and breathing", cz: "HRV, klidový tep, SpO₂ a dýchání" },
+  "sc.rec.li2":   { sk: "HRV, pokojový tep a SpO₂", en: "HRV, resting HR and SpO₂", cz: "HRV, klidový tep a SpO₂" },
   "sc.rec.li3":   { sk: "Týždenné trendy a história záznamov", en: "Weekly trends and your full history", cz: "Týdenní trendy a historie záznamů" },
 
   /* steps */
