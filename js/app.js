@@ -129,18 +129,39 @@
   const REL = window.SUBTEN_RELEASE || {};
   const BADGE_FILE = { sk: "sk", cz: "cs", en: "en" };
   const BADGE_ALT = { sk: "Stiahnuť v App Store", cz: "Stáhnout v App Storu", en: "Download on the App Store" };
+  // Oficiálny odznak Google Play máme po slovensky a anglicky; česká stránka zatiaľ dostane anglický.
+  const PLAY_FILE = { sk: "sk", cz: "en", en: "en" };
+  const PLAY_ALT = { sk: "Získajte to na Google Play", cz: "Nyní na Google Play", en: "Get it on Google Play" };
+  // Textové tlačidlo („Stiahnuť“) vedie na Androide do Google Play, inde do App Store.
+  const ON_ANDROID = /Android/i.test(navigator.userAgent);
+  function addPlayBadge(appStoreLink, lang) {
+    let play = appStoreLink.nextElementSibling;
+    if (!play || !play.hasAttribute("data-play-badge")) {
+      play = document.createElement("a");
+      play.setAttribute("data-play-badge", "");
+      play.className = "store-badge-link";
+      play.setAttribute("href", REL.playStoreUrl);
+      play.setAttribute("target", "_blank");
+      play.setAttribute("rel", "noopener");
+      appStoreLink.after(play);
+    }
+    play.innerHTML = '<img src="assets/badges/google-play-' + (PLAY_FILE[lang] || "en") + '.png" alt="' +
+      (PLAY_ALT[lang] || PLAY_ALT.en) + '" width="161" height="48" />';
+  }
   function syncStoreCtas() {
     if (!REL.live) return;
     const lang = window.__subtenLang || "en";
     document.querySelectorAll("[data-store-cta]").forEach((a) => {
-      a.setAttribute("href", REL.appStoreUrl);
+      const isBadge = a.dataset.storeCta === "badge";
+      a.setAttribute("href", !isBadge && ON_ANDROID && REL.playStoreUrl ? REL.playStoreUrl : REL.appStoreUrl);
       a.setAttribute("target", "_blank");
       a.setAttribute("rel", "noopener");
       a.hidden = false;
-      if (a.dataset.storeCta === "badge") {
+      if (isBadge) {
         a.className = "store-badge-link";
         a.innerHTML = '<img src="assets/badges/app-store-' + (BADGE_FILE[lang] || "en") + '.svg" alt="' +
           (BADGE_ALT[lang] || BADGE_ALT.en) + '" width="144" height="48" />';
+        if (REL.playStoreUrl) addPlayBadge(a, lang);
       }
     });
   }
